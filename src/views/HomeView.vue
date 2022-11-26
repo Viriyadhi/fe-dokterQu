@@ -121,78 +121,138 @@
       </div>
     </section>
 
-    <div class="d-flex flex-row">
-      <div class="parent-layanan">
-        <v-img
-          src="@/assets/Landing Page/LayananKhusus/LayananImage.svg"
-          max-width="502"
-          max-height="425"
-          class="layanan-image"
-        >
-        </v-img>
-        <v-img
-          src="@/assets/Landing Page/LayananKhusus/OvalLayanan.svg"
-          class="layanan-oval"
-        >
-        </v-img>
+    <section class="layanan-khusus card">
+      <div class="d-flex flex-row">
+        <div class="parent-layanan">
+          <v-img
+            src="@/assets/Landing Page/LayananKhusus/LayananImage.svg"
+            max-width="502"
+            max-height="425"
+            class="layanan-image"
+          >
+          </v-img>
+          <v-img
+            src="@/assets/Landing Page/LayananKhusus/OvalLayanan.svg"
+            class="layanan-oval"
+          >
+          </v-img>
+        </div>
+
+        <div class="ml-16 container-card flex-grow-1">
+          <v-card
+            max-width="255"
+            max-height="336"
+            class="elevation-5 rounded-xl"
+          >
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              height="168"
+            ></v-img>
+
+            <v-card-subtitle>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              pretium fermentum felis id condimentum.
+            </v-card-subtitle>
+
+            <v-card-actions class="d-flex justify-end">
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
+                SEE DETAILS
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+
+          <v-card
+            max-width="255"
+            max-height="336"
+            class="elevation-5 rounded-xl"
+          >
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              height="168"
+            ></v-img>
+
+            <v-card-subtitle>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              pretium fermentum felis id condimentum.
+            </v-card-subtitle>
+
+            <v-card-actions class="d-flex justify-end">
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
+                SEE DETAILS
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+
+          <v-card
+            max-width="255"
+            max-height="336"
+            class="elevation-5 rounded-xl"
+          >
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              height="168"
+            ></v-img>
+
+            <v-card-subtitle>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              pretium fermentum felis id condimentum.
+            </v-card-subtitle>
+
+            <v-card-actions class="d-flex justify-end">
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
+                SEE DETAILS
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </div>
       </div>
+    </section>
 
-      <div class="ml-16 container-card flex-grow-1">
-        <v-card max-width="255" max-height="336" class="elevation-5 rounded-xl">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="168"
-          ></v-img>
+    <section class="speciality mx-16 px-16 mt-16">
+      <div class="d-flex flex-row justify-space-between">
+        <div class="speciality-container d-flex flex-column">
+          <h2 class="speciality-title">Our Speciality</h2>
 
-          <v-card-subtitle>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            pretium fermentum felis id condimentum.
-          </v-card-subtitle>
+          <p class="speciality-desc">
+            Curabitur egestas consequat lorem, vel fermentum augue porta id.
+            Aliquam lobortis magna neque, gravida consequat velit venenatis at.
+          </p>
 
-          <v-card-actions class="d-flex justify-end">
-            <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-              SEE DETAILS
+          <div class="d-flex flex-row button-1 mt-8">
+            <v-btn outlined rounded color="success" class="px-8">
+              Pengelihatan
             </v-btn>
-          </v-card-actions>
-        </v-card>
-
-        <v-card max-width="255" max-height="336" class="elevation-5 rounded-xl">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="168"
-          ></v-img>
-
-          <v-card-subtitle>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            pretium fermentum felis id condimentum.
-          </v-card-subtitle>
-
-          <v-card-actions class="d-flex justify-end">
-            <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-              SEE DETAILS
+            <v-btn outlined rounded color="success" class="px-8">
+              Pengelihatan
             </v-btn>
-          </v-card-actions>
-        </v-card>
-
-        <v-card max-width="255" max-height="336" class="elevation-5 rounded-xl">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="168"
-          ></v-img>
-
-          <v-card-subtitle>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            pretium fermentum felis id condimentum.
-          </v-card-subtitle>
-
-          <v-card-actions class="d-flex justify-end">
-            <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-              SEE DETAILS
+            <v-btn outlined rounded color="success" class="px-8">
+              Pengelihatan
             </v-btn>
-          </v-card-actions>
-        </v-card>
+          </div>
+          <div class="d-flex flex-row button-2 mt-4 ml-4">
+            <v-btn outlined rounded color="success" class="px-8">
+              Pengelihatan
+            </v-btn>
+            <v-btn outlined rounded color="success" class="px-8">
+              Pengelihatan
+            </v-btn>
+          </div>
+        </div>
+        <v-img
+          src="@/assets/Landing Page/Speciality/SpecialityImage.svg"
+          max-width="607"
+          max-height="579"
+          class="speciality-image"
+        ></v-img>
       </div>
-    </div>
+    </section>
+
+    <!-- <section class="medicine mt-16">
+      <v-img
+        src="@/assets/Landing Page/Medicine/MedicineImage.svg"
+        class="medicine-image"
+      ></v-img>
+    </section> -->
   </v-app>
 </template>
 <script>
@@ -375,5 +435,41 @@ export default {
 }
 
 .layanan-card {
+}
+</style>
+
+<style>
+.speciality-title {
+  font-weight: 800;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.speciality-desc {
+  font-weight: 400;
+  font-size: 1.25rem;
+  width: 45% !important;
+}
+
+.speciality-image {
+  top: 0;
+  right: 0;
+}
+
+.speciality-container {
+  margin-top: 8rem !important;
+}
+
+.button-1 {
+  gap: 2rem;
+}
+.button-2 {
+  gap: 3rem;
+}
+</style>
+
+<style>
+.medicine-image {
+  position: absolute;
 }
 </style>

@@ -77,7 +77,7 @@ export default {
       transition: "all 700ms ",
       marginTop: "0px",
       boxShadow: "none !important",
-      zIndex: "1",
+      zIndex: "4",
     },
     items: [
       { title: "Mata" },
