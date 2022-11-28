@@ -4,7 +4,7 @@
       <v-app-bar
         :style="this.appbarStyle"
         fixed
-        class="px-16 navbar"
+        class="px-16 navbar pt-3"
         elevation="0"
         v-scroll="onScrollContent"
       >
@@ -75,6 +75,7 @@ export default {
     appbarStyle: {
       backgroundColor: `rgba(0,0,0,0)`,
       transition: "all 700ms ",
+      height: "5rem",
       marginTop: "0px",
       boxShadow: "none !important",
       zIndex: "4",
