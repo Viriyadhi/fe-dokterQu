@@ -204,11 +204,33 @@
               </v-btn>
             </v-card-actions>
           </v-card>
+
+          <v-card
+            max-width="255"
+            max-height="336"
+            class="elevation-5 rounded-xl"
+          >
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              height="168"
+            ></v-img>
+
+            <v-card-subtitle>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              pretium fermentum felis id condimentum.
+            </v-card-subtitle>
+
+            <v-card-actions class="d-flex justify-end">
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
+                SEE DETAILS
+              </v-btn>
+            </v-card-actions>
+          </v-card>
         </div>
       </div>
     </section>
 
-    <section class="speciality mx-16 px-16 mt-16">
+    <section class="speciality ma-16 px-16">
       <div class="d-flex flex-row justify-space-between">
         <div class="speciality-container d-flex flex-column">
           <h2 class="speciality-title">Our Speciality</h2>
@@ -247,12 +269,193 @@
       </div>
     </section>
 
-    <!-- <section class="medicine mt-16">
-      <v-img
-        src="@/assets/Landing Page/Medicine/MedicineImage.svg"
-        class="medicine-image"
-      ></v-img>
-    </section> -->
+    <section class="medicine ma-16 px-16">
+      <div class="d-flex flex-row justify-space-around">
+        <v-img
+          src="@/assets/Landing Page/Medicine/MedicineImage.svg"
+          class="medicine-image"
+          max-width="604"
+          max-height="459"
+        ></v-img>
+        <div class="d-flex flex-column medicine-text">
+          <h2 class="medicine-title">Find your medicine</h2>
+          <p class="medicine-desc">
+            Curabitur egestas consequat lorem, vel fermentum augue porta id.
+            Aliquam lobortis magna neque, gravida consequat velit venenatis at.
+          </p>
+          <v-btn color="success" class="medicine-btn py-5" rounded>
+            Kunjungi Toko</v-btn
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="Appointment">
+      <div class="d-flex flex-row justify-space-between">
+        <div class="Appointment-container d-flex flex-column">
+          <h2 class="Appointment-title">
+            Book an Appointment With Specialist Doctor
+          </h2>
+
+          <p class="Appointment-desc">
+            Curabitur egestas consequat lorem, vel fermentum augue porta id.
+            Aliquam lobortis magna neque, gravida consequat velit venenatis at.
+          </p>
+
+          <v-btn color="success" class="medicine-btn py-5" rounded>
+            Cari Dokter Sekarang</v-btn
+          >
+        </div>
+        <v-img
+          src="@/assets/Landing Page/Appointment/Appointment.svg"
+          max-width="746.15"
+          max-height="481.43"
+          class="Appointment-image"
+        ></v-img>
+      </div>
+    </section>
+
+    <section class="article mx-8">
+      <div class="d-flex flex-row justify-space-between align-center">
+        <h2 class="article-header-title">Baca Artikel Seputar Kesehatan</h2>
+        <a class="article-header-link"> Lihat semua</a>
+      </div>
+
+      <div class="button-group mt-8">
+        <v-btn
+          outlined
+          rounded
+          class="button-group-child"
+          width="207px"
+          height="47"
+        >
+          Pengelihatan
+        </v-btn>
+        <v-btn
+          outlined
+          rounded
+          class="button-group-child"
+          width="207px"
+          height="47"
+        >
+          Pengelihatan
+        </v-btn>
+        <v-btn
+          outlined
+          rounded
+          class="button-group-child"
+          width="207px"
+          height="47"
+        >
+          Pengelihatan
+        </v-btn>
+        <v-btn
+          outlined
+          rounded
+          class="button-group-child"
+          width="207px"
+          height="47"
+        >
+          Pengelihatan
+        </v-btn>
+        <v-btn
+          outlined
+          rounded
+          class="button-group-child"
+          width="207px"
+          height="47"
+        >
+          Pengelihatan
+        </v-btn>
+      </div>
+
+      <div
+        class="article-card d-flex flex-row align-center justify-space-between"
+      >
+        <v-card max-width="325">
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            height="200px"
+            class="article-img"
+          ></v-img>
+
+          <!-- <v-card-title> Top western road trips </v-card-title> -->
+
+          <v-card-subtitle class="card-desc">
+            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
+            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
+            care.”
+          </v-card-subtitle>
+          <v-card-text>Sumber Superideal.id</v-card-text>
+        </v-card>
+
+        <v-card max-width="325">
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            height="200px"
+            class="article-img"
+          ></v-img>
+
+          <!-- <v-card-title> Top western road trips </v-card-title> -->
+
+          <v-card-subtitle class="card-desc">
+            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
+            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
+            care.”
+          </v-card-subtitle>
+          <v-card-text>Sumber Superideal.id</v-card-text>
+        </v-card>
+        <v-card max-width="325">
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            height="200px"
+            class="article-img"
+          ></v-img>
+
+          <!-- <v-card-title> Top western road trips </v-card-title> -->
+
+          <v-card-subtitle class="card-desc">
+            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
+            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
+            care.”
+          </v-card-subtitle>
+          <v-card-text>Sumber Superideal.id</v-card-text>
+        </v-card>
+
+        <v-card max-width="325">
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            height="200px"
+            class="article-img"
+          ></v-img>
+
+          <!-- <v-card-title> Top western road trips </v-card-title> -->
+
+          <v-card-subtitle class="card-desc">
+            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
+            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
+            care.”
+          </v-card-subtitle>
+          <v-card-text>Sumber Superideal.id</v-card-text>
+        </v-card>
+        <v-card max-width="325">
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            height="200px"
+            class="article-img"
+          ></v-img>
+
+          <!-- <v-card-title> Top western road trips </v-card-title> -->
+
+          <v-card-subtitle class="card-desc">
+            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
+            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
+            care.”
+          </v-card-subtitle>
+          <v-card-text>Sumber Superideal.id</v-card-text>
+        </v-card>
+      </div>
+    </section>
   </v-app>
 </template>
 <script>
@@ -433,9 +636,6 @@ export default {
   font-weight: 600;
   font-size: 0.9rem;
 }
-
-.layanan-card {
-}
 </style>
 
 <style>
@@ -451,11 +651,6 @@ export default {
   width: 45% !important;
 }
 
-.speciality-image {
-  top: 0;
-  right: 0;
-}
-
 .speciality-container {
   margin-top: 8rem !important;
 }
@@ -469,7 +664,96 @@ export default {
 </style>
 
 <style>
-.medicine-image {
-  position: absolute;
+.medicine-text {
+  margin-left: 18rem;
+}
+.medicine-title {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.medicine-desc {
+  font-size: 1.5rem;
+  width: 80%;
+}
+
+.medicine-btn {
+  font-size: 1.5rem;
+  font-weight: 600 !important;
+  margin-top: 2rem;
+  width: 25%;
+}
+</style>
+
+<style>
+.Appointment-title {
+  font-weight: 800;
+  width: 55% !important;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.Appointment-desc {
+  font-weight: 400;
+  font-size: 1.25rem;
+  width: 55% !important;
+}
+
+.Appointment-container {
+  margin: 8rem 0 0 8rem !important;
+}
+
+.button-1 {
+  gap: 2rem;
+}
+.button-2 {
+  gap: 3rem;
+}
+</style>
+
+<style>
+.article {
+  margin-top: 8rem !important;
+}
+
+.article-header-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.article-header-link {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #03acf2 !important;
+  text-decoration-line: underline;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.button-group-child {
+  background: white !important;
+  color: #4caf50 !important;
+  border: #4caf50 1px solid !important;
+  transition: all 200ms;
+}
+.button-group-child:hover {
+  background: #4caf50 !important;
+  color: white !important;
+}
+
+.article-card {
+  margin-top: 2rem;
+}
+
+.article-img {
+  border-radius: 1rem 1rem 0 0 !important;
+}
+
+.card-desc {
+  color: black !important;
 }
 </style>
