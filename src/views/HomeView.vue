@@ -370,9 +370,9 @@
       </div>
 
       <div
-        class="article-card d-flex flex-row align-center justify-space-between"
+        class="article-container d-flex flex-row align-center justify-space-between"
       >
-        <v-card max-width="325">
+        <v-card max-width="325" class="article-card">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
             height="200px"
@@ -389,7 +389,7 @@
           <v-card-text>Sumber Superideal.id</v-card-text>
         </v-card>
 
-        <v-card max-width="325">
+        <v-card max-width="325" class="article-card">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
             height="200px"
@@ -405,7 +405,7 @@
           </v-card-subtitle>
           <v-card-text>Sumber Superideal.id</v-card-text>
         </v-card>
-        <v-card max-width="325">
+        <v-card max-width="325" class="article-card">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
             height="200px"
@@ -421,8 +421,7 @@
           </v-card-subtitle>
           <v-card-text>Sumber Superideal.id</v-card-text>
         </v-card>
-
-        <v-card max-width="325">
+        <v-card max-width="325" class="article-card">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
             height="200px"
@@ -438,7 +437,7 @@
           </v-card-subtitle>
           <v-card-text>Sumber Superideal.id</v-card-text>
         </v-card>
-        <v-card max-width="325">
+        <v-card max-width="325" class="article-card">
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
             height="200px"
@@ -745,8 +744,8 @@ export default {
   color: white !important;
 }
 
-.article-card {
-  margin-top: 2rem;
+.article-container {
+  margin: 2rem 0;
 }
 
 .article-img {
@@ -755,5 +754,10 @@ export default {
 
 .card-desc {
   color: black !important;
+}
+
+.article-card {
+  background: #ffffff !important;
+  box-shadow: 0px 16px 40px rgba(154, 170, 207, 0.2) !important;
 }
 </style>
