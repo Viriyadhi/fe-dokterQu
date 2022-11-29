@@ -9,7 +9,7 @@
         v-scroll="onScrollContent"
       >
         <v-img
-          src="@/assets/Landing Page/Header/WebLogo.svg"
+          src="@/assets/WebLogo.svg"
           max-width="61.63"
           max-height="56.47"
           class=""
