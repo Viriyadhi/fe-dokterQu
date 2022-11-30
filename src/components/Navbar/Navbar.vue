@@ -51,20 +51,23 @@
         </div>
 
         <div class="d-flex align-center justify-center">
-          <router-link :to="{ name: '/' }">
+          <router-link :to="{ name: 'Login' }">
             <a class="login-text mr-8">LOGIN</a>
           </router-link>
           <div class="text-center mx-8">
             <v-btn rounded color="success" class="button-register" dark>
-              Register
+              <router-link :to="{ name: 'Register' }">
+                <a class="register-text">REGISTER</a>
+              </router-link>
             </v-btn>
           </div>
-          <router-link :to="{ name: '/' }"> </router-link>
           <v-divider vertical></v-divider>
           <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
         </div>
       </v-app-bar>
-      <router-view class="mt-16" />
+      <v-main class="pa-0 mt-16">
+        <router-view />
+      </v-main>
     </v-card>
   </div>
 </template>
@@ -141,6 +144,10 @@ a {
 </style>
 
 <style scoped>
+.register-text {
+  font-size: 1rem;
+  color: white !important;
+}
 .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: none !important;
 }
