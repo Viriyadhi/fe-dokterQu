@@ -14,10 +14,6 @@ export default {
     Footer,
   },
   name: "App",
-
-  data: () => ({
-    //
-  }),
 };
 </script>
 
