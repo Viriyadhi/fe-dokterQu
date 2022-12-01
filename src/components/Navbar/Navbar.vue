@@ -17,37 +17,35 @@
         </v-img>
         <h1 class="mx-8 title-web">DokterQ</h1>
         <div class="d-flex align-center justify-space-between">
-          <router-link :to="{ name: 'home' }">
+          <router-link :to="{ name: 'Default' }">
             <a class="mx-8">Beranda</a>
           </router-link>
-          <router-link :to="{ name: 'about' }">
+          <router-link :to="{ name: 'About' }">
             <a class="mx-8">Janji Temu</a>
           </router-link>
-          <router-link :to="{ name: 'test' }">
+          <router-link :to="{ name: 'Default' }">
             <a class="mx-8">Beli Obat</a>
           </router-link>
 
-          <router-link :to="{ name: '/' }">
-            <v-menu open-on-hover bottom :offset-y="offset">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  class="ml-8 mr-16 btn-kesehatan text-capitalize"
-                  dark
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  Kesehatan
-                  <v-icon>mdi-menu-down</v-icon>
-                </v-btn>
-              </template>
+          <v-menu open-on-hover bottom :offset-y="offset">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                class="ml-8 mr-16 btn-kesehatan text-capitalize"
+                dark
+                v-bind="attrs"
+                v-on="on"
+              >
+                Kesehatan
+                <v-icon>mdi-menu-down</v-icon>
+              </v-btn>
+            </template>
 
-              <v-list>
-                <v-list-item v-for="(item, index) in items" :key="index">
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </router-link>
+            <v-list>
+              <v-list-item v-for="(item, index) in items" :key="index">
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </div>
 
         <div class="d-flex align-center justify-center">
@@ -55,7 +53,13 @@
             <a class="login-text mr-8">LOGIN</a>
           </router-link>
           <div class="text-center mx-8">
-            <v-btn rounded color="success" class="button-register" dark>
+            <v-btn
+              :to="{ name: 'Register' }"
+              rounded
+              color="success"
+              class="button-register"
+              dark
+            >
               <router-link :to="{ name: 'Register' }">
                 <a class="register-text">REGISTER</a>
               </router-link>
