@@ -4,12 +4,12 @@
       <v-app-bar
         :style="this.appbarStyle"
         fixed
-        class="px-16 navbar"
+        class="px-16 navbar pt-3"
         elevation="0"
         v-scroll="onScrollContent"
       >
         <v-img
-          src="@/assets/Landing Page/Header/WebLogo.svg"
+          src="@/assets/WebLogo.svg"
           max-width="61.63"
           max-height="56.47"
           class=""
@@ -75,9 +75,10 @@ export default {
     appbarStyle: {
       backgroundColor: `rgba(0,0,0,0)`,
       transition: "all 700ms ",
+      height: "5rem",
       marginTop: "0px",
       boxShadow: "none !important",
-      zIndex: "1",
+      zIndex: "4",
     },
     items: [
       { title: "Mata" },
