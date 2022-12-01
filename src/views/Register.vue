@@ -2,6 +2,7 @@
   <div class="d-flex flex-column container absolute-center">
     <h2 class="title-reg">Register</h2>
     <v-text-field
+      color="secondary"
       v-for="(item, index) in textField"
       :key="index"
       :label="item.label"
@@ -12,6 +13,7 @@
     </v-text-field>
 
     <v-text-field
+      color="secondary"
       label="Kata Sandi"
       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
       :type="show1 ? 'text' : 'password'"
@@ -22,6 +24,7 @@
     ></v-text-field>
 
     <v-text-field
+      color="secondary"
       label="Konfirmasi Kata Sandi"
       :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
       :type="show2 ? 'text' : 'password'"
