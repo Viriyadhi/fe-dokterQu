@@ -1,5 +1,7 @@
 <template>
   <v-app class="">
+    <!-- <NavBar /> -->
+
     <div class="d-flex">
       <div class="d-flex flex-column container-title">
         <h2 class="header-title">Seputar Kesehatan Indra</h2>
@@ -455,14 +457,19 @@
         </v-card>
       </div>
     </section>
+    <router-view />
+
+    <!-- <Footer /> -->
   </v-app>
 </template>
 <script>
 // import OvalTop from "@/components/HeaderImage/HeaderImage.vue";
-
+// import NavBar from "@/components/Navbar/Navbar.vue";
+// import Footer from "@/components/Footer/Footer.vue";
 export default {
   components: {
-    // OvalTop,
+    // Footer,
+    // NavBar,
   },
 
   data: () => ({
