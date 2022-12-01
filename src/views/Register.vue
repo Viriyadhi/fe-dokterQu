@@ -1,67 +1,44 @@
 <template>
-  <v-app>
-    <div class="main-container">
-      <div class="main-content d-flex flex-row align-center">
-        <div class="d-flex flex-column align-center">
-          <v-img
-            src="@/assets/Register/IllustratitionRegisLogin.svg"
-            alt="Illustration Register"
-            max-height="722"
-            max-width="833"
-          ></v-img>
-          <div class="sudah-punya-akun">
-            <p class="sudah-punya">Sudah punya akun?</p>
-            <router-link to="/login" class="login-link">Login</router-link>
-          </div>
-        </div>
-        <div class="container-form mt-16 d-flex flex-column flex-grow-1">
-          <h2 class="title-reg">Registrasi</h2>
+  <div class="d-flex flex-column container absolute-center">
+    <h2 class="title-reg">Register</h2>
+    <v-text-field
+      v-for="(item, index) in textField"
+      :key="index"
+      :label="item.label"
+      :prepend-inner-icon="item.prependInnerIcon"
+      :rules="item.rules"
+      :required="item.required"
+    >
+    </v-text-field>
 
-          <v-text-field
-            v-for="(item, index) in textField"
-            :key="index"
-            :label="item.label"
-            :prepend-inner-icon="item.prependInnerIcon"
-            :rules="item.rules"
-            :required="item.required"
-          >
-          </v-text-field>
+    <v-text-field
+      label="Kata Sandi"
+      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+      :type="show1 ? 'text' : 'password'"
+      name="input-10-1"
+      hint="At least 8 characters"
+      @click:append="show1 = !show1"
+      prepend-inner-icon="mdi-lock"
+    ></v-text-field>
 
-          <v-text-field
-            label="Kata Sandi"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show1 ? 'text' : 'password'"
-            name="input-10-1"
-            hint="At least 8 characters"
-            @click:append="show1 = !show1"
-            prepend-inner-icon="mdi-lock"
-          ></v-text-field>
+    <v-text-field
+      label="Konfirmasi Kata Sandi"
+      :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+      :type="show2 ? 'text' : 'password'"
+      name="input-10-1"
+      hint="At least 8 characters"
+      @click:append="show2 = !show2"
+      prepend-inner-icon="mdi-lock"
+    ></v-text-field>
 
-          <v-text-field
-            label="Konfirmasi Kata Sandi"
-            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show2 ? 'text' : 'password'"
-            name="input-10-1"
-            hint="At least 8 characters"
-            @click:append="show2 = !show2"
-            prepend-inner-icon="mdi-lock"
-          ></v-text-field>
+    <div class="container-btn d-flex align-center mt-8 justify-space-around">
+      <router-link to="/register" class="login-link">
+        Lupa Password?
+      </router-link>
 
-          <div class="container-btn d-flex align-center justify-end">
-            <v-btn class="reg-btn rounded-lg mt-8 px-16" color="primary">
-              Daftar
-            </v-btn>
-          </div>
-        </div>
-      </div>
-      <v-img
-        src="@/assets/Register/BackgroundRegister.svg"
-        max-width="428"
-        max-height="410"
-        class="background-register"
-      ></v-img>
+      <v-btn class="reg-btn rounded-lg px-16" color="secondary"> Login </v-btn>
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -123,6 +100,9 @@ export default {
 </script>
 
 <style scoped>
+.absolute-center {
+  transform: translate(0, 40%) !important;
+}
 v-app {
   background-color: #f5f5f5 !important;
   height: 100vh !important;
