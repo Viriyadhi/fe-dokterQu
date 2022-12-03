@@ -24,7 +24,7 @@
     ></v-text-field>
 
     <div class="container-btn d-flex align-center mt-8 justify-space-around">
-      <router-link to="/register" class="login-link">
+      <router-link :to="{ name: 'Otp' }" class="login-link">
         Lupa Password?
       </router-link>
 
@@ -100,7 +100,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .absolute-center {
   top: 50% !important;
   transform: translate(0, 80%) !important;
