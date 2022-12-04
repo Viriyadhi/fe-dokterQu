@@ -88,7 +88,7 @@ export default {
 
   methods: {
     login() {
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "Default" });
       console.log(`${this.$api}`);
     },
 

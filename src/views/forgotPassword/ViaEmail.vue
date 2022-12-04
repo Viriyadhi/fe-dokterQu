@@ -18,7 +18,7 @@
         color="secondary"
         @click="login()"
       >
-        Login
+        Selanjutnya
       </v-btn>
     </div>
   </div>
