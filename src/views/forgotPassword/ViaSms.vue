@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column container absolute-center">
-    <h2 class="title-reg">Login</h2>
+    <h2 class="title-reg">Masukkan No.Hp anda</h2>
     <v-text-field
       color="secondary"
       v-for="(item, index) in textField"
@@ -12,28 +12,13 @@
     >
     </v-text-field>
 
-    <v-text-field
-      color="secondary"
-      label="Kata Sandi"
-      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show1 ? 'text' : 'password'"
-      name="input-10-1"
-      hint="At least 8 characters"
-      @click:append="show1 = !show1"
-      prepend-inner-icon="mdi-lock"
-    ></v-text-field>
-
-    <div class="container-btn d-flex align-center mt-8 justify-space-around">
-      <router-link :to="{ name: 'Forgot' }" class="login-link">
-        Lupa Password?
-      </router-link>
-
+    <div class="container-btn d-flex align-center mt-8 justify-end">
       <v-btn
         class="reg-btn rounded-lg px-16"
         color="secondary"
         @click="login()"
       >
-        Login
+        Selanjutnya
       </v-btn>
     </div>
   </div>
@@ -58,12 +43,8 @@ export default {
 
     textField: [
       {
-        label: "Alamat Email",
-        prependInnerIcon: "mdi-email",
-        rules: [
-          (v) => !!v || "E-mail is required",
-          (v) => /.+@.+/.test(v) || "E-mail must be valid",
-        ],
+        label: "Nomor Telepon",
+        prependInnerIcon: "mdi-phone",
         required: true,
       },
 
@@ -88,7 +69,7 @@ export default {
 
   methods: {
     login() {
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: "Otp" });
       console.log(`${this.$api}`);
     },
 
@@ -100,12 +81,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .absolute-center {
   top: 50% !important;
   transform: translate(0, 80%) !important;
 }
-
 .container-btn {
   width: 40%;
 }
@@ -113,7 +93,7 @@ export default {
   width: 30% !important;
 }
 .title-reg {
-  font-size: 3rem !important;
+  font-size: 2.5rem !important;
   font-size: 500;
 }
 .v-input {

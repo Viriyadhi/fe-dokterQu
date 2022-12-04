@@ -4,6 +4,8 @@ import HomeView from "../views/home/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
 import LoginView from "../views/Login.vue";
 import RegisterView from "../views/Register.vue";
+import ViaEmail from "../views/forgotPassword/ViaEmail.vue";
+import ViaSms from "../views/forgotPassword/ViaSms.vue";
 import DefaultView from "../layouts/Default.vue";
 import RegisterLogin from "../layouts/RegisterLogin/RegisterLoginLayout.vue";
 import ForgotPasswordLayout from "../layouts/RegisterLogin/ForgotPassword.vue";
@@ -51,6 +53,16 @@ const routes = [
         path: "/register-login/create-password",
         name: "CreatePassword",
         component: CreatePassword,
+      },
+      {
+        path: "/register-login/via-email",
+        name: "ViaEmail",
+        component: ViaEmail,
+      },
+      {
+        path: "/register-login/via-sms",
+        name: "ViaSms",
+        component: ViaSms,
       },
     ],
   },
