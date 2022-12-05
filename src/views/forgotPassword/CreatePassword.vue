@@ -1,16 +1,6 @@
 <template>
   <div class="d-flex flex-column container absolute-center">
-    <h2 class="title-reg">Login</h2>
-    <v-text-field
-      color="secondary"
-      v-for="(item, index) in textField"
-      :key="index"
-      :label="item.label"
-      :prepend-inner-icon="item.prependInnerIcon"
-      :rules="item.rules"
-      :required="item.required"
-    >
-    </v-text-field>
+    <h2 class="title-reg mb-4">Buat Password Baru</h2>
 
     <v-text-field
       color="secondary"
@@ -23,40 +13,50 @@
       prepend-inner-icon="mdi-lock"
     ></v-text-field>
 
-    <div class="container-btn d-flex align-center mt-8 justify-space-around">
-      <router-link :to="{ name: 'Forgot' }" class="login-link">
-        Lupa Password?
-      </router-link>
+    <v-text-field
+      color="secondary"
+      label="Konfirmasi Kata Sandi"
+      :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+      :type="show2 ? 'text' : 'password'"
+      name="input-10-1"
+      hint="At least 8 characters"
+      @click:append="show2 = !show2"
+      prepend-inner-icon="mdi-lock"
+    ></v-text-field>
 
+    <div class="container-btn d-flex align-center mt-8 justify-end">
       <v-btn
         class="reg-btn rounded-lg px-16"
+        @click="nextRoute()"
         color="secondary"
-        @click="login()"
       >
-        Login
+        Selanjutnya
       </v-btn>
     </div>
   </div>
 </template>
 
 <script>
-import { Axios } from "axios";
-// import RegisterLoginLayout from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
-// import RegisterLoginLayout from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
-
 export default {
   name: "RegisterView",
-
-  components: {
-    // RegisterLoginLayout,
-    // RegisterLoginLayout,
-  },
 
   data: () => ({
     show1: false,
     show2: false,
 
     textField: [
+      {
+        label: "Nama Lengkap",
+        prependInnerIcon: "mdi-account-circle",
+        required: true,
+      },
+
+      {
+        label: "Nomor Telepon",
+        prependInnerIcon: "mdi-phone",
+        required: true,
+      },
+
       {
         label: "Alamat Email",
         prependInnerIcon: "mdi-email",
@@ -87,14 +87,8 @@ export default {
   }),
 
   methods: {
-    login() {
+    nextRoute() {
       this.$router.push({ name: "Default" });
-      console.log(`${this.$api}`);
-    },
-
-    async test() {
-      const res = await Axios.get("aoshdoasddasosaddaso");
-      console.log(res);
     },
   },
 };
@@ -102,10 +96,19 @@ export default {
 
 <style scoped>
 .absolute-center {
-  top: 50% !important;
-  transform: translate(0, 80%) !important;
+  transform: translate(0, 40%) !important;
+}
+v-app {
+  background-color: #f5f5f5 !important;
+  height: 100vh !important;
+}
+.main-container {
+  height: 100vh !important;
 }
 
+.main-content {
+  gap: 12rem;
+}
 .container-btn {
   width: 40%;
 }
@@ -113,14 +116,16 @@ export default {
   width: 30% !important;
 }
 .title-reg {
-  font-size: 3rem !important;
+  font-size: 2.65rem !important;
   font-size: 500;
 }
 .v-input {
   width: 40% !important;
   color: black !important;
 }
-
+.v-icon.v-icon {
+  color: black !important;
+}
 .v-text-field input {
   color: black !important;
 }
