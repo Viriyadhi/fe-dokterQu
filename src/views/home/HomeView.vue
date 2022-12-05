@@ -232,76 +232,14 @@
       </div>
     </section>
 
-    <section class="speciality ma-16 px-16">
-      <div class="d-flex flex-row justify-space-between">
-        <div class="speciality-container d-flex flex-column">
-          <h2 class="speciality-title">Our Speciality</h2>
-
-          <p class="speciality-desc">
-            Curabitur egestas consequat lorem, vel fermentum augue porta id.
-            Aliquam lobortis magna neque, gravida consequat velit venenatis at.
-          </p>
-
-          <div class="d-flex flex-row button-1 mt-8">
-            <v-btn outlined rounded color="success" class="px-8">
-              Pengelihatan
-            </v-btn>
-            <v-btn outlined rounded color="success" class="px-8">
-              Pengelihatan
-            </v-btn>
-            <v-btn outlined rounded color="success" class="px-8">
-              Pengelihatan
-            </v-btn>
-          </div>
-          <div class="d-flex flex-row button-2 mt-4 ml-4">
-            <v-btn outlined rounded color="success" class="px-8">
-              Pengelihatan
-            </v-btn>
-            <v-btn outlined rounded color="success" class="px-8">
-              Pengelihatan
-            </v-btn>
-          </div>
-        </div>
-        <v-img
-          src="@/assets/Landing Page/Speciality/SpecialityImage.svg"
-          max-width="607"
-          max-height="579"
-          class="speciality-image"
-        ></v-img>
-      </div>
-    </section>
-
-    <section class="medicine ma-16 px-16">
-      <div class="d-flex flex-row justify-space-around">
-        <v-img
-          src="@/assets/Landing Page/Medicine/MedicineImage.svg"
-          class="medicine-image"
-          max-width="604"
-          max-height="459"
-        ></v-img>
-        <div class="d-flex flex-column medicine-text">
-          <h2 class="medicine-title">Find your medicine</h2>
-          <p class="medicine-desc">
-            Curabitur egestas consequat lorem, vel fermentum augue porta id.
-            Aliquam lobortis magna neque, gravida consequat velit venenatis at.
-          </p>
-          <v-btn color="success" class="medicine-btn py-5" rounded>
-            Kunjungi Toko</v-btn
-          >
-        </div>
-      </div>
-    </section>
-
-    <section class="Appointment">
+    <section class="Appointment my-16">
       <div class="d-flex flex-row justify-space-between">
         <div class="Appointment-container d-flex flex-column">
-          <h2 class="Appointment-title">
-            Book an Appointment With Specialist Doctor
-          </h2>
+          <h2 class="Appointment-title">Janji Temu Dengan Dokter Spesialis</h2>
 
           <p class="Appointment-desc">
-            Curabitur egestas consequat lorem, vel fermentum augue porta id.
-            Aliquam lobortis magna neque, gravida consequat velit venenatis at.
+            Hanya dengan beberapa Klik, anda bisa konsultasi dengan dokter
+            spesialis yang sudah bergabung di website kami.
           </p>
 
           <v-btn color="success" class="medicine-btn py-5" rounded>
@@ -317,7 +255,28 @@
       </div>
     </section>
 
-    <section class="article mx-8">
+    <section class="medicine pt-16 ma-16 px-16">
+      <div class="d-flex flex-row justify-space-around">
+        <v-img
+          src="@/assets/Landing Page/Medicine/MedicineImage.svg"
+          class="medicine-image"
+          max-width="604"
+          max-height="459"
+        ></v-img>
+        <div class="d-flex flex-column medicine-text">
+          <h2 class="medicine-title">Cari Obat</h2>
+          <p class="medicine-desc">
+            Penuhi kebutuhan obat anda dengan mengunjungi E-commerce kami yang
+            memiliki lebih dari 100 macam obat.
+          </p>
+          <v-btn color="success" class="medicine-btn py-5" rounded>
+            Kunjungi Toko</v-btn
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="article mt-8 mx-8">
       <div class="d-flex flex-row justify-space-between align-center">
         <h2 class="article-header-title">Baca Artikel Seputar Kesehatan</h2>
         <a class="article-header-link"> Lihat semua</a>
