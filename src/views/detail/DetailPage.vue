@@ -4,7 +4,7 @@
 
     <div class="d-flex">
       <div class="d-flex flex-column container-title">
-        <h2 class="header-title">Seputar Kesehatan Indra</h2>
+        <h2 class="header-title">Semua tentang kesehatan mata</h2>
         <p class="header-desc">
           Chat dokter, kunjungi rumah sakit, beli obat, cek lab dan update
           informasi seputar kesehatan,.
@@ -32,89 +32,64 @@
       <!-- <OvalTop /> -->
     </div>
 
-    <div class="d-flex flex-row container-three">
-      <div class="d-flex flex-column">
-        <h4 class="three-title">Business Solution</h4>
-        <p class="three-desc">Interdum et malesuada fames ac ante…</p>
-      </div>
+    <section class="speciality ma-16 px-16">
+      <div class="d-flex flex-row justify-space-between">
+        <div class="speciality-container d-flex flex-column">
+          <h2 class="speciality-title">Test Kesehatan Mata</h2>
 
-      <v-divider vertical></v-divider>
+          <router-link :to="{ name: 'ViaEmail' }">
+            <v-card class="mb-8 rounded-lg">
+              <div class="container-content">
+                <v-img
+                  src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
+                  max-height="56"
+                  max-width="56"
+                  class="icon-logo mt-3"
+                ></v-img>
+                <div class="d-flex flex-column">
+                  <h4 class="test-card-title">Buta Warna</h4>
+                  <p class="test-card-desc">
+                    lorem, vel fermentum augue porta id. Aliquam lobortis magna
+                    nequeil
+                  </p>
+                </div>
+              </div>
+            </v-card>
+          </router-link>
 
-      <div class="d-flex flex-column">
-        <h4 class="three-title">Business Solution</h4>
-        <p class="three-desc">Interdum et malesuada fames ac ante…</p>
-      </div>
-
-      <v-divider vertical></v-divider>
-
-      <div class="d-flex flex-column">
-        <h4 class="three-title">Business Solution</h4>
-        <p class="three-desc">Interdum et malesuada fames ac ante…</p>
-      </div>
-    </div>
-
-    <section class="tiga-keunggulan">
-      <div class="d-flex flex-column">
-        <div class="container-keunggulan">
-          <div class="d-flex flex-row">
-            <v-img
-              src="@/assets/Landing Page/Keunggulan/ios-medkit-outline.svg"
-              class="image-keunggulan"
-              height="84"
-              width="90"
-            >
-            </v-img>
-            <div class="d-flex flex-column align-center">
-              <h4 class="keunggulan-angka">+1200</h4>
-              <h5 class="keunggulan-apa">Doctors</h5>
-            </div>
-          </div>
-          <div class="d-flex flex-row mid-keuggulan">
-            <v-img
-              src="@/assets/Landing Page/Keunggulan/ios-medkit-outline.svg"
-              class="image-keunggulan"
-              height="84"
-              width="90"
-            >
-            </v-img>
-            <div class="d-flex flex-column align-center">
-              <h4 class="keunggulan-angka">+1200</h4>
-              <h5 class="keunggulan-apa">Doctors</h5>
-            </div>
-          </div>
-
-          <div class="d-flex flex-row">
-            <v-img
-              src="@/assets/Landing Page/Keunggulan/ios-medkit-outline.svg"
-              class="image-keunggulan"
-              height="84"
-              width="90"
-            >
-            </v-img>
-            <div class="d-flex flex-column align-center">
-              <h4 class="keunggulan-angka">+1200</h4>
-              <h5 class="keunggulan-apa">Doctors</h5>
-            </div>
-          </div>
+          <router-link :to="{ name: 'ViaSms' }">
+            <v-card class="rounded-lg">
+              <div class="container-content">
+                <v-img
+                  src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
+                  max-height="56"
+                  max-width="56"
+                  class="icon-logo mt-3"
+                ></v-img>
+                <div class="d-flex flex-column">
+                  <h4 class="test-card-title">Buta Warna</h4>
+                  <p class="test-card-desc">
+                    lorem, vel fermentum augue porta id. Aliquam lobortis magna
+                    nequeil
+                  </p>
+                </div>
+              </div>
+            </v-card>
+          </router-link>
         </div>
-        <div class="d-flex flex-row container-desc-keunggulan">
-          <p class="keunggulan-desc text-center">
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.
-          </p>
-          <p class="keunggulan-desc text-center">
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.
-          </p>
-          <p class="keunggulan-desc text-center">
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.
-          </p>
-        </div>
+        <v-img
+          src="@/assets/Landing Page/Speciality/SpecialityImage.svg"
+          max-width="607"
+          max-height="579"
+          class="speciality-image"
+        ></v-img>
       </div>
     </section>
 
     <section class="layanan-khusus mt-16 pt-16">
       <div class="mx-16 px-16">
         <div class="title">
-          <h2 class="layanan-title">Layanan Khusus</h2>
+          <h2 class="layanan-title">Konsultasi Dengan Dokter Khusus Mata</h2>
           <p class="layanan-desc">
             Curabitur egestas consequat lorem, vel fermentum augue porta id.
             Aliquam lobortis magna neque, gravida consequat velit venenatis at.
@@ -232,10 +207,12 @@
       </div>
     </section>
 
-    <section class="Appointment my-16">
+    <section class="Appointment">
       <div class="d-flex flex-row justify-space-between">
         <div class="Appointment-container d-flex flex-column">
-          <h2 class="Appointment-title">Janji Temu Dengan Dokter Spesialis</h2>
+          <h2 class="Appointment-title">
+            Janji temu dengan dokter spesialis mata
+          </h2>
 
           <p class="Appointment-desc">
             Hanya dengan beberapa Klik, anda bisa konsultasi dengan dokter
@@ -255,166 +232,23 @@
       </div>
     </section>
 
-    <section class="medicine pt-16 ma-16 px-16">
-      <div class="d-flex flex-row justify-space-around">
-        <v-img
-          src="@/assets/Landing Page/Medicine/MedicineImage.svg"
-          class="medicine-image"
-          max-width="604"
-          max-height="459"
-        ></v-img>
-        <div class="d-flex flex-column medicine-text">
-          <h2 class="medicine-title">Cari Obat</h2>
-          <p class="medicine-desc">
-            Penuhi kebutuhan obat anda dengan mengunjungi E-commerce kami yang
-            memiliki lebih dari 100 macam obat.
-          </p>
-          <v-btn color="success" class="medicine-btn py-5" rounded>
-            Kunjungi Toko</v-btn
-          >
-        </div>
-      </div>
-    </section>
+    <section class="testimonial"></section>
 
-    <section class="article mt-8 mx-8">
-      <div class="d-flex flex-row justify-space-between align-center">
-        <h2 class="article-header-title">Baca Artikel Seputar Kesehatan</h2>
-        <a class="article-header-link"> Lihat semua</a>
-      </div>
-
-      <div class="button-group mt-8">
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
-        </v-btn>
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
-        </v-btn>
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
-        </v-btn>
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
-        </v-btn>
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
-        </v-btn>
-      </div>
-
-      <div
-        class="article-container d-flex flex-row align-center justify-space-between"
+    <section class="ready-started">
+      <v-card
+        class="mx-auto my-12 d-flex flex-row justify-space-around pa-4 rounded-xl align-center custom-card"
+        max-width="1215"
       >
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-      </div>
+        <div class="d-flex flex-column">
+          <h4 class="ready-title">Ready to get started?</h4>
+          <p class="ready-desc mt-2">
+            Pellentesque ac bibendum tortor. Nulla eget lobortis lacus.
+          </p>
+        </div>
+        <v-btn rounded class="pa-6 btn-now" color="white">
+          Create Appointment Now
+        </v-btn>
+      </v-card>
     </section>
     <router-view />
 
@@ -439,6 +273,32 @@ export default {
 </script>
 
 <style scoped>
+.test-card-title {
+  font-size: 1.5rem;
+}
+
+.test-card-desc {
+  font-size: 1rem;
+  width: 80%;
+}
+
+.desc {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center !important;
+}
+
+.icon-logo {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) !important;
+  background: #c8e6c9 !important;
+  border-radius: 20px;
+}
+
 .parent {
   position: relative;
   top: 0;
@@ -568,6 +428,8 @@ export default {
   font-weight: 800;
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  width: 25% !important;
+  line-height: 3rem;
 }
 
 .layanan-desc {
@@ -725,5 +587,31 @@ export default {
 .article-card {
   background: #ffffff !important;
   box-shadow: 0px 16px 40px rgba(154, 170, 207, 0.2) !important;
+}
+</style>
+
+<style scoped>
+.ready-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.ready-desc {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: white;
+}
+
+.custom-card {
+  background: linear-gradient(
+    118.17deg,
+    #03acf2 6.86%,
+    #c8e6c9 103.41%
+  ) !important;
+}
+
+.btn-now {
+  color: #03acf2 !important;
 }
 </style>

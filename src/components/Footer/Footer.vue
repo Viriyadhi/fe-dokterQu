@@ -38,7 +38,7 @@
           <v-icon class="icon-footer">{{ icon.logoIcon }}</v-icon>
         </v-avatar>
       </div>
-      <v-menu open-on-hover bottom :offset-y="offset">
+      <v-menu open-on-hover bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             class="mt-4 btn-kesehatan text-capitalize"

@@ -15,7 +15,9 @@
           class=""
         >
         </v-img>
-        <h1 class="mx-8 title-web">DokterQ</h1>
+        <router-link :to="{ name: 'Default' }">
+          <h1 class="mx-8 title-web">DokterQ</h1>
+        </router-link>
         <div class="d-flex align-center justify-space-between">
           <router-link :to="{ name: 'Default' }">
             <a class="mx-8">Beranda</a>
@@ -27,7 +29,12 @@
             <a class="mx-8">Beli Obat</a>
           </router-link>
 
-          <v-menu open-on-hover bottom :offset-y="offset">
+          <v-menu
+            open-on-hover
+            bottom
+            :offset-y="offset"
+            :close-on-click="closeOnClick"
+          >
             <template v-slot:activator="{ on, attrs }">
               <v-btn
                 class="ml-8 mr-16 btn-kesehatan text-capitalize"
@@ -42,13 +49,15 @@
 
             <v-list>
               <v-list-item v-for="(item, index) in items" :key="index">
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <router-link :to="{ path: `/detail/${item.name}` }">
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </router-link>
               </v-list-item>
             </v-list>
           </v-menu>
         </div>
 
-        <div class="d-flex align-center justify-center">
+        <div class="d-flex align-center justify-end flex-grow-1">
           <router-link :to="{ name: 'Login' }">
             <a class="login-text mr-8">LOGIN</a>
           </router-link>
@@ -88,13 +97,14 @@ export default {
       zIndex: "4",
     },
     items: [
-      { title: "Mata" },
-      { title: "Telinga" },
-      { title: "Mulut" },
-      { title: "Kulit" },
-      { title: "Hidung" },
+      { title: "Mata", name: "Mata" },
+      { title: "Telinga", name: "Telinga" },
+      { title: "Mulut", name: "Mulut" },
+      { title: "Kulit", name: "Kulit" },
+      { title: "Hidung", name: "Hidung" },
     ],
     offset: true,
+    closeOnClick: false,
   }),
   methods: {
     onScrollContent(p) {
@@ -142,7 +152,6 @@ a {
 }
 
 .login-text {
-  margin-left: 26rem;
   font-size: 1rem;
 }
 </style>

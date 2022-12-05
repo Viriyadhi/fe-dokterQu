@@ -12,6 +12,7 @@ import ForgotPasswordLayout from "../layouts/RegisterLogin/ForgotPassword.vue";
 import ForgotPasswordView from "../views/forgotPassword/ForgotPassword.vue";
 import OtpView from "../views/forgotPassword/OTP.vue";
 import CreatePassword from "../views/forgotPassword/CreatePassword.vue";
+import DetailPage from "../views/detail/DetailPage.vue";
 
 Vue.use(VueRouter);
 
@@ -81,6 +82,11 @@ const routes = [
         path: "/about",
         name: "About",
         component: AboutView,
+      },
+      {
+        path: "/detail/:data",
+        name: "Detail",
+        component: DetailPage,
       },
     ],
   },
