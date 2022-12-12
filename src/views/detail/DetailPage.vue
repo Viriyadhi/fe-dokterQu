@@ -237,7 +237,7 @@
     <section class="ready-started">
       <v-card
         class="mx-auto my-12 d-flex flex-row justify-space-around pa-4 rounded-xl align-center custom-card"
-        max-width="1215"
+        max-width="1415"
       >
         <div class="d-flex flex-column">
           <h4 class="ready-title">Ready to get started?</h4>
@@ -250,25 +250,109 @@
         </v-btn>
       </v-card>
     </section>
-    <router-view />
 
-    <!-- <Footer /> -->
+    <section class="apotik">
+      <h2 class="apotik-title">Apotik terdekat kita</h2>
+      <h4 class="apotik-desc">Apotik terdekat dari lokasi anda</h4>
+
+      <v-row>
+        <v-col
+          cols="12"
+          xs="12"
+          sm="6"
+          lg="4"
+          xl="4"
+          v-for="(data, index) in cardData"
+          :key="index"
+        >
+          <v-card elevation="2" class="rounded-xl" width="500px">
+            <div class="d-flex flex-row">
+              <div class="d-flex">
+                <v-img
+                  :src="data.img"
+                  height="140px"
+                  width="140px"
+                  class="rounded-lg ma-4"
+                >
+                </v-img>
+              </div>
+              <div class="d-flex flex-column">
+                <v-card-title class="card-title">
+                  {{ data.title }}
+                </v-card-title>
+
+                <div class="d-flex flex-row">
+                  <v-card-text class="card-desc">
+                    {{ data.desc1 }}
+                  </v-card-text>
+                  <v-card-text class="card-desc">
+                    {{ data.desc2 }}
+                  </v-card-text>
+                </div>
+                <v-card-text class="card-desc">
+                  {{ data.desc2 }}
+                </v-card-text>
+                <v-btn color="success" outlined class="apotik-btn rounded-xl">
+                  Contact
+                </v-btn>
+              </div>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </section>
+    <router-view />
   </v-app>
 </template>
 <script>
-// import OvalTop from "@/components/HeaderImage/HeaderImage.vue";
-// import NavBar from "@/components/Navbar/Navbar.vue";
-// import Footer from "@/components/Footer/Footer.vue";
 export default {
-  components: {
-    // Footer,
-    // NavBar,
-  },
+  components: {},
 
   data: () => ({
     show: false,
+
+    cardData: [
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "Lorem ipsum dolor sit amet",
+        desc1: "Lorem ipsum",
+        desc2: " dolor sit amet",
+      },
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "Lorem ipsum dolor sit amet",
+        desc1: "Lorem ipsum",
+        desc2: " dolor sit amet",
+      },
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "Lorem ipsum dolor sit amet",
+        desc1: "Lorem ipsum",
+        desc2: " dolor sit amet",
+      },
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "Lorem ipsum dolor sit amet",
+        desc1: "Lorem ipsum",
+        desc2: " dolor sit amet",
+      },
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "Lorem ipsum dolor sit amet",
+        desc1: "Lorem ipsum",
+        desc2: " dolor sit amet",
+      },
+      {
+        img: "https://cdn.vuetifyjs.com/images/cards/sunshine.jpg",
+        title: "Lorem ipsum dolor sit amet",
+        desc1: "Lorem ipsum",
+        desc2: " dolor sit amet",
+      },
+    ],
   }),
   name: "HomeView",
+
+  methods: {},
 };
 </script>
 
@@ -613,5 +697,43 @@ export default {
 
 .btn-now {
   color: #03acf2 !important;
+}
+</style>
+
+<style scoped>
+.apotik {
+  width: 75% !important;
+  margin: auto !important ;
+}
+
+.apotik-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.apotik-desc {
+  font-size: 1.25rem;
+  font-weight: 400;
+  width: 65% !important;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+.card-desc {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  padding: 0 !important;
+}
+.apotik-btn {
+  width: 110%;
 }
 </style>
