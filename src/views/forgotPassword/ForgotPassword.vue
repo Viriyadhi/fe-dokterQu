@@ -48,7 +48,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .container-forgot {
   width: 80%;
   margin: 2rem;

@@ -1,5 +1,5 @@
 <template>
-  <v-app class="">
+  <v-app>
     <!-- <NavBar /> -->
 
     <div class="d-flex">
@@ -675,7 +675,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .article {
   margin-top: 8rem !important;
 }

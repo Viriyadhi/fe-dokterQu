@@ -22,7 +22,7 @@
           <router-link :to="{ name: 'Default' }">
             <a class="mx-8">Beranda</a>
           </router-link>
-          <router-link :to="{ name: 'About' }">
+          <router-link :to="{ name: 'JanjiTemu' }">
             <a class="mx-8">Janji Temu</a>
           </router-link>
           <router-link :to="{ name: 'Default' }">
