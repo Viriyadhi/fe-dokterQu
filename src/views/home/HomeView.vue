@@ -1,18 +1,23 @@
 <template>
-  <v-app class="">
+  <v-app>
     <!-- <NavBar /> -->
 
     <div class="d-flex">
       <div class="d-flex flex-column container-title">
         <h2 class="header-title">Seputar Kesehatan Indra</h2>
         <p class="header-desc">
-          Chat dokter, kunjungi rumah sakit, beli obat, cek lab dan update
+          Chat dokter, kunjungi rumah sakit, beli obat, cek lab, dan update
           informasi seputar kesehatan,.
         </p>
         <div class="d-flex flex-row align-center">
           <a class="header-link">MORE INFO</a>
           <div class="text-center">
-            <v-btn rounded color="success" class="ml-8 button-header" dark>
+            <v-btn
+              rounded
+              color="success"
+              class="ml-12 button-header-custom"
+              dark
+            >
               Register NOW
             </v-btn>
           </div>
@@ -422,14 +427,8 @@
   </v-app>
 </template>
 <script>
-// import OvalTop from "@/components/HeaderImage/HeaderImage.vue";
-// import NavBar from "@/components/Navbar/Navbar.vue";
-// import Footer from "@/components/Footer/Footer.vue";
 export default {
-  components: {
-    // Footer,
-    // NavBar,
-  },
+  components: {},
 
   data: () => ({
     show: false,
@@ -470,24 +469,24 @@ export default {
 }
 
 .header-title {
-  font-size: 3rem;
+  font-size: 3rem !important;
   font-weight: 600;
 }
 .header-desc {
-  width: 50%;
-  font-size: 1.5rem;
-  font-weight: 400;
+  width: 60%;
+  font-size: 1.25rem;
+  font-weight: 400 !important;
 }
 
 .header-link {
-  font-size: 1.25rem;
+  font-size: 1rem !important;
   color: #03acf2 !important;
 }
 
-.button-header {
-  font-size: 1.1rem !important;
-  width: 14rem !important;
-  height: 3rem !important;
+.button-header-custom {
+  font-size: 1rem !important;
+  width: 13rem !important;
+  height: 2.25rem !important;
 }
 
 .header-banner {
@@ -525,7 +524,14 @@ export default {
 
 .keunggulan-apa {
   font-weight: 600;
-  font-size: 1.75rem;
+  font-size: 1.25rem !important;
+}
+
+.keunggulan-angka {
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: -1rem;
+  color: #357a38;
 }
 
 .container-keunggulan {
@@ -539,13 +545,6 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-.keunggulan-angka {
-  font-weight: 800;
-  font-size: 2.5rem;
-  margin-bottom: -1rem;
-  color: #357a38;
 }
 
 .image-keunggulan {
@@ -676,7 +675,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .article {
   margin-top: 8rem !important;
 }

@@ -13,6 +13,7 @@ import ForgotPasswordView from "../views/forgotPassword/ForgotPassword.vue";
 import OtpView from "../views/forgotPassword/OTP.vue";
 import CreatePassword from "../views/forgotPassword/CreatePassword.vue";
 import DetailPage from "../views/detail/DetailPage.vue";
+import JanjiTemu from "../views/janjiTemu/janjiTemu.vue";
 
 Vue.use(VueRouter);
 
@@ -87,6 +88,11 @@ const routes = [
         path: "/detail/:data",
         name: "Detail",
         component: DetailPage,
+      },
+      {
+        path: "/janji-temu",
+        name: "JanjiTemu",
+        component: JanjiTemu,
       },
     ],
   },

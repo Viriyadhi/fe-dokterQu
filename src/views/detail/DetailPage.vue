@@ -407,7 +407,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .container-title {
   margin-left: 7rem;
   margin-top: 4rem;
@@ -442,7 +442,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .container-three {
   margin-top: 4rem;
   display: flex;
@@ -462,7 +462,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 /* .v-responsive {
   flex: 0 auto !important;
 } */
@@ -502,7 +502,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .parent-layanan {
   position: relative;
   top: 0;
@@ -549,7 +549,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .speciality-title {
   font-weight: 800;
   font-size: 3rem;
@@ -565,16 +565,9 @@ export default {
 .speciality-container {
   margin-top: 8rem !important;
 }
-
-.button-1 {
-  gap: 2rem;
-}
-.button-2 {
-  gap: 3rem;
-}
 </style>
 
-<style>
+<style scoped>
 .medicine-text {
   margin-left: 18rem;
 }
@@ -587,7 +580,9 @@ export default {
   font-size: 1.5rem;
   width: 80%;
 }
+</style>
 
+<style>
 .medicine-btn {
   font-size: 1.5rem;
   font-weight: 600 !important;
@@ -596,7 +591,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .Appointment-title {
   font-weight: 800;
   width: 55% !important;
@@ -622,7 +617,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .article {
   margin-top: 8rem !important;
 }
