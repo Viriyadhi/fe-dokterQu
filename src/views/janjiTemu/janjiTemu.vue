@@ -51,7 +51,7 @@
           v-for="(cardData, index) in dataCard"
           :key="index"
           max-width="325"
-          class="article-card"
+          class="article-card rounded-bl-xl rounded-br-xl"
         >
           <v-img :src="cardData.img" height="200px" class="article-img"></v-img>
 
@@ -80,7 +80,13 @@
             <v-card-text class="black--text"
               >Rating: {{ cardData.rating }}</v-card-text
             >
-            <v-btn color="success"> Buat Janji</v-btn>
+            <v-btn
+              color="success"
+              height="48"
+              class="rounded-tl-xl rounded-br-xl"
+            >
+              Buat Janji</v-btn
+            >
           </div>
         </v-card>
       </div>
