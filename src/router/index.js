@@ -14,6 +14,7 @@ import OtpView from "../views/forgotPassword/OTP.vue";
 import CreatePassword from "../views/forgotPassword/CreatePassword.vue";
 import DetailPage from "../views/detail/DetailPage.vue";
 import JanjiTemu from "../views/janjiTemu/janjiTemu.vue";
+import DetailJanji from "../views/janjiTemu/detailDokter/janjiTemuDetail.vue";
 
 Vue.use(VueRouter);
 
@@ -93,6 +94,11 @@ const routes = [
         path: "/janji-temu",
         name: "JanjiTemu",
         component: JanjiTemu,
+      },
+      {
+        path: "/janji-temu/:dokter",
+        name: "JanjiTemu",
+        component: DetailJanji,
       },
     ],
   },
