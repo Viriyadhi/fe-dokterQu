@@ -1,5 +1,5 @@
 <template>
-  <v-card rounded="xl" max-width="240" height="425" class="pa-4">
+  <v-card rounded="xl" max-width="260" height="425" class="pa-4">
     <div class="d-flex flex-column justify-center align-center">
       <v-avatar class="ma-3" size="125" tile>
         <v-img src="https://cdn.vuetifyjs.com/images/cards/halcyon.png"></v-img>
