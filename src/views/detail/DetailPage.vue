@@ -34,48 +34,44 @@
 
     <section class="speciality ma-16 px-16">
       <div class="d-flex flex-row justify-space-between">
-        <div class="speciality-container d-flex flex-column">
+        <div class="speciality-container px-6 d-flex flex-column">
           <h2 class="speciality-title">Test Kesehatan Mata</h2>
 
-          <router-link :to="{ name: 'ViaEmail' }">
-            <v-card class="mb-8 rounded-lg">
-              <div class="container-content">
-                <v-img
-                  src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
-                  max-height="56"
-                  max-width="56"
-                  class="icon-logo mt-3"
-                ></v-img>
-                <div class="d-flex flex-column">
-                  <h4 class="test-card-title">Buta Warna</h4>
-                  <p class="test-card-desc">
-                    lorem, vel fermentum augue porta id. Aliquam lobortis magna
-                    nequeil
-                  </p>
-                </div>
+          <v-card class="mb-8 rounded-lg" max-width="500" height="133">
+            <div class="container-content">
+              <v-img
+                src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
+                max-height="79"
+                max-width="79"
+                class="icon-logo ma-6"
+              ></v-img>
+              <div class="d-flex flex-column">
+                <h4 class="test-card-title">Kemampuan Pendengaran</h4>
+                <p class="test-card-desc">
+                  lorem, vel fermentum augue porta id. Aliquam lobortis magna
+                  nequeil
+                </p>
               </div>
-            </v-card>
-          </router-link>
+            </div>
+          </v-card>
 
-          <router-link :to="{ name: 'ViaSms' }">
-            <v-card class="rounded-lg">
-              <div class="container-content">
-                <v-img
-                  src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
-                  max-height="56"
-                  max-width="56"
-                  class="icon-logo mt-3"
-                ></v-img>
-                <div class="d-flex flex-column">
-                  <h4 class="test-card-title">Buta Warna</h4>
-                  <p class="test-card-desc">
-                    lorem, vel fermentum augue porta id. Aliquam lobortis magna
-                    nequeil
-                  </p>
-                </div>
+          <v-card class="mb-8 rounded-lg" max-width="500" height="133">
+            <div class="container-content">
+              <v-img
+                src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
+                max-height="79"
+                max-width="79"
+                class="icon-logo ma-6"
+              ></v-img>
+              <div class="d-flex flex-column">
+                <h4 class="test-card-title">Kemampuan Pendengaran</h4>
+                <p class="test-card-desc">
+                  lorem, vel fermentum augue porta id. Aliquam lobortis magna
+                  nequeil
+                </p>
               </div>
-            </v-card>
-          </router-link>
+            </div>
+          </v-card>
         </div>
         <v-img
           src="@/assets/Landing Page/Speciality/SpecialityImage.svg"
@@ -85,7 +81,6 @@
         ></v-img>
       </div>
     </section>
-
     <section class="layanan-khusus mt-16 pt-16">
       <div class="mx-16 px-16">
         <div class="title">
@@ -358,12 +353,16 @@ export default {
 
 <style scoped>
 .test-card-title {
-  font-size: 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
 }
 
 .test-card-desc {
   font-size: 1rem;
-  width: 80%;
+  font-weight: 500;
+  width: 90%;
+  color: black;
 }
 
 .desc {
@@ -374,15 +373,16 @@ export default {
 .container-content {
   display: flex;
   flex-direction: row;
-  justify-content: center !important;
+  gap: 1rem;
 }
-
 .icon-logo {
+  width: 20rem !important;
+  height: 20rem !important;
+  color: #03acf2 !important;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) !important;
-  background: #c8e6c9 !important;
-  border-radius: 20px;
+  background: rgba(33, 150, 243, 0.15) !important;
+  border-radius: 3rem;
 }
-
 .parent {
   position: relative;
   top: 0;
@@ -463,10 +463,6 @@ export default {
 </style>
 
 <style scoped>
-/* .v-responsive {
-  flex: 0 auto !important;
-} */
-
 .keunggulan-apa {
   font-weight: 600;
   font-size: 1.75rem;
@@ -732,3 +728,5 @@ export default {
   width: 110%;
 }
 </style>
+
+<style></style>
