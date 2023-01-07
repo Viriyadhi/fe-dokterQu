@@ -443,9 +443,10 @@ export default {
   top: 0;
   right: 0;
 }
+
 .oval-top {
-  width: 54rem !important;
-  height: 30rem !important;
+  width: 62rem !important;
+  height: 31rem !important;
   margin-top: -4rem;
   position: relative;
 }
@@ -453,12 +454,13 @@ export default {
 .banner {
   position: absolute;
   top: 2rem;
-  left: 14rem;
+  right: 0;
 }
+
 .oval-transparent {
   position: absolute;
   top: -4rem;
-  left: 14rem;
+  right: 0;
 }
 </style>
 
