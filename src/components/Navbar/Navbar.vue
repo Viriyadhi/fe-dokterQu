@@ -108,8 +108,6 @@ export default {
   }),
   methods: {
     onScrollContent(p) {
-      console.log(p.currentTarget.scrollY);
-      console.log(this.appbarStyle);
       if (p.currentTarget.scrollY > 11) {
         this.appbarStyle.backgroundColor = `rgba(255,255,255,1)`;
         this.appbarStyle.marginTop = "-5px";
