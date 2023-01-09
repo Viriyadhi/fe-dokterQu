@@ -10,9 +10,13 @@
       </template>
 
       <v-img
-        height="545"
+        height="645"
         src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        class="align-end"
       >
+        <v-card-title class="white--text ma-8 font-weight-bold text-h5">
+          Dr. Mariana Carlos, MARS</v-card-title
+        >
       </v-img>
 
       <div class="card-container">
@@ -27,7 +31,8 @@
                 max-height="79"
                 max-width="79"
                 class="icon-logo ma-6"
-              ></v-img>
+              >
+              </v-img>
               <div class="d-flex flex-column">
                 <h4 class="test-card-title">Kemampuan Pendengaran</h4>
                 <p class="test-card-desc">

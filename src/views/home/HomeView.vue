@@ -96,7 +96,7 @@
               width="90"
             >
             </v-img>
-            <div class="d-flex flex-column align-center">
+            <div class="d-flex flex-column align-center index-2">
               <h4 class="keunggulan-angka">+1200</h4>
               <h5 class="keunggulan-apa">Doctors</h5>
             </div>
@@ -461,6 +461,11 @@ export default {
   position: absolute;
   top: -4rem;
   right: 0;
+  z-index: 1 !important;
+}
+
+.index-2 {
+  z-index: 2 !important;
 }
 </style>
 
