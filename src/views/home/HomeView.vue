@@ -15,10 +15,11 @@
             <v-btn
               rounded
               color="success"
-              class="ml-12 button-header-custom"
+              class="ml-12 pa-5 button-header-custom"
               dark
+              width="321"
             >
-              Register NOW
+              Daftar Sekarang
             </v-btn>
           </div>
         </div>
@@ -39,22 +40,22 @@
 
     <div class="d-flex flex-row container-three">
       <div class="d-flex flex-column">
-        <h4 class="three-title">Business Solution</h4>
-        <p class="three-desc">Interdum et malesuada fames ac ante…</p>
+        <h4 class="three-title font-weight-bold text-h4 mb-2">Mudah</h4>
+        <p class="three-desc">Hanya dengan beberapa klik</p>
       </div>
 
       <v-divider vertical></v-divider>
 
       <div class="d-flex flex-column">
-        <h4 class="three-title">Business Solution</h4>
-        <p class="three-desc">Interdum et malesuada fames ac ante…</p>
+        <h4 class="three-title font-weight-bold text-h4 mb-2">Efisien</h4>
+        <p class="three-desc">aplikasi yang terpercaya</p>
       </div>
 
       <v-divider vertical></v-divider>
 
       <div class="d-flex flex-column">
-        <h4 class="three-title">Business Solution</h4>
-        <p class="three-desc">Interdum et malesuada fames ac ante…</p>
+        <h4 class="three-title font-weight-bold text-h4 mb-2">Terpercaya</h4>
+        <p class="three-desc">Semua dokter kami pastikan ber-sertifikat</p>
       </div>
     </div>
 
@@ -121,8 +122,8 @@
         <div class="title">
           <h2 class="layanan-title">Layanan Khusus</h2>
           <p class="layanan-desc">
-            Curabitur egestas consequat lorem, vel fermentum augue porta id.
-            Aliquam lobortis magna neque, gravida consequat velit venenatis at.
+            DokterQ menghadirkan layanan khusus yang dapat menunjang seputar
+            kesehatan indra seperti mata, telinga, mulut, kulit, hidung.
           </p>
         </div>
       </div>
@@ -148,20 +149,20 @@
         <div class="ml-16 container-card flex-grow-1">
           <v-card
             max-width="255"
-            max-height="336"
-            class="elevation-5 rounded-xl"
+            max-height="350"
+            class="custom-card-konsultasi rounded-lg"
           >
             <v-img
               src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="168"
+              height="170"
             ></v-img>
 
-            <v-card-subtitle>
+            <v-card-subtitle class="black--text pa-5">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
               pretium fermentum felis id condimentum.
             </v-card-subtitle>
 
-            <v-card-actions class="d-flex justify-end">
+            <v-card-actions class="d-flex justify-end mt-1">
               <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
                 SEE DETAILS
               </v-btn>
@@ -170,64 +171,83 @@
 
           <v-card
             max-width="255"
-            max-height="336"
-            class="elevation-5 rounded-xl"
+            max-height="350"
+            class="custom-card-konsultasi rounded-lg"
           >
             <v-img
               src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="168"
+              height="170"
             ></v-img>
 
-            <v-card-subtitle>
+            <v-card-subtitle class="black--text pa-5">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
               pretium fermentum felis id condimentum.
             </v-card-subtitle>
 
-            <v-card-actions class="d-flex justify-end">
+            <v-card-actions class="d-flex justify-end mt-1">
               <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
                 SEE DETAILS
               </v-btn>
             </v-card-actions>
           </v-card>
-
           <v-card
             max-width="255"
-            max-height="336"
-            class="elevation-5 rounded-xl"
+            max-height="350"
+            class="custom-card-konsultasi rounded-lg"
           >
             <v-img
               src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="168"
+              height="170"
             ></v-img>
 
-            <v-card-subtitle>
+            <v-card-subtitle class="black--text pa-5">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
               pretium fermentum felis id condimentum.
             </v-card-subtitle>
 
-            <v-card-actions class="d-flex justify-end">
+            <v-card-actions class="d-flex justify-end mt-1">
               <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
                 SEE DETAILS
               </v-btn>
             </v-card-actions>
           </v-card>
-
           <v-card
             max-width="255"
-            max-height="336"
-            class="elevation-5 rounded-xl"
+            max-height="350"
+            class="custom-card-konsultasi rounded-lg"
           >
             <v-img
               src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="168"
+              height="170"
             ></v-img>
 
-            <v-card-subtitle>
+            <v-card-subtitle class="black--text pa-5">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
               pretium fermentum felis id condimentum.
             </v-card-subtitle>
 
-            <v-card-actions class="d-flex justify-end">
+            <v-card-actions class="d-flex justify-end mt-1">
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
+                SEE DETAILS
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+          <v-card
+            max-width="255"
+            max-height="350"
+            class="custom-card-konsultasi rounded-lg"
+          >
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              height="170"
+            ></v-img>
+
+            <v-card-subtitle class="black--text pa-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              pretium fermentum felis id condimentum.
+            </v-card-subtitle>
+
+            <v-card-actions class="d-flex justify-end mt-1">
               <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
                 SEE DETAILS
               </v-btn>
@@ -486,7 +506,7 @@ export default {
 }
 
 .header-link {
-  font-size: 1rem !important;
+  font-size: 1.25rem !important;
   color: #03acf2 !important;
 }
 
@@ -513,13 +533,13 @@ export default {
 }
 
 .three-title {
+  color: #00579b;
   font-weight: 600;
-  font-size: 1.25rem;
 }
 
 .three-desc {
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.1rem;
   width: 110%;
 }
 </style>
@@ -606,6 +626,17 @@ export default {
   border-radius: 1.5rem 0;
   font-weight: 600;
   font-size: 0.9rem;
+}
+
+.custom-card-konsultasi {
+  padding: 0 !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.button-layanan {
+  border-radius: 8px 0 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
 }
 </style>
 

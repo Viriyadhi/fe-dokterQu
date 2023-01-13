@@ -1,7 +1,5 @@
 <template>
   <v-app>
-    <!-- <NavBar /> -->
-
     <section class="top-page">
       <div class="d-flex">
         <div class="d-flex flex-column container-title ma-16 px-16">
@@ -30,7 +28,6 @@
           >
           </v-img>
         </div>
-        <!-- <OvalTop /> -->
       </div>
     </section>
 
