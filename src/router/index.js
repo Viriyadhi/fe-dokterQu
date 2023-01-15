@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/home/HomeView.vue";
-import AboutView from "../views/AboutView.vue";
 import LoginView from "../views/Login.vue";
 import RegisterView from "../views/Register.vue";
 import ViaEmail from "../views/forgotPassword/ViaEmail.vue";
@@ -15,6 +14,8 @@ import CreatePassword from "../views/forgotPassword/CreatePassword.vue";
 import DetailPage from "../views/detail/DetailPage.vue";
 import JanjiTemu from "../views/janjiTemu/janjiTemu.vue";
 import DetailJanji from "../views/janjiTemu/detailDokter/janjiTemuDetail.vue";
+import CommerceLayout from "../layouts/CommerceLayout/CommerceLayout.vue";
+import CommerceView from "../views/E-Commerce/CommerceView.vue";
 
 Vue.use(VueRouter);
 
@@ -81,11 +82,6 @@ const routes = [
         component: HomeView,
       },
       {
-        path: "/about",
-        name: "About",
-        component: AboutView,
-      },
-      {
         path: "/detail/:data",
         name: "Detail",
         component: DetailPage,
@@ -99,6 +95,19 @@ const routes = [
         path: "/janji-temu/:dokter",
         name: "JanjiTemu",
         component: DetailJanji,
+      },
+    ],
+  },
+
+  {
+    path: "/shop",
+    name: "",
+    component: CommerceLayout,
+    children: [
+      {
+        path: "/",
+        name: "HomeShop",
+        component: CommerceView,
       },
     ],
   },
