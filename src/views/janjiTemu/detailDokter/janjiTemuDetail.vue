@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="ma-16 px-16 mt-6">
     <v-card :loading="loading" class="mx-auto my-12" width="1800">
       <template slot="progress">
         <v-progress-linear
@@ -19,7 +19,7 @@
         >
       </v-img>
 
-      <div class="card-container">
+      <div class="card-container pa-16">
         <v-card-title class="text-h4 font-weight-medium"
           >Profil Dokter</v-card-title
         >
@@ -64,14 +64,14 @@
         <v-card-title class="text-h4 font-weight-medium"
           >Keterangan</v-card-title
         >
-        <v-card-text class="custom-text black--text">
+        <v-card-text class="custom-text black--text px-8">
           Dr. Mariana Carlos, MARS adalah Dokter Gigi Spesialis Bedah Mulut;
           ahli dalam bidang bedah mulut dan kedokteran gigi; diagnosa,
           pencegahan dan pengobatan berbagai jenis penyakit dan kelainan di
           rongga mulut.
         </v-card-text>
 
-        <v-card-text class="custom-text black--text">
+        <v-card-text class="custom-text black--text px-8">
           Dokter Gigi Spesialis Bedah Mulut; Bedah Mulut dan Maksilofasial
           merupakan salah satu cabang ilmu kedokteran gigi yang khas karena
           meliputi penatalaksanaan berbagai jenis penyakit dan kelainan rongga
@@ -83,18 +83,55 @@
           >Jadwal Praktik</v-card-title
         >
 
-        <v-card-text>
-          <v-chip-group
-            v-model="selection"
-            active-class="deep-purple accent-4 white--text"
-            column
+        <v-card-text class="container-jadwal-praktik px-8">
+          <div
+            v-for="(data, i) in jadwalHari"
+            :key="i"
+            id="box-jadwal-praktik"
+            @click="jadwalPraktik"
+            class="d-flex flex-column align-center card-sendiri rounded-lg"
           >
-            <v-chip>5:30PM</v-chip>
-            <v-chip>7:30PM</v-chip>
-            <v-chip>8:00PM</v-chip>
-            <v-chip>9:00PM</v-chip>
-          </v-chip-group>
+            <p class="ma-0 font-weight-bold">{{ data.hari }}</p>
+            <p class="font-weight-bold">{{ data.tanggal }}</p>
+          </div>
         </v-card-text>
+
+        <section class="jadwal-hour" v-if="toggleHours">
+          <v-card class="ma-8 pa-6 rounded-lg ma-0 pa-0">
+            <div class="d-flex flex-column">
+              <div class="d-flex flex-row align-center">
+                <v-icon class="mr-4">mdi-white-balance-sunny</v-icon>
+                <v-card-title class="text-h4 font-weight-medium pa-0"
+                  >Siang</v-card-title
+                >
+              </div>
+
+              <v-chip-group>
+                <v-chip v-for="(data, i) in jadwalJam" :key="i"
+                  >{{ data.jam }}
+                </v-chip>
+              </v-chip-group>
+            </div>
+
+            <div class="line my-6"></div>
+
+            <div class="d-flex flex-column">
+              <div class="d-flex flex-row">
+                <v-icon class="mr-4">mdi-moon-waning-crescent</v-icon>
+
+                <v-card-title class="text-h4 font-weight-medium pa-0"
+                  >Malam</v-card-title
+                >
+              </div>
+
+              <v-chip-group>
+                <v-chip v-for="(data, i) in jadwalJam" :key="i"
+                  >{{ data.jam }}
+                </v-chip>
+              </v-chip-group>
+            </div>
+          </v-card>
+        </section>
 
         <section>
           <v-card-actions>
@@ -275,6 +312,47 @@ export default {
     selection: 1,
     dialog: false,
     dialogSuccess: false,
+    toggleHours: false,
+    jadwalHari: [
+      {
+        hari: "Senin",
+        tanggal: "12/12/2021",
+      },
+      {
+        hari: "Senin",
+        tanggal: "12/12/2021",
+      },
+      {
+        hari: "Senin",
+        tanggal: "12/12/2021",
+      },
+      {
+        hari: "Senin",
+        tanggal: "12/12/2021",
+      },
+      {
+        hari: "Senin",
+        tanggal: "12/12/2021",
+      },
+    ],
+
+    jadwalJam: [
+      {
+        jam: "5:30PM",
+      },
+      {
+        jam: "5:30PM",
+      },
+      {
+        jam: "5:30PM",
+      },
+      {
+        jam: "5:30PM",
+      },
+      {
+        jam: "5:30PM",
+      },
+    ],
     jadwal: [
       {
         jenis: "Kemampuan Pendengaran",
@@ -306,6 +384,10 @@ export default {
     onClickSuccess() {
       this.$refs.successDialog.successDialog = true;
     },
+    jadwalPraktik(p) {
+      console.log(p.path[0].style);
+      this.toggleHours = true;
+    },
   },
 };
 </script>
@@ -315,7 +397,6 @@ export default {
   width: 775px;
   height: 1px;
   border-bottom: 2px solid black;
-  position: absolute;
 }
 
 .test-card-title {
@@ -344,18 +425,32 @@ export default {
   border-radius: 3rem;
 }
 
-.card-container {
-  padding: 2rem;
-}
-
 .custom-text {
   font-size: 1.2rem;
+  line-height: 2rem;
   font-weight: 500;
 }
 
 .custom-border {
   border: 1px solid black;
   border-radius: 1rem;
+}
+
+.container-jadwal-praktik {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.card-sendiri {
+  border: 1px solid #03acf2;
+  height: 3rem;
+  width: 8rem;
+  transition: all 400ms;
+}
+
+.card-sendiri:hover {
+  background: rgba(3, 172, 242, 0.1);
 }
 </style>
 
