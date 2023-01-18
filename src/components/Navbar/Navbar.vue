@@ -57,7 +57,10 @@
           </v-menu>
         </div>
 
-        <div class="d-flex align-center justify-end flex-grow-1">
+        <div
+          v-if="!localStorage"
+          class="d-flex align-center justify-end flex-grow-1"
+        >
           <router-link :to="{ name: 'Login' }">
             <a class="login-text mr-8">LOGIN</a>
           </router-link>
@@ -74,9 +77,22 @@
               </router-link>
             </v-btn>
           </div>
-          <v-divider vertical></v-divider>
-          <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
         </div>
+
+        <div
+          v-if="localStorage"
+          class="d-flex align-center justify-end flex-grow-1"
+        >
+          <v-chip outlined color="black" class="mr-8">
+            <v-avatar>
+              <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
+            </v-avatar>
+            <span class="ml-2">Hi, John Leider</span>
+          </v-chip>
+        </div>
+
+        <v-divider vertical></v-divider>
+        <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
       </v-app-bar>
       <v-main class="pa-0 mt-16">
         <router-view />
@@ -96,6 +112,7 @@ export default {
       boxShadow: "none !important",
       zIndex: "4",
     },
+
     items: [
       { title: "Mata", name: "Mata" },
       { title: "Telinga", name: "Telinga" },
@@ -105,7 +122,12 @@ export default {
     ],
     offset: true,
     closeOnClick: false,
+    localStorage: "",
   }),
+
+  mounted() {
+    this.getLocalStorage();
+  },
   methods: {
     onScrollContent(p) {
       if (p.currentTarget.scrollY > 11) {
@@ -119,6 +141,10 @@ export default {
         this.appbarStyle.boxShadow = "none !important";
       }
       // console.log(bar);
+    },
+
+    getLocalStorage() {
+      this.localStorage = localStorage.getItem("data");
     },
   },
 };

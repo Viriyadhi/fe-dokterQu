@@ -3,15 +3,15 @@
 </template>
 
 <script>
-// import axios from "axios";
-// export default {
-//   mounted() {
-//     var data = JSON.parse(localStorage.getItem("data"));
-//     axios.defaults.headers.common = {
-//       Authorization: `Bearer ${data.access_token}`,
-//     };
-//   },
-// };
+import axios from "axios";
+export default {
+  mounted() {
+    var data = JSON.parse(localStorage.getItem("data"));
+    axios.defaults.headers.common = {
+      Authorization: `Bearer ${data.data.token}`,
+    };
+  },
+};
 </script>
 
 <style>
