@@ -11,7 +11,7 @@ Vue.config.productionTip = false;
 
 Vue.use(VueGlobalVar, {
   globals: {
-    $api: "http://127.0.0.1:8000/api",
+    $api: "http://103.31.39.5:2023/api",
   },
 });
 

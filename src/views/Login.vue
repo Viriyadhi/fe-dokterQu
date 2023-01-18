@@ -1,27 +1,31 @@
 <template>
   <div class="d-flex flex-column container absolute-center">
     <h2 class="title-reg">Login</h2>
-    <v-text-field
-      color="secondary"
-      v-for="(item, index) in textField"
-      :key="index"
-      :label="item.label"
-      :prepend-inner-icon="item.prependInnerIcon"
-      :rules="item.rules"
-      :required="item.required"
-    >
-    </v-text-field>
+    <v-form ref="form" @submit.prevent>
+      <v-text-field
+        v-model="email"
+        color="secondary"
+        v-for="(item, index) in textField"
+        :key="index"
+        :label="item.label"
+        :prepend-inner-icon="item.prependInnerIcon"
+        :rules="item.rules"
+        :required="item.required"
+      >
+      </v-text-field>
 
-    <v-text-field
-      color="secondary"
-      label="Kata Sandi"
-      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show1 ? 'text' : 'password'"
-      name="input-10-1"
-      hint="At least 8 characters"
-      @click:append="show1 = !show1"
-      prepend-inner-icon="mdi-lock"
-    ></v-text-field>
+      <v-text-field
+        v-model="password"
+        color="secondary"
+        label="Kata Sandi"
+        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show1 ? 'text' : 'password'"
+        name="input-10-1"
+        hint="At least 8 characters"
+        @click:append="show1 = !show1"
+        prepend-inner-icon="mdi-lock"
+      ></v-text-field>
+    </v-form>
 
     <div class="container-btn d-flex align-center mt-8 justify-space-around">
       <router-link :to="{ name: 'Forgot' }" class="login-link">
@@ -40,21 +44,18 @@
 </template>
 
 <script>
-import { Axios } from "axios";
-// import RegisterLoginLayout from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
-// import RegisterLoginLayout from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
+import Axios from "axios";
 
 export default {
   name: "RegisterView",
 
-  components: {
-    // RegisterLoginLayout,
-    // RegisterLoginLayout,
-  },
+  components: {},
 
   data: () => ({
     show1: false,
     show2: false,
+    email: "",
+    password: "",
 
     textField: [
       {
@@ -66,12 +67,6 @@ export default {
         ],
         required: true,
       },
-
-      // {
-      //   label: "Password",
-      //   prependInnerIcon: "mdi-lock",
-      //   required: true,
-      // },
 
       // {
       //   label: "Konfirmasi Password",
@@ -87,9 +82,22 @@ export default {
   }),
 
   methods: {
-    login() {
-      this.$router.push({ name: "Default" });
-      console.log(`${this.$api}`);
+    async login() {
+      if (this.$refs.form.validate()) {
+        try {
+          const resLogin = await Axios.post(`${this.$api}/auth/login`, {
+            email: this.email,
+            password: this.password,
+          });
+          if (resLogin.status == 201) {
+            localStorage.setItem("data", JSON.stringify(resLogin.data));
+            this.$router.push({ path: "/" });
+          }
+          console.log(resLogin);
+        } catch (err) {
+          console.log(err);
+        }
+      }
     },
 
     async test() {

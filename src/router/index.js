@@ -93,7 +93,7 @@ const routes = [
       },
       {
         path: "/janji-temu/:dokter",
-        name: "JanjiTemu",
+        name: "JanjiTemuDetail",
         component: DetailJanji,
       },
     ],
