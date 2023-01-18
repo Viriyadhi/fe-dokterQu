@@ -1,20 +1,21 @@
 <template>
   <v-app>
-    <NavBar />
+    <ECommerceNav />
 
     <Footer />
   </v-app>
 </template>
 
 <script>
-import NavBar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import ECommerceNav from "@/components/E-commerce/ECommerceNav.vue";
 export default {
+  name: "CommerceLayout",
+
   components: {
-    NavBar,
     Footer,
+    ECommerceNav,
   },
-  name: "App",
 };
 </script>
 
