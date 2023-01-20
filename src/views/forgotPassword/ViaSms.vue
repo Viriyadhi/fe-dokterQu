@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .absolute-center {
   top: 50% !important;
   transform: translate(0, 80%) !important;
