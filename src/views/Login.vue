@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Axios from "axios";
+import axios from "axios";
 
 export default {
   name: "RegisterView",
@@ -67,17 +67,6 @@ export default {
         ],
         required: true,
       },
-
-      // {
-      //   label: "Konfirmasi Password",
-      //   prependInnerIcon: "mdi-lock",
-      //   rules: {
-      //     required: (value) => !!value || "Required.",
-      //     min: (v) => v.length >= 8 || "Min 8 characters",
-      //     emailMatch: () => `The email and password you entered don't match`,
-      //   },
-      //   required: true,
-      // },
     ],
   }),
 
@@ -85,7 +74,7 @@ export default {
     async login() {
       if (this.$refs.form.validate()) {
         try {
-          const resLogin = await Axios.post(`${this.$api}/auth/login`, {
+          const resLogin = await axios.post(`${this.$api}/auth/login`, {
             email: this.email,
             password: this.password,
           });
@@ -101,7 +90,7 @@ export default {
     },
 
     async test() {
-      const res = await Axios.get("aoshdoasddasosaddaso");
+      const res = await axios.get("aoshdoasddasosaddaso");
       console.log(res);
     },
   },
@@ -125,7 +114,7 @@ export default {
   font-size: 500;
 }
 .v-input {
-  width: 40% !important;
+  width: 100% !important;
   color: black !important;
 }
 
