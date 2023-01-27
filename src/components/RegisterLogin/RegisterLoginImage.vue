@@ -1,17 +1,14 @@
 <template>
   <v-app>
-    <div class="logreg">
+    <div class="logreg d-flex align-center">
       <v-container>
         <v-row>
-          <v-col cols="7" class="d-flex align-center">
-            <div class="d-flex flex-column">
-              <v-img
-                src="@/assets/Register/IllustratitionRegisLogin.svg"
-                max-height="551.9"
-                width="529"
-                class="ml-16"
-              ></v-img>
-            </div>
+          <v-col cols="7" class="d-flex flex-row justify-center align-center">
+            <v-img
+              src="@/assets/Register/IllustratitionRegisLogin.svg"
+              max-height="551.9"
+              max-width="529"
+            ></v-img>
           </v-col>
 
           <v-col cols="5" class="d-flex align-center">

@@ -1,14 +1,53 @@
 <template>
-  <router-view />
+  <v-app>
+    <v-dialog v-model="loading" fullscreen transition="fade-transition">
+      <v-container
+        fluid
+        fill-height
+        style="background-color: rgba(255, 255, 255, 0.5)"
+      >
+        <v-layout justify-center align-center>
+          <v-progress-circular
+            indeterminate
+            color="primary"
+          ></v-progress-circular>
+        </v-layout>
+      </v-container>
+    </v-dialog>
+    <v-main class="pa-0" :class="isPDCA ? 'disable-scrolling' : 'fill-height'">
+      <router-view class="main-height" id="chart-id" />
+    </v-main>
+    <v-snackbar v-model="snackbar" :color="snackbarColor">
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn text v-bind="attrs" @click="snackbar = false"> Close </v-btn>
+      </template>
+    </v-snackbar>
+  </v-app>
 </template>
 
 <script>
+import { EventBus } from "../event-bus";
 import axios from "axios";
 export default {
+  data: () => ({
+    loading: false,
+    snackbar: false,
+    snackbarColor: "",
+    text: "",
+  }),
   mounted() {
+    EventBus.$on("startLoading", () => (this.loading = true));
+    EventBus.$on("stopLoading", () => (this.loading = false));
+    EventBus.$on("showSnackbar", (text, color) => {
+      this.text = text[0];
+      this.snackbarColor = color;
+      this.snackbar = true;
+    });
     var data = JSON.parse(localStorage.getItem("data"));
     axios.defaults.headers.common = {
-      Authorization: `Bearer ${data.data.token}`,
+      Authorization: `Bearer ${data.access_token}`,
     };
   },
 };
