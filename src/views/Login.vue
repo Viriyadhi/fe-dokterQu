@@ -91,10 +91,9 @@ export default {
         EventBus.$emit("startLoading");
 
         try {
-          const resLogin = await axios.post(`${this.$api}/auth/login`, {
-            email: this.email,
-            password: this.password,
-          });
+          const obj = this.models;
+
+          const resLogin = await axios.post(`${this.$api}/auth/login`, obj);
           if (resLogin.status == 201) {
             localStorage.setItem("data", JSON.stringify(resLogin.data));
             this.$router.push({ path: "/" });

@@ -87,7 +87,7 @@
             <v-avatar>
               <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
             </v-avatar>
-            <span class="ml-2">Hi, John Leider</span>
+            <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
           </v-chip>
         </div>
 
@@ -144,7 +144,8 @@ export default {
     },
 
     getLocalStorage() {
-      this.localStorage = localStorage.getItem("data");
+      this.localStorage = JSON.parse(localStorage.getItem("data"));
+      console.log(this.localStorage.data.name);
     },
   },
 };
