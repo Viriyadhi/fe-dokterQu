@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column container mr-16">
+  <div class="flex-row justify-center align-center container mr-16">
     <v-card class="pa-8 form--logreg">
       <v-card-title class="title-reg">Register</v-card-title>
       <v-form ref="form" @submit.prevent>
@@ -7,11 +7,7 @@
           <div class="form--logreg__group">
             <p v-if="data.label !== 'Role'">{{ data.label }}</p>
             <v-text-field
-              v-if="
-                data.name === 'name' ||
-                data.name === 'phone' ||
-                data.name === 'email'
-              "
+              v-if="data.name === 'name' || data.name === 'phone'"
               :prepend-inner-icon="data.prependInnerIcon"
               :rules="[(v) => !!v || `${data.label} Harus diisi`]"
               :required="data.required"
@@ -22,65 +18,81 @@
               outlined
             >
             </v-text-field>
+
+            <v-text-field
+              v-if="data.name === 'email'"
+              :prepend-inner-icon="data.prependInnerIcon"
+              :rules="[
+                (v) => !!v || 'E-mail is required',
+                (v) => /.+@.+/.test(v) || 'E-mail must be valid',
+              ]"
+              :required="data.required"
+              v-model="models[data.name]"
+              color="284860"
+              clearable
+              single-line
+              outlined
+            >
+            </v-text-field>
+            <v-text-field
+              v-if="data.name === 'password'"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show1 ? 'text' : 'password'"
+              :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+              hint="At least 8 characters"
+              @click:append="show1 = !show1"
+              prepend-inner-icon="mdi-lock"
+              :required="data.required"
+              v-model="models[data.name]"
+              color="284860"
+              clearable
+              single-line
+              outlined
+            ></v-text-field>
+
+            <v-text-field
+              v-if="data.name === 'password_confirmation'"
+              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show2 ? 'text' : 'password'"
+              hint="At least 8 characters"
+              :rules="[(v) => !!v || `Password tidak sama`]"
+              @click:append="show2 = !show2"
+              prepend-inner-icon="mdi-lock"
+              :required="data.required"
+              v-model="models[data.name]"
+              color="284860"
+              clearable
+              single-line
+              outlined
+            ></v-text-field>
+
+            <v-file-input
+              v-if="data.name === 'photo'"
+              :required="data.required"
+              v-model="models[data.name]"
+              color="284860"
+              clearable
+              single-line
+              outlined
+            >
+            </v-file-input>
+
+            <v-select
+              v-if="data.name === 'gender'"
+              :required="data.required"
+              :items="data.options"
+              :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+              v-model="models[data.name]"
+              @change="onChange"
+              color="284860"
+              item-text="label"
+              item-value="value"
+              clearable
+              single-line
+              outlined
+            >
+            </v-select>
           </div>
-          <v-text-field
-            v-if="data.name === 'password'"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show1 ? 'text' : 'password'"
-            :rules="[(v) => !!v || `${data.label} Harus diisi`]"
-            hint="At least 8 characters"
-            @click:append="show1 = !show1"
-            prepend-inner-icon="mdi-lock"
-            :required="data.required"
-            v-model="models[data.name]"
-            color="284860"
-            clearable
-            single-line
-            outlined
-          ></v-text-field>
-
-          <v-text-field
-            v-if="data.name === 'password_confirmation'"
-            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show2 ? 'text' : 'password'"
-            hint="At least 8 characters"
-            :rules="[(v) => !!v || `Password tidak sama`]"
-            @click:append="show2 = !show2"
-            prepend-inner-icon="mdi-lock"
-            :required="data.required"
-            v-model="models[data.name]"
-            color="284860"
-            clearable
-            single-line
-            outlined
-          ></v-text-field>
-
-          <v-file-input
-            v-if="data.name === 'photo'"
-            :required="data.required"
-            v-model="models[data.name]"
-            color="284860"
-            clearable
-            single-line
-            outlined
-          >
-          </v-file-input>
-
-          <v-select
-            v-if="data.name === 'gender'"
-            :required="data.required"
-            :items="data.options"
-            :rules="[(v) => !!v || `${data.label} Harus diisi`]"
-            v-model="models[data.name]"
-            @change="onChange"
-            color="284860"
-            item-text="label"
-            item-value="value"
-            clearable
-            single-line
-            outlined
-          >
-          </v-select>
         </div>
       </v-form>
 
@@ -128,10 +140,6 @@ export default {
           console.log(error.response.data.errors);
         }
       }
-    },
-
-    onChange(e) {
-      console.log(e);
     },
 
     async getFormData() {

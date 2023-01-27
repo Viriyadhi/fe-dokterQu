@@ -1,45 +1,67 @@
 <template>
-  <div class="d-flex flex-column container absolute-center">
-    <h2 class="title-reg">Login</h2>
-    <v-form ref="form" @submit.prevent>
-      <v-text-field
-        v-model="email"
-        color="secondary"
-        v-for="(item, index) in textField"
-        :key="index"
-        :label="item.label"
-        :prepend-inner-icon="item.prependInnerIcon"
-        :rules="item.rules"
-        :required="item.required"
+  <div class="d-flex flex-column container mr-16">
+    <v-card class="pa-8 form--logreg">
+      <v-card-title class="title-reg">Login</v-card-title>
+      <v-form ref="form" @submit.prevent>
+        <div v-for="(data, i) in formData" :key="i">
+          <div class="form--logreg__group">
+            <p
+              v-if="
+                data.label !== 'Role' &&
+                data.label !== 'Name' &&
+                data.label !== 'Confirmation Password' &&
+                data.label !== 'Phone' &&
+                data.label !== 'Photo Profile' &&
+                data.label !== 'Gender'
+              "
+            >
+              {{ data.label }}
+            </p>
+
+            <v-text-field
+              v-if="data.name === 'email'"
+              :prepend-inner-icon="data.prependInnerIcon"
+              :rules="[
+                (v) => !!v || 'E-mail is required',
+                (v) => /.+@.+/.test(v) || 'E-mail must be valid',
+              ]"
+              :required="data.required"
+              v-model="models[data.name]"
+              color="284860"
+              clearable
+              single-line
+              outlined
+            >
+            </v-text-field>
+            <v-text-field
+              v-if="data.name === 'password'"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show1 ? 'text' : 'password'"
+              :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+              hint="At least 8 characters"
+              @click:append="show1 = !show1"
+              prepend-inner-icon="mdi-lock"
+              :required="data.required"
+              v-model="models[data.name]"
+              color="284860"
+              clearable
+              single-line
+              outlined
+            ></v-text-field>
+          </div>
+        </div>
+      </v-form>
+
+      <v-btn block class="text-capitalize login-btn" @click="login"
+        >Login</v-btn
       >
-      </v-text-field>
-
-      <v-text-field
-        v-model="password"
-        color="secondary"
-        label="Kata Sandi"
-        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-        :type="show1 ? 'text' : 'password'"
-        name="input-10-1"
-        @click:append="show1 = !show1"
-        prepend-inner-icon="mdi-lock"
-        :rules="passwordRules"
-      ></v-text-field>
-    </v-form>
-
-    <div class="container-btn d-flex align-center mt-8 justify-space-around">
-      <router-link :to="{ name: 'Forgot' }" class="login-link">
-        Lupa Password?
-      </router-link>
-
-      <v-btn
-        class="reg-btn rounded-lg px-16"
-        color="secondary"
-        @click="login()"
-      >
-        Login
-      </v-btn>
-    </div>
+      <div class="d-flex flex-row sudah-akun mt-1">
+        <p class="ma-0">Belum punya akun?</p>
+        <router-link :to="{ name: 'Register' }" class="login-link">
+          Register
+        </router-link>
+      </div>
+    </v-card>
   </div>
 </template>
 
@@ -47,27 +69,21 @@
 import axios from "axios";
 
 export default {
-  name: "RegisterView",
+  name: "LoginView",
 
   components: {},
 
   data: () => ({
     show1: false,
     show2: false,
-    email: "",
-    password: "",
-    textField: [
-      {
-        label: "Alamat Email",
-        prependInnerIcon: "mdi-email",
-        rules: [
-          (v) => !!v || "E-mail is required",
-          (v) => /.+@.+/.test(v) || "E-mail must be valid",
-        ],
-        required: true,
-      },
-    ],
+
+    formData: [],
+    models: {},
   }),
+
+  async mounted() {
+    await this.getFormData();
+  },
 
   methods: {
     async login() {
@@ -88,15 +104,25 @@ export default {
       }
     },
 
-    async test() {
-      const res = await axios.get("aoshdoasddasosaddaso");
-      console.log(res);
+    async getFormData() {
+      try {
+        const res = await axios.get(`${this.$api}/form/register/customer`);
+        const dataForm = res.data;
+        this.formData = dataForm;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
 </script>
 
 <style scoped>
+.sudah-akun {
+  font-size: 1rem;
+  gap: 0.5rem;
+}
+
 .absolute-center {
   top: 50% !important;
   transform: translate(0, 80%) !important;
@@ -140,8 +166,68 @@ export default {
   margin: 0;
   font-weight: 600;
 }
+</style>
 
-.login-link {
-  text-decoration: underline;
+<style lang="scss">
+.form {
+  &--logreg {
+    background-color: #fff !important;
+    border-radius: 10px !important;
+    padding: 3rem !important;
+    width: 100% !important;
+    .title-form {
+      font-size: 1.5rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 30px !important;
+    }
+    &__group {
+      p {
+        margin-bottom: 0 !important;
+        font-size: 14px !important;
+        color: #284860 !important;
+      }
+    }
+    .login-btn {
+      height: auto !important;
+      padding: 15px !important;
+      background-color: #284860 !important;
+      color: white !important;
+      border-radius: 10px !important;
+      span {
+        color: #fff !important;
+        font-size: 18px;
+        letter-spacing: 0;
+      }
+    }
+  }
+}
+.have-account {
+  display: flex !important;
+  gap: 5px !important;
+  p {
+    font-size: 14px !important;
+    margin-bottom: 0;
+  }
+  .register-or-login {
+    font-size: 14px !important;
+  }
+}
+.v-text-field {
+  &--outlined {
+    fieldset {
+      border-width: 2px !important;
+      border-color: #284860 !important;
+      border-radius: 10px;
+    }
+  }
+  &__details {
+    padding: 0 !important;
+  }
+  .mdi-eye-off,
+  .mdi-eye {
+    &::before {
+      color: #284860 !important;
+    }
+  }
 }
 </style>
