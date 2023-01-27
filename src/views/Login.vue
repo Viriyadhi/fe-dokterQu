@@ -67,6 +67,7 @@
 
 <script>
 import axios from "axios";
+import { EventBus } from "../../event-bus.js";
 
 export default {
   name: "LoginView",
@@ -76,7 +77,6 @@ export default {
   data: () => ({
     show1: false,
     show2: false,
-
     formData: [],
     models: {},
   }),
@@ -88,6 +88,8 @@ export default {
   methods: {
     async login() {
       if (this.$refs.form.validate()) {
+        EventBus.$emit("startLoading");
+
         try {
           const resLogin = await axios.post(`${this.$api}/auth/login`, {
             email: this.email,
@@ -99,8 +101,17 @@ export default {
           }
           console.log(resLogin);
         } catch (err) {
-          console.log(err);
+          var error = err;
+          if (err.response.data.errors) {
+            error = err.response.data.errors;
+            for (const key in error) {
+              console.log(`${error[key]}`);
+              EventBus.$emit("showSnackbar", error[key], "red");
+            }
+            console.log(error);
+          }
         }
+        EventBus.$emit("stopLoading");
       }
     },
 

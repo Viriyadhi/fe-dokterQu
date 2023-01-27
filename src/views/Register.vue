@@ -83,7 +83,6 @@
               :items="data.options"
               :rules="[(v) => !!v || `${data.label} Harus diisi`]"
               v-model="models[data.name]"
-              @change="onChange"
               color="284860"
               item-text="label"
               item-value="value"
@@ -111,6 +110,8 @@
 
 <script>
 import axios from "axios";
+import { EventBus } from "../../event-bus.js";
+
 export default {
   name: "RegisterView",
 
@@ -128,17 +129,27 @@ export default {
   methods: {
     async register() {
       if (this.$refs.form.validate()) {
+        EventBus.$emit("startLoading");
         try {
           const obj = this.models;
           obj["role"] = "3";
           const regUser = await axios.post(`${this.$api}/auth/register`, obj);
 
           if (regUser.status === 201) {
-            this.$router.push("/login");
+            this.$router.push("/register-login/login");
           }
-        } catch (error) {
-          console.log(error.response.data.errors);
+        } catch (err) {
+          var error = err;
+          if (err.response.data.errors) {
+            error = err.response.data.errors;
+            for (const key in error) {
+              console.log(`${error[key]}`);
+              EventBus.$emit("showSnackbar", error[key], "red");
+            }
+            console.log(error);
+          }
         }
+        EventBus.$emit("stopLoading");
       }
     },
 
