@@ -1,18 +1,16 @@
 <template>
   <v-app>
-    <div class="logreg d-flex">
+    <div class="logreg">
       <v-container>
         <v-row>
-          <v-col cols="7" class="d-flex align-center login-image">
+          <v-col cols="7" class="d-flex align-center">
             <div class="d-flex flex-column">
               <v-img
                 src="@/assets/Register/IllustratitionRegisLogin.svg"
-                max-height="451.9"
-                max-width="429"
+                max-height="551.9"
+                width="529"
+                class="ml-16"
               ></v-img>
-              <router-link to="/login" class="login-link">
-                Sudah punya akun? Login
-              </router-link>
             </div>
           </v-col>
 
@@ -36,6 +34,7 @@ export default {
   background-color: #f5f5f5;
   height: 100vh;
 }
+
 .login-link {
   text-decoration: underline;
 }

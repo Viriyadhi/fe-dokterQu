@@ -21,9 +21,9 @@
         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
         :type="show1 ? 'text' : 'password'"
         name="input-10-1"
-        hint="At least 8 characters"
         @click:append="show1 = !show1"
         prepend-inner-icon="mdi-lock"
+        :rules="passwordRules"
       ></v-text-field>
     </v-form>
 
@@ -56,7 +56,6 @@ export default {
     show2: false,
     email: "",
     password: "",
-
     textField: [
       {
         label: "Alamat Email",

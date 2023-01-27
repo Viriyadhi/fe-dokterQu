@@ -1,89 +1,99 @@
 <template>
-  <div class="d-flex flex-column container absolute-center">
-    <h2 class="title-reg">Register</h2>
-    <v-form ref="form" @submit.prevent>
-      <div v-for="(data, i) in formData" :key="i">
-        <v-text-field
-          v-if="
-            data.name === 'name' ||
-            data.name === 'phone' ||
-            data.name === 'email'
-          "
-          color="secondary"
-          :label="data.label"
-          :prepend-inner-icon="data.prependInnerIcon"
-          :rules="data.rules"
-          :required="data.required"
-          v-model="models[data.name]"
-        >
-        </v-text-field>
+  <div class="d-flex flex-column container mr-16">
+    <v-card class="pa-8 form--logreg">
+      <v-card-title class="title-reg">Register</v-card-title>
+      <v-form ref="form" @submit.prevent>
+        <div v-for="(data, i) in formData" :key="i">
+          <div class="form--logreg__group">
+            <p v-if="data.label !== 'Role'">{{ data.label }}</p>
+            <v-text-field
+              v-if="
+                data.name === 'name' ||
+                data.name === 'phone' ||
+                data.name === 'email'
+              "
+              :prepend-inner-icon="data.prependInnerIcon"
+              :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+              :required="data.required"
+              v-model="models[data.name]"
+              color="284860"
+              clearable
+              single-line
+              outlined
+            >
+            </v-text-field>
+          </div>
+          <v-text-field
+            v-if="data.name === 'password'"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="show1 ? 'text' : 'password'"
+            :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+            hint="At least 8 characters"
+            @click:append="show1 = !show1"
+            prepend-inner-icon="mdi-lock"
+            :required="data.required"
+            v-model="models[data.name]"
+            color="284860"
+            clearable
+            single-line
+            outlined
+          ></v-text-field>
 
-        <v-text-field
-          v-if="data.name === 'password'"
-          color="secondary"
-          label="Kata Sandi"
-          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="show1 ? 'text' : 'password'"
-          name="input-10-1"
-          hint="At least 8 characters"
-          @click:append="show1 = !show1"
-          prepend-inner-icon="mdi-lock"
-          :required="data.required"
-          v-model="models[data.name]"
-        ></v-text-field>
+          <v-text-field
+            v-if="data.name === 'password_confirmation'"
+            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="show2 ? 'text' : 'password'"
+            hint="At least 8 characters"
+            :rules="[(v) => !!v || `Password tidak sama`]"
+            @click:append="show2 = !show2"
+            prepend-inner-icon="mdi-lock"
+            :required="data.required"
+            v-model="models[data.name]"
+            color="284860"
+            clearable
+            single-line
+            outlined
+          ></v-text-field>
 
-        <v-text-field
-          v-if="data.name === 'password_confirmation'"
-          color="secondary"
-          label="Konfirmasi Kata Sandi"
-          :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="show2 ? 'text' : 'password'"
-          name="input-10-1"
-          hint="At least 8 characters"
-          @click:append="show2 = !show2"
-          prepend-inner-icon="mdi-lock"
-          :required="data.required"
-          v-model="models[data.name]"
-        ></v-text-field>
+          <v-file-input
+            v-if="data.name === 'photo'"
+            :required="data.required"
+            v-model="models[data.name]"
+            color="284860"
+            clearable
+            single-line
+            outlined
+          >
+          </v-file-input>
 
-        <v-file-input
-          v-if="data.name === 'photo'"
-          color="secondary"
-          prepend-inner-icon="mdi-account-circle"
-          label="Foto Profil"
-          accept="image/*"
-          chips
-          :required="data.required"
-          outlined
-          v-model="models[data.name]"
-        >
-        </v-file-input>
+          <v-select
+            v-if="data.name === 'gender'"
+            :required="data.required"
+            :items="data.options"
+            :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+            v-model="models[data.name]"
+            @change="onChange"
+            color="284860"
+            item-text="label"
+            item-value="value"
+            clearable
+            single-line
+            outlined
+          >
+          </v-select>
+        </div>
+      </v-form>
 
-        <v-select
-          v-if="data.name === 'gender'"
-          :label="data.label"
-          :required="data.required"
-          color="secondary"
-          :items="data.options"
-          item-text="label"
-          item-value="value"
-          v-model="models[data.name]"
-          @change="onChange"
-        >
-        </v-select>
-      </div>
-    </v-form>
-
-    <div class="container-btn d-flex align-center mt-8 justify-space-around">
-      <v-btn
-        class="reg-btn rounded-lg px-16"
-        color="secondary"
-        @click="register"
-        @submit.prevent
+      <v-btn block class="text-capitalize login-btn" @click="register"
+        >Daftar</v-btn
       >
-        Daftar
-      </v-btn>
-    </div>
+      <div class="d-flex flex-row sudah-akun mt-1">
+        <p class="ma-0">Sudah punya akun?</p>
+        <router-link :to="{ name: 'Login' }" class="login-link">
+          Login
+        </router-link>
+      </div>
+    </v-card>
   </div>
 </template>
 
@@ -105,14 +115,18 @@ export default {
 
   methods: {
     async register() {
-      try {
-        const obj = this.models;
-        obj["role"] = "3";
-        console.log(obj);
-        const regUser = await axios.post(`${this.$api}/auth/register`, obj);
-        console.log(regUser);
-      } catch (error) {
-        console.log(error.response.data.errors);
+      if (this.$refs.form.validate()) {
+        try {
+          const obj = this.models;
+          obj["role"] = "3";
+          const regUser = await axios.post(`${this.$api}/auth/register`, obj);
+
+          if (regUser.status === 201) {
+            this.$router.push("/login");
+          }
+        } catch (error) {
+          console.log(error.response.data.errors);
+        }
       }
     },
 
@@ -134,13 +148,18 @@ export default {
 </script>
 
 <style scoped>
+.sudah-akun {
+  font-size: 1rem;
+  gap: 0.5rem;
+}
+
 .container-btn {
   width: 40%;
 }
 .reg-btn {
   width: 30% !important;
 }
-mnr-cost-perzone .title-reg {
+.title-reg {
   font-size: 3rem !important;
   font-size: 500;
 }
@@ -160,5 +179,69 @@ mnr-cost-perzone .title-reg {
   align-items: center;
   margin: 0;
   font-weight: 600;
+}
+</style>
+
+<style lang="scss">
+.form {
+  &--logreg {
+    background-color: #fff !important;
+    border-radius: 10px !important;
+    padding: 3rem !important;
+    width: 100% !important;
+    .title-form {
+      font-size: 1.5rem !important;
+      font-weight: 600 !important;
+      margin-bottom: 30px !important;
+    }
+    &__group {
+      p {
+        margin-bottom: 0 !important;
+        font-size: 14px !important;
+        color: #284860 !important;
+      }
+    }
+    .login-btn {
+      height: auto !important;
+      padding: 15px !important;
+      background-color: #284860 !important;
+      color: white !important;
+      border-radius: 10px !important;
+      span {
+        color: #fff !important;
+        font-size: 18px;
+        letter-spacing: 0;
+      }
+    }
+  }
+}
+.have-account {
+  display: flex !important;
+  gap: 5px !important;
+  p {
+    font-size: 14px !important;
+    margin-bottom: 0;
+  }
+  .register-or-login {
+    font-size: 14px !important;
+  }
+}
+.v-text-field {
+  &--outlined {
+    fieldset {
+      border-width: 2px !important;
+      border-color: #284860 !important;
+      border-radius: 10px;
+    }
+  }
+  &__details {
+    padding: 0 !important;
+  }
+  .mdi-eye-off,
+  .mdi-eye {
+    &::before {
+      color: #284860 !important;
+    }
+  }
 }
 </style>
