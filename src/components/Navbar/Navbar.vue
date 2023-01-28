@@ -145,7 +145,6 @@ export default {
 
     getLocalStorage() {
       this.localStorage = JSON.parse(localStorage.getItem("data"));
-      console.log(this.localStorage.data.name);
     },
   },
 };

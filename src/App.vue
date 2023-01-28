@@ -14,7 +14,7 @@
         </v-layout>
       </v-container>
     </v-dialog>
-    <v-main class="pa-0" :class="isPDCA ? 'disable-scrolling' : 'fill-height'">
+    <v-main class="pa-0">
       <router-view class="main-height" id="chart-id" />
     </v-main>
     <v-snackbar v-model="snackbar" :color="snackbarColor">
@@ -47,8 +47,9 @@ export default {
     });
     var data = JSON.parse(localStorage.getItem("data"));
     axios.defaults.headers.common = {
-      Authorization: `Bearer ${data.access_token}`,
+      Authorization: `Bearer ${data.data.token}`,
     };
+    // console.log(data.data.token);
   },
 };
 </script>
