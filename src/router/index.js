@@ -16,6 +16,7 @@ import JanjiTemu from "../views/janjiTemu/janjiTemu.vue";
 import DetailJanji from "../views/janjiTemu/detailDokter/janjiTemuDetail.vue";
 import CommerceLayout from "../layouts/CommerceLayout/CommerceLayout.vue";
 import CommerceView from "../views/E-Commerce/CommerceView.vue";
+import ArticleView from "../views/article/ArticleView.vue";
 
 Vue.use(VueRouter);
 
@@ -95,6 +96,11 @@ const routes = [
         path: "/janji-temu/:dokter",
         name: "JanjiTemuDetail",
         component: DetailJanji,
+      },
+      {
+        path: "/article",
+        name: "ArticleView",
+        component: ArticleView,
       },
     ],
   },
