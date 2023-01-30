@@ -17,6 +17,7 @@ import DetailJanji from "../views/janjiTemu/detailDokter/janjiTemuDetail.vue";
 import CommerceLayout from "../layouts/CommerceLayout/CommerceLayout.vue";
 import CommerceView from "../views/E-Commerce/CommerceView.vue";
 import ArticleView from "../views/article/ArticleView.vue";
+import ArticleDetail from "../views/article/ArticleDetail.vue";
 
 Vue.use(VueRouter);
 
@@ -101,6 +102,11 @@ const routes = [
         path: "/article",
         name: "ArticleView",
         component: ArticleView,
+      },
+      {
+        path: "/article/post/:slug",
+        name: "ArticleDetail",
+        component: ArticleDetail,
       },
     ],
   },
