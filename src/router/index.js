@@ -18,6 +18,7 @@ import CommerceLayout from "../layouts/CommerceLayout/CommerceLayout.vue";
 import CommerceView from "../views/E-Commerce/CommerceView.vue";
 import ArticleView from "../views/article/ArticleView.vue";
 import ArticleDetail from "../views/article/ArticleDetail.vue";
+import ArticleLayout from "@/layouts/Article/ArticleLayout.vue";
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,19 @@ const routes = [
         path: "/forgot-password/otp",
         name: "Otp",
         component: OtpView,
+      },
+    ],
+  },
+
+  {
+    path: "/article",
+    name: "Article",
+    component: ArticleLayout,
+    children: [
+      {
+        path: "/article",
+        name: "Article",
+        component: ArticleView,
       },
     ],
   },
