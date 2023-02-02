@@ -1,24 +1,28 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/home/HomeView.vue";
-import LoginView from "../views/Login.vue";
-import RegisterView from "../views/Register.vue";
-import ViaEmail from "../views/forgotPassword/ViaEmail.vue";
-import ViaSms from "../views/forgotPassword/ViaSms.vue";
-import DefaultView from "../layouts/Default.vue";
-import RegisterLogin from "../layouts/RegisterLogin/RegisterLoginLayout.vue";
-import ForgotPasswordLayout from "../layouts/RegisterLogin/ForgotPassword.vue";
-import ForgotPasswordView from "../views/forgotPassword/ForgotPassword.vue";
-import OtpView from "../views/forgotPassword/OTP.vue";
-import CreatePassword from "../views/forgotPassword/CreatePassword.vue";
-import DetailPage from "../views/detail/DetailPage.vue";
-import JanjiTemu from "../views/janjiTemu/janjiTemu.vue";
-import DetailJanji from "../views/janjiTemu/detailDokter/janjiTemuDetail.vue";
-import CommerceLayout from "../layouts/CommerceLayout/CommerceLayout.vue";
-import CommerceView from "../views/E-Commerce/CommerceView.vue";
-import ArticleView from "../views/article/ArticleView.vue";
-import ArticleDetail from "../views/article/ArticleDetail.vue";
+import HomeView from "@/views/home/HomeView.vue";
+import LoginView from "@/views/Login.vue";
+import RegisterView from "@/views/Register.vue";
+import ViaEmail from "@/views/forgotPassword/ViaEmail.vue";
+import ViaSms from "@/views/forgotPassword/ViaSms.vue";
+import ForgotPasswordView from "@/views/forgotPassword/ForgotPassword.vue";
+import OtpView from "@/views/forgotPassword/OTP.vue";
+import CreatePassword from "@/views/forgotPassword/CreatePassword.vue";
+import DetailPage from "@/views/detail/DetailPage.vue";
+import JanjiTemu from "@/views/janjiTemu/janjiTemu.vue";
+import DetailJanji from "@/views/janjiTemu/detailDokter/janjiTemuDetail.vue";
+import CommerceView from "@/views/E-Commerce/CommerceView.vue";
+import ArticleView from "@/views/article/ArticleView.vue";
+import ArticleDetail from "@/views/article/ArticleDetail.vue";
+
+import DefaultView from "@/layouts/Default.vue";
+import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
+import ForgotPasswordLayout from "@/layouts/RegisterLogin/ForgotPassword.vue";
 import ArticleLayout from "@/layouts/Article/ArticleLayout.vue";
+import CommerceLayout from "@/layouts/CommerceLayout/CommerceLayout.vue";
+
+// import NotAuth from "@/middlewares/not-auth.js";
+// import Auth from "@/middlewares/auth.js";
 
 Vue.use(VueRouter);
 
