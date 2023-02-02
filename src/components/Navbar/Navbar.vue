@@ -83,7 +83,7 @@
           v-if="localStorage"
           class="d-flex align-center justify-end flex-grow-1"
         >
-          <v-chip outlined color="black" class="mr-8">
+          <v-chip outlined color="black" class="mr-8" @click="logOut()">
             <v-avatar>
               <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
             </v-avatar>
@@ -101,6 +101,8 @@
   </div>
 </template>
 <script>
+import { EventBus } from "../../../event-bus.js";
+
 export default {
   name: "NavBar",
   data: () => ({
@@ -145,6 +147,17 @@ export default {
 
     getLocalStorage() {
       this.localStorage = JSON.parse(localStorage.getItem("data"));
+    },
+
+    logOut() {
+      try {
+        EventBus.$emit("startLoading");
+        localStorage.removeItem("data");
+        this.$router.push({ name: "Login" });
+      } catch (error) {
+        console.log(error);
+      }
+      EventBus.$emit("stopLoading");
     },
   },
 };

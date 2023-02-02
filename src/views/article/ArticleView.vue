@@ -53,6 +53,7 @@
 <script>
 import ArticleComponent from "@/components/Article/Article.vue";
 import axios from "axios";
+import moment from "moment";
 import { EventBus } from "../../../event-bus.js";
 export default {
   name: "ArticleView",
@@ -79,6 +80,11 @@ export default {
           `${this.$api}/article/post?type=latest`
         );
         const dataArticle = response.data.data.articles;
+        var artCreated = moment(dataArticle.created_at).format("YYYY-MM-DD ");
+
+        for (let i = 0; i < dataArticle.length; i++) {
+          dataArticle[i].created_at = artCreated;
+        }
         this.articleList = dataArticle;
       } catch (err) {
         var error = err;
