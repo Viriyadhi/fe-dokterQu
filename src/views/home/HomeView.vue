@@ -1,7 +1,5 @@
 <template>
   <v-app>
-    <!-- <NavBar /> -->
-
     <div class="d-flex">
       <div class="d-flex flex-column container-title">
         <h2 class="header-title">Seputar Kesehatan Indra</h2>
@@ -301,129 +299,38 @@
       </div>
     </section>
 
-    <section class="article mt-8 mx-8">
+    <section class="article mt-8 mx-16">
       <div class="d-flex flex-row justify-space-between align-center">
         <h2 class="article-header-title">Baca Artikel Seputar Kesehatan</h2>
-        <a class="article-header-link"> Lihat semua</a>
+        <router-link :to="{ name: 'ArticleView' }" class="article-header-link">
+          Lihat semua</router-link
+        >
       </div>
 
       <div class="button-group mt-8">
         <v-btn
+          v-for="(category, i) in categoryArticle"
+          :key="i"
           outlined
           rounded
           class="button-group-child"
           width="207px"
           height="47"
+          @click="getArticleByCategory(category.links.article)"
         >
-          Pengelihatan
-        </v-btn>
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
-        </v-btn>
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
-        </v-btn>
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
-        </v-btn>
-        <v-btn
-          outlined
-          rounded
-          class="button-group-child"
-          width="207px"
-          height="47"
-        >
-          Pengelihatan
+          {{ category.name }}
         </v-btn>
       </div>
 
       <div
         class="article-container d-flex flex-row align-center justify-space-between"
       >
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-        <v-card max-width="325" class="article-card">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
-
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
-
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
-        </v-card>
-        <v-card max-width="325" class="article-card">
+        <v-card
+          v-for="(articleData, i) in articleList"
+          :key="i"
+          max-width="325"
+          class="article-card"
+        >
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
             height="200px"
@@ -442,18 +349,159 @@
       </div>
     </section>
     <router-view />
-
-    <!-- <Footer /> -->
   </v-app>
 </template>
 <script>
+import axios from "axios";
+import moment from "moment";
+import { EventBus } from "../../../event-bus.js";
+
 export default {
+  name: "HomeView",
+
   components: {},
 
   data: () => ({
     show: false,
+    articleList: [],
+    categoryArticle: [],
+    ArticleByCategory: [],
+    articleLink: [],
   }),
-  name: "HomeView",
+
+  created() {
+    this.$watch(
+      async () => {
+        this.$route;
+        this.articleList = [];
+
+        return {};
+      },
+      async () => {
+        this.categoryArticle = [];
+        this.articleList = [];
+        this.ArticleByCategory = [];
+      }
+    );
+  },
+
+  async mounted() {
+    await this.getListArticlesLatest();
+    await this.getCategoryArticle();
+    await this.getArticleByCategory(this.categoryArticle[0].links.article);
+    // await this.getArticleLink();
+  },
+
+  methods: {
+    async getListArticlesLatest() {
+      try {
+        EventBus.$emit("startLoading");
+        const response = await axios.get(
+          `${this.$api}/article/post?type=latest`
+        );
+        const dataArticle = response.data.data.articles;
+        var artCreated = moment(dataArticle.created_at).format("YYYY-MM-DD ");
+
+        for (let i = 0; i < dataArticle.length; i++) {
+          dataArticle[i].created_at = artCreated;
+        }
+        for (let i = 0; i < 5; i++) {
+          this.ArticleByCategory.push(dataArticle[i]);
+        }
+      } catch (err) {
+        var error = err;
+        if (err.response.data.errors) {
+          error = err.response.data.errors;
+          for (const key in error) {
+            console.log(`${error[key]}`);
+            EventBus.$emit("showSnackbar", error[key], "red");
+          }
+          console.log(error);
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+
+    async getCategoryArticle() {
+      try {
+        EventBus.$emit("startLoading");
+        const response = await axios.get(`${this.$api}/article/category`);
+        const dataCategory = response.data.data;
+        console.log(dataCategory);
+        this.categoryArticle = dataCategory;
+      } catch (err) {
+        var error = err;
+        if (err.response.data.errors) {
+          error = err.response.data.errors;
+          for (const key in error) {
+            console.log(`${error[key]}`);
+            EventBus.$emit("showSnackbar", error[key], "red");
+          }
+          console.log(error);
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+
+    async getArticleByCategory(articleLink) {
+      try {
+        this.articleList = [];
+        console.log("getArticleByCategory", articleLink);
+        // const artLink = await axios.get(`${this.$api}/article/category`);
+        EventBus.$emit("startLoading");
+
+        const response = articleLink
+          ? await axios.get(`${this.$api}${articleLink}`)
+          : await axios.get(`${this.$api}/article/post?type=latest`);
+        const dataArticle = response.data.data.articles;
+        var artCreated = moment(dataArticle.created_at).format("YYYY-MM-DD ");
+
+        for (let i = 0; i < dataArticle.length; i++) {
+          dataArticle[i].created_at = artCreated;
+        }
+        for (let i = 0; i < 5; i++) {
+          this.articleList.push(dataArticle[i]);
+        }
+      } catch (err) {
+        var error = err;
+        if (err.response.data.errors) {
+          error = err.response.data.errors;
+          for (const key in error) {
+            console.log(`${error[key]}`);
+            EventBus.$emit("showSnackbar", error[key], "red");
+          }
+          console.log(error);
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+
+    // async getArticleLink() {
+    //   try {
+    //     const res = await axios.get(`${this.$api}/article/category`);
+    //     var finalLink = res.data.data;
+
+    //     // var fLength = finalLink.length;
+    //     // var linkValue = [];
+
+    //     // for (let i = 0; i < fLength; i++) {
+    //     //   finalLink = finalLink[i];
+    //     //   console.log("a");
+    //     // }
+    //     // console.log("as");
+    //   } catch (err) {
+    //     var error = err;
+    //     if (err.response.data.errors) {
+    //       error = err.response.data.errors;
+    //       for (const key in error) {
+    //         console.log(`${error[key]}`);
+    //         EventBus.$emit("showSnackbar", error[key], "red");
+    //       }
+    //       console.log(error);
+    //     }
+    //   }
+    // },
+  },
 };
 </script>
 

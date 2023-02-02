@@ -49,7 +49,6 @@ export default {
     axios.defaults.headers.common = {
       Authorization: `Bearer ${data.data.token}`,
     };
-    // console.log(data.data.token);
   },
 };
 </script>
