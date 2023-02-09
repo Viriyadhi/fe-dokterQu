@@ -37,6 +37,12 @@ export default {
     snackbarColor: "",
     text: "",
   }),
+  created() {
+    var data = JSON.parse(localStorage.getItem("data"));
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${data.data.token}`;
+  },
   mounted() {
     EventBus.$on("startLoading", () => (this.loading = true));
     EventBus.$on("stopLoading", () => (this.loading = false));
@@ -45,10 +51,7 @@ export default {
       this.snackbarColor = color;
       this.snackbar = true;
     });
-    var data = JSON.parse(localStorage.getItem("data"));
-    axios.defaults.headers.common = {
-      Authorization: `Bearer ${data.access_token}`,
-    };
+    // console.log(data.data.token);
   },
 };
 </script>
