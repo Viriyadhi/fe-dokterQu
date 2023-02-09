@@ -47,7 +47,7 @@ export default {
     });
     var data = JSON.parse(localStorage.getItem("data"));
     axios.defaults.headers.common = {
-      Authorization: `Bearer ${data.data.token}`,
+      Authorization: `Bearer ${data.access_token}`,
     };
   },
 };

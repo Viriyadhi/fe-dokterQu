@@ -2,6 +2,7 @@
   <v-app>
     <v-container>
       <ArticleComponent />
+      asdlkasjidsklasdasd asdlkasd asdoasd asdohijasd asdoipoasd asdhoipo
       <h4>3 Komentar</h4>
     </v-container>
   </v-app>

@@ -326,25 +326,27 @@
         class="article-container d-flex flex-row align-center justify-space-between"
       >
         <v-card
+          max-width="315"
+          max-height="544"
+          class="article-card"
           v-for="(articleData, i) in articleList"
           :key="i"
-          max-width="325"
-          class="article-card"
         >
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
-            class="article-img"
-          ></v-img>
+          <router-link :to="{ path: `${articleData.links['self']}` }">
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              height="200px"
+              class="article-img"
+            ></v-img>
 
-          <!-- <v-card-title> Top western road trips </v-card-title> -->
+            <!-- <v-card-title> Top western road trips </v-card-title> -->
 
-          <v-card-subtitle class="card-desc">
-            “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-            bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-            care.”
-          </v-card-subtitle>
-          <v-card-text>Sumber Superideal.id</v-card-text>
+            <v-card-subtitle class="card-desc">
+              “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
+              bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
+              care.”
+            </v-card-subtitle>
+          </router-link>
         </v-card>
       </div>
     </section>
@@ -373,55 +375,22 @@ export default {
     this.$watch(
       async () => {
         this.$route;
-        this.articleList = [];
-
         return {};
       },
       async () => {
         this.categoryArticle = [];
         this.articleList = [];
-        this.ArticleByCategory = [];
       }
     );
   },
 
   async mounted() {
-    await this.getListArticlesLatest();
     await this.getCategoryArticle();
     await this.getArticleByCategory(this.categoryArticle[0].links.article);
     // await this.getArticleLink();
   },
 
   methods: {
-    async getListArticlesLatest() {
-      try {
-        EventBus.$emit("startLoading");
-        const response = await axios.get(
-          `${this.$api}/article/post?type=latest`
-        );
-        const dataArticle = response.data.data.articles;
-        var artCreated = moment(dataArticle.created_at).format("YYYY-MM-DD ");
-
-        for (let i = 0; i < dataArticle.length; i++) {
-          dataArticle[i].created_at = artCreated;
-        }
-        for (let i = 0; i < 5; i++) {
-          this.ArticleByCategory.push(dataArticle[i]);
-        }
-      } catch (err) {
-        var error = err;
-        if (err.response.data.errors) {
-          error = err.response.data.errors;
-          for (const key in error) {
-            console.log(`${error[key]}`);
-            EventBus.$emit("showSnackbar", error[key], "red");
-          }
-          console.log(error);
-        }
-      }
-      EventBus.$emit("stopLoading");
-    },
-
     async getCategoryArticle() {
       try {
         EventBus.$emit("startLoading");
