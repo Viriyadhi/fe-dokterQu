@@ -204,12 +204,6 @@ export default {
         console.log(res);
         const data = res.data.data;
         this.detailArticle.push(data);
-
-        var artCreated = moment(res.data.data.created_at).format("YYYY-MM-DD ");
-
-        for (let i = 0; i < this.detailArticle.length; i++) {
-          this.detailArticle[i].created_at = artCreated;
-        }
       } catch (err) {
         var error = err;
         if (err.response.data.errors) {
