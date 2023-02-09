@@ -396,7 +396,6 @@ export default {
         EventBus.$emit("startLoading");
         const response = await axios.get(`${this.$api}/article/category`);
         const dataCategory = response.data.data;
-        console.log(dataCategory);
         this.categoryArticle = dataCategory;
       } catch (err) {
         var error = err;
@@ -415,7 +414,6 @@ export default {
     async getArticleByCategory(articleLink) {
       try {
         this.articleList = [];
-        console.log("getArticleByCategory", articleLink);
         // const artLink = await axios.get(`${this.$api}/article/category`);
         EventBus.$emit("startLoading");
 

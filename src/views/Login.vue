@@ -98,7 +98,6 @@ export default {
             localStorage.setItem("data", JSON.stringify(resLogin.data));
             this.$router.push({ path: "/" });
           }
-          console.log(resLogin);
         } catch (err) {
           var error = err;
           if (err.response.data.errors) {
