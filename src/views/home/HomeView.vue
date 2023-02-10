@@ -11,6 +11,7 @@
           <a class="header-link">MORE INFO</a>
           <div class="text-center">
             <v-btn
+            to="/registerpopup"
               rounded
               color="success"
               class="ml-12 pa-5 button-header-custom"
