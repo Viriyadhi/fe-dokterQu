@@ -16,33 +16,33 @@
             </v-btn>
           </v-text-field>
         </div>
-        <div  v-scroll.self="onScroll" class="comment overflow-y-auto">
-            <v-card class="my-3" v-for="n in 5" :key="n" elevation="0">
-              <v-row>
-                <div class="col-1 coll1">
-                  <v-avatar>
-                    <img
-                      src="https://tse4.mm.bing.net/th?id=OIP.bbRjEtula0rs46GDEb2kIQHaHa&pid=Api&P=0"
-                      alt="John"
-                    />
-                  </v-avatar>
+        <div v-scroll.self="onScroll" class="comment overflow-x-auto overflow-x-hidden">
+          <v-card class="my-3" v-for="n in 5" :key="n" elevation="0">
+            <v-row>
+              <div class="col-1 coll1">
+                <v-avatar>
+                  <img
+                    src="https://tse4.mm.bing.net/th?id=OIP.bbRjEtula0rs46GDEb2kIQHaHa&pid=Api&P=0"
+                    alt="John"
+                  />
+                </v-avatar>
+              </div>
+              <div class="col-11 pl-7">
+                <div class="text-body1 title-comment">Pando Dezandro</div>
+                <div class="text-subtitle1 comment-content">
+                  terimakasih atas artikel ini sangat membantu saya,Quae eum et harum dolor sint soluta voluptate. Aliquid neque quo exercitationem. Impedit quia consectetur officia voluptatem tempore aut dolores sed. Dignissimos voluptatem ut et quia et quia dolor minima.
                 </div>
-                <div class="col-11 pl-7">
-                  <div class="text-body1 title-comment">Pando Dezandro</div>
-                  <div class="text-subtitle1 comment-content">
-                    terimakasih atas artikel ini sangat membantu saya
-                  </div>
-                  <div
-                    class="d-flex flex-row justify-space-between status-comment my-1"
-                  >
-                    <div class="text-caption">5 menit</div>
-                    <div class="text-caption">12 suka</div>
-                    <div class="text-caption">Balas</div>
-                    <div class="text-caption">Laporkan</div>
-                  </div>
+                <div
+                  class="d-flex flex-row justify-space-between status-comment my-1"
+                >
+                  <div class="text-caption">5 menit</div>
+                  <div class="text-caption">12 suka</div>
+                  <div class="text-caption">Balas</div>
+                  <div class="text-caption">Laporkan</div>
                 </div>
-              </v-row>
-            </v-card>
+              </div>
+            </v-row>
+          </v-card>
         </div>
       </div>
     </v-container>
@@ -82,7 +82,7 @@ export default {
   color: black;
   font-weight: 600;
 }
-.comment{
+.comment {
   max-height: 400px;
 }
 </style>
