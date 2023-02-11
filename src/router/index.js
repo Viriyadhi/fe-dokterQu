@@ -14,6 +14,7 @@ import DetailJanji from "@/views/janjiTemu/detailDokter/janjiTemuDetail.vue";
 import CommerceView from "@/views/E-Commerce/CommerceView.vue";
 import ArticleView from "@/views/article/ArticleView.vue";
 import ArticleDetail from "@/views/article/ArticleDetail.vue";
+import RegisterPopup from "@/views/RegisterPopup.vue";
 import ProductDetailView from "@/views/E-Commerce/ProductDetailView.vue";
 
 import DefaultView from "@/layouts/Default.vue";
@@ -57,6 +58,11 @@ const routes = [
         component: ArticleView,
       },
     ],
+  },
+  {
+    path: "/registerpopup",
+    name: "RegisterPopup",
+    component: RegisterPopup,
   },
 
   {
