@@ -15,6 +15,7 @@ import CommerceView from "@/views/E-Commerce/CommerceView.vue";
 import ArticleView from "@/views/article/ArticleView.vue";
 import ArticleDetail from "@/views/article/ArticleDetail.vue";
 import RegisterPopup from "@/views/RegisterPopup.vue";
+import ProductDetailView from "@/views/E-Commerce/ProductDetailView.vue";
 
 import DefaultView from "@/layouts/Default.vue";
 import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
@@ -144,6 +145,11 @@ const routes = [
         path: "/",
         name: "HomeShop",
         component: CommerceView,
+      },
+      {
+        path: "/product-detail",
+        name: "ProductDetail",
+        component: ProductDetailView,
       },
     ],
   },
