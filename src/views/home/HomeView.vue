@@ -11,7 +11,7 @@
           <a class="header-link">MORE INFO</a>
           <div class="text-center">
             <v-btn
-            to="/registerpopup"
+              to="/registerpopup"
               rounded
               color="success"
               class="ml-12 pa-5 button-header-custom"
@@ -279,6 +279,47 @@
       </div>
     </section>
 
+    <section class="">
+      <div class="text-h5 title-patient ml-5">Apa kata pasien kami</div>
+      <!-- <CommentPatientComponent/> -->
+      <div
+        v-scroll.self="onScroll"
+        class="comment overflow-x-hidden overflow-y-hidden"
+      >
+        <v-row>
+          <v-card
+            v-for="n in 4"
+            :key="n"
+            :elevation="5"
+            class="rounded-lg card"
+          >
+            <v-row>
+              <v-avatar class="">
+                <img
+                  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.YM17Cqo_ZVnWianAXd2m4gHaFc%26pid%3DApi&f=1&ipt=15f41570831dca5806971b2b70aed2583d8a5be11824d9e9a2e7720aef04d1e9&ipo=images"
+                  alt="John"
+                />
+              </v-avatar>
+              <div class="ml-5">
+                <div class="text-body1 text-title">Dewi marlisa</div>
+                <div class="text-subtitle2 caption-text">Tipe pelayanan</div>
+              </div>
+            </v-row>
+            <div class="mt-7">
+              <div class="comment-title text-body1 my-3">
+                Praktis dan Efisien
+              </div>
+              <div class="text-caption">
+                Sangat efisien dan terbantukan banget, gak perlu antri lama
+                untuk konsultasi. recommended banget pokoknya,terima kasih
+                DokterQu,
+              </div>
+            </div>
+          </v-card>
+        </v-row>
+      </div>
+    </section>
+
     <section class="medicine pt-16 ma-16 px-16">
       <div class="d-flex flex-row justify-space-around">
         <v-img
@@ -359,10 +400,14 @@ import axios from "axios";
 import moment from "moment";
 import { EventBus } from "../../../event-bus.js";
 
-export default {
-  name: "HomeView",
+// import CommentPatientComponent from "@/components/home/CommentPatientComponent.vue";
 
-  components: {},
+export default {
+  // name: "CommentPatientComponent",
+
+  components: {
+    // CommentPatientComponent,
+  },
 
   data: () => ({
     show: false,
@@ -778,5 +823,23 @@ export default {
 .article-card {
   background: #ffffff !important;
   box-shadow: 0px 16px 40px rgba(154, 170, 207, 0.2) !important;
+}
+.card {
+  width: 20%;
+  padding: 20px;
+  margin: 30px;
+}
+.text-title {
+  font-weight: bold;
+  color: black;
+}
+.caption-text {
+  color: #4caf50;
+}
+.comment-title {
+  font-weight: bold;
+}
+.title-patient {
+  font-weight: bold;
 }
 </style>
