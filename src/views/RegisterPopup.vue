@@ -1,14 +1,14 @@
 <template>
-  <div class="luar d-flex justify-center align-center">
-    <div class="d-flex flex-column justify-center rounded-lg kotak">
+  <div class="parent-container d-flex justify-center align-center">
+    <v-card class="d-flex flex-column justify-center rounded-lg container-box">
       <div class="text-center">
-        <div class="text-h6">Silahkan registrasi sesuai role anda</div>
+        <v-card-text class="text-h6">Silahkan registrasi sesuai role anda</v-card-text>
         <div>disini tempat registrasinya sir, OKE ga??</div>
       </div>
-      <div class="d-flex flex-column align-center my-7 anak1">
-        <div @click="moveButton" class="kotak1 rounded-lg row">
+      <div class="d-flex flex-column align-center my-7">
+        <div @click="moveButton" class="card-content rounded-lg row">
           <div class="col-2">
-            <v-avatar class="ava">
+            <v-avatar class="avatar">
               <v-icon color="black"> mdi-account </v-icon>
             </v-avatar>
           </div>
@@ -17,9 +17,9 @@
             <div class="text-caption">Klik Tombol ini jika anda seorang costumer</div>
           </div>
         </div>
-        <div class="kotak1 rounded-lg row">
+        <div @click="moveButton" class="card-content rounded-lg row">
           <div class="col-2">
-            <v-avatar class="ava">
+            <v-avatar class="avatar">
               <v-icon color="black"> mdi-doctor </v-icon>
             </v-avatar>
           </div>
@@ -28,9 +28,9 @@
             <div class="text-caption">Klik tombol ini jika anda mendaftar sebagai dokter</div>
           </div>
         </div>
-        <div class="kotak1 rounded-lg row">
+        <div @click="moveButton" class="card-content rounded-lg row">
           <div class="col-2">
-            <v-avatar class="ava">
+            <v-avatar class="avatar">
               <v-icon color="black"> mdi-store </v-icon>
             </v-avatar>
           </div>
@@ -40,8 +40,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="gambar1">
+    </v-card>
+    <div class="image-accessories">
       <img src="@/assets/Dentist.svg" />
     </div>
   </div>
@@ -57,19 +57,19 @@ export default {
 };
 </script>
 <style>
-.kotak {
+.container-box {
   padding: 10px;
-  width: 30%;
+  width: 35%;
   border-style: solid;
   border-width: 3px;
   border-color: #edf2f4;
 }
-.luar {
+.parent-container {
   height: 100%;
   width: 100%;
   background-image: url("@/assets/bg-regist-pop.svg");
 }
-.kotak1 {
+.card-content {
   background-color: white;
   width: 90%;
   border-style: solid;
@@ -78,14 +78,14 @@ export default {
   margin: 3px;
   padding: 3px;
 }
-.kotak1:hover {
+.card-content:hover {
   background-color: rgb(238, 232, 232);
 }
 
-.ava {
+.avatar {
   background-color: #2195f359;
 }
-.gambar1 {
+.image-accessories {
   position: fixed;
   right: 3cm;
   bottom: 0;

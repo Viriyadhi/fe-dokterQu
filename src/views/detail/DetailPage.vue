@@ -129,7 +129,7 @@
         <template>
           <div v-scroll.self="onScroll" class="comment overflow-hidden ma-5 ml-15">
             <v-row>
-              <v-card v-for="n in 4" :key="n" :elevation="5" class="rounded-lg card">
+              <v-card v-for="n in 5" :key="n" :elevation="5" class="rounded-lg card col-2 ml-5">
                 <v-row>
                   <v-avatar class="">
                     <img src="https://tse4.mm.bing.net/th?id=OIP.bbRjEtula0rs46GDEb2kIQHaHa&pid=Api&P=0" alt="John" />
@@ -640,4 +640,25 @@ export default {
 }
 </style>
 
-<style></style>
+<style>
+.card {
+  max-width: 20%;
+  padding: 20px;
+  margin: 30px;
+}
+.text-title {
+  font-weight: bold;
+  color: black;
+}
+.caption-text {
+  color: #4caf50;
+}
+.comment-title {
+  font-weight: bold;
+}
+.title-patient {
+  font-weight: bold;
+}
+.row-container {
+}
+</style>
