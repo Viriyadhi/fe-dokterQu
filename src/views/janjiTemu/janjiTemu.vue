@@ -63,13 +63,13 @@
               </v-card-subtitle>
             </div>
   
-            <div class="d-flex flex-row align-center">
+            <div class="d-flex flex-row align-end">
               <v-card-text class="black--text"
                 >Rating: {{ cardData.rating }}</v-card-text
               >
               <v-btn
                 color="success"
-                height="48"
+                height="45"
                 class="rounded-tl-xl rounded-br-xl"
               >
                 Buat Janji</v-btn
@@ -109,13 +109,13 @@
               </v-card-subtitle>
             </div>
   
-            <div class="d-flex flex-row align-center">
+            <div class="d-flex flex-row align-end">
               <v-card-text class="black--text"
                 >Rating: {{ cardData.rating }}</v-card-text
               >
               <v-btn
                 color="success"
-                height="48"
+                height="45"
                 class="rounded-tl-xl rounded-br-xl"
               >
                 Buat Janji</v-btn
@@ -155,13 +155,13 @@
               </v-card-subtitle>
             </div>
   
-            <div class="d-flex flex-row align-center">
+            <div class="d-flex flex-row align-end ">
               <v-card-text class="black--text"
                 >Rating: {{ cardData.rating }}</v-card-text
               >
-              <v-btn
+              <v-btn 
                 color="success"
-                height="48"
+                height="45"
                 class="rounded-tl-xl rounded-br-xl"
               >
                 Buat Janji</v-btn
