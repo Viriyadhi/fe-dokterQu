@@ -9,8 +9,9 @@ import ForgotPasswordView from "@/views/forgotPassword/ForgotPassword.vue";
 import OtpView from "@/views/forgotPassword/OTP.vue";
 import CreatePassword from "@/views/forgotPassword/CreatePassword.vue";
 import DetailPage from "@/views/detail/DetailPage.vue";
+import ChatDokter from "@/views/chatDokter/chatDokter.vue";
+import ChatDokterDetail from "@/views/chatDokter/detailDokter/chatDokterDetail.vue";
 import JanjiTemu from "@/views/janjiTemu/janjiTemu.vue";
-import DetailJanji from "@/views/janjiTemu/detailDokter/janjiTemuDetail.vue";
 import CommerceView from "@/views/E-Commerce/CommerceView.vue";
 import ArticleView from "@/views/article/ArticleView.vue";
 import ArticleDetail from "@/views/article/ArticleDetail.vue";
@@ -115,14 +116,19 @@ const routes = [
         component: DetailPage,
       },
       {
+        path: "/chat-dokter",
+        name: "ChatDokter",
+        component: ChatDokter,
+      },
+      {
+        path: "/chat-detail/:detail",
+        name: "ChatDokterDetail",
+        component: ChatDokterDetail,
+      },
+      {
         path: "/janji-temu",
         name: "JanjiTemu",
         component: JanjiTemu,
-      },
-      {
-        path: "/janji-temu/:dokter",
-        name: "JanjiTemuDetail",
-        component: DetailJanji,
       },
       {
         path: "/article",
