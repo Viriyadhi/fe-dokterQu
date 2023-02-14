@@ -4,29 +4,18 @@
       <div class="d-flex">
         <div class="d-flex flex-column container-title ma-16 px-16">
           <h2 class="header-title">Semua tentang kesehatan mata</h2>
-          <p class="header-desc">
-            Chat dokter, kunjungi rumah sakit, beli obat, cek lab dan update
-            informasi seputar kesehatan,.
-          </p>
+          <p class="header-desc">Chat dokter, kunjungi rumah sakit, beli obat, cek lab dan update informasi seputar kesehatan,.</p>
           <div class="d-flex flex-row align-center">
             <a class="header-link">MORE INFO</a>
             <div class="text-center">
-              <v-btn rounded color="success" class="ml-8 button-header" dark>
-                Register NOW
-              </v-btn>
+              <v-btn rounded color="success" class="ml-8 button-header" dark> Register NOW </v-btn>
             </div>
           </div>
         </div>
         <div class="d-flex parent">
-          <v-img src="@/assets/Landing Page/Header/Oval.svg" class="oval-top">
-          </v-img>
-          <v-img src="@/assets/Landing Page/Header/Banner1.svg" class="banner">
-          </v-img>
-          <v-img
-            src="@/assets/Landing Page/Header/OvalTransparent.svg"
-            class="oval-transparent"
-          >
-          </v-img>
+          <v-img src="@/assets/Landing Page/Header/Oval.svg" class="oval-top"> </v-img>
+          <v-img src="@/assets/Landing Page/Header/Banner1.svg" class="banner"> </v-img>
+          <v-img src="@/assets/Landing Page/Header/OvalTransparent.svg" class="oval-transparent"> </v-img>
         </div>
       </div>
     </section>
@@ -36,66 +25,34 @@
         <div class="speciality-container d-flex flex-column">
           <h2 class="speciality-title">Test Kesehatan Mata</h2>
 
-          <v-card
-            class="mb-8 rounded-lg custom-test-card"
-            max-width="626"
-            height="171"
-          >
+          <v-card class="mb-8 rounded-lg custom-test-card" max-width="626" height="171">
             <div class="container-content">
-              <v-img
-                src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
-                max-height="85"
-                max-width="85"
-                class="icon-logo my-10 mx-8"
-              ></v-img>
+              <v-img src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg" max-height="85" max-width="85" class="icon-logo my-10 mx-8"></v-img>
               <div class="d-flex flex-column my-4">
-                <h4 class="test-card-title mb-2">Kemampuan Pendengaran</h4>
-                <p class="test-card-desc">
-                  lorem, vel fermentum augue porta id. Aliquam lobortis magna
-                  nequeil
-                </p>
+                <h4 class="test-card-title mb-2">Buta Warna</h4>
+                <p class="test-card-desc">Penyakit ini sulit membedakan warna tertentu atau bahkan seluruh warna.l</p>
               </div>
             </div>
           </v-card>
 
-          <v-card
-            class="mb-8 rounded-lg custom-test-card"
-            max-width="626"
-            height="171"
-          >
+          <v-card class="mb-8 rounded-lg custom-test-card" max-width="626" height="171">
             <div class="container-content">
-              <v-img
-                src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
-                max-height="85"
-                max-width="85"
-                class="icon-logo my-10 mx-8"
-              ></v-img>
+              <v-img src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg" max-height="85" max-width="85" class="icon-logo my-10 mx-8"></v-img>
               <div class="d-flex flex-column my-4">
-                <h4 class="test-card-title mb-2">Kemampuan Pendengaran</h4>
-                <p class="test-card-desc">
-                  lorem, vel fermentum augue porta id. Aliquam lobortis magna
-                  nequeil
-                </p>
+                <h4 class="test-card-title mb-2">Buta Warna</h4>
+                <p class="test-card-desc">Istilah ini juga sering diartikan sebagai penglihatan yang buram.</p>
               </div>
             </div>
           </v-card>
         </div>
-        <v-img
-          src="@/assets/Landing Page/Speciality/SpecialityImage.svg"
-          max-width="607"
-          max-height="579"
-          class="speciality-image"
-        ></v-img>
+        <v-img src="@/assets/Landing Page/Speciality/SpecialityImage.svg" max-width="607" max-height="579" class="speciality-image"></v-img>
       </div>
     </section>
     <section class="layanan-khusus mt-16 pt-16">
       <div class="mx-16 px-16">
         <div class="title">
           <h2 class="layanan-title">Konsultasi Dengan Dokter Khusus Mata</h2>
-          <p class="layanan-desc">
-            Curabitur egestas consequat lorem, vel fermentum augue porta id.
-            Aliquam lobortis magna neque, gravida consequat velit venenatis at.
-          </p>
+          <p class="layanan-desc">Curabitur egestas consequat lorem, vel fermentum augue porta id. Aliquam lobortis magna neque, gravida consequat velit venenatis at.</p>
         </div>
       </div>
     </section>
@@ -103,106 +60,48 @@
     <section class="layanan-khusus card">
       <div class="d-flex flex-row">
         <div class="parent-layanan">
-          <v-img
-            src="@/assets/Landing Page/LayananKhusus/LayananImage.svg"
-            max-width="502"
-            max-height="425"
-            class="layanan-image"
-          >
-          </v-img>
-          <v-img
-            src="@/assets/Landing Page/LayananKhusus/OvalLayanan.svg"
-            class="layanan-oval"
-          >
-          </v-img>
+          <v-img src="@/assets/Landing Page/LayananKhusus/LayananImage.svg" max-width="502" max-height="425" class="layanan-image"> </v-img>
+          <v-img src="@/assets/Landing Page/LayananKhusus/OvalLayanan.svg" class="layanan-oval"> </v-img>
         </div>
 
         <div class="ml-16 container-card flex-grow-1">
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
+          <v-card max-width="255" max-height="350" class="custom-card-konsultasi rounded-lg">
+            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="170"></v-img>
 
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
+            <v-card-subtitle class="black--text pa-5"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium fermentum felis id condimentum. </v-card-subtitle>
 
             <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark> SEE DETAILS </v-btn>
             </v-card-actions>
           </v-card>
 
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
+          <v-card max-width="255" max-height="350" class="custom-card-konsultasi rounded-lg">
+            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="170"></v-img>
 
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
+            <v-card-subtitle class="black--text pa-5"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium fermentum felis id condimentum. </v-card-subtitle>
 
             <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark> SEE DETAILS </v-btn>
             </v-card-actions>
           </v-card>
 
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
+          <v-card max-width="255" max-height="350" class="custom-card-konsultasi rounded-lg">
+            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="170"></v-img>
 
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
+            <v-card-subtitle class="black--text pa-5"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium fermentum felis id condimentum. </v-card-subtitle>
 
             <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark> SEE DETAILS </v-btn>
             </v-card-actions>
           </v-card>
 
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
+          <v-card max-width="255" max-height="350" class="custom-card-konsultasi rounded-lg">
+            <v-img src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg" height="170"></v-img>
 
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
+            <v-card-subtitle class="black--text pa-5"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium fermentum felis id condimentum. </v-card-subtitle>
 
             <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark> SEE DETAILS </v-btn>
             </v-card-actions>
           </v-card>
         </div>
@@ -212,44 +111,52 @@
     <section class="Appointment">
       <div class="d-flex flex-row justify-space-between">
         <div class="Appointment-container d-flex flex-column">
-          <h2 class="Appointment-title">
-            Janji temu dengan dokter spesialis mata
-          </h2>
+          <h2 class="Appointment-title">Janji temu dengan dokter spesialis mata</h2>
 
-          <p class="Appointment-desc">
-            Hanya dengan beberapa Klik, anda bisa konsultasi dengan dokter
-            spesialis yang sudah bergabung di website kami.
-          </p>
+          <p class="Appointment-desc">Hanya dengan beberapa Klik, anda bisa konsultasi dengan dokter spesialis yang sudah bergabung di website kami.</p>
 
-          <v-btn color="success" class="medicine-btn py-5" rounded>
-            Cari Dokter Sekarang</v-btn
-          >
+          <v-btn color="success" class="medicine-btn py-5" rounded> Cari Dokter Sekarang</v-btn>
         </div>
-        <v-img
-          src="@/assets/Landing Page/Appointment/Appointment.svg"
-          max-width="746.15"
-          max-height="481.43"
-          class="Appointment-image"
-        ></v-img>
+        <v-img src="@/assets/Landing Page/Appointment/Appointment.svg" max-width="746.15" max-height="481.43" class="Appointment-image"></v-img>
       </div>
     </section>
 
-    <section class="testimonial">
-      <div class="d-flex flex-row justify"></div>
+    <section class="testimonial mt-5 ml-8 pa-7">
+      <div class="txt-testi my-5 ml-15">
+        <div>Apa Kata Pasien Kami</div>
+      </div>
+      <div class="d-flex flex-row">
+        <template>
+          <div v-scroll.self="onScroll" class="comment overflow-hidden ma-5 ml-15">
+            <v-row>
+              <v-card v-for="n in 5" :key="n" :elevation="5" class="rounded-lg card col-2 ml-5">
+                <v-row>
+                  <v-avatar class="">
+                    <img src="https://tse4.mm.bing.net/th?id=OIP.bbRjEtula0rs46GDEb2kIQHaHa&pid=Api&P=0" alt="John" />
+                  </v-avatar>
+                  <div class="ml-5">
+                    <div class="text-body1 text-title">Dewi marlisa</div>
+                    <div class="text-subtitle2 caption-text">Tipe pelayanan</div>
+                  </div>
+                </v-row>
+                <div class="mt-7">
+                  <div class="comment-title text-body1 my-3">Praktis dan Efisien</div>
+                  <div class="text-caption">Sangat efisien dan terbantukan banget, gak perlu antri lama untuk konsultasi. recommended banget pokoknya,terima kasih DokterQu,</div>
+                </div>
+              </v-card>
+            </v-row>
+          </div>
+        </template>
+      </div>
     </section>
 
     <section class="ready-started ma-16 px-16">
-      <v-card
-        class="mx-auto my-12 d-flex flex-row justify-space-between pa-4 px-16 py-4wha rounded-xl align-center custom-card"
-        max-height="158.21px"
-      >
+      <v-card class="mx-auto my-12 d-flex flex-row justify-space-between pa-4 px-16 py-4wha rounded-xl align-center custom-card" max-height="158.21px">
         <div class="d-flex flex-column mx-16 my-2">
           <h4 class="ready-title ma-0">Siap untuk memulai ?</h4>
           <p class="ready-desc ma-0">Buat janji temu dengan dokter pilihan.</p>
         </div>
-        <v-btn rounded class="pa-6 btn-now mx-16" color="white">
-          buat janji sekarang
-        </v-btn>
+        <v-btn rounded class="pa-6 btn-now mx-16" color="white"> buat janji sekarang </v-btn>
       </v-card>
     </section>
 
@@ -258,25 +165,11 @@
       <h4 class="apotik-desc">Apotik terdekat dari lokasi anda</h4>
 
       <v-row>
-        <v-col
-          cols="12"
-          xs="12"
-          sm="6"
-          lg="4"
-          xl="4"
-          v-for="(data, index) in cardData"
-          :key="index"
-        >
+        <v-col cols="12" xs="12" sm="6" lg="4" xl="4" v-for="(data, index) in cardData" :key="index">
           <v-card elevation="2" class="rounded-lg" width="500px">
             <div class="d-flex flex-row">
               <div class="d-flex">
-                <v-img
-                  :src="data.img"
-                  height="140px"
-                  width="140px"
-                  class="rounded-lg ma-4"
-                >
-                </v-img>
+                <v-img :src="data.img" height="140px" width="140px" class="rounded-lg ma-4"> </v-img>
               </div>
               <div class="d-flex flex-column">
                 <v-card-title class="card-title">
@@ -294,9 +187,7 @@
                 <v-card-text class="card-desc">
                   {{ data.desc2 }}
                 </v-card-text>
-                <v-btn color="success" outlined class="apotik-btn rounded-xl">
-                  Contact
-                </v-btn>
+                <v-btn color="success" outlined class="apotik-btn rounded-xl"> Contact </v-btn>
               </div>
             </div>
           </v-card>
@@ -406,7 +297,23 @@ export default {
   left: 14rem;
 }
 </style>
-
+<style>
+.card {
+  width: 20%;
+  padding: 20px;
+  margin: 10px;
+}
+.text-title {
+  font-weight: bold;
+  color: black;
+}
+.caption-text {
+  color: #4caf50;
+}
+.comment-title {
+  font-weight: bold;
+}
+</style>
 <style scoped>
 .custom-test-card {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.09) !important;
@@ -688,11 +595,7 @@ export default {
 }
 
 .custom-card {
-  background: linear-gradient(
-    118.17deg,
-    #03acf2 6.86%,
-    #c8e6c9 103.41%
-  ) !important;
+  background: linear-gradient(118.17deg, #03acf2 6.86%, #c8e6c9 103.41%) !important;
 }
 
 .btn-now {
@@ -731,6 +634,31 @@ export default {
 .apotik-btn {
   width: 110%;
 }
+.txt-testi {
+  font-size: 30px;
+  font-weight: bold;
+}
 </style>
 
-<style></style>
+<style>
+.card {
+  max-width: 20%;
+  padding: 20px;
+  margin: 30px;
+}
+.text-title {
+  font-weight: bold;
+  color: black;
+}
+.caption-text {
+  color: #4caf50;
+}
+.comment-title {
+  font-weight: bold;
+}
+.title-patient {
+  font-weight: bold;
+}
+.row-container {
+}
+</style>

@@ -11,7 +11,7 @@
           <a class="header-link">MORE INFO</a>
           <div class="text-center">
             <v-btn
-            to="/registerpopup"
+              to="/registerpopup"
               rounded
               color="success"
               class="ml-12 pa-5 button-header-custom"
@@ -278,6 +278,7 @@
         ></v-img>
       </div>
     </section>
+    
 
     <section class="medicine pt-16 ma-16 px-16">
       <div class="d-flex flex-row justify-space-around">
@@ -359,10 +360,14 @@ import axios from "axios";
 import moment from "moment";
 import { EventBus } from "../../../event-bus.js";
 
-export default {
-  name: "HomeView",
+// import CommentPatientComponent from "@/components/home/CommentPatientComponent.vue";
 
-  components: {},
+export default {
+  // name: "CommentPatientComponent",
+
+  components: {
+    // CommentPatientComponent,
+  },
 
   data: () => ({
     show: false,
@@ -779,4 +784,5 @@ export default {
   background: #ffffff !important;
   box-shadow: 0px 16px 40px rgba(154, 170, 207, 0.2) !important;
 }
+
 </style>
