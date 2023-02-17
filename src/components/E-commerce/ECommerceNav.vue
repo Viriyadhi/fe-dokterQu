@@ -27,22 +27,87 @@
         ></v-text-field>
         <v-spacer></v-spacer>
 
-        <router-link :to="{ name: 'Login' }">
-          <a class="login-text mr-8">LOGIN</a>
-        </router-link>
-        <div class="text-center mx-8">
-          <v-btn
-            :to="{ name: 'Register' }"
-            rounded
-            color="success"
-            class="button-register"
-            dark
-          >
-            <router-link :to="{ name: 'Register' }">
-              <a class="register-text">REGISTER</a>
-            </router-link>
-          </v-btn>
+        <div
+          v-if="!localStorage"
+          class="d-flex align-center justify-end flex-grow-1"
+        >
+          <router-link :to="{ name: 'Login' }">
+            <a class="login-text mr-8">LOGIN</a>
+          </router-link>
+          <div class="text-center mx-8">
+            <v-btn
+              :to="{ name: 'Register' }"
+              rounded
+              color="success"
+              class="button-register"
+              dark
+            >
+              <router-link :to="{ name: 'Register' }">
+                <a class="register-text">REGISTER</a>
+              </router-link>
+            </v-btn>
+          </div>
         </div>
+        <div
+          v-if="localStorage"
+          class="d-flex align-center justify-end flex-grow-1"
+        >
+          <div class="text-center">
+            <v-dialog v-model="dialog" width="500">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn icon color="black" class="mr-8">
+                  <v-icon> mdi-cart</v-icon>
+                </v-btn>
+                <v-chip
+                  v-bind="attrs"
+                  v-on="on"
+                  outlined
+                  color="black"
+                  class="mr-8"
+                >
+                  <v-avatar>
+                    <v-img
+                      src="https://cdn.vuetifyjs.com/images/lists/1.jpg"
+                    ></v-img>
+                  </v-avatar>
+                  <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
+                </v-chip>
+              </template>
+
+              <v-card>
+                <v-card-title class="text-h5 grey lighten-2">
+                  Privacy Policy
+                </v-card-title>
+
+                <v-card-text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn color="primary" @click="dialog = false" text>
+                    Gajadi
+                  </v-btn>
+
+                  <v-btn color="primary" text @click="logout()">
+                    I accept
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </div>
+        </div>
+
         <v-divider vertical></v-divider>
         <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
       </v-app-bar>
@@ -53,6 +118,8 @@
   </div>
 </template>
 <script>
+import { EventBus } from "../../../event-bus.js";
+
 export default {
   name: "NavBar",
   data: () => ({
@@ -63,6 +130,7 @@ export default {
       marginTop: "0px",
       boxShadow: "none !important",
       zIndex: "4",
+      localStorage: "",
     },
     items: [
       { title: "Mata", name: "Mata" },
@@ -73,7 +141,12 @@ export default {
     ],
     offset: true,
     closeOnClick: false,
+    dialog: false,
   }),
+  created() {
+    this.getLocalStorage();
+  },
+
   methods: {
     onScrollContent(p) {
       if (p.currentTarget.scrollY > 11) {
@@ -86,7 +159,21 @@ export default {
         this.appbarStyle.marginTop = "0px";
         this.appbarStyle.boxShadow = "none !important";
       }
-      // console.log(bar);
+    },
+
+    getLocalStorage() {
+      this.localStorage = JSON.parse(localStorage.getItem("data"));
+    },
+
+    logout() {
+      try {
+        EventBus.$emit("startLoading");
+        localStorage.removeItem("data");
+        this.$router.push({ name: "Login" });
+      } catch (error) {
+        console.log(error);
+      }
+      EventBus.$emit("stopLoading");
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app>
     <v-container fluid class="px-16 py-10">
       <v-row>
         <v-col cols="3">
@@ -11,8 +11,8 @@
             ></v-img>
 
             <div class="product-cathegory">
-              <p class="cath-title">Kategory</p>
-              <p class="cath-name">Hidung</p>
+              <p class="cath-title">Kategori</p>
+              <p class="cath-name">{{ detailData.category }}</p>
             </div>
 
             <div class="product-info">
@@ -49,9 +49,9 @@
         <v-col cols="5">
           <div class="wrapper-middle">
             <p class="product-name">
-              Afrin Oxymetazoline HCI 15mL (semprot hidung)
+              {{ detailData.name }}
             </p>
-            <p class="product-price">Rp. 42.500,00</p>
+            <p class="product-price">{{ detailData.price }}</p>
             <div class="product-warning">
               <v-img
                 src="@/assets/ECommerce/warning.png"
@@ -68,7 +68,10 @@
 
             <div class="buttons-wrap">
               <div class="left-wrap">
-                <v-btn block class="add-to-cart text-capitalize"
+                <v-btn
+                  block
+                  class="add-to-cart text-capitalize"
+                  @click="updateCartItem"
                   >+ Keranjang</v-btn
                 >
                 <v-btn block outlined class="buy-product text-capitalize"
@@ -76,54 +79,56 @@
                 >
               </div>
 
-              <div class="right-wraps">
-                <button
+              <v-btn-toggle>
+                <v-btn
                   class="btn btn--minus"
                   @click="changeCounter('-1')"
                   type="button"
                   name="button"
                 >
-                  -
-                </button>
-                <input
-                  class="quantity"
+                  <v-icon>mdi-minus</v-icon>
+                </v-btn>
+
+                <v-text-field
+                  class="quantity pa-0 mx-4"
                   type="text"
                   name="name"
-                  :value="counter"
-                />
-                <button
+                  v-model="counter"
+                  solo
+                  dense
+                >
+                  <v-icon>mdi-format-align-right</v-icon>
+                </v-text-field>
+
+                <v-btn
                   class="btn btn--plus"
                   @click="changeCounter('1')"
                   type="button"
                   name="button"
                 >
-                  +
-                </button>
-              </div>
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
+              </v-btn-toggle>
             </div>
 
             <div class="details-product">
               <div class="wrap">
                 <p class="detail-title">Deskripsi</p>
                 <p class="detail-content mb-0">
-                  Afrin adalah sediaan semprot hidung yang mengandung
-                  oxymetazoline. Obat Afrin digunakan untuk membantu meringankan
-                  hidung tersumbat yang disebabkan oleh flu, alergi serbuk sari,
-                  ataupun sinusitis.
+                  {{ detailData.desc }}
                 </p>
               </div>
               <div class="wrap">
+                quantity
                 <p class="detail-title">Indikasi umum</p>
                 <p class="detail-content mb-0">
-                  Manfaat obat Afrin adalah untuk mengatasi hidung tersumbat
-                  yang berkaitan dengan alergi saluran pernapasan.
+                  {{ detailData.desc }}
                 </p>
               </div>
               <div class="wrap">
                 <p class="detail-title">Cara penyimpanan</p>
                 <p class="detail-content mb-0">
-                  Simpan pada suhu antara 20-25 derajat celcius, di tempat
-                  kering dan sejuk
+                  {{ detailData.desc }}
                 </p>
               </div>
             </div>
@@ -164,26 +169,95 @@
         </v-col>
       </v-row>
     </v-container>
-  </div>
+  </v-app>
 </template>
 
 <script>
+import axios from "axios";
+import { EventBus } from "../../../event-bus.js";
+
 export default {
-  data() {
-    return {
-      counter: 1,
-    };
+  name: "ProductDetail",
+  data: () => ({
+    counter: 1,
+    detailData: [],
+    updateLink: null,
+  }),
+
+  created() {
+    this.$watch(
+      () => {
+        this.$route;
+        return {};
+      },
+      async () => {
+        this.detailData = [];
+        this.updateLink = null;
+        await this.getDetailProduct();
+      }
+    );
   },
+
+  async mounted() {
+    await this.getDetailProduct();
+  },
+  computed: {},
+
   methods: {
     changeCounter: function (num) {
       this.counter += +num;
-      console.log(this.counter);
       !isNaN(this.counter) && this.counter > 0
         ? this.counter
         : (this.counter = 0);
     },
+
+    async getDetailProduct() {
+      try {
+        EventBus.$emit("startLoading");
+        var route = this.$route.params;
+        const detailProduct = await axios.get(
+          `${this.$api}/${route.shop}/${route.product}/${route.slug}`
+        );
+        this.detailData = detailProduct.data.data;
+        const updateCart = detailProduct.data.data.links.cart.update_cart;
+        this.updateLink = updateCart;
+      } catch (err) {
+        var error = err;
+        if (err.response.data.errors) {
+          error = err.response.data.errors;
+          for (const key in error) {
+            console.log(`${error[key]}`);
+            EventBus.$emit("showSnackbar", error[key], "red");
+          }
+          console.log(error);
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+
+    async updateCartItem() {
+      try {
+        EventBus.$emit("startLoading");
+        const addProduct = await axios.post(
+          `${this.$api}${this.updateLink}${this.counter}`
+        );
+        console.log(addProduct);
+      } catch (err) {
+        var error = err;
+        if (err.response.data.errors) {
+          error = err.response.data.errors;
+          for (const key in error) {
+            console.log(`${error[key]}`);
+            EventBus.$emit("showSnackbar", error[key], "red");
+          }
+          console.log(error);
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
   },
-  computed: {},
+
+  watch: {},
 };
 </script>
 
@@ -221,7 +295,6 @@ export default {
 .wrapper-middle .product-name {
   font-size: 1.4rem;
   font-weight: 600;
-  height: 3rem;
 }
 
 .wrapper-middle .product-price {
@@ -284,18 +357,12 @@ export default {
 }
 
 .right-wraps {
-  height: 40px;
   display: flex;
   margin-left: 2rem;
 }
 
 .quantity {
-  -webkit-appearance: none;
-  border: none;
-  text-align: center;
   width: 40px;
-  height: 30px;
-  font-size: 18px;
   color: rgba(0, 0, 0, 0.54);
 }
 
@@ -307,9 +374,9 @@ export default {
   border-radius: 5px;
   font-size: 20px;
   font-weight: 800;
-  /*   border-radius: 6px; */
   cursor: pointer;
 }
+
 button:focus,
 input:focus {
   outline: 0;
