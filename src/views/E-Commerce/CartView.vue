@@ -136,12 +136,6 @@ export default {
         ? (this.selected = [])
         : (this.selected = [...this.cartItems]);
     },
-    checkboxValue(data) {
-      return {
-        product_id: data.product.id,
-        quantity: data.quantity,
-      };
-    },
     setTotalItem(value, id) {
       const item = this.cartItems.find((item) => item.id === id);
       if (item) item.quantity = value;
