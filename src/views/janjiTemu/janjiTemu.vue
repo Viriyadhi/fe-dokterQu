@@ -27,102 +27,10 @@
       <section class="article mt-8 mx-8">
         <div class="d-flex flex-row justify-space-between align-center">
           <h2 class="article-header-title">Pilih Rumah Sakit Yang Anda Inginkan</h2>
-          <a class="article-header-link" href="janji-temu/all"> Lihat semua</a>
+          <a class="article-header-link"> Lihat semua</a>
         </div>
   
   
-        <div
-          class="article-container d-flex flex-row align-center justify-space-between col-12"
-        >
-          <v-card 
-            v-for="(cardData, index) in dataCard"
-            :key="index"
-            max-width="325"
-            class="article-card rounded-bl-xl rounded-br-xl"
-          >
-            <v-img :src="cardData.img" height="200px" class="article-img"></v-img>
-  
-            <v-card-title class="text-h5 pa-4 pb-0">
-              {{ cardData.nama }}
-            </v-card-title>
-  
-            <div class="d-flex flex-row justify-space-between">
-              <v-card-subtitle class="card-desc pt-1">
-                Rumah Sakit {{ cardData.indra }}
-              </v-card-subtitle>
-              <v-card-subtitle class="card-desc pt-1">
-                {{ cardData.pengalaman }}
-              </v-card-subtitle>
-            </div>
-            <div class="d-flex flex-column ">
-              <v-card-subtitle class="card-desc">
-                {{ cardData.rumahSakit }}
-              </v-card-subtitle>
-              <v-card-subtitle class="card-desc pt-0">
-                ( {{ cardData.asal }})
-              </v-card-subtitle>
-            </div>
-  
-            <div class="d-flex flex-row align-end">
-              <v-card-text class="black--text"
-                >Rating: {{ cardData.rating }}</v-card-text
-              >
-              <v-btn
-                color="success"
-                height="45"
-                class="rounded-tl-xl rounded-br-xl"
-              >
-                Buat Janji</v-btn
-              >
-            </div>
-          </v-card>
-        </div>
-        <div
-          class="article-container d-flex flex-row align-center justify-space-between col-12"
-        >
-          <v-card 
-            v-for="(cardData, index) in dataCard"
-            :key="index"
-            max-width="325"
-            class="article-card rounded-bl-xl rounded-br-xl"
-          >
-            <v-img :src="cardData.img" height="200px" class="article-img"></v-img>
-  
-            <v-card-title class="text-h5 pa-4 pb-0">
-              {{ cardData.nama }}
-            </v-card-title>
-  
-            <div class="d-flex flex-row justify-space-between">
-              <v-card-subtitle class="card-desc pt-1">
-                Rumah Sakit {{ cardData.indra }}
-              </v-card-subtitle>
-              <v-card-subtitle class="card-desc pt-1">
-                {{ cardData.pengalaman }}
-              </v-card-subtitle>
-            </div>
-            <div class="d-flex flex-column ">
-              <v-card-subtitle class="card-desc">
-                {{ cardData.rumahSakit }}
-              </v-card-subtitle>
-              <v-card-subtitle class="card-desc pt-0">
-                ( {{ cardData.asal }})
-              </v-card-subtitle>
-            </div>
-  
-            <div class="d-flex flex-row align-end">
-              <v-card-text class="black--text"
-                >Rating: {{ cardData.rating }}</v-card-text
-              >
-              <v-btn
-                color="success"
-                height="45"
-                class="rounded-tl-xl rounded-br-xl"
-              >
-                Buat Janji</v-btn
-              >
-            </div>
-          </v-card>
-        </div>
         <div
           class="article-container d-flex flex-row align-center justify-space-between col-12"
         >
@@ -160,6 +68,7 @@
                 >Rating: {{ cardData.rating }}</v-card-text
               >
               <v-btn 
+                to="/janji-temu-detail"
                 color="success"
                 height="45"
                 class="rounded-tl-xl rounded-br-xl"
