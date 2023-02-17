@@ -12,6 +12,8 @@ import DetailPage from "@/views/detail/DetailPage.vue";
 import ChatDokter from "@/views/chatDokter/chatDokter.vue";
 import ChatDokterDetail from "@/views/chatDokter/detailDokter/chatDokterDetail.vue";
 import JanjiTemu from "@/views/janjiTemu/janjiTemu.vue";
+import JanjiTemuDetail from "@/views/janjiTemu/detailJanjiTemu/janjiTemuDetail.vue";
+import DetailDokter from "@/views/janjiTemu/detailJanjiTemu/detailDokter.vue";
 import CommerceView from "@/views/E-Commerce/CommerceView.vue";
 import ArticleView from "@/views/article/ArticleView.vue";
 import ArticleDetail from "@/views/article/ArticleDetail.vue";
@@ -129,6 +131,16 @@ const routes = [
         path: "/janji-temu",
         name: "JanjiTemu",
         component: JanjiTemu,
+      },
+      {
+        path: "/janji-temu-detail",
+        name: "JanjiTemuDetail",
+        component: JanjiTemuDetail,
+      },
+      {
+        path: "/detail-dokter",
+        name: "DetailDokter",
+        component: DetailDokter,
       },
       {
         path: "/article",
