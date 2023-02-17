@@ -543,6 +543,7 @@ export default {
 }
 
 .button-header-custom {
+  color: white !important;
   font-size: 1rem !important;
   width: 13rem !important;
   height: 2.25rem !important;

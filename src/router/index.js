@@ -19,7 +19,7 @@ import ArticleView from "@/views/article/ArticleView.vue";
 import ArticleDetail from "@/views/article/ArticleDetail.vue";
 import RegisterPopup from "@/views/RegisterPopup.vue";
 import ProductDetailView from "@/views/E-Commerce/ProductDetailView.vue";
-import CartView from '@/views/E-Commerce/CartView.vue';
+import CartView from "@/views/E-Commerce/CartView.vue";
 
 import DefaultView from "@/layouts/Default.vue";
 import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
@@ -27,15 +27,14 @@ import ForgotPasswordLayout from "@/layouts/RegisterLogin/ForgotPassword.vue";
 import ArticleLayout from "@/layouts/Article/ArticleLayout.vue";
 import CommerceLayout from "@/layouts/CommerceLayout/CommerceLayout.vue";
 
-// import NotAuth from "@/middlewares/not-auth.js";
-// import Auth from "@/middlewares/auth.js";
+// import notAuth from "@/middlewares/guest.js";
+// import auth from "@/middlewares/auth.js";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/forgot-password",
-    name: "ForgotPassword",
     component: ForgotPasswordLayout,
     children: [
       {
@@ -53,25 +52,23 @@ const routes = [
 
   {
     path: "/article",
-    name: "Article",
     component: ArticleLayout,
     children: [
       {
         path: "/article",
-        name: "Article",
+        name: "ArticleView",
         component: ArticleView,
       },
+      {
+        path: "/article/post/:slug",
+        name: "ArticleDetail",
+        component: ArticleDetail,
+      },
     ],
-  },
-  {
-    path: "/registerpopup",
-    name: "RegisterPopup",
-    component: RegisterPopup,
   },
 
   {
     path: "/register-login",
-    name: "RegisterLogin",
     component: RegisterLogin,
     children: [
       {
@@ -102,14 +99,18 @@ const routes = [
     ],
   },
 
+  {
+    path: "/register-login/registerpopup",
+    name: "RegisterPopup",
+    component: RegisterPopup,
+  },
 
   {
-    path: "/",
-    name: "",
+    path: "/home",
     component: DefaultView,
     children: [
       {
-        path: "/",
+        path: "/home",
         name: "Default",
         component: HomeView,
       },
@@ -143,31 +144,25 @@ const routes = [
         name: "DetailDokter",
         component: DetailDokter,
       },
-      {
-        path: "/article",
-        name: "ArticleView",
-        component: ArticleView,
-      },
-      {
-        path: "/article/post/:slug",
-        name: "ArticleDetail",
-        component: ArticleDetail,
-      },
+      // {
+      //   path: "/janji-temu/:dokter",
+      //   name: "JanjiTemuDetail",
+      //   component: DetailJanji,
+      // },
     ],
   },
 
   {
-    path: "/shop",
-    name: "",
+    path: "/commerce",
     component: CommerceLayout,
     children: [
       {
-        path: "/",
+        path: "/commerce/:shop/:product",
         name: "HomeShop",
         component: CommerceView,
       },
       {
-        path: "/product-detail",
+        path: "/commerce/:shop/:product/:slug",
         name: "ProductDetail",
         component: ProductDetailView,
       },
@@ -181,6 +176,12 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  scrollBehavior() {
+    return {
+      x: 0,
+      y: 0,
+    };
+  },
   routes,
 });
 

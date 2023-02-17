@@ -96,7 +96,7 @@ export default {
           const resLogin = await axios.post(`${this.$api}/auth/login`, obj);
           if (resLogin.status == 201) {
             localStorage.setItem("data", JSON.stringify(resLogin.data));
-            this.$router.push({ path: "/" });
+            this.$router.push({ path: "/home" });
           }
         } catch (err) {
           var error = err;

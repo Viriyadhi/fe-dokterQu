@@ -25,7 +25,7 @@
           <router-link :to="{ name: 'JanjiTemu' }">
             <a class="mx-8">Janji Temu</a>
           </router-link>
-          <router-link :to="{ name: 'Default' }">
+          <router-link :to="{ path: '/commerce/shop/products' }">
             <a class="mx-8">Beli Obat</a>
           </router-link>
 
@@ -174,7 +174,7 @@ export default {
     dialog: false,
   }),
 
-  mounted() {
+  created() {
     this.getLocalStorage();
   },
   methods: {
@@ -189,14 +189,13 @@ export default {
         this.appbarStyle.marginTop = "0px";
         this.appbarStyle.boxShadow = "none !important";
       }
-      // console.log(bar);
     },
 
     getLocalStorage() {
       this.localStorage = JSON.parse(localStorage.getItem("data"));
     },
 
-    logOut() {
+    logout() {
       try {
         EventBus.$emit("startLoading");
         localStorage.removeItem("data");
