@@ -32,6 +32,7 @@
   
   
         <div
+        v-for="n in 3" :key="n"
           class="article-container d-flex flex-row align-center justify-space-between col-12"
         >
           <v-card 
