@@ -212,7 +212,7 @@
           </v-card>
           <v-card
             max-width="255"
-            max-height="350"
+            max-height="400"
             class="custom-card-konsultasi rounded-lg"
           >
             <v-img
@@ -278,7 +278,6 @@
         ></v-img>
       </div>
     </section>
-    
 
     <section class="medicine pt-16 ma-16 px-16">
       <div class="d-flex flex-row justify-space-around">
@@ -328,26 +327,39 @@
         class="article-container d-flex flex-row align-center justify-space-between"
       >
         <v-card
-          max-width="315"
-          max-height="544"
+          max-width="350"
+          max-height="fit-content"
           class="article-card"
           v-for="(articleData, i) in articleList"
           :key="i"
         >
           <router-link :to="{ path: `${articleData.links['self']}` }">
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="200px"
-              class="article-img"
-            ></v-img>
+            <div class="">
+              <v-img
+                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                height="200px"
+                class="article-img"
+              ></v-img>
+            </div>
 
             <!-- <v-card-title> Top western road trips </v-card-title> -->
+            <div class="card-desc3 blue ml-5 mt-5" >
+              mata
+            </div>
 
-            <v-card-subtitle class="card-desc">
-              “Jerawat papula berwarna kemerahan dan meradang. Jenis jerawat ini
-              bisa diatasi dengan beberapa jenis kandungan yang ada dalam skin
-              care.”
+            <v-card-subtitle class="card-desc2">
+              2023-02-16
             </v-card-subtitle>
+
+            <div class="card-desc1" >
+              Mengenal Kondisi Flat Foot, Berbahaya atau Tidak?
+            </div>
+
+            <div class="card-desc">
+              “Flat foot merupakan kondisi ketika telapak kaki lurus alias tidak
+              memiliki lengkungan. Anak dengan flat foot akan mudah lelah dan
+              tersandung saat berjalan atau berlari.”
+            </div>
           </router-link>
         </v-card>
       </div>
@@ -772,17 +784,48 @@ export default {
   margin: 2rem 0;
 }
 
-.article-img {
+/* .article-img {
   border-radius: 1rem 1rem 0 0 !important;
-}
+} */
 
 .card-desc {
   color: black !important;
+  font-size: 15px;
+  max-width: fit-content;
+  font-weight: lighter;
+  padding-left: 20px;
+  padding-right: 25px;
+  padding-bottom: 20px;
+}
+
+.card-desc1 {
+  max-width: fit-content;
+  padding-left: 20px;
+  padding-bottom: 5px;
+  color: black !important;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.card-desc2 {
+  color: black !important;
+  font-weight: lighter;
+  padding-left: 20px;
+}
+
+.card-desc3 {
+  color: white !important;
+  border-radius: 5px;
+  font-size: 15px;
+  max-width: fit-content;
+  font-weight: lighter;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 5px;
 }
 
 .article-card {
   background: #ffffff !important;
   box-shadow: 0px 16px 40px rgba(154, 170, 207, 0.2) !important;
 }
-
 </style>
