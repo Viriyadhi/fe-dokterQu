@@ -334,7 +334,7 @@
           :key="i"
         >
           <router-link :to="{ path: `${articleData.links['self']}` }">
-            <div class="mx-5 mt-8">
+            <div class="">
               <v-img
                 src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
                 height="200px"
