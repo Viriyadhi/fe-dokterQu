@@ -19,6 +19,7 @@ import ArticleView from "@/views/article/ArticleView.vue";
 import ArticleDetail from "@/views/article/ArticleDetail.vue";
 import RegisterPopup from "@/views/RegisterPopup.vue";
 import ProductDetailView from "@/views/E-Commerce/ProductDetailView.vue";
+import CartView from '@/views/E-Commerce/CartView.vue';
 
 import DefaultView from "@/layouts/Default.vue";
 import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
@@ -169,6 +170,11 @@ const routes = [
         path: "/product-detail",
         name: "ProductDetail",
         component: ProductDetailView,
+      },
+      {
+        path: "/cart",
+        name: "CartView",
+        component: CartView,
       },
     ],
   },
