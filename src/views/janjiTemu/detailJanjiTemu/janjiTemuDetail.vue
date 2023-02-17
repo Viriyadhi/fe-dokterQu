@@ -202,7 +202,7 @@ export default {
   align-self: flex-end;
 }
 .container-card {
-  /* background-image: url("@/assets/JanjiTemu/rsedel.png"); */
+  background-image: url("@/assets/JanjiTemu/rsedel.png");
   background-size: cover;
   height: 500px;
 }
