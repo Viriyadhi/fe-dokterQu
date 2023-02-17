@@ -29,10 +29,10 @@
           </div>
         </v-col>
         <v-col cols="4">
-          <v-card class="mx-auto mt-16" max-width="386" elevation="4">
+          <v-card class="mx-auto mt-16 px-3" max-width="386" elevation="4">
             <v-list-item>
               <v-list-item-content>
-                <v-list-item-title class="font-weight-bold mb-3"
+                <v-list-item-title class="font-weight-bold mb-3 mt-5"
                   >Ringkasan Belanja</v-list-item-title
                 >
                 <v-list-item-title class="font-weight-bold mb-6"
