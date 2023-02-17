@@ -329,7 +329,7 @@
         <v-card
           max-width="350"
           max-height="fit-content"
-          class="article-card"
+          class="article-card rounded-lg"
           v-for="(articleData, i) in articleList"
           :key="i"
         >
@@ -338,28 +338,27 @@
               <v-img
                 src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
                 height="200px"
-                class="article-img"
+                class="article-img rounded-t-lg"
               ></v-img>
             </div>
 
             <!-- <v-card-title> Top western road trips </v-card-title> -->
-            <div class="card-desc3 blue ml-5 mt-5" >
-              mata
-            </div>
 
-            <v-card-subtitle class="card-desc2">
-              2023-02-16
-            </v-card-subtitle>
+            <v-card-text class="px-5 py-0 pt-4">
+              <v-chip color="secondary" class="rounded-lg"> mata </v-chip>
+            </v-card-text>
 
-            <div class="card-desc1" >
+            <v-card-subtitle class="card-desc2"> 2023-02-16 </v-card-subtitle>
+
+            <v-card-text class="font-weight-bold pb-0 px-5">
               Mengenal Kondisi Flat Foot, Berbahaya atau Tidak?
-            </div>
+            </v-card-text>
 
-            <div class="card-desc">
+            <v-card-text class="pt-0 px-5">
               “Flat foot merupakan kondisi ketika telapak kaki lurus alias tidak
               memiliki lengkungan. Anak dengan flat foot akan mudah lelah dan
               tersandung saat berjalan atau berlari.”
-            </div>
+            </v-card-text>
           </router-link>
         </v-card>
       </div>
