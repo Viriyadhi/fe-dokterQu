@@ -1,38 +1,39 @@
 <template>
-  <div class="d-flex flex-column container absolute-center">
-    <h2 class="title-reg mb-4">Buat Password Baru</h2>
-
-    <v-text-field
-      color="secondary"
-      label="Kata Sandi"
-      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show1 ? 'text' : 'password'"
-      name="input-10-1"
-      hint="At least 8 characters"
-      @click:append="show1 = !show1"
-      prepend-inner-icon="mdi-lock"
-    ></v-text-field>
-
-    <v-text-field
-      color="secondary"
-      label="Konfirmasi Kata Sandi"
-      :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show2 ? 'text' : 'password'"
-      name="input-10-1"
-      hint="At least 8 characters"
-      @click:append="show2 = !show2"
-      prepend-inner-icon="mdi-lock"
-    ></v-text-field>
-
-    <div class="container-btn d-flex align-center mt-8 justify-end">
-      <v-btn
-        class="reg-btn rounded-lg px-16"
-        @click="nextRoute()"
+  <div
+    class="d-flex flex-column container white rounded-xl absolute-center elevation-3"
+  >
+    <h2 class="text-h4 txt-title">Buat Password Baru</h2>
+    <v-form>
+      <v-text-field
+        placeholder="Kata sandi"
+        outlined
+        prepend-inner-icon="mdi-key"
         color="secondary"
+        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show2 ? 'text' : 'password'"
+        @click:append="show2 = !show2"
+        name="input-10-1"
       >
-        Selanjutnya
-      </v-btn>
-    </div>
+      </v-text-field>
+      <v-text-field
+        outlined
+        class="mx-auto"
+        color="secondary"
+        label="Konfirmasi Kata Sandi"
+        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show2 ? 'text' : 'password'"
+        name="input-10-1"
+        hint="At least 8 characters"
+        @click:append="show2 = !show2"
+        prepend-inner-icon="mdi-lock"
+      ></v-text-field>
+
+      <div class="container-btn d-flex align-center mt-8 justify-center">
+        <v-btn block class="text-capitalize login-btn" @click="nextRoute()"
+          >Selanjutnya</v-btn
+        >
+      </div>
+    </v-form>
   </div>
 </template>
 
@@ -96,7 +97,27 @@ export default {
 
 <style scoped>
 .absolute-center {
-  transform: translate(0, 40%) !important;
+  transform: translate(0, 5%) !important;
+}
+.txt-title{
+  
+  margin-bottom: 5%;
+}
+.container {
+  width: 90%;
+  height:fit-content;
+  padding-left:5%;
+  padding-right: 5%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+.login-btn {
+  height: auto !important;
+  width: 100%;
+  padding: 15px !important;
+  background-color: #284860 !important;
+  color: white !important;
+  border-radius: 10px !important;
 }
 v-app {
   background-color: #f5f5f5 !important;
@@ -110,17 +131,16 @@ v-app {
   gap: 12rem;
 }
 .container-btn {
-  width: 40%;
+  width: 100%;
 }
 .reg-btn {
   width: 30% !important;
 }
 .title-reg {
-  font-size: 2.65rem !important;
-  font-size: 500;
+  font-size: 1.65rem !important;
 }
 .v-input {
-  width: 40% !important;
+  width: 100% !important;
   color: black !important;
 }
 .v-icon.v-icon {

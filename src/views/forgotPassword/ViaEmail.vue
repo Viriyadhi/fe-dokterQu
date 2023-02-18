@@ -1,26 +1,24 @@
 <template>
-  <div class="d-flex flex-column container absolute-center">
-    <h2 class="title-reg">Masukkan Emailmu</h2>
-    <v-text-field
-      color="secondary"
-      v-for="(item, index) in textField"
-      :key="index"
-      :label="item.label"
-      :prepend-inner-icon="item.prependInnerIcon"
-      :rules="item.rules"
-      :required="item.required"
-    >
-    </v-text-field>
-
-    <div class="container-btn d-flex align-center mt-8 justify-end">
-      <v-btn
-        class="reg-btn rounded-lg px-16"
+  <div
+    class="d-flex flex-column container white rounded-xl absolute-center elevation-3"
+  >
+    <h2 class="text-h4 txt-title">Masukkan Emailmu</h2>
+    <v-form>
+      <v-text-field
+        placeholder="Email"
+        outlined
+        prepend-inner-icon="mdi-email"
         color="secondary"
-        @click="login()"
+        type="text"
       >
-        Selanjutnya
-      </v-btn>
-    </div>
+      </v-text-field>
+
+      <div class="container-btn d-flex align-center mt-8 justify-center">
+        <v-btn block class="text-capitalize login-btn" @click="nextRoute()"
+          >Selanjutnya</v-btn
+        >
+      </div>
+    </v-form>
   </div>
 </template>
 
@@ -87,24 +85,55 @@ export default {
 
 <style scoped>
 .absolute-center {
-  top: 50% !important;
-  transform: translate(0, 80%) !important;
+  transform: translate(0, 5%) !important;
+}
+.txt-title{
+  
+  margin-bottom: 5%;
+}
+.container {
+  width: 90%;
+  height:fit-content;
+  padding-left:5%;
+  padding-right: 5%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+.login-btn {
+  height: auto !important;
+  width: 100%;
+  padding: 15px !important;
+  background-color: #284860 !important;
+  color: white !important;
+  border-radius: 10px !important;
+}
+v-app {
+  background-color: #f5f5f5 !important;
+  height: 100vh !important;
+}
+.main-container {
+  height: 100vh !important;
+}
+
+.main-content {
+  gap: 12rem;
 }
 .container-btn {
-  width: 40%;
+  width: 100%;
 }
 .reg-btn {
   width: 30% !important;
 }
 .title-reg {
-  font-size: 2.5rem !important;
-  font-size: 500;
+  font-size: 1.65rem !important;
 }
 .v-input {
-  width: 40% !important;
+  width: 100% !important;
   color: black !important;
 }
-
+.v-icon.v-icon {
+  color: black !important;
+}
 .v-text-field input {
   color: black !important;
 }
