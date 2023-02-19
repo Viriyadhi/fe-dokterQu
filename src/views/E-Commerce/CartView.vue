@@ -70,7 +70,7 @@
     </div>
   </v-app>
 </template>
-  <script>
+<script>
 import ECommerceCardProduct from "@/components/E-commerce/ECommerceCardProduct.vue";
 import ECommerceButtonCount from "@/components/E-commerce/ECommerceButtonCount.vue";
 import axios from "axios";
@@ -158,7 +158,7 @@ export default {
   },
 };
 </script>
-  <style scoped>
+<style scoped>
 .btn-checkout {
   max-width: 15rem;
   background: #ffffff;
@@ -169,4 +169,3 @@ export default {
   letter-spacing: 0.2px;
 }
 </style>
-  

@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-5 my-5">
-    <div class="container-card">
+    <div class="container-card2 ">
       <div class="black text-h4 px-5 rounded-lg title-hospital">
         RS Edelweiss Bandung
       </div>
@@ -193,6 +193,7 @@ export default {
 </script>
 <style>
 .title-hospital {
+  margin-top: 24%;
   width: fit-content;
   font-weight: bold;
   color: white;
@@ -201,7 +202,7 @@ export default {
   position: absolute;
   align-self: flex-end;
 }
-.container-card {
+.container-card2 {
   background-image: url("@/assets/JanjiTemu/rsedel.png");
   background-size: cover;
   height: 500px;

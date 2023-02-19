@@ -82,6 +82,7 @@ export default {
   }),
 
   async mounted() {
+    console.log(axios.defaults.headers.common["Authorization"]);
     await this.getFormData();
   },
 
@@ -95,8 +96,14 @@ export default {
 
           const resLogin = await axios.post(`${this.$api}/auth/login`, obj);
           if (resLogin.status == 201) {
+            EventBus.$emit("showSnackbar", "Login Berhasil", "primary");
+
             localStorage.setItem("data", JSON.stringify(resLogin.data));
-            this.$router.push({ path: "/home" });
+            var data = JSON.parse(localStorage.getItem("data"));
+            axios.defaults.headers.common[
+              "Authorization"
+            ] = `Bearer ${data.data.token}`;
+            history.go(-1);
           }
         } catch (err) {
           var error = err;

@@ -1,7 +1,12 @@
 <template>
   <v-app>
     <v-container>
-      <section class="headers my-8">
+      <section class="my-8 d-flex flex-row align-center">
+        <v-btn icon color="black" class="mr-8">
+          <router-link :to="{ name: 'ArticleView' }">
+            <v-icon>mdi-arrow-left</v-icon>
+          </router-link>
+        </v-btn>
         <v-text-field
           append-icon="mdi-magnify"
           label="Search"

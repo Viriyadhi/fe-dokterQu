@@ -47,7 +47,7 @@ export default {
     EventBus.$on("startLoading", () => (this.loading = true));
     EventBus.$on("stopLoading", () => (this.loading = false));
     EventBus.$on("showSnackbar", (text, color) => {
-      this.text = text[0];
+      this.text = text;
       this.snackbarColor = color;
       this.snackbar = true;
     });

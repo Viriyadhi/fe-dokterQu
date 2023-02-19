@@ -147,6 +147,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 import { EventBus } from "../../../event-bus.js";
 
 export default {
@@ -199,6 +200,8 @@ export default {
       try {
         EventBus.$emit("startLoading");
         localStorage.removeItem("data");
+        axios.defaults.headers.common["Authorization"] = null;
+
         this.$router.push({ name: "Login" });
       } catch (error) {
         console.log(error);
