@@ -7,19 +7,14 @@
       </h4>
       <div class="mt-4 d-flex flex-row justify-space-between">
         <h4 class="font-weight-bold">{{ price }}</h4>
-        <ECommerceButtonCount
-          class="me-md-15"
-          :value="count"
-          @getValue="setCount"
-        />
+        <slot name="button-counter"></slot>
       </div>
-      <h5 class="font-weight-medium">{{ count }} barang</h5>
+      <slot name="text"></slot>
     </div>
   </v-card>
 </template>
 
 <script>
-import ECommerceButtonCount from "@/components/E-commerce/ECommerceButtonCount.vue";
 
 export default {
   name: "ECommerceCardProduct",
@@ -38,24 +33,8 @@ export default {
       default:
         "https://d2qjkwm11akmwu.cloudfront.net/products/784781_4-11-2020_10-37-14-1665779461.jpeg",
     },
-    itemCount: {
-      type: Number,
-      default: 0,
-    },
   },
   components: {
-    ECommerceButtonCount,
-  },
-  data() {
-    return {
-      count: this.itemCount,
-    };
-  },
-  methods: {
-    setCount(value) {
-      this.count = value;
-      this.$emit("getItemCount", this.count);
-    },
   },
 };
 </script>

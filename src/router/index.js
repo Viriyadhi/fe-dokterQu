@@ -167,7 +167,7 @@ const routes = [
         component: ProductDetailView,
       },
       {
-        path: "/cart",
+        path: "/commerce/cart",
         name: "CartView",
         component: CartView,
       },
