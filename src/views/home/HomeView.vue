@@ -144,7 +144,7 @@
           </v-img>
         </div>
 
-        <div class="ml-16 container-card flex-grow-1">
+        <div class="ml-16 container-card1 flex-grow-1">
           <v-card
             max-width="255"
             max-height="350"
@@ -307,7 +307,7 @@
         >
       </div>
 
-      <div class="button-group mt-8">
+      <div class="button-group mt-8" >
         <v-btn
           v-for="(category, i) in categoryArticle"
           :key="i"
@@ -322,9 +322,7 @@
         </v-btn>
       </div>
 
-      <div
-        class="article-container d-flex flex-row align-center justify-space-between"
-      >
+      <div class="article-container d-flex flex-row align-center justify-space-between">
         <v-card
           max-width="315"
           max-height="544"
@@ -631,7 +629,7 @@ export default {
   z-index: 1;
 }
 
-.container-card {
+.container-card1 {
   display: flex;
   flex-direction: row;
   gap: 5rem;
@@ -747,6 +745,7 @@ export default {
 
 .button-group {
   display: flex;
+  height: auto;
   flex-direction: row;
   gap: 2rem;
 }
