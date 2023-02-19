@@ -2,7 +2,7 @@
   <div>
     <button
       class="btn btn--minus"
-      @click="changeCounter('-1')"
+      @click="decrementCounter"
       type="button"
       name="button"
     >
@@ -11,7 +11,7 @@
     <input class="quantity" type="text" name="name" :value="counter" />
     <button
       class="btn btn--plus"
-      @click="changeCounter('1')"
+      @click="incrementCounter"
       type="button"
       name="button"
     >
@@ -20,26 +20,47 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   name: "ECommerceButtonCount",
   props: {
-    value: {
+    count: {
       type: Number,
       default: 1,
+    },
+    incrementUrl: {
+      type: String,
+    },
+    decrementUrl: {
+      type: String,
     },
   },
   data() {
     return {
-      counter: this.value,
+      counter: this.count,
     };
   },
   methods: {
-    changeCounter: function (num) {
-      this.counter += +num;
+    incrementCounter: function () {
+      this.counter += 1;
       !isNaN(this.counter) && this.counter > 0
         ? this.counter
         : (this.counter = 0);
-      this.$emit("getValue", this.counter);
+      this.$emit("getCount", this.counter);
+      if (this.incrementUrl) {
+        axios.post(`${this.$api + this.incrementUrl}`);
+      }
+    },
+    decrementCounter: function () {
+      this.counter -= 1;
+      !isNaN(this.counter) && this.counter > 0
+        ? this.counter
+        : (this.counter = 0);
+      this.$emit("geCcount", this.counter);
+      if (this.decrementUrl) {
+        axios.post(`${this.$api + this.decrementUrl}`);
+      }
     },
   },
 };

@@ -11,21 +11,30 @@
           ></v-checkbox>
           <div
             class="d-md-flex mt-5"
-            v-for="cartItem in this.cartItems"
+            v-for="cartItem in cartItems"
             :key="cartItem.id"
           >
-            <v-checkbox
-              v-model="selected"
-              :key="cartItem.id"
-              :value="cartItem"
-            ></v-checkbox>
+            <v-checkbox v-model="selected" :value="cartItem"></v-checkbox>
             <ECommerceCardProduct
               :title="cartItem.product.name"
               :price="cartItem.product.price"
               :image-src="cartItem.product.images"
-              :item-count="cartItem.quantity"
-              @getItemCount="(value) => setTotalItem(value, cartItem.id)"
-            />
+            >
+              <template v-slot:button-counter>
+                <ECommerceButtonCount
+                  class="me-md-15"
+                  :count="cartItem.quantity"
+                  :increment-url="cartItem.links.add_cart"
+                  :decrement-url="cartItem.links.remove_cart"
+                  @getCount="(value) => setTotalItem(value, cartItem.id)"
+                />
+              </template>
+              <template v-slot:text>
+                <h5 class="font-weight-medium">
+                  {{ cartItem.quantity }} barang
+                </h5>
+              </template>
+            </ECommerceCardProduct>
           </div>
         </v-col>
         <v-col cols="4">
@@ -61,61 +70,34 @@
     </div>
   </v-app>
 </template>
-<script>
+  <script>
 import ECommerceCardProduct from "@/components/E-commerce/ECommerceCardProduct.vue";
+import ECommerceButtonCount from "@/components/E-commerce/ECommerceButtonCount.vue";
+import axios from "axios";
+import { EventBus } from "../../../event-bus.js";
+
 export default {
   name: "CartView",
   components: {
     ECommerceCardProduct,
+    ECommerceButtonCount,
   },
   data() {
     return {
       isBulkActive: false,
       selected: [],
-      cartItems: [
-        {
-          id: 1,
-          quantity: 5,
-          product: {
-            id: 2,
-            name: "Ducimus Aut Quia Libero Dolor Nobis Maxime Inventore. ",
-            price: "Rp41.123",
-            price_int: 41123,
-            images:
-              `http://103.31.39.5:2023/assets/images/default/default_image_product.webp`,
-          },
-          links: {
-            product: "/shop/product/nam-enim-vel-ut-ut",
-            add_cart: "/shop/cart/add?product_id=2",
-            remove_cart: "/shop/cart/remove?product_id=2",
-          },
-        },
-        {
-          id: 3,
-          quantity: 5,
-          product: {
-            id: 3,
-            name: "Ducimus Aut Quia Libero Dolor Nobis Maxime InventoreDucimus Aut Quia Libero Dolor Nobis Maxime Inventore",
-            price: "Rp41.902",
-            price_int: 41902,
-            images:
-              "http://103.31.39.5:2023/assets/images/default/default_image_product.webp",
-          },
-          links: {
-            product: "/shop/product/commodi-voluptatem-est-architecto-non",
-            add_cart: "/shop/cart/add?product_id=3",
-            remove_cart: "/shop/cart/remove?product_id=3",
-          },
-        },
-      ],
+      cartItems: [],
     };
+  },
+  mounted() {
+    this.getCartData();
   },
   watch: {
     selected: {
+      deep: true,
       handler(newSelected) {
         this.isBulkActive = newSelected.length === this.cartItems.length;
       },
-      deep: true,
     },
   },
   computed: {
@@ -155,10 +137,28 @@ export default {
       currency = split[1] != undefined ? currency + "," + split[1] : currency;
       return currency;
     },
+    async getCartData() {
+      try {
+        EventBus.$emit("startLoading");
+        const response = await axios.get(`${this.$api}/shop/carts`);
+        this.cartItems = response.data.data;
+      } catch (err) {
+        var error = err;
+        if (err.response.data.errors) {
+          error = err.response.data.errors;
+          for (const key in error) {
+            console.log(`${error[key]}`);
+            EventBus.$emit("showSnackbar", error[key], "red");
+          }
+          console.log(error);
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
   },
 };
 </script>
-<style scoped>
+  <style scoped>
 .btn-checkout {
   max-width: 15rem;
   background: #ffffff;
@@ -169,3 +169,4 @@ export default {
   letter-spacing: 0.2px;
 }
 </style>
+  
