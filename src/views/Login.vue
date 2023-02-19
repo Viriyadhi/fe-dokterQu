@@ -103,7 +103,7 @@ export default {
             axios.defaults.headers.common[
               "Authorization"
             ] = `Bearer ${data.data.token}`;
-            history.go(-1);
+            // history.go(-1);
           }
         } catch (err) {
           var error = err;
