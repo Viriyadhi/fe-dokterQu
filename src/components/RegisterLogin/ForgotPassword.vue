@@ -16,7 +16,7 @@
         >
           <div class="d-flex flex-row align-center gap-2 content-forgot">
             <v-icon>mdi-arrow-left</v-icon>
-            <h2 class="card-title mb-4">OTP Verification Code</h2>
+            <h2 class="card-title ">OTP Verification Code</h2>
           </div>
           <v-img
             src="@/assets/ForgotPw/Secure messaging.svg"
