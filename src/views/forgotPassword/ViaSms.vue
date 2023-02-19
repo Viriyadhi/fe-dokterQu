@@ -1,8 +1,9 @@
 <template>
-  <div class="d-flex flex-column container absolute-center">
+  <div class="d-flex elevation-2 rounded-lg flex-column container absolute-center">
     <h2 class="title-reg">Masukkan No.Hp anda</h2>
     <v-text-field
       color="secondary"
+      outlined
       v-for="(item, index) in textField"
       :key="index"
       :label="item.label"
@@ -15,7 +16,6 @@
     <div class="container-btn d-flex align-center mt-8 justify-end">
       <v-btn
         class="reg-btn rounded-lg px-16"
-        color="secondary"
         @click="login()"
       >
         Selanjutnya
@@ -84,20 +84,23 @@ export default {
 <style scoped>
 .absolute-center {
   top: 50% !important;
-  transform: translate(0, 80%) !important;
+  transform: translate(0, 0) !important;
 }
 .container-btn {
-  width: 40%;
+  width: 100%;
 }
-.reg-btn {
-  width: 30% !important;
+.container{
+  background-color: white;
+  width: 85%;
+  padding: 5%;
 }
 .title-reg {
   font-size: 2.5rem !important;
   font-size: 500;
 }
 .v-input {
-  width: 40% !important;
+  margin-top: 2%;
+  width: 100% !important;
   color: black !important;
 }
 
@@ -125,6 +128,14 @@ export default {
   font-weight: 600;
 }
 
+.reg-btn {
+      height: auto !important;
+      padding: 15px !important;
+      width: 100% !important;
+      background-color: #284860 !important;
+      color: white !important;
+      border-radius: 10px !important;
+}
 .login-link {
   text-decoration: underline;
 }

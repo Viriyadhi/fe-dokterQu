@@ -1,12 +1,10 @@
 <template>
   <v-container>
-    <div class="d-flex flex-column container-otp mx-auto">
+    <div class="otp-field mx-auto">
       <v-otp-input class="" length="6" color="secondary"></v-otp-input>
-      <p>
-        One-Time Password (OTP) adalah kode yang yang dikirimkan melalui SMS,
-        email, telepon, maupun WhatsApp ke nomor ponsel terdaftar dari pengguna
-        yang mengajukan permintaan.
-      </p>
+    </div>
+    <div class="txt-verif">
+      Kode verification 051512 hanya berlaku selama 5 menit
     </div>
   </v-container>
 </template>
@@ -16,12 +14,16 @@ export default {};
 </script>
 
 <style>
-.container-otp {
-  width: 60%;
-  margin: 2rem;
+.otp-field{
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .v-otp-input {
   border: px solid black !important;
+}
+.txt-verif{
+  text-align: center;
+  font-size: larger;
 }
 </style>
