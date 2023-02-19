@@ -98,7 +98,7 @@ const routes = [
       },
     ],
   },
-
+  
   {
     path: "/register-login/registerpopup",
     name: "RegisterPopup",
