@@ -55,9 +55,14 @@
           <div class="text-center">
             <v-dialog v-model="dialog" width="500">
               <template v-slot:activator="{ on, attrs }">
-                <v-btn icon color="black" class="mr-8">
-                  <v-icon> mdi-cart</v-icon>
-                </v-btn>
+                <router-link :to="{ name: 'CartView' }">
+                  <v-btn icon color="black" class="mr-8">
+                    <v-badge color="green" :content="cartItems">
+                      <v-icon> mdi-cart</v-icon>
+                    </v-badge>
+                  </v-btn>
+                </router-link>
+
                 <v-chip
                   v-bind="attrs"
                   v-on="on"
@@ -118,11 +123,13 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 import { EventBus } from "../../../event-bus.js";
 
 export default {
   name: "NavBar",
   data: () => ({
+    cartItems: [],
     appbarStyle: {
       backgroundColor: `rgba(0,0,0,0)`,
       transition: "all 700ms ",
@@ -147,6 +154,10 @@ export default {
     this.getLocalStorage();
   },
 
+  mounted() {
+    this.getCartData();
+  },
+
   methods: {
     onScrollContent(p) {
       if (p.currentTarget.scrollY > 11) {
@@ -169,9 +180,32 @@ export default {
       try {
         EventBus.$emit("startLoading");
         localStorage.removeItem("data");
+        axios.defaults.headers.common["Authorization"] = null;
         this.$router.push({ name: "Login" });
       } catch (error) {
         console.log(error);
+      }
+      EventBus.$emit("stopLoading");
+    },
+
+    async getCartData() {
+      try {
+        EventBus.$emit("startLoading");
+        const response = await axios.get(`${this.$api}/shop/carts`);
+        const cart = response.data.data;
+        const length = cart.length;
+        this.cartItems = length;
+        console.log(this.cartItems);
+      } catch (err) {
+        var error = err;
+        if (err.response.data.errors) {
+          error = err.response.data.errors;
+          for (const key in error) {
+            console.log(`${error[key]}`);
+            EventBus.$emit("showSnackbar", error[key], "red");
+          }
+          console.log(error);
+        }
       }
       EventBus.$emit("stopLoading");
     },

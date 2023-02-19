@@ -80,9 +80,6 @@ export default {
           `${this.$api}/article/post?type=latest`
         );
         console.log(response);
-
-     
-
         const dataArticle = response.data.data.articles;
         var artCreated = moment(dataArticle.created_at).format("YYYY-MM-DD ");
 

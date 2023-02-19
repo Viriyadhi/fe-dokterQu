@@ -78,37 +78,30 @@
                   >Beli Sekarang</v-btn
                 >
               </div>
-
-              <v-btn-toggle>
-                <v-btn
+              <div>
+                <button
                   class="btn btn--minus"
-                  @click="changeCounter('-1')"
+                  @click="decrementCounter"
                   type="button"
                   name="button"
                 >
-                  <v-icon>mdi-minus</v-icon>
-                </v-btn>
-
-                <v-text-field
-                  class="quantity pa-0 mx-4"
+                  -
+                </button>
+                <input
+                  class="quantity"
                   type="text"
                   name="name"
-                  v-model="counter"
-                  solo
-                  dense
-                >
-                  <v-icon>mdi-format-align-right</v-icon>
-                </v-text-field>
-
-                <v-btn
+                  :value="counter"
+                />
+                <button
                   class="btn btn--plus"
-                  @click="changeCounter('1')"
+                  @click="incrementCounter"
                   type="button"
                   name="button"
                 >
-                  <v-icon>mdi-plus</v-icon>
-                </v-btn>
-              </v-btn-toggle>
+                  +
+                </button>
+              </div>
             </div>
 
             <div class="details-product">
@@ -178,10 +171,12 @@ import { EventBus } from "../../../event-bus.js";
 
 export default {
   name: "ProductDetail",
+
   data: () => ({
     counter: 1,
     detailData: [],
     updateLink: null,
+    cartItems: [],
   }),
 
   created() {
@@ -199,16 +194,31 @@ export default {
   },
 
   async mounted() {
+    console.log(axios.defaults.headers.common["Authorization"]);
     await this.getDetailProduct();
   },
   computed: {},
 
   methods: {
-    changeCounter: function (num) {
-      this.counter += +num;
+    incrementCounter: function () {
+      this.counter += 1;
       !isNaN(this.counter) && this.counter > 0
         ? this.counter
         : (this.counter = 0);
+      this.$emit("getCount", this.counter);
+      if (this.incrementUrl) {
+        axios.post(`${this.$api + this.incrementUrl}`);
+      }
+    },
+    decrementCounter: function () {
+      this.counter -= 1;
+      !isNaN(this.counter) && this.counter > 0
+        ? this.counter
+        : (this.counter = 0);
+      this.$emit("geCcount", this.counter);
+      if (this.decrementUrl) {
+        axios.post(`${this.$api + this.decrementUrl}`);
+      }
     },
 
     async getDetailProduct() {
@@ -241,27 +251,67 @@ export default {
         const addProduct = await axios.post(
           `${this.$api}${this.updateLink}${this.counter}`
         );
-        console.log(addProduct);
+        if (addProduct.status == 200) {
+          const message = addProduct.data.message;
+          EventBus.$emit("showSnackbar", message, "primary");
+          console.log(addProduct);
+        }
       } catch (err) {
         var error = err;
-        if (err.response.data.errors) {
-          error = err.response.data.errors;
-          for (const key in error) {
-            console.log(`${error[key]}`);
-            EventBus.$emit("showSnackbar", error[key], "red");
-          }
+        if (err.response.data.message) {
+          error = err.response.data.message;
           console.log(error);
+          this.$router.push("/register-login/login");
+          EventBus.$emit(
+            "showSnackbar",
+            "Silahkan login terlebih dahulu",
+            "red"
+          );
         }
       }
       EventBus.$emit("stopLoading");
     },
   },
-
-  watch: {},
 };
 </script>
 
 <style scoped>
+.right-wraps {
+  height: 40px;
+  display: flex;
+  margin-left: 2rem;
+}
+
+.quantity {
+  -webkit-appearance: none;
+  border: none;
+  text-align: center;
+  width: 40px;
+  height: 30px;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.btn {
+  border: 1px solid #4caf50;
+  width: 40px;
+  height: 30px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #4caf50;
+  cursor: pointer;
+}
+button:focus,
+input:focus {
+  outline: 0;
+}
+
+.custom-btn {
+  border: 1px solid black !important;
+}
+
 .wrapper-left .product-cathegory {
   margin-bottom: 2rem;
 }
