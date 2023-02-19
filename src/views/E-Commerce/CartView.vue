@@ -144,8 +144,8 @@ export default {
         this.cartItems = response.data.data;
       } catch (err) {
         var error = err;
-        if (err.response.data.errors) {
-          error = err.response.data.errors;
+        if (err.response.data.message) {
+          error = err.response.data.message;
           for (const key in error) {
             console.log(`${error[key]}`);
             EventBus.$emit("showSnackbar", error[key], "red");
