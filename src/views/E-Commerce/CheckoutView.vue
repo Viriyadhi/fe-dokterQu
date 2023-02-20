@@ -13,15 +13,15 @@
               <v-list-item-content>
                 <div class="mb-4">
                   <v-card-title class="pa-0">
-                    {{ userAddress[0].label }}
+                    {{ userAddress.label }}
                   </v-card-title>
                 </div>
                 <v-list-item-subtitle class="black--text">
-                  {{ userAddress[0].phone }}
+                  {{ userAddress.phone }}
                 </v-list-item-subtitle>
 
                 <v-list-item-subtitle class="black--text">
-                  {{ userAddress[0].address }}
+                  {{ userAddress.address }}
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -59,10 +59,20 @@
 
           <div class="small-line"></div>
 
-          <div class="d-md-flex mt-5">
-            <ECommerceCardProduct>
+          <div
+            class="d-md-flex mt-5"
+            v-for="cartDatum in cartData"
+            :key="cartDatum.id"
+          >
+            <ECommerceCardProduct
+              :title="cartDatum.product.name"
+              :price="cartDatum.product.price"
+              :image-src="cartDatum.product.images"
+            >
               <template v-slot:text>
-                <h5 class="font-weight-medium">konto</h5>
+                <h5 class="font-weight-medium">
+                  {{ cartDatum.quantity }} barang
+                </h5>
               </template>
             </ECommerceCardProduct>
           </div>
@@ -126,7 +136,7 @@
                 id="pay-button"
                 color="primary"
                 class="button-checkout"
-                :href="token"
+                @click="snapMitrans"
               >
                 Pilih Pembayaran
               </v-btn>
@@ -149,22 +159,18 @@ export default {
   components: {
     ECommerceCardProduct,
   },
+
+  props: {
+    cartData: {
+      type: Array,
+    },
+  },
   data: () => ({
     userAddress: [],
     detailApotek: [],
-    apotekData: {
-      address_id: null,
-      products: [
-        {
-          product_id: 9,
-          quantity: 5,
-        },
-      ],
-    },
-
     tokenData: {
       address_id: null,
-      products: [],
+      products: null,
     },
     token: null,
   }),
@@ -182,11 +188,11 @@ export default {
     async getAddress() {
       try {
         EventBus.$emit("startLoading");
-        const res = await axios.get(`${this.$api}/user/customer/address`);
-        const address = res.data.data;
-        this.userAddress = address;
-        this.apotekData.address_id = address[0].id;
-        this.tokenData.address_id = address[0].id;
+        const res = await axios.get(
+          `${this.$api}/user/customer/default/address`
+        );
+        this.userAddress = res.data.data;
+        this.tokenData.address_id = this.userAddress.id;
       } catch (err) {
         var error = err;
         if (err.response.data.message) {
@@ -201,10 +207,13 @@ export default {
     async postApotek() {
       try {
         EventBus.$emit("startLoading");
-        const res = await axios.post(
-          `${this.$api}/shop/get-available-apotek`,
-          this.apotekData
-        );
+        const res = await axios.post(`${this.$api}/shop/get-available-apotek`, {
+          address_id: this.userAddress.id,
+          products: this.cartData.map(({ product: { id }, quantity }) => ({
+            product_id: id,
+            quantity,
+          })),
+        });
         this.detailApotek = res.data.data.apotek;
         this.tokenData.products = res.data.data.products;
       } catch (err) {
@@ -226,7 +235,7 @@ export default {
           `${this.$api}/shop/get-midtrans-snap-token`,
           this.tokenData
         );
-        this.token = res.data.data.url;
+        this.token = res.data.data.token;
         console.log(res.data.data.url);
       } catch (err) {
         var error = err;
@@ -259,6 +268,7 @@ export default {
         onClose: function () {
           /* You may add your own implementation here */
           alert("you closed the popup without finishing the payment");
+          console.log('close');
         },
       });
     },
