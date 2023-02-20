@@ -59,7 +59,7 @@
                   <p class="font-weight-bold">Total Tagihan</p>
                   <p class="font-weight-bold">{{ amountPrice }}</p>
                 </div>
-                <v-btn color="primary" class="btn-checkout mx-auto mb-5">
+                <v-btn color="primary" class="btn-checkout mx-auto mb-5" @click="checkout">
                   Checkout
                 </v-btn>
               </v-list-item-content>
@@ -155,6 +155,14 @@ export default {
       }
       EventBus.$emit("stopLoading");
     },
+    checkout(){
+        this.$router.push({
+            name: 'CheckoutView',
+            params: {
+                cartData: this.selected,
+            }
+        })
+    }
   },
 };
 </script>
