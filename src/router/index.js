@@ -176,6 +176,7 @@ const routes = [
         path: "/commerce/checkout",
         name: "CheckoutView",
         component: CheckoutView,
+        props: true,
       },
     ],
   },
