@@ -82,7 +82,6 @@ export default {
   }),
 
   async mounted() {
-    console.log(axios.defaults.headers.common["Authorization"]);
     await this.getFormData();
   },
 
@@ -104,6 +103,7 @@ export default {
               "Authorization"
             ] = `Bearer ${data.data.token}`;
             // history.go(-1);
+            this.$router.push({ name: "Default" });
           }
         } catch (err) {
           var error = err;
