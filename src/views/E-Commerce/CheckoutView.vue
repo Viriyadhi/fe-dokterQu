@@ -96,18 +96,10 @@
             >
 
             <div class="d-flex flex-row align-center justify-space-between">
-              <v-card-text class="text-start pt-4"> asdasd </v-card-text>
-              <v-card-text class="text-end pt-4"> asdasd </v-card-text>
-            </div>
-
-            <div class="d-flex flex-row align-center justify-space-between">
-              <v-card-text class="text-start py-0"> asdasd </v-card-text>
-              <v-card-text class="text-end py-0"> asdasd </v-card-text>
-            </div>
-
-            <div class="d-flex flex-row align-center justify-space-between">
-              <v-card-text class="text-start pb-4"> asdasd </v-card-text>
-              <v-card-text class="text-end pb-4"> asdasd </v-card-text>
+              <v-card-text class="text-start pt-4">
+                Total harga (2 barang)
+              </v-card-text>
+              <v-card-text class="text-end pt-4">Rp. 54.036</v-card-text>
             </div>
 
             <div class="small-line mx-4"></div>
@@ -128,7 +120,7 @@
               <v-card-text class="text-start font-weight-bold">
                 Total Tagihan
               </v-card-text>
-              <v-card-text class="text-end"> asdasd </v-card-text>
+              <v-card-text class="text-end"> Rp. 54.036 </v-card-text>
             </div>
 
             <v-card-actions class="d-flex flex-row align-center justify-center">
@@ -268,7 +260,7 @@ export default {
         onClose: function () {
           /* You may add your own implementation here */
           alert("you closed the popup without finishing the payment");
-          console.log('close');
+          console.log("close");
         },
       });
     },
