@@ -251,6 +251,7 @@ export default {
         const addProduct = await axios.post(
           `${this.$api}${this.updateLink}${this.counter}`
         );
+        EventBus.$emit("updateCartCount");
         if (addProduct.status == 200) {
           const message = addProduct.data.message;
           EventBus.$emit("showSnackbar", message, "primary");
@@ -283,7 +284,6 @@ export default {
 }
 
 .quantity {
-  -webkit-appearance: none;
   border: none;
   text-align: center;
   width: 40px;

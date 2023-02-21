@@ -158,6 +158,7 @@ export default {
 .button-group {
   display: flex;
   flex-direction: row;
+  height: auto;
   gap: 2rem;
 }
 
@@ -168,6 +169,11 @@ export default {
   transition: all 200ms;
 }
 .button-group-child:hover {
+  background: #4caf50 !important;
+  color: white !important;
+}
+
+.button-group-child:active {
   background: #4caf50 !important;
   color: white !important;
 }

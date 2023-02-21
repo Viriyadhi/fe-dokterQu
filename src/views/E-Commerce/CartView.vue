@@ -59,7 +59,11 @@
                   <p class="font-weight-bold">Total Tagihan</p>
                   <p class="font-weight-bold">{{ amountPrice }}</p>
                 </div>
-                <v-btn color="primary" class="btn-checkout mx-auto mb-5" @click="checkout">
+                <v-btn
+                  color="primary"
+                  class="btn-checkout mx-auto mb-5"
+                  @click="checkout"
+                >
                   Checkout
                 </v-btn>
               </v-list-item-content>
@@ -97,6 +101,7 @@ export default {
       deep: true,
       handler(newSelected) {
         this.isBulkActive = newSelected.length === this.cartItems.length;
+        localStorage.setItem("selected", JSON.stringify(newSelected));
       },
     },
   },
@@ -114,7 +119,7 @@ export default {
   },
   methods: {
     bulkCheckbox() {
-      this.selected.length == this.cartItems.length
+      this.selected.length == this.cartItems.lsssssength
         ? (this.selected = [])
         : (this.selected = [...this.cartItems]);
     },
@@ -155,14 +160,14 @@ export default {
       }
       EventBus.$emit("stopLoading");
     },
-    checkout(){
-        this.$router.push({
-            name: 'CheckoutView',
-            params: {
-                cartData: this.selected,
-            }
-        })
-    }
+    checkout() {
+      this.$router.push({
+        name: "CheckoutView",
+        // params: {
+        //   cartData: this.selected,
+        // },
+      });
+    },
   },
 };
 </script>
