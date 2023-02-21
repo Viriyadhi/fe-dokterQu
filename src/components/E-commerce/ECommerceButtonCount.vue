@@ -43,24 +43,21 @@ export default {
   },
   methods: {
     incrementCounter: function () {
-      this.counter += 1;
-      !isNaN(this.counter) && this.counter > 0
-        ? this.counter
-        : (this.counter = 0);
-      this.$emit("getCount", this.counter);
       if (this.incrementUrl) {
         axios.post(`${this.$api + this.incrementUrl}`);
       }
+      this.counter += 1;
+      this.$emit("getCount", this.counter);
     },
     decrementCounter: function () {
-      this.counter -= 1;
-      !isNaN(this.counter) && this.counter > 0
-        ? this.counter
-        : (this.counter = 0);
-      this.$emit("geCcount", this.counter);
-      if (this.decrementUrl) {
+      if (this.decrementUrl && !isNaN(this.counter) && this.counter != 1) {
         axios.post(`${this.$api + this.decrementUrl}`);
       }
+      this.counter -= 1;
+      !isNaN(this.counter) && this.counter > 1
+        ? this.counter
+        : (this.counter = 1);
+      this.$emit("getCount", this.counter);
     },
   },
 };
