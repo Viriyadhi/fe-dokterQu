@@ -3,59 +3,79 @@
     <v-container class="px-16 py-16">
       <v-row>
         <v-col cols="12" lg="7">
-          <h2 class="mb-6">Checkout</h2>
-          <h4>Alamat Pengiriman</h4>
+          <h2 class="mb-4">Checkout</h2>
 
           <div class="small-line"></div>
+          <h3 class="py-2">Alamat Pengiriman</h3>
 
-          <v-card class="my-4" max-width="800" outlined>
-            <v-list-item three-line>
-              <v-list-item-content>
-                <div class="mb-4">
-                  <v-card-title class="pa-0">
-                    {{ userAddress.label }}
-                  </v-card-title>
+          <AddressCard
+            :recipient="userAddress.recipient"
+            :label="userAddress.label"
+            :address="userAddress.address"
+            :phone="userAddress.phone"
+            :province="userAddress.province"
+            :city="userAddress.city"
+          >
+            <template v-slot:action>
+              <v-card-actions>
+                <div class="text-center">
+                  <v-dialog v-model="dialog" width="500">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        rounded
+                        text
+                        color="secondary"
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        Ubah Alamat
+                      </v-btn>
+                    </template>
+
+                    <v-card>
+                      <v-card-title class="text-h5 grey lighten-2">
+                        Ubah Alamat
+                      </v-card-title>
+                      <AddressCard
+                        v-for="(Address, i) in userAddresses"
+                        :key="i"
+                        :recipient="Address.recipient"
+                        :label="Address.label"
+                        :address="Address.address"
+                        :phone="Address.phone"
+                        :province="Address.province"
+                        :city="Address.city"
+                      >
+                        <template v-slot:action>
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="primary"
+                              text
+                              @click="updateAddress(Address)"
+                            >
+                              PIlih
+                            </v-btn>
+                          </v-card-actions>
+                        </template>
+                      </AddressCard>
+                    </v-card>
+                  </v-dialog>
                 </div>
-                <v-list-item-subtitle class="black--text">
-                  {{ userAddress.phone }}
-                </v-list-item-subtitle>
-
-                <v-list-item-subtitle class="black--text">
-                  {{ userAddress.address }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-
-            <v-card-actions>
-              <v-btn rounded text color="secondary"> Ubah Alamat </v-btn>
-            </v-card-actions>
-          </v-card>
+              </v-card-actions>
+            </template>
+          </AddressCard>
 
           <div class="small-line"></div>
+          <h3 class="py-2">Detail Apotik</h3>
 
-          <v-card class="my-4" max-width="800" outlined>
-            <v-list-item three-line>
-              <v-list-item-content>
-                <div class="mb-4">
-                  <v-card-title class="pa-0">
-                    {{ detailApotek.name }}
-                  </v-card-title>
-                </div>
-                <v-list-item-subtitle class="black--text">
-                  {{ detailApotek.address }}
-                </v-list-item-subtitle>
-
-                <v-list-item-subtitle class="black--text">
-                  {{ detailApotek.location }},
-                  {{ detailApotek.distance }}
-                </v-list-item-subtitle>
-              </v-list-item-content>
-
-              <v-list-item-avatar tile size="80" color="grey">
-                <v-img :src="detailApotek.image"></v-img>
-              </v-list-item-avatar>
-            </v-list-item>
-          </v-card>
+          <ApotikCard
+            :title="detailApotek.name"
+            :address="detailApotek.address"
+            :location="detailApotek.location"
+            :distance="detailApotek.distance"
+            :image-src="detailApotek.image"
+          ></ApotikCard>
 
           <div class="small-line"></div>
 
@@ -78,61 +98,37 @@
           </div>
         </v-col>
         <v-col cols="12" lg="5">
-          <v-card class="mx-auto my-12" max-width="320">
-            <div class="d-flex flex-row align-center justify-center">
-              <v-btn
-                outlined
-                color="primary"
-                class="rounded-lg button-checkout"
-              >
-                Makin Hemat pakai promo
-              </v-btn>
-            </div>
-            <v-card-title class="font-weight-bold pb-0"
-              >Ringkasan Belanja</v-card-title
-            >
-            <v-card-title class="py-0 font-weight-bold">
-              Total Belanja</v-card-title
-            >
+          <v-card class="mx-auto mt-16 px-3" max-width="386" elevation="4">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="font-weight-bold mb-3 mt-5"
+                  >Ringkasan Belanja</v-list-item-title
+                >
+                <v-list-item-title class="font-weight-bold mb-6"
+                  >Total Belanja</v-list-item-title
+                >
 
-            <div class="d-flex flex-row align-center justify-space-between">
-              <v-card-text class="text-start pt-4">
-                Total harga (2 barang)
-              </v-card-text>
-              <v-card-text class="text-end pt-4">Rp. 54.036</v-card-text>
-            </div>
-
-            <div class="small-line mx-4"></div>
-
-            <!-- <v-card-title>Tonight's availabilit</v-card-title>
-
-            <div class="d-flex flex-row align-center justify-space-between">
-              <v-card-text class="text-start py-0"> asdasd </v-card-text>
-              <v-card-text class="text-end py-0"> asdasd </v-card-text>
-            </div>
-
-            <div class="d-flex flex-row align-center justify-space-between">
-              <v-card-text class="text-start pb-0"> asdasd </v-card-text>
-              <v-card-text class="text-end pb-0"> asdasd </v-card-text>
-            </div> -->
-
-            <div class="d-flex flex-row align-center justify-space-between">
-              <v-card-text class="text-start font-weight-bold">
-                Total Tagihan
-              </v-card-text>
-              <v-card-text class="text-end"> Rp. 54.036 </v-card-text>
-            </div>
-
-            <v-card-actions class="d-flex flex-row align-center justify-center">
-              <v-btn
-                id="pay-button"
-                color="primary"
-                class="button-checkout"
-                @click="snapMitrans"
-              >
-                Pilih Pembayaran
-              </v-btn>
-            </v-card-actions>
+                <div class="d-flex justify-space-between mb-5">
+                  <p class="font-weight-light">
+                    Total Harga ({{ amountItems }} barang)
+                  </p>
+                  <p class="font-weight-light">{{ amountPrice }}</p>
+                </div>
+                <v-divider class="mb-5"></v-divider>
+                <div class="d-flex justify-space-between mb-5">
+                  <p class="font-weight-bold">Total Tagihan</p>
+                  <p class="font-weight-bold">{{ amountPrice }}</p>
+                </div>
+                <v-btn
+                  color="primary"
+                  class="btn-checkout mx-auto mb-5"
+                  target="_blank"
+                  :href="token"
+                >
+                  Pilih Pembayaran
+                </v-btn>
+              </v-list-item-content>
+            </v-list-item>
           </v-card>
         </v-col>
       </v-row>
@@ -142,6 +138,8 @@
 
 <script>
 import ECommerceCardProduct from "@/components/E-commerce/ECommerceCardProduct.vue";
+import AddressCard from "@/components/E-commerce/Checkout/AddressCard.vue";
+import ApotikCard from "@/components/E-commerce/Checkout/ApotikCard.vue";
 import axios from "axios";
 import { EventBus } from "../../../event-bus.js";
 
@@ -150,34 +148,54 @@ export default {
 
   components: {
     ECommerceCardProduct,
+    AddressCard,
+    ApotikCard,
   },
 
-  props: {
-    cartData: {
-      type: Array,
-    },
-  },
+  // props: {
+  //   cartData: {
+  //     type: Array,
+  //   },
+  // },
+
   data: () => ({
     userAddress: [],
+    userAddresses: [],
     detailApotek: [],
+    cartData: [],
+    dialog: false,
+    token: null,
     tokenData: {
       address_id: null,
       products: null,
     },
-    token: null,
   }),
-  created() {
-    //
-  },
-
-  async mounted() {
-    await this.getAddress();
+  async created() {
+    this.cartData = JSON.parse(localStorage.getItem("selected"));
+    await this.getDefaultAddress();
     await this.postApotek();
     await this.generateToken();
+    await this.getAddresses();
+  },
+
+  async mounted() {},
+
+  computed: {
+    amountPrice() {
+      let value = this.cartData.reduce(
+        (acc, cur) => acc + cur.product.price_int * cur.quantity,
+        0
+      );
+      return "Rp. " + this.formatCurrency(value.toString());
+    },
+
+    amountItems() {
+      return this.cartData.reduce((acc, cur) => acc + cur.quantity, 0);
+    },
   },
 
   methods: {
-    async getAddress() {
+    async getDefaultAddress() {
       try {
         EventBus.$emit("startLoading");
         const res = await axios.get(
@@ -185,6 +203,24 @@ export default {
         );
         this.userAddress = res.data.data;
         this.tokenData.address_id = this.userAddress.id;
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+
+    async getAddresses() {
+      try {
+        EventBus.$emit("startLoading");
+        const res = await axios.get(`${this.$api}/user/customer/addresses`);
+        const addresses = res.data.data;
+        this.userAddresses = addresses;
+        console.log(this.userAddresses);
       } catch (err) {
         var error = err;
         if (err.response.data.message) {
@@ -227,52 +263,80 @@ export default {
           `${this.$api}/shop/get-midtrans-snap-token`,
           this.tokenData
         );
-        this.token = res.data.data.token;
-        console.log(res.data.data.url);
+        this.token = res.data.data.url;
       } catch (err) {
-        var error = err;
-        if (err.response.data.message) {
-          error = err.response.data.message;
-          console.log(error);
-          EventBus.$emit("showSnackbar", error, "red");
-        }
+        console.log(err);
+        // var error = err;
+        // if (err.response.data.message) {
+        //   error = err.response.data.message;
+        //   console.log(error);
+        //   EventBus.$emit("showSnackbar", error, "red");
+        // }
       }
       EventBus.$emit("stopLoading");
     },
 
     snapMitrans() {
-      window.snap.pay(`${this.token}`, {
-        onSuccess: function (result) {
-          /* You may add your own implementation here */
-          alert("payment success!");
-          console.log(result);
-        },
-        onPending: function (result) {
-          /* You may add your own implementation here */
-          alert("wating your payment!");
-          console.log(result);
-        },
-        onError: function (result) {
-          /* You may add your own implementation here */
-          alert("payment failed!");
-          console.log(result);
-        },
-        onClose: function () {
-          /* You may add your own implementation here */
-          alert("you closed the popup without finishing the payment");
-          console.log("close");
-        },
-      });
+      this.$router.push({ name: "Default" });
+      // window.snap.pay(`${this.token}`, {
+      //   onSuccess: function (result) {
+      //     /* You may add your own implementation here */
+      //     alert("payment success!");
+      //     console.log(result);
+      //   },
+      //   onPending: function (result) {
+      //     /* You may add your own implementation here */
+      //     alert("wating your payment!");
+      //     console.log(result);
+      //   },
+      //   onError: function (result) {
+      //     /* You may add your own implementation here */
+      //     alert("payment failed!");
+      //     console.log(result);
+      //   },
+      //   onClose: function () {
+      //     /* You may add your own implementation here */
+      //     alert("you closed the popup without finishing the payment");
+      //     console.log("close");
+      //   },
+      // });
+    },
+
+    updateAddress(address) {
+      this.userAddress = address;
+      this.tokenData.address_id = address.id;
+      this.postApotek();
+      this.generateToken();
+      this.dialog = false;
+    },
+
+    formatCurrency(value) {
+      let number_string = value.replace(/[^,\d]/g, "").toString(),
+        split = number_string.split(","),
+        sisa = split[0].length % 3,
+        currency = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+      if (ribuan) {
+        let separator = sisa ? "." : "";
+        currency += separator + ribuan.join(".");
+      }
+
+      currency = split[1] != undefined ? currency + "," + split[1] : currency;
+      return currency;
     },
   },
 };
 </script>
 
 <style scoped>
-.button-checkout {
-  width: 90% !important;
+.btn-checkout {
+  max-width: 15rem;
+  border-radius: 10px;
+  font-weight: 700;
+  color: white !important;
+  letter-spacing: 0.2px;
 }
-
 .small-line {
   width: 100%;
   border: 1.5px solid #c4c7d0;

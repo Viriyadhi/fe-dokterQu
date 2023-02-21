@@ -152,6 +152,10 @@ export default {
   }),
   created() {
     this.getLocalStorage();
+
+    EventBus.$on("updateCartCount", () => {
+      this.getCartData();
+    });
   },
 
   mounted() {
@@ -195,6 +199,7 @@ export default {
         const cart = response.data.data;
         const length = cart.length;
         this.cartItems = length;
+        this.$store.commit("updateCartCount", length);
         console.log(this.cartItems);
       } catch (err) {
         var error = err;
