@@ -25,21 +25,13 @@
           lg="2"
           class="px-2 py-0 mx-0"
         >
-          <router-link :to="{ path: `/commerce${item.links['self']}` }">
-            <v-card
-              :loading="loading"
-              class="mx-auto my-12 pt-2 px-5 rounded-lg"
-              max-width="240"
-              max-height="500"
-            >
-              <!-- <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template> -->
-
+          <v-card
+            :loading="loading"
+            class="mx-auto my-12 pt-2 px-5 rounded-lg"
+            max-width="240"
+            max-height="500"
+          >
+            <router-link :to="{ path: `/commerce${item.links['self']}` }">
               <v-img
                 class="mx-auto rounded-lg mt-2"
                 max-height="160"
@@ -57,21 +49,33 @@
               </div>
               <v-card-text
                 class="pt-0 px-0 font-weight-bold black--text container-price-card custom-card-text"
-                >{{ item.price }}</v-card-text
+                >{{ item.price }}
+              </v-card-text>
+            </router-link>
+
+            <v-card-actions
+              class="align-center justify-center"
+              v-if="item.user.inCart === 0"
+            >
+              <v-btn
+                width="200"
+                rounded
+                color="primary"
+                class="rounded-lg"
+                outlined
               >
-              <v-card-actions class="align-center justify-center">
-                <v-btn
-                  width="200"
-                  rounded
-                  color="primary"
-                  class="rounded-lg"
-                  outlined
-                >
-                  Tambah
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </router-link>
+                Tambah
+              </v-btn>
+            </v-card-actions>
+
+            <ECommerceButtonCount
+              v-if="item.user.inCart !== 0"
+              :count="item.user.inCart"
+              :increment-url="item.links.cart.add_cart"
+              :decrement-url="item.links.cart.remove_cart"
+              @getCount="(value) => setTotalItem(value, item.id)"
+            ></ECommerceButtonCount>
+          </v-card>
         </v-col>
       </v-row>
     </section>
@@ -80,10 +84,16 @@
 
 <script>
 import axios from "axios";
+import ECommerceButtonCount from "@/components/E-commerce/ECommerceButtonCount.vue";
+
 import { EventBus } from "../../../event-bus.js";
 
 export default {
   name: "CommerceView",
+
+  components: {
+    ECommerceButtonCount,
+  },
 
   data: () => ({
     loading: false,
@@ -131,16 +141,18 @@ export default {
         this.items = data;
       } catch (err) {
         var error = err;
-        if (err.response.data.errors) {
-          error = err.response.data.errors;
-          for (const key in error) {
-            console.log(`${error[key]}`);
-            EventBus.$emit("showSnackbar", error[key], "red");
-          }
+        if (err.response.data.message) {
+          error = err.response.data.message;
           console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
         }
       }
       EventBus.$emit("stopLoading");
+    },
+
+    setTotalItem(value, id) {
+      const item = this.items.find((item) => item.id === id);
+      if (item) item.quantity = value;
     },
   },
 };

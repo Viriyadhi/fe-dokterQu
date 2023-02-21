@@ -73,7 +73,7 @@ export default {
 }
 
 .quantity {
-  -webkit-appearance: none;
+  --webkit-appearance: none;
   border: none;
   text-align: center;
   width: 40px;
