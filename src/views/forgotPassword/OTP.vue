@@ -1,7 +1,8 @@
 <template>
   <v-container>
     <div class="otp-field mx-auto">
-      <v-otp-input class="" length="6" color="secondary"></v-otp-input>
+      <v-otp-input class="" length="6" color="secondary" @finish="otp()" v-model="code"
+      ></v-otp-input>
     </div>
     <div class="txt-verif">
       Kode verification 051512 hanya berlaku selama 5 menit
@@ -10,7 +11,52 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+import { EventBus } from "../../../event-bus";
+
+export default {
+  name :"OtpView",
+
+  components: {
+
+  },
+
+  data: () => ({
+    show1: false,
+    show2: false,
+    code: '',
+
+    textField: [
+      {
+        label: "Code OTP",
+        // prependInnerIcon: "mdi-otp",
+        rules: [
+          (v) => !!v || "Code is required",
+          (v) => /.+@.+/.test(v) || "Code must be valid",
+        ],
+        required: true,
+      },
+
+      ],
+  }),
+  
+  methods: {
+    async otp() {
+      try {
+        const response = await axios.post(`${this.$api}/auth/password/check-reset-code`, {
+        code: this.code
+      })
+      if (response.status == 202) {
+        this.$router.push({name: 'CreatePassword'});
+        localStorage.setItem('code', this.code);
+      }
+      console.log(response);
+      } catch (err) {
+        EventBus.$emit("showSnackbar", 'Code is Invalid', "red");
+      }
+    },
+  },
+};
 </script>
 
 <style>

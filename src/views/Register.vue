@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-row justify-center align-center container mr-16">
+  <div class="d-flex flex-column container pr-xl-16">
     <v-card class="pa-8 form--logreg">
       <v-card-title class="title-reg">Register</v-card-title>
       <v-form ref="form" @submit.prevent>

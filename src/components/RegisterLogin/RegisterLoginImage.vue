@@ -3,7 +3,7 @@
     <div class="logreg d-flex align-center">
       <v-container>
         <v-row>
-          <v-col cols="7" class="d-flex flex-row justify-center align-center">
+          <v-col cols="12" lg="7" class="d-flex flex-row justify-center align-center">
             <v-img
               src="@/assets/Register/IllustratitionRegisLogin.svg"
               max-height="551.9"
@@ -11,7 +11,7 @@
             ></v-img>
           </v-col>
 
-          <v-col cols="5" class="d-flex align-center">
+          <v-col cols="12"  lg="5" class="d-flex align-center">
             <router-view />
           </v-col>
         </v-row>

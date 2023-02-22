@@ -1,48 +1,57 @@
 <template>
-  <div class="d-flex flex-column container absolute-center">
-    <h2 class="title-reg mb-4">Buat Password Baru</h2>
-
-    <v-text-field
-      color="secondary"
-      label="Kata Sandi"
-      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show1 ? 'text' : 'password'"
-      name="input-10-1"
-      hint="At least 8 characters"
-      @click:append="show1 = !show1"
-      prepend-inner-icon="mdi-lock"
-    ></v-text-field>
-
-    <v-text-field
-      color="secondary"
-      label="Konfirmasi Kata Sandi"
-      :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="show2 ? 'text' : 'password'"
-      name="input-10-1"
-      hint="At least 8 characters"
-      @click:append="show2 = !show2"
-      prepend-inner-icon="mdi-lock"
-    ></v-text-field>
-
-    <div class="container-btn d-flex align-center mt-8 justify-end">
-      <v-btn
-        class="reg-btn rounded-lg px-16"
-        @click="nextRoute()"
+  <div class="d-flex flex-row container justify-center">
+    <div class="d-flex flex-column pr-xl-16">
+      <h2 class="title-reg mb-4">Buat Password Baru</h2>
+      <v-text-field
         color="secondary"
-      >
-        Selanjutnya
-      </v-btn>
+        label="Kata Sandi"
+        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show1 ? 'text' : 'password'"
+        name="input-10-1"
+        hint="At least 8 characters"
+        @click:append="show1 = !show1"
+        prepend-inner-icon="mdi-lock"
+        v-model="password"
+      ></v-text-field>
+
+      <v-text-field
+        color="secondary"
+        label="Konfirmasi Kata Sandi"
+        :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show2 ? 'text' : 'password'"
+        name="input-10-1"
+        hint="At least 8 characters"
+        @click:append="show2 = !show2"
+        prepend-inner-icon="mdi-lock"
+        v-model="passwordConfirmation"
+      ></v-text-field>
+
+      <div class="container-btn d-flex align-center mt-8 justify-end">
+        <v-btn
+          class="reg-btn rounded-lg px-16"
+          @click="createpassword()"
+          color="secondary"
+        >
+          Selanjutnya
+        </v-btn>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { EventBus } from "../../../event-bus";
+// import { response } from 'express';
+
 export default {
   name: "RegisterView",
 
   data: () => ({
     show1: false,
     show2: false,
+    password: "",
+    passwordConfirmation: "",
 
     textField: [
       {
@@ -87,9 +96,24 @@ export default {
   }),
 
   methods: {
-    nextRoute() {
-      this.$router.push({ name: "Default" });
-    },
+    async createpassword() {
+      // this.$router.push({name: 'Login'})
+      const response = await axios.post(`${this.$api}/auth/password/reset`, {
+        password: this.password,
+        password_confirmation: this.passwordConfirmation,
+        code: localStorage.getItem("code"),
+        email: localStorage.getItem("email"),
+      });
+      localStorage.removeItem('email');
+      localStorage.removeItem('code');
+      if (response.status == 200) {
+        EventBus.$emit("showSnackbar", "Ganti Password Berhasil, silakan login kembali", "primary");
+        setTimeout(() => {
+          this.$router.push({name:"Login"});
+        }, 1000);
+      console.log(response.status);
+    }
+  },
   },
 };
 </script>
@@ -120,7 +144,7 @@ v-app {
   font-size: 500;
 }
 .v-input {
-  width: 40% !important;
+  width: 100% !important;
   color: black !important;
 }
 .v-icon.v-icon {
