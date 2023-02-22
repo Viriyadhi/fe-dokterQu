@@ -10,6 +10,7 @@
       :prepend-inner-icon="item.prependInnerIcon"
       :rules="item.rules"
       :required="item.required"
+      v-model="email"
     >
     </v-text-field>
 
@@ -25,10 +26,10 @@
 </template>
 
 <script>
-import { Axios } from "axios";
+import axios from "axios";
 // import RegisterLoginLayout from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
 // import RegisterLoginLayout from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
-
+import { EventBus } from "../../../event-bus";
 export default {
   name: "RegisterView",
 
@@ -40,6 +41,7 @@ export default {
   data: () => ({
     show1: false,
     show2: false,
+    email: '',
 
     textField: [
       {
@@ -72,14 +74,19 @@ export default {
   }),
 
   methods: {
-    login() {
-      this.$router.push({ name: "Otp" });
-      console.log(`${this.$api}`);
-    },
-
-    async test() {
-      const res = await Axios.get("aoshdoasddasosaddaso");
-      console.log(res);
+    async login() {
+      try {
+        const response = await axios.post(`${this.$api}/auth/password/forgot`, {
+        email: this.email
+      })
+      if (response.status == 200) {
+        this.$router.push({name: 'Otp'});
+        localStorage.setItem('email', this.email);
+      }
+      console.log(response);
+      } catch (err) {
+        EventBus.$emit("showSnackbar", 'Email is Invalid', "red");
+      }
     },
   },
 };
