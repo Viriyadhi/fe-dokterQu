@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="d-flex flex-column container pr-xl-16">
     <div class="d-flex flex-column container-forgot mx-auto">
       <p class="desc text-center">
         Jangan panik! Kami akan mengirimkan kode OTP untuk membuat ulang

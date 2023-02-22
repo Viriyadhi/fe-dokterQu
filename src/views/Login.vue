@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-column container mr-16">
+  <div class="d-flex flex-column container pr-xl-16">
     <v-card class="pa-8 form--logreg">
       <v-card-title class="title-reg">Login</v-card-title>
       <v-form ref="form" @submit.prevent>
@@ -132,6 +132,14 @@ export default {
   },
 };
 </script>
+
+<!-- <style>
+@media (min-width: 100px) {
+  custom-margin {
+    background-color: aqua;
+  }
+}
+</style> -->
 
 <style scoped>
 .sudah-akun {

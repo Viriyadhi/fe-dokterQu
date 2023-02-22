@@ -10,7 +10,7 @@
       ></v-img>
       <div class="my-card">
         <v-card
-          class="rounded-xl custom-card pl-6 pt-6"
+          class="rounded-xl custom-card "
           max-width="676"
           height="768"
         >
@@ -82,7 +82,7 @@ export default {
   color: #000000;
 }
 
-.custom-card {
+  .custom-card {
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25) !important;
 }
 </style>
