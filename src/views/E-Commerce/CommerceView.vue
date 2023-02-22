@@ -63,6 +63,7 @@
                 color="primary"
                 class="rounded-lg"
                 outlined
+                @click="addToCart(item.links.cart.add_cart)"
               >
                 Tambah
               </v-btn>
@@ -74,7 +75,8 @@
               :increment-url="item.links.cart.add_cart"
               :decrement-url="item.links.cart.remove_cart"
               @getCount="(value) => setTotalItem(value, item.id)"
-            ></ECommerceButtonCount>
+            >
+            </ECommerceButtonCount>
           </v-card>
         </v-col>
       </v-row>
@@ -119,6 +121,7 @@ export default {
       },
     ],
     items: [],
+    addCartLink: [],
   }),
 
   created() {},
@@ -126,10 +129,6 @@ export default {
     await this.getAllProducts();
   },
   methods: {
-    // reserve() {
-    //   try {.loading = false), 2000);
-    // },
-
     async getAllProducts() {
       try {
         EventBus.$emit("startLoading");
@@ -138,6 +137,14 @@ export default {
           `${this.$api}/${route.shop}/${route.product}`
         );
         const data = products.data.data.products;
+        const dataL = data.length;
+        var link;
+        for (let i = 0; i < dataL; i++) {
+          link = data[i].links.cart.add_cart;
+          this.addCartLink.push(link);
+        }
+        console.log(this.addCartLink);
+        console.log(dataL);
         this.items = data;
       } catch (err) {
         var error = err;
@@ -154,7 +161,33 @@ export default {
       const item = this.items.find((item) => item.id === id);
       if (item) item.quantity = value;
     },
+
+    async addToCart(addCartLink) {
+      try {
+        EventBus.$emit("startLoading");
+        const products = await axios.post(`${this.$api}${addCartLink}`);
+        EventBus.$emit("updateCartCount");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+        if (products.status == 200) {
+          const message = products.data.message;
+          EventBus.$emit("showSnackbar", message, "primary");
+          console.log(products);
+        }
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
   },
+
+  watch: {},
 };
 </script>
 
@@ -163,9 +196,9 @@ export default {
   font-size: 1.06rem !important;
 }
 
-.container-text {
+/* .container-text {
   height: 4.5rem !important;
-}
+} */
 
 .button-group {
   display: flex;

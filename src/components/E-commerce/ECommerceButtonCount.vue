@@ -1,22 +1,30 @@
 <template>
-  <div>
-    <button
-      class="btn btn--minus"
+  <div class="d-flex align-center justify-center">
+    <v-btn
+      class="rounded-lg"
       @click="decrementCounter"
       type="button"
       name="button"
+      rounded
+      color="primary"
+      outlined
+      :disabled="disableDecrement"
     >
-      -
-    </button>
+      <v-icon>mdi-minus</v-icon>
+    </v-btn>
     <input class="quantity" type="text" name="name" :value="counter" />
-    <button
-      class="btn btn--plus"
+    <v-btn
+      class="rounded-lg"
       @click="incrementCounter"
       type="button"
       name="button"
+      rounded
+      color="primary"
+      outlined
+      :disabled="disabledIncrement"
     >
-      +
-    </button>
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
   </div>
 </template>
 <script>
@@ -39,19 +47,35 @@ export default {
   data() {
     return {
       counter: this.count,
+      disabledIncrement: false,
+      disableDecrement: false,
     };
+  },
+  mounted() {
+    this.disableDecrement = this.counter == 1;
   },
   methods: {
     incrementCounter: function () {
+      this.disabledIncrement = true;
       if (this.incrementUrl) {
-        axios.post(`${this.$api + this.incrementUrl}`);
+        axios.post(`${this.$api + this.incrementUrl}`).then(() => {
+          this.disabledIncrement = false;
+          this.counter == 1
+            ? (this.disableDecrement = true)
+            : (this.disableDecrement = false);
+        });
       }
       this.counter += 1;
       this.$emit("getCount", this.counter);
     },
     decrementCounter: function () {
+      this.disableDecrement = true;
       if (this.decrementUrl && !isNaN(this.counter) && this.counter != 1) {
-        axios.post(`${this.$api + this.decrementUrl}`);
+        axios.post(`${this.$api + this.decrementUrl}`).then(() => {
+          this.counter == 1
+            ? (this.disableDecrement = true)
+            : (this.disableDecrement = false);
+        });
       }
       this.counter -= 1;
       !isNaN(this.counter) && this.counter > 1
@@ -63,12 +87,6 @@ export default {
 };
 </script>
 <style scoped>
-.right-wraps {
-  height: 40px;
-  display: flex;
-  margin-left: 2rem;
-}
-
 .quantity {
   --webkit-appearance: none;
   border: none;
@@ -79,17 +97,6 @@ export default {
   color: rgba(0, 0, 0, 0.54);
 }
 
-.btn {
-  border: 1px solid #4caf50;
-  width: 40px;
-  height: 30px;
-  background-color: white;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: 800;
-  color: #4caf50;
-  cursor: pointer;
-}
 button:focus,
 input:focus {
   outline: 0;
