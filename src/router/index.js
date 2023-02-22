@@ -52,23 +52,6 @@ const routes = [
   },
 
   {
-    path: "/article",
-    component: ArticleLayout,
-    children: [
-      {
-        path: "/article",
-        name: "ArticleView",
-        component: ArticleView,
-      },
-      {
-        path: "/article/post/:slug",
-        name: "ArticleDetail",
-        component: ArticleDetail,
-      },
-    ],
-  },
-
-  {
     path: "/register-login",
     component: RegisterLogin,
     children: [
@@ -96,6 +79,23 @@ const routes = [
         path: "/register-login/via-sms",
         name: "ViaSms",
         component: ViaSms,
+      },
+    ],
+  },
+
+  {
+    path: "/article",
+    component: ArticleLayout,
+    children: [
+      {
+        path: "/article",
+        name: "ArticleView",
+        component: ArticleView,
+      },
+      {
+        path: "/article/post/:slug",
+        name: "ArticleDetail",
+        component: ArticleDetail,
       },
     ],
   },
