@@ -29,7 +29,7 @@
             :loading="loading"
             class="mx-auto my-12 pt-2 px-5 rounded-lg"
             max-width="240"
-            max-height="500"
+            max-height="550"
           >
             <router-link :to="{ path: `/commerce${item.links['self']}` }">
               <v-img
@@ -43,7 +43,7 @@
                 {{ item.category }}
               </v-chip>
               <div class="container-text">
-                <v-card-text class="py-2 px-0 black--text">
+                <v-card-text class="py-2 px-0 black--text title-product">
                   {{ item.name }}
                 </v-card-text>
               </div>
@@ -53,7 +53,7 @@
               </v-card-text>
             </router-link>
 
-            <v-card-actions
+            <!-- <v-card-actions
               class="align-center justify-center"
               v-if="item.user.inCart === 0"
             >
@@ -76,7 +76,7 @@
               :decrement-url="item.links.cart.remove_cart"
               @getCount="(value) => setTotalItem(value, item.id)"
             >
-            </ECommerceButtonCount>
+            </ECommerceButtonCount> -->
           </v-card>
         </v-col>
       </v-row>
@@ -86,7 +86,7 @@
 
 <script>
 import axios from "axios";
-import ECommerceButtonCount from "@/components/E-commerce/ECommerceButtonCount.vue";
+// import ECommerceButtonCount from "@/components/E-commerce/ECommerceButtonCount.vue";
 
 import { EventBus } from "../../../event-bus.js";
 
@@ -94,7 +94,7 @@ export default {
   name: "CommerceView",
 
   components: {
-    ECommerceButtonCount,
+    // ECommerceButtonCount,
   },
 
   data: () => ({
@@ -157,34 +157,34 @@ export default {
       EventBus.$emit("stopLoading");
     },
 
-    setTotalItem(value, id) {
-      const item = this.items.find((item) => item.id === id);
-      if (item) item.quantity = value;
-    },
+    // setTotalItem(value, id) {
+    //   const item = this.items.find((item) => item.id === id);
+    //   if (item) item.quantity = value;
+    // },
 
-    async addToCart(addCartLink) {
-      try {
-        EventBus.$emit("startLoading");
-        const products = await axios.post(`${this.$api}${addCartLink}`);
-        EventBus.$emit("updateCartCount");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-        if (products.status == 200) {
-          const message = products.data.message;
-          EventBus.$emit("showSnackbar", message, "primary");
-          console.log(products);
-        }
-      } catch (err) {
-        var error = err;
-        if (err.response.data.message) {
-          error = err.response.data.message;
-          console.log(error);
-          EventBus.$emit("showSnackbar", error, "red");
-        }
-      }
-      EventBus.$emit("stopLoading");
-    },
+    // async addToCart(addCartLink) {
+    //   try {
+    //     EventBus.$emit("startLoading");
+    //     const products = await axios.post(`${this.$api}${addCartLink}`);
+    //     EventBus.$emit("updateCartCount");
+    //     setTimeout(() => {
+    //       window.location.reload();
+    //     }, 1000);
+    //     if (products.status == 200) {
+    //       const message = products.data.message;
+    //       EventBus.$emit("showSnackbar", message, "primary");
+    //       console.log(products);
+    //     }
+    //   } catch (err) {
+    //     var error = err;
+    //     if (err.response.data.message) {
+    //       error = err.response.data.message;
+    //       console.log(error);
+    //       EventBus.$emit("showSnackbar", error, "red");
+    //     }
+    //   }
+    //   EventBus.$emit("stopLoading");
+    // },
   },
 
   watch: {},
@@ -195,6 +195,14 @@ export default {
 .custom-card-text {
   font-size: 1.06rem !important;
 }
+
+.title-product {
+  height: 4.5rem !important;
+}
+
+/* .container-text {
+  height: 4.5rem !important;
+} */
 
 /* .container-text {
   height: 4.5rem !important;

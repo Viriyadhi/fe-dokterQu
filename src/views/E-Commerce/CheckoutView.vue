@@ -152,12 +152,6 @@ export default {
     ApotikCard,
   },
 
-  // props: {
-  //   cartData: {
-  //     type: Array,
-  //   },
-  // },
-
   data: () => ({
     userAddress: [],
     userAddresses: [],

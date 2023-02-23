@@ -5,7 +5,6 @@
       @click="decrementCounter"
       type="button"
       name="button"
-      rounded
       color="primary"
       outlined
       :disabled="disableDecrement"
@@ -18,17 +17,28 @@
       @click="incrementCounter"
       type="button"
       name="button"
-      rounded
       color="primary"
       outlined
       :disabled="disabledIncrement"
     >
       <v-icon>mdi-plus</v-icon>
     </v-btn>
+    <!-- <v-btn
+      class="rounded-lg ms-8"
+      @click="deleteItem"
+      ref="cartItems"
+      type="button"
+      name="button"
+      color="primary"
+      icon
+    >
+      <v-icon>mdi-delete</v-icon>
+    </v-btn> -->
   </div>
 </template>
 <script>
 import axios from "axios";
+import { EventBus } from "../../../event-bus.js";
 
 export default {
   name: "ECommerceButtonCount",
@@ -42,6 +52,9 @@ export default {
     },
     decrementUrl: {
       type: String,
+    },
+    itemId: {
+      type: Number,
     },
   },
   data() {
@@ -82,6 +95,27 @@ export default {
         ? this.counter
         : (this.counter = 1);
       this.$emit("getCount", this.counter);
+    },
+
+    async deleteItem() {
+      try {
+        EventBus.$emit("startLoading");
+        const params = {
+          product_id: this.itemId,
+        };
+        await axios.delete(`${this.$api}/shop/cart/delete`, { params });
+        EventBus.$emit("showSnackbar", "Item berhasil dihapus", "green");
+        EventBus.$emit("updateCartCount");
+        this.$emit("getCount", this.counter);
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
     },
   },
 };

@@ -78,7 +78,7 @@
                   >Beli Sekarang</v-btn
                 >
               </div>
-              <div>
+              <div class="ms-8">
                 <button
                   class="btn btn--minus"
                   @click="decrementCounter"
@@ -173,10 +173,9 @@ export default {
   name: "ProductDetail",
 
   data: () => ({
-    counter: 1,
+    counter: null,
     detailData: [],
     updateLink: null,
-    cartItems: [],
   }),
 
   created() {
@@ -194,7 +193,6 @@ export default {
   },
 
   async mounted() {
-    console.log(axios.defaults.headers.common["Authorization"]);
     await this.getDetailProduct();
   },
   computed: {},
@@ -229,17 +227,15 @@ export default {
           `${this.$api}/${route.shop}/${route.product}/${route.slug}`
         );
         this.detailData = detailProduct.data.data;
+        this.counter = this.detailData.user.in_cart;
         const updateCart = detailProduct.data.data.links.cart.update_cart;
         this.updateLink = updateCart;
       } catch (err) {
         var error = err;
-        if (err.response.data.errors) {
-          error = err.response.data.errors;
-          for (const key in error) {
-            console.log(`${error[key]}`);
-            EventBus.$emit("showSnackbar", error[key], "red");
-          }
+        if (err.response.data.message) {
+          error = err.response.data.message;
           console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
         }
       }
       EventBus.$emit("stopLoading");
