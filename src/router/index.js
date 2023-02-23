@@ -35,20 +35,9 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/forgot-password",
-    component: ForgotPasswordLayout,
-    children: [
-      {
-        path: "/forgot-password/forgot",
-        name: "Forgot",
-        component: ForgotPasswordView,
-      },
-      {
-        path: "/forgot-password/otp",
-        name: "Otp",
-        component: OtpView,
-      },
-    ],
+    path: "/register-login/registerpopup",
+    name: "RegisterPopup",
+    component: RegisterPopup,
   },
 
   {
@@ -84,6 +73,23 @@ const routes = [
   },
 
   {
+    path: "/forgot-password",
+    component: ForgotPasswordLayout,
+    children: [
+      {
+        path: "/forgot-password/forgot",
+        name: "Forgot",
+        component: ForgotPasswordView,
+      },
+      {
+        path: "/forgot-password/otp",
+        name: "Otp",
+        component: OtpView,
+      },
+    ],
+  },
+
+  {
     path: "/article",
     component: ArticleLayout,
     children: [
@@ -98,12 +104,6 @@ const routes = [
         component: ArticleDetail,
       },
     ],
-  },
-
-  {
-    path: "/register-login/registerpopup",
-    name: "RegisterPopup",
-    component: RegisterPopup,
   },
 
   {

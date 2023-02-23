@@ -109,30 +109,10 @@ export default {
   mounted() {
     this.getCartData();
   },
-  watch: {
-    selected: {
-      deep: true,
-      handler(newSelected) {
-        this.isBulkActive = newSelected.length === this.cartItems.length;
-        localStorage.setItem("selected", JSON.stringify(newSelected));
-      },
-    },
-  },
-  computed: {
-    amountPrice() {
-      let value = this.selected.reduce(
-        (acc, cur) => acc + cur.product.price_int * cur.quantity,
-        0
-      );
-      return "Rp. " + this.formatCurrency(value.toString());
-    },
-    amountItems() {
-      return this.selected.reduce((acc, cur) => acc + cur.quantity, 0);
-    },
-  },
+
   methods: {
     bulkCheckbox() {
-      this.selected.length == this.cartItems.lsssssength
+      this.selected.length == this.cartItems.length
         ? (this.selected = [])
         : (this.selected = [...this.cartItems]);
     },
@@ -207,6 +187,29 @@ export default {
         //   cartData: this.selected,
         // },
       });
+    },
+  },
+
+  computed: {
+    amountPrice() {
+      let value = this.selected.reduce(
+        (acc, cur) => acc + cur.product.price_int * cur.quantity,
+        0
+      );
+      return "Rp. " + this.formatCurrency(value.toString());
+    },
+    amountItems() {
+      return this.selected.reduce((acc, cur) => acc + cur.quantity, 0);
+    },
+  },
+
+  watch: {
+    selected: {
+      deep: true,
+      handler(newSelected) {
+        this.isBulkActive = newSelected.length === this.cartItems.length;
+        localStorage.setItem("selected", JSON.stringify(newSelected));
+      },
     },
   },
 };
