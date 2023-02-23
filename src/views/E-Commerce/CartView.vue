@@ -11,8 +11,8 @@
           ></v-checkbox>
           <div
             class="d-md-flex mt-5"
-            v-for="cartItem in cartItems"
-            :key="cartItem.id"
+            v-for="(cartItem, i) in cartItems"
+            :key="i"
           >
             <v-checkbox v-model="selected" :value="cartItem"></v-checkbox>
             <ECommerceCardProduct
@@ -28,6 +28,16 @@
                   :decrement-url="cartItem.links.remove_cart"
                   @getCount="(value) => setTotalItem(value, cartItem.id)"
                 />
+                <v-btn
+                  class="rounded-lg"
+                  @click="deleteItem(i, cartItem.product.id)"
+                  type="button"
+                  name="button"
+                  color="primary"
+                  icon
+                >
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
               </template>
               <template v-slot:text>
                 <h5 class="font-weight-medium">
@@ -62,6 +72,7 @@
                 <v-btn
                   color="primary"
                   class="btn-checkout mx-auto mb-5"
+                  :disabled="this.selected == 0 ? true : false"
                   @click="checkout"
                 >
                   Checkout
@@ -93,6 +104,8 @@ export default {
       cartItems: [],
     };
   },
+  created() {},
+
   mounted() {
     this.getCartData();
   },
@@ -151,15 +164,42 @@ export default {
         var error = err;
         if (err.response.data.message) {
           error = err.response.data.message;
-          for (const key in error) {
-            console.log(`${error[key]}`);
-            EventBus.$emit("showSnackbar", error[key], "red");
-          }
           console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
         }
       }
       EventBus.$emit("stopLoading");
     },
+
+    async deleteItem(productIndex, itemId) {
+      try {
+        EventBus.$emit("startLoading");
+        const params = {
+          product_id: itemId,
+        };
+        const del = await axios.delete(`${this.$api}/shop/cart/delete`, {
+          params,
+        });
+        if (del.status == 200) {
+          EventBus.$emit("showSnackbar", "Item berhasil dihapus", "green");
+          EventBus.$emit("updateCartCount");
+          await this.getCartData();
+          this.selected = [];
+          this.$emit("getCount", this.counter);
+        }
+
+        console.log(productIndex, itemId);
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+
     checkout() {
       this.$router.push({
         name: "CheckoutView",
@@ -175,7 +215,6 @@ export default {
 .btn-checkout {
   max-width: 15rem;
   background: #ffffff;
-  border: 2px solid #4caf50;
   border-radius: 10px;
   font-weight: 700;
   color: #4caf50;
