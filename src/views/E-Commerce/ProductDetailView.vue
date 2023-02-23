@@ -74,7 +74,11 @@
                   @click="updateCartItem"
                   >+ Keranjang</v-btn
                 >
-                <v-btn block outlined class="buy-product text-capitalize"
+                <v-btn
+                  @click="checkoutNow()"
+                  block
+                  outlined
+                  class="buy-product text-capitalize"
                   >Beli Sekarang</v-btn
                 >
               </div>
@@ -267,6 +271,25 @@ export default {
         }
       }
       EventBus.$emit("stopLoading");
+    },
+
+    checkoutNow() {
+      const arr = [
+        {
+          quantity: this.counter,
+          product: {
+            id: this.detailData.id,
+            name: this.detailData.name,
+            price: this.detailData.price_min,
+            price_int: this.detailData.price_int,
+            images: this.detailData.image,
+          },
+        },
+      ];
+      // arr.push(this.detailData);
+      console.log(arr);
+      localStorage.setItem("selected", JSON.stringify(arr));
+      this.$router.push({ name: "CheckoutView" });
     },
   },
 };

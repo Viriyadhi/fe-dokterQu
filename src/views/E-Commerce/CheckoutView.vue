@@ -146,6 +146,10 @@ import { EventBus } from "../../../event-bus.js";
 export default {
   name: "CheckoutView",
 
+  props: {
+    buyNowItem: [],
+  },
+
   components: {
     ECommerceCardProduct,
     AddressCard,
