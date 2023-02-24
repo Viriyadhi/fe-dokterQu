@@ -12,7 +12,9 @@
                 data.label !== 'Confirmation Password' &&
                 data.label !== 'Phone' &&
                 data.label !== 'Photo Profile' &&
-                data.label !== 'Gender'
+                data.label !== 'Gender' &&
+                data.label !== 'Provinsi' &&
+                data.label !== 'Kota'
               "
             >
               {{ data.label }}
@@ -122,7 +124,7 @@ export default {
 
     async getFormData() {
       try {
-        const res = await axios.get(`${this.$api}/form/register/customer`);
+        const res = await axios.get(`${this.$api}/form/register`);
         const dataForm = res.data;
         this.formData = dataForm;
       } catch (error) {
