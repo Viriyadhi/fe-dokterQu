@@ -94,9 +94,7 @@
                   class="mr-8"
                 >
                   <v-avatar>
-                    <v-img
-                      src="https://cdn.vuetifyjs.com/images/lists/1.jpg"
-                    ></v-img>
+                    <v-img :src="localStorage.data.photo"></v-img>
                   </v-avatar>
                   <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
                 </v-chip>

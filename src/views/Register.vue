@@ -76,11 +76,40 @@
               outlined
             >
             </v-file-input>
-
             <v-select
               v-if="data.name === 'gender'"
               :required="data.required"
               :items="data.options"
+              :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+              v-model="models[data.name]"
+              color="284860"
+              item-text="label"
+              item-value="value"
+              clearable
+              single-line
+              outlined
+            >
+            </v-select>
+
+            <v-select
+              v-if="data.name === 'province_id'"
+              :required="data.required"
+              :items="provinceData"
+              :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+              v-model="models[data.name]"
+              color="284860"
+              item-text="label"
+              item-value="value"
+              clearable
+              single-line
+              outlined
+            >
+            </v-select>
+
+            <v-select
+              v-if="data.name === 'city_id'"
+              :required="data.required"
+              :items="cityData"
               :rules="[(v) => !!v || `${data.label} Harus diisi`]"
               v-model="models[data.name]"
               color="284860"
@@ -121,9 +150,38 @@ export default {
     formData: [],
     roleId: 3,
     models: {},
+    provinceData: [],
+    cityData: [],
   }),
+
   async mounted() {
     await this.getFormData();
+    await this.getProvince();
+    await this.getCity();
+  },
+
+  watch: {
+    "models.province_id": {
+      deep: true,
+      handler: async function () {
+        try {
+          this.cityData = [];
+          const res = await axios.get(
+            `${this.$api}/location/cities?province_id=${this.models.province_id}}`
+          );
+          const dataCity = res.data.data;
+
+          dataCity.forEach((item) => {
+            item["label"] = item.city_name;
+            item["value"] = item.city_id;
+          });
+
+          this.cityData = dataCity;
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    },
   },
 
   methods: {
@@ -133,7 +191,16 @@ export default {
         try {
           const obj = this.models;
           obj["role"] = "3";
-          const regUser = await axios.post(`${this.$api}/auth/register`, obj);
+          let data = new FormData();
+          for (const key in obj) {
+            if (key == "photo") {
+              data.append("photo", obj["photo"]);
+            } else {
+              data.append(`${key}`, obj[key]);
+            }
+          }
+          console.log(data);
+          const regUser = await axios.post(`${this.$api}/auth/register`, data);
 
           if (regUser.status === 201) {
             this.$router.push("/register-login/login");
@@ -155,9 +222,25 @@ export default {
 
     async getFormData() {
       try {
-        const res = await axios.get(`${this.$api}/form/register/customer`);
+        const res = await axios.get(`${this.$api}/form/register`);
         const dataForm = res.data;
         this.formData = dataForm;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async getProvince() {
+      try {
+        const res = await axios.get(`${this.$api}/location/provinces`);
+        const dataProvince = res.data.data;
+
+        dataProvince.forEach((item) => {
+          item["label"] = item.prov_name;
+          item["value"] = item.prov_id;
+        });
+
+        this.provinceData = dataProvince;
       } catch (error) {
         console.log(error);
       }
