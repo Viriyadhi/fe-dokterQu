@@ -28,6 +28,9 @@
           <router-link :to="{ path: '/commerce/shop/products' }">
             <a class="mx-8">Beli Obat</a>
           </router-link>
+          <router-link :to="{ path: '/chat-dokter' }">
+            <a class="mx-8">Chat Dokter</a>
+          </router-link>
 
           <v-menu
             open-on-hover
