@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <section class="checks">
-      <v-card class="mx-auto janji-card white--text px-8 py-6" max-width="828">
+      <v-card class="mx-auto mt-16 janji-card white--text px-16 py-6" max-width="828">
         <div class="d-flex flex-row">
           <div class="d-flex flex-column">
             <h4 class="text-h4 janji-headline mb-4">DokterQ Checks!</h4>
@@ -30,7 +30,7 @@
         <a class="article-header-link" href="janji-temu/all"> Lihat semua</a>
       </div>
 
-      <div class="button-group mt-8">
+      <div class="button-group mt-8 mx-auto">
         <v-btn
           v-for="(tipe, i) in tipeIndraBtn"
           :key="i"
@@ -45,7 +45,7 @@
       </div>
 
       <div
-        class="article-container d-flex flex-row align-center justify-space-between"
+        class="article-container d-flex flex-row align-center justify-space-between col-12"
       >
         <v-card
           v-for="(cardData, index) in dataCard"
@@ -81,6 +81,7 @@
               >Rating: {{ cardData.rating }}</v-card-text
             >
             <v-btn
+              to="/chat-detail/:detail"
               color="success"
               height="48"
               class="rounded-tl-xl rounded-br-xl"
@@ -261,6 +262,7 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 2rem;
+  height: 15%;
 }
 
 .button-group-child {
@@ -274,9 +276,9 @@ export default {
   color: white !important;
 }
 
-.article-container {
+/* .article-container {
   margin: 2rem 0;
-}
+} */
 
 .article-img {
   border-radius: 1rem 1rem 0 0 !important;

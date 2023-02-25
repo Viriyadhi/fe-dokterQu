@@ -1,10 +1,10 @@
 <template>
-  <div class="d-flex flex-column container pr-xl-16">
+  <div class="d-flex flex-column container pr-xl-16 mt-xl-16">
     <v-card class="pa-8 form--logreg">
       <v-card-title class="title-reg">Register</v-card-title>
       <v-form ref="form" @submit.prevent>
         <div v-for="(data, i) in formData" :key="i">
-          <div class="form--logreg__group">
+          <div class="form--logreg__group w-100">
             <p v-if="data.label !== 'Role'">{{ data.label }}</p>
             <v-text-field
               v-if="data.name === 'name' || data.name === 'phone'"
