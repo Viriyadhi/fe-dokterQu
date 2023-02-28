@@ -4,15 +4,19 @@
       <v-img
         src="@/assets/ForgotPw/Vector.svg"
         alt="Illustration Forgot"
-        class="content-1 "
+        class="content-1"
         max-height="1160"
         max-width="600"
       ></v-img>
-      <div class="my-card px-5">
-        <v-card class="rounded-xl custom-card pa-5" max-width="676">
+      <div class="my-card">
+        <v-card
+          class="rounded-xl custom-card "
+          max-width="676"
+          height="768"
+        >
           <div class="d-flex flex-row align-center gap-2 content-forgot">
             <v-icon>mdi-arrow-left</v-icon>
-            <h2 class="card-title">OTP Verification Code</h2>
+            <h2 class="card-title ">OTP Verification Code</h2>
           </div>
           <v-img
             src="@/assets/ForgotPw/Secure messaging.svg"
@@ -44,23 +48,18 @@ export default {
 <style scoped>
 .my-card {
   position: absolute;
-  /* top: 20%;  */
-  /* left: 35%; */
-  z-index: 10;
+  top: 20%;
+  left: 35%;
 }
 
 .parent {
-  min-height: 100vh;
-  display: flex; 
-  justify-content: center;  
-  align-items: center;
+  height: 100vh;
 }
 
 .content-1 {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
-  z-index: 1;
 }
 
 .content-2 {
@@ -83,8 +82,7 @@ export default {
   color: #000000;
 }
 
-.custom-card {
+  .custom-card {
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25) !important;
-  background-color: white; 
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex elevation-2 rounded-lg flex-column container absolute-center custom-position">
+  <div class="d-flex elevation-2 rounded-lg flex-column container absolute-center">
     <h2 class="title-reg">Masukkan Emailmu</h2>
     <v-text-field
     outlined
@@ -93,29 +93,14 @@ export default {
 </script>
 
 <style scoped>
-@media (min-width: 0px) {
-  .custom-position {
-    margin-top: -80px;
-  }
-}
-@media (min-width: 600px) {
-  .custom-position {
-    margin-top: -50px;
-  }
-}
-@media (min-width: 1200px) {
-  .custom-position {
-    margin-top: 0px;
-  }
-}
 .absolute-center {
-  /* top: 50% !important; */
+  top: 50% !important;
   transform: translate(0, 0) !important;
 }
 .container-btn {
   width: 100%;
 }
-.container {
+.container{
   background-color: white;
   width: 85%;
   padding: 5%;
@@ -155,12 +140,12 @@ export default {
 }
 
 .reg-btn {
-  height: auto !important;
-  padding: 15px !important;
-  width: 100% !important;
-  background-color: #284860 !important;
-  color: white !important;
-  border-radius: 10px !important;
+      height: auto !important;
+      padding: 15px !important;
+      width: 100% !important;
+      background-color: #284860 !important;
+      color: white !important;
+      border-radius: 10px !important;
 }
 .login-link {
   text-decoration: underline;
