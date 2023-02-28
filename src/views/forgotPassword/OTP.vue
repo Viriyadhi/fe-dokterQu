@@ -1,7 +1,12 @@
 <template>
   <v-container>
-    <div class="otp-field mx-auto">
-      <v-otp-input class="kotak" length="6" color="secondary" @finish="otp()" v-model="code"
+    <div class="otp-field mx-auto px-sm-5 px-lg-10">
+      <v-otp-input
+        class=""
+        length="6"
+        color="secondary"
+        @finish="otp()"
+        v-model="code"
       ></v-otp-input>
     </div>
     <div class="txt-verif">
@@ -11,20 +16,18 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 import { EventBus } from "../../../event-bus";
 
 export default {
-  name :"OtpView",
+  name: "OtpView",
 
-  components: {
-
-  },
+  components: {},
 
   data: () => ({
     show1: false,
     show2: false,
-    code: '',
+    code: "",
 
     textField: [
       {
@@ -36,23 +39,25 @@ export default {
         ],
         required: true,
       },
-
-      ],
+    ],
   }),
-  
+
   methods: {
     async otp() {
       try {
-        const response = await axios.post(`${this.$api}/auth/password/check-reset-code`, {
-        code: this.code
-      })
-      if (response.status == 202) {
-        this.$router.push({name: 'CreatePassword'});
-        localStorage.setItem('code', this.code);
-      }
-      console.log(response);
+        const response = await axios.post(
+          `${this.$api}/auth/password/check-reset-code`,
+          {
+            code: this.code,
+          }
+        );
+        if (response.status == 202) {
+          this.$router.push({ name: "CreatePassword" });
+          localStorage.setItem("code", this.code);
+        }
+        console.log(response);
       } catch (err) {
-        EventBus.$emit("showSnackbar", 'Code is Invalid', "red");
+        EventBus.$emit("showSnackbar", "Code is Invalid", "red");
       }
     },
   },
@@ -60,19 +65,15 @@ export default {
 </script>
 
 <style>
-.kotak{
-  padding: auto;
-}
-
-.otp-field{
+.otp-field {
   margin-top: 10%;
-  margin-bottom: 3%;
+  margin-bottom: 10%; 
 }
 
 .v-otp-input {
   border: px solid black !important;
 }
-.txt-verif{
+.txt-verif {
   text-align: center;
   font-size: larger;
 }
