@@ -9,7 +9,7 @@
         max-width="600"
       ></v-img>
       <div class="my-card px-5">
-        <v-card class="rounded-xl custom-card" max-width="676">
+        <v-card class="rounded-xl custom-card pa-5" max-width="676">
           <div class="d-flex flex-row align-center gap-2 content-forgot">
             <v-icon>mdi-arrow-left</v-icon>
             <h2 class="card-title">OTP Verification Code</h2>
@@ -63,10 +63,10 @@ export default {
   z-index: 1;
 }
 
-/* .content-2 {
+.content-2 {
   position: absolute;
   bottom: 0;
-} */
+}
 
 .mdi-arrow-left::before {
   font-size: 3rem;

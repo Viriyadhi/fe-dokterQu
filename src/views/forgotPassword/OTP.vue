@@ -1,11 +1,11 @@
 <template>
   <v-container>
     <div class="otp-field mx-auto">
-      <v-otp-input class="" length="6" color="secondary" @finish="otp()" v-model="code"
+      <v-otp-input class="kotak" length="6" color="secondary" @finish="otp()" v-model="code"
       ></v-otp-input>
     </div>
     <div class="txt-verif">
-      Kode verification 051512 hanya berlaku selama 5 menit
+      Kode verification ini hanya berlaku selama 5 menit
     </div>
   </v-container>
 </template>
@@ -60,9 +60,13 @@ export default {
 </script>
 
 <style>
+.kotak{
+  padding: auto;
+}
+
 .otp-field{
   margin-top: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 3%;
 }
 
 .v-otp-input {
