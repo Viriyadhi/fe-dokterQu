@@ -5,9 +5,9 @@
       @click="decrementCounter"
       type="button"
       name="button"
+      rounded
       color="primary"
       outlined
-      :disabled="disableDecrement"
     >
       <v-icon>mdi-minus</v-icon>
     </v-btn>
@@ -17,23 +17,12 @@
       @click="incrementCounter"
       type="button"
       name="button"
+      rounded
       color="primary"
       outlined
-      :disabled="disabledIncrement"
     >
       <v-icon>mdi-plus</v-icon>
     </v-btn>
-    <!-- <v-btn
-      class="rounded-lg ms-8"
-      @click="deleteItem"
-      ref="cartItems"
-      type="button"
-      name="button"
-      color="primary"
-      icon
-    >
-      <v-icon>mdi-delete</v-icon>
-    </v-btn> -->
   </div>
 </template>
 <script>

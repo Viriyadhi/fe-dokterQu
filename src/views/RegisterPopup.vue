@@ -11,7 +11,7 @@
         <div>Silakan pilih salah satu tombol dibawah ini</div>
       </div>
       <div class="d-flex flex-column align-center my-7">
-        <div @click="moveButton" class="card-content rounded-lg row">
+        <div @click="registerCustomer" class="card-content rounded-lg row">
           <div class="col-2">
             <v-avatar class="avatar">
               <v-icon color="black"> mdi-account </v-icon>
@@ -24,7 +24,8 @@
             </div>
           </div>
         </div>
-        <div @click="moveButton" class="card-content rounded-lg row">
+
+        <div @click="registerDoctor" class="card-content rounded-lg row">
           <div class="col-2">
             <v-avatar class="avatar">
               <v-icon color="black"> mdi-doctor </v-icon>
@@ -37,7 +38,8 @@
             </div>
           </div>
         </div>
-        <div @click="moveButton" class="card-content rounded-lg row">
+
+        <div @click="registerApotek" class="card-content rounded-lg row">
           <div class="col-2">
             <v-avatar class="avatar">
               <v-icon color="black"> mdi-store </v-icon>
@@ -60,9 +62,32 @@
 <script>
 export default {
   name: "RegisterPopup",
+
+  data: () => ({
+    //
+  }),
+
+  created() {
+    //
+  },
+
+  mounted() {
+    //
+  },
+
+  computed: {
+    //
+  },
+
   methods: {
-    moveButton() {
-      this.$router.push("/");
+    registerCustomer() {
+      this.$router.push("/register-login/register-customer");
+    },
+    registerDoctor() {
+      this.$router.push("/register-login/register-doctor");
+    },
+    registerApotek() {
+      this.$router.push("/register-login/register-apotek");
     },
   },
 };

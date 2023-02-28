@@ -57,20 +57,20 @@
       <v-btn block class="text-capitalize login-btn" @click="login"
         >Login</v-btn
       >
-    <div class="d-flex flex-row justify-space-between">
-      <div class="d-flex flex-row sudah-akun mt-1">
-        <p class="ma-0">Belum punya akun?</p>
-        <router-link :to="{ name: 'Register' }" class="login-link">
-          Register
-        </router-link>
+      <div class="d-flex flex-row justify-space-between">
+        <div class="d-flex flex-row sudah-akun mt-1">
+          <p class="ma-0">Belum punya akun?</p>
+          <router-link :to="{ name: 'Register' }" class="login-link">
+            Register
+          </router-link>
+        </div>
+        <div class="mt-1">
+          <!-- <p class="ma-0">Lupa Password?</p> -->
+          <router-link :to="{ name: 'Forgot' }" class="lupa-link">
+            Lupa Password?
+          </router-link>
+        </div>
       </div>
-      <div class="mt-1">
-        <!-- <p class="ma-0">Lupa Password?</p> -->
-        <router-link :to="{ name: 'Forgot' }" class="lupa-link">
-          Lupa Password?
-        </router-link>
-      </div>
-    </div>
     </v-card>
   </div>
 </template>
