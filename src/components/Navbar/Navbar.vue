@@ -23,13 +23,13 @@
             <a class="mx-8">Beranda</a>
           </router-link>
           <router-link :to="{ name: 'JanjiTemu' }">
-            <a class="mx-8">Janji Temu</a>
+            <a class="mx-8">Konsultasi Offline</a>
           </router-link>
           <router-link :to="{ path: '/commerce/shop/products' }">
             <a class="mx-8">Beli Obat</a>
           </router-link>
           <router-link :to="{ path: '/chat-dokter' }">
-            <a class="mx-8">Chat Dokter</a>
+            <a class="mx-8">Konsultasi Online</a>
           </router-link>
 
           <v-menu

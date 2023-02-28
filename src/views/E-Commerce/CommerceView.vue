@@ -78,7 +78,6 @@
               @getCount="(value) => setTotalItem(value, item.id)"
             >
             </ECommerceButtonCount>
-            -->
           </v-card>
         </v-col>
       </v-row>
@@ -198,17 +197,9 @@ export default {
   font-size: 1.06rem !important;
 }
 
-/* .container-text {
+.container-text {
   height: 4.5rem !important;
-} */
-
-/* .container-text {
-  height: 4.5rem !important;
-} */
-
-/* .container-text {
-  height: 4.5rem !important;
-} */
+}
 
 .button-group {
   display: flex;

@@ -59,8 +59,8 @@
       >
       <div class="d-flex flex-row justify-space-between">
         <div class="d-flex flex-row sudah-akun mt-1">
-          <p class="ma-0">Belum punya akun?</p>
-          <router-link :to="{ name: 'Register' }" class="login-link">
+          <p class="">Belum punya akun?</p>
+          <router-link :to="{ name: 'RegisterPopup' }" class="">
             Register
           </router-link>
         </div>

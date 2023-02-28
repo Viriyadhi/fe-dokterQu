@@ -5,9 +5,9 @@
       @click="decrementCounter"
       type="button"
       name="button"
-      rounded
       color="primary"
       outlined
+      :disabled="disableDecrement"
     >
       <v-icon>mdi-minus</v-icon>
     </v-btn>
@@ -17,18 +17,28 @@
       @click="incrementCounter"
       type="button"
       name="button"
-      rounded
       color="primary"
       outlined
+      :disabled="disabledIncrement"
     >
       <v-icon>mdi-plus</v-icon>
     </v-btn>
+    <!-- <v-btn
+      class="rounded-lg ms-8"
+      @click="deleteItem"
+      ref="cartItems"
+      type="button"
+      name="button"
+      color="primary"
+      icon
+    >
+      <v-icon>mdi-delete</v-icon>
+    </v-btn> -->
   </div>
 </template>
 <script>
 import axios from "axios";
 import { EventBus } from "../../../event-bus.js";
-
 export default {
   name: "ECommerceButtonCount",
   props: {
@@ -85,7 +95,6 @@ export default {
         : (this.counter = 1);
       this.$emit("getCount", this.counter);
     },
-
     async deleteItem() {
       try {
         EventBus.$emit("startLoading");
@@ -119,7 +128,6 @@ export default {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.54);
 }
-
 button:focus,
 input:focus {
   outline: 0;

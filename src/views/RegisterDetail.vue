@@ -28,7 +28,6 @@
               v-if="
                 data.name === 'cv' || data.name === 'str' || data.name === 'ktp'
               "
-              :prepend-inner-icon="data.prepend_inner_icon"
               :required="data.required"
               v-model="models[data.name]"
               color="284860"

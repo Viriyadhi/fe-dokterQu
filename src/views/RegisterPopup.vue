@@ -83,9 +83,11 @@ export default {
     registerCustomer() {
       this.$router.push("/register-login/register-customer");
     },
+
     registerDoctor() {
       this.$router.push("/register-login/register-doctor");
     },
+
     registerApotek() {
       this.$router.push("/register-login/register-apotek");
     },
