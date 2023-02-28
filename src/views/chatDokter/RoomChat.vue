@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-      
     <div class="header row">
       <div class="row mt-3">
         <div class="row">
@@ -22,7 +21,7 @@
       </div>
     </div>
     <v-divider class="black mt-3" inset></v-divider>
-    
+
     <div class="room">
       <div class="row">
         <div class="col-6"></div>
@@ -49,7 +48,7 @@
       </div>
       <!-- ========== -->
       <!-- =============== -->
-      <div  class="row">
+      <div class="row">
         <div class="col-6 row">
           <v-card class="doctor-msg rounded-xl grey lighten-1" max-width="344">
             <div class="text-h6 msg-2">Halo, Selamat siang juga Matthew</div>
@@ -97,6 +96,32 @@
         </div>
       </div>
       <!-- ========== -->
+      <div class="msg-input row">
+        <v-text-field
+          v-model="message"
+          outlined
+          clearable
+          placeholder="Ketikan sesuatu disini....."
+          type="text"
+        >
+          <template v-slot:prepend>
+            <v-btn class="btn-emote" icon color="black">
+              <v-icon>mdi-emoticon</v-icon>
+            </v-btn>
+          </template>
+          <template v-slot:append>
+            <v-btn class="btn-cam" icon color="black">
+              <v-icon>mdi-open-in-new</v-icon>
+            </v-btn>
+            <v-btn class="btn-cam" icon color="black">
+              <v-icon>mdi-camera</v-icon>
+            </v-btn>
+          </template>
+        </v-text-field>
+        <v-btn class="btn-voice blue" large icon color="white">
+              <v-icon>mdi-microphone</v-icon>
+            </v-btn>
+      </div>
     </div>
   </div>
 </template>
@@ -105,6 +130,11 @@
 .btn-left {
   background-color: black;
 }
+.btn-voice{
+  margin-left: 1%;
+  margin-top: 5px;
+}
+
 .header {
   /* border-bottom: solid;
   border-color: black; */
@@ -128,10 +158,33 @@
 .time-2 {
   color: white;
 }
-
+.msg-input {
+  margin-top: 5%;
+}
+.btn-cam {
+  margin-top: -5px;
+}
 .btn-reply {
   background-color: #bdbdbd;
   margin-left: 1%;
 }
-
 </style>
+
+<script>
+export default {
+  data: () => ({
+    loading: false,
+  }),
+
+  methods: {
+    clickMe() {
+      this.loading = true;
+      this.message = "Wait for it...";
+      setTimeout(() => {
+        this.loading = false;
+        this.message = `You've clicked me!`;
+      }, 2000);
+    },
+  },
+};
+</script>
