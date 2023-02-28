@@ -21,6 +21,7 @@ import RegisterPopup from "@/views/RegisterPopup.vue";
 import ProductDetailView from "@/views/E-Commerce/ProductDetailView.vue";
 import CartView from "@/views/E-Commerce/CartView.vue";
 import CheckoutView from "@/views/E-Commerce/CheckoutView.vue";
+import RoomChat from "@/views/chatDokter/RoomChat.vue";
 
 import DefaultView from "@/layouts/Default.vue";
 import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
@@ -38,6 +39,11 @@ const routes = [
     path: "/register-login/registerpopup",
     name: "RegisterPopup",
     component: RegisterPopup,
+  },
+  {
+    path: "/roomchat",
+    name: "RoomChat",
+    component: RoomChat,
   },
 
   {
