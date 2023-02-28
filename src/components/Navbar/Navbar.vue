@@ -69,13 +69,13 @@
           </router-link>
           <div class="text-center mx-8">
             <v-btn
-              :to="{ name: 'Register' }"
+              :to="{ path: 'register-popup' }"
               rounded
               color="success"
               class="button-register"
               dark
             >
-              <router-link :to="{ name: 'Register' }">
+              <router-link :to="{ path: 'register-popup' }">
                 <a class="register-text">REGISTER</a>
               </router-link>
             </v-btn>
