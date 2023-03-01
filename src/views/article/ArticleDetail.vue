@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <ArticleComponent />
-      <div class="ml-9 mt-7 container-comment">
+      <div class="PX-9 mt-7 container-comment">
         <div class="row">
           <div class="lines mx-2">
             <v-icon color="green darken-1">mdi-color-helper</v-icon>
@@ -38,8 +38,8 @@
             :key="i"
             elevation="0"
           >
-            <v-row>
-              <div class="col-1">
+            <div class="px-5 d-flex flex-row">
+              <div>
                 <v-avatar>
                   <img
                     src="https://tse4.mm.bing.net/th?id=OIP.bbRjEtula0rs46GDEb2kIQHaHa&pid=Api&P=0"
@@ -47,25 +47,30 @@
                   />
                 </v-avatar>
               </div>
-              <div class="col-11 pl-7">
-                <div class="text-body1 title-comment">
-                  {{ comment.user.name }}
-                </div>
-                <div class="text-subtitle1 comment-content">
-                  {{ comment.body }}
-                </div>
-                <div
-                  class="d-flex flex-row justify-space-between status-comment my-1"
-                >
-                  <div class="text-caption">{{ comment.created_at }}</div>
-                  <div class="text-caption">
-                    {{ comment.child_comment_count }} Suka
+              <div class="pl-3 d-flex flex-column">
+                <div class="d-flex flex-column">
+                  <div class="text-body1 title-comment">
+                    {{ comment.user.name }}
                   </div>
-                  <!-- <div class="text-caption">Balas</div>
+                  <div class="text-subtitle1 comment-content">
+                    {{ comment.body }}
+                  </div>
+                </div>
+                <div class="d-flex flex-column">
+                  <div
+                    class="d-flex flex-row  my-1"
+                    style="gap: 10px"
+                  >
+                    <div class="text-caption">{{ comment.created_at }}</div>
+                    <div class="text-caption">
+                      {{ comment.child_comment_count }} Suka
+                    </div>
+                    <!-- <div class="text-caption">Balas</div>
                   <div class="text-caption">Laporkan</div> -->
+                  </div>
                 </div>
               </div>
-            </v-row>
+            </div>
           </v-card>
         </div>
       </div>
@@ -165,9 +170,17 @@ export default {
 </script>
 
 <style>
-.container-comment {
-  max-width: 50%;
+@media (min-width: 0px) {
+  .container-comment {
+    width: 100%;
+  }
 }
+@media (min-width: 960px) {
+  .container-comment {
+    max-width: 50%;
+  }
+}
+
 .btn {
   margin-top: -5px;
 }

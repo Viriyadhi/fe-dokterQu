@@ -14,7 +14,7 @@
         </v-layout>
       </v-container>
     </v-dialog>
-    <v-main class="pa-0">
+    <v-main class="pa-0 ">
       <router-view class="main-height" id="chart-id" />
     </v-main>
     <v-snackbar v-model="snackbar" :color="snackbarColor">

@@ -53,15 +53,12 @@
             </v-col>
             <v-col cols="12" md="5">
               <div
-                class="d-flex flex-column"
+                class="d-flex flex-column red"
                 v-for="(top, i) in articleTop"
                 :key="i"
               >
                 <router-link :to="{ path: `${top.links['self']}` }">
-                  <v-card
-                    class="elevation-0 card-container border-bottom"
-                    :class="i == 0 ? 'pt-0 pb-8' : 'py-8'"
-                  >
+                  <v-card class="elevation-0 border-bottom">
                     <div class="d-flex flex-row">
                       <v-img
                         height="250"
@@ -71,16 +68,16 @@
                       ></v-img>
 
                       <div class="d-flex flex-column custom-article-container">
-                        <v-card-text class="pt-0 pb-0 px-6">
+                        <v-card-text class="pa-0 px-3">
                           <v-chip color="secondary" class="rounded-lg">
                             {{ top.category }}
                           </v-chip>
                         </v-card-text>
-                        <v-card-text class="py-3">
+                        <v-card-text class="pt-0 pa-3">
                           {{ top.created_at }}
                         </v-card-text>
                         <v-card-title
-                          class="pt-0 article-title-big font-weight-bold"
+                          class="pa-3 pt-0 article-title-big font-weight-bold"
                         >
                           {{ top.title }}
                         </v-card-title>
@@ -120,33 +117,31 @@
                 </v-card>
               </div>
             </v-col>
+            <div>
+              <h3 class="font-weight-medium text-h5 my-3 mt-10">
+                Artikel Terkait
+              </h3>
+            </div>
             <v-col cols="12" md="5">
               <div
-                class="d-flex flex-column"
+                class="d-flex flex-column my-1"
                 v-for="(top, i) in articleTop"
                 :key="i"
               >
-                <h3
-                  class="font-weight-medium text-h5"
-                  :class="i == 0 ? 'pt-16 mt-10 pb-4 ' : 'd-none'"
-                >
-                  Artikel Terkait
-                </h3>
-                <v-card class="elevation-0 py-4">
+                <v-card class="elevation-0 py-0" style="min-height: 110px">
                   <router-link :to="{ path: `${top.links['self']}` }">
                     <div class="d-flex flex-row">
                       <v-img
-                        height="160"
                         class="rounded-lg image-art"
                         :src="top.thumbnail"
                       ></v-img>
 
                       <div class="custom-article-container">
-                        <v-card-text class="py-3">
+                        <v-card-text class="pt-0 pa-3">
                           {{ top.created_at }}
                         </v-card-text>
                         <v-card-title
-                          class="pt-0 article-title-big font-weight-bold"
+                          class="pa-3 pt-0 article-title-big font-weight-bold"
                         >
                           {{ top.title }}
                         </v-card-title>
@@ -270,8 +265,17 @@ export default {
 </script>
 
 <style>
-.image-art {
-  flex: 0 200px !important;
+@media (min-width: 0px) {
+  .image-art {
+    flex: 0 150px !important;
+    height: 100px;
+  }
+}
+@media (min-width: 960px) {
+  .image-art {
+    flex: 0 200px !important;
+    height: 150px;
+  }
 }
 
 .custom-article-container {

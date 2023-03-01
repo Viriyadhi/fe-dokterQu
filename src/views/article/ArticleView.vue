@@ -8,8 +8,8 @@
       <section class="main-2">
         <v-row>
           <v-col
-            cols="12"
-            md="3"
+            cols="12" 
+            lg="3"
             v-for="(articleData, i) in articleList"
             :key="i"
           >
