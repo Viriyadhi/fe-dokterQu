@@ -122,13 +122,10 @@ export default {
         this.lengthComment = length;
       } catch (err) {
         var error = err;
-        if (err.response.data.errors) {
-          error = err.response.data.errors;
-          for (const key in error) {
-            console.log(`${error[key]}`);
-            EventBus.$emit("showSnackbar", error[key], "red");
-          }
+        if (err.response.data.message) {
+          error = err.response.data.message;
           console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
         }
       }
       EventBus.$emit("stopLoading");
@@ -148,14 +145,16 @@ export default {
           await this.getComment();
         }
       } catch (err) {
-        var error = err;
-        if (err.response.data.errors) {
-          error = err.response.data.errors;
-          for (const key in error) {
-            console.log(`${error[key]}`);
-            EventBus.$emit("showSnackbar", error[key], "red");
-          }
-          console.log(error);
+        var status = err.response.status;
+        if (status == 401) {
+          EventBus.$emit(
+            "showSnackbar",
+            "Silahkan Login Terlebih Dahulu",
+            "red"
+          );
+        }
+        if (status == 422) {
+          EventBus.$emit("showSnackbar", "Komentar Tidak Boleh Kosong", "red");
         }
       }
       EventBus.$emit("stopLoading");
