@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-card>
+    <v-card  >
       <v-app-bar
         :style="this.appbarStyle"
         fixed
-        class="px-16 navbar pt-3"
+        class="px-sm-11 navbar pt-3"
         elevation="0"
         v-scroll="onScrollContent"
       >
@@ -13,14 +13,14 @@
             <v-icon>mdi-arrow-left</v-icon>
           </router-link>
         </v-btn>
-        <h4 class="title-web">Keluar Toko</h4>
+        <h4 class="title-web" v-if="isXSmallScreenSize">Keluar Toko</h4>
 
         <v-spacer></v-spacer>
 
         <v-text-field
           class="mt-6"
           prepend-inner-icon="mdi-magnify"
-          label="Filled"
+          label="Search"
           solo
           rounded
           dense
@@ -28,7 +28,7 @@
         <v-spacer></v-spacer>
 
         <div
-          v-if="!localStorage"
+          v-if="!localStorage && isXSmallScreenSize"
           class="d-flex align-center justify-end flex-grow-1"
         >
           <router-link :to="{ name: 'Login' }">
@@ -55,28 +55,30 @@
           <div class="text-center">
             <v-dialog v-model="dialog" width="500">
               <template v-slot:activator="{ on, attrs }">
-                <router-link :to="{ name: 'CartView' }">
-                  <v-btn icon color="black" class="mr-8">
-                    <v-badge color="green" :content="cartItems">
-                      <v-icon> mdi-cart</v-icon>
-                    </v-badge>
-                  </v-btn>
-                </router-link>
+                <div class="d-flex flex-row align-center px-3" style="gap: 16px">
+                  <router-link :to="{ name: 'CartView' }">
+                    <v-btn icon color="black">
+                      <v-badge color="green" :content="cartItems">
+                        <v-icon> mdi-cart</v-icon>
+                      </v-badge>
+                    </v-btn>
+                  </router-link>
 
-                <v-chip
-                  v-bind="attrs"
-                  v-on="on"
-                  outlined
-                  color="black"
-                  class="mr-8"
-                >
-                  <v-avatar>
-                    <v-img
-                      src="https://cdn.vuetifyjs.com/images/lists/1.jpg"
-                    ></v-img>
-                  </v-avatar>
-                  <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
-                </v-chip>
+                  <v-chip
+                    v-if="isXSmallScreenSize"
+                    v-bind="attrs"
+                    v-on="on"
+                    outlined
+                    color="black"
+                  >
+                    <v-avatar>
+                      <v-img
+                        src="https://cdn.vuetifyjs.com/images/lists/1.jpg"
+                      ></v-img>
+                    </v-avatar>
+                    <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
+                  </v-chip>
+                </div>
               </template>
 
               <v-card>
@@ -112,9 +114,10 @@
             </v-dialog>
           </div>
         </div>
-
-        <v-divider vertical></v-divider>
-        <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
+        <div class="d-flex flex-row" style="gap: 12px">
+          <v-divider vertical style="height: 40px"></v-divider>
+          <v-icon class="mdi-config align-self-center">mdi-cog</v-icon>
+        </div>
       </v-app-bar>
       <v-main class="pa-0 mt-16">
         <router-view />
@@ -157,8 +160,13 @@ export default {
       this.getCartData();
     });
   },
-
+  computed: {
+    isXSmallScreenSize() {
+      return this.$vuetify?.breakpoint?.mdAndUp;
+    },
+  },
   mounted() {
+    console.log(this);
     this.getCartData();
   },
 

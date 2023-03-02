@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <div class="px-16 py-16">
+    <div class="pa-5 pa-sm-8 pa-md-12 pa-lg-16">
       <v-row>
-        <v-col cols="6" offset-md="1">
+        <v-col cols="12" md="6" offset-md="1">
           <h1>Keranjang</h1>
           <v-checkbox
             label="Pilih Semua"
@@ -10,7 +10,7 @@
             v-model="isBulkActive"
           ></v-checkbox>
           <div
-            class="d-md-flex mt-5"
+            class="d-md-flex mt-3 mt-md-5"
             v-for="(cartItem, i) in cartItems"
             :key="i"
           >
@@ -22,7 +22,7 @@
             >
               <template v-slot:button-counter>
                 <ECommerceButtonCount
-                  class="me-md-15"
+                  class="mt-8 mt-md-15"
                   :count="cartItem.quantity"
                   :increment-url="cartItem.links.add_cart"
                   :decrement-url="cartItem.links.remove_cart"
@@ -47,8 +47,8 @@
             </ECommerceCardProduct>
           </div>
         </v-col>
-        <v-col cols="4">
-          <v-card class="mx-auto mt-16 px-3" max-width="386" elevation="4">
+        <v-col cols="12" md="4" class="mt-3 mt-sm-0">
+          <v-card class="mx-auto mt-5 mt-sm-16 px-3" max-width="386" elevation="4">
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title class="font-weight-bold mb-3 mt-5"
