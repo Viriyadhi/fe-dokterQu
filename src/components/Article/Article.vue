@@ -92,15 +92,15 @@
         </section>
       </div>
 
-      <div v-if="routeHasSlug">
+      <div class="row " v-if="routeHasSlug">
         <section class="main">
-          <v-row>
-            <v-col cols="12" md="7">
+          <v-row class="row px-3">
+            <v-col cols="12" md="8">
               <div v-for="(detailArt, i) in detailArticle" :key="i">
-                <v-card class="elevation-0">
+                <v-card class="elevation-0 ">
                   <v-card-title
                     v-html="detailArt.title"
-                    class="text-h4 font-weight-bold"
+                    class="text-h4 font-weight-bold px-0"
                   ></v-card-title>
 
                   <div class="d-flex flex-row">
@@ -109,46 +109,49 @@
                     </v-chip>
                   </div>
 
-                  <v-img class="rounded-lg" :src="detailArt.thumbnail"></v-img>
+                  <v-img class="rounded-lg mt-2" :src="detailArt.thumbnail"></v-img>
                   <v-card-text
                     v-html="detailArt.body"
-                    class="text-h6 font-weight-regular black--text detail-text"
+                    class="text-h6 font-weight-regular black--text detail-text px-0"
                   ></v-card-text>
                 </v-card>
               </div>
             </v-col>
-            <div>
-              <h3 class="font-weight-medium text-h5 my-3 mt-10">
-                Artikel Terkait
-              </h3>
-            </div>
-            <v-col cols="12" md="5">
-              <div
-                class="d-flex flex-column my-1"
-                v-for="(top, i) in articleTop"
-                :key="i"
-              >
-                <v-card class="elevation-0 py-0" style="min-height: 110px">
-                  <router-link :to="{ path: `${top.links['self']}` }">
-                    <div class="d-flex flex-row">
-                      <v-img
-                        class="rounded-lg image-art"
-                        :src="top.thumbnail"
-                      ></v-img>
 
-                      <div class="custom-article-container">
-                        <v-card-text class="pt-0 pa-3">
-                          {{ top.created_at }}
-                        </v-card-text>
-                        <v-card-title
-                          class="pa-3 pt-0 article-title-big font-weight-bold"
-                        >
-                          {{ top.title }}
-                        </v-card-title>
+            <v-col cols="12" md="4">
+              <div class="mt-6 pt-15">
+                <h3 class="font-weight-medium text-h5 my-3 mt-md-5">
+                  Artikel Terkait
+                </h3>
+              </div>
+              <div class="main" md="3">
+                <div
+                  class="d-flex flex-column my-1"
+                  v-for="(top, i) in articleTop"
+                  :key="i"
+                >
+                  <v-card class="elevation-0 py-0" style="min-height: 110px">
+                    <router-link :to="{ path: `${top.links['self']}` }">
+                      <div class="d-flex flex-row">
+                        <v-img
+                          class="rounded-lg image-art"
+                          :src="top.thumbnail"
+                        ></v-img>
+
+                        <div class="custom-article-container">
+                          <v-card-text class="pt-0 pa-3">
+                            {{ top.created_at }}
+                          </v-card-text>
+                          <v-card-title
+                            class="pa-3 pt-0 article-title-big font-weight-bold"
+                          >
+                            {{ top.title }}
+                          </v-card-title>
+                        </div>
                       </div>
-                    </div>
-                  </router-link>
-                </v-card>
+                    </router-link>
+                  </v-card>
+                </div>
               </div>
             </v-col>
           </v-row>
@@ -270,11 +273,11 @@ export default {
     flex: 0 150px !important;
     height: 100px;
   }
-}
+}  
 @media (min-width: 960px) {
   .image-art {
-    flex: 0 200px !important;
-    height: 150px;
+    flex: 0 150px !important;
+    height: 100px;
   }
 }
 
@@ -287,6 +290,11 @@ export default {
 
 .article-title-big {
   line-height: 1.5rem;
+}
+
+.article-right {
+  width: 100%;
+  /* background-color: #4caf50; */
 }
 
 .big-line {
@@ -312,4 +320,23 @@ export default {
 .detail-text {
   line-height: 2.25rem;
 }
+
+/* .main {
+  float: left;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.right {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+} */
+/* @media only screen and (max-width: 980px) {
+  
+  .right {
+    margin-bottom: 5px;
+    flex-basis: 40%;
+  }
+} */
 </style>

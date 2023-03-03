@@ -3,9 +3,9 @@
     <v-container>
       <ArticleComponent />
       <div class="big-line"></div>
-      <h2 class="mt-6 mb-12 font-weight-black">Artikel Terbaru</h2>
+      <h2 class="mt-6 mb-12 font-weight-red">Artikel Terbaru</h2>
 
-      <section class="main-2">
+      <section class="main-2 ">
         <v-row>
           <v-col
             cols="12" 
