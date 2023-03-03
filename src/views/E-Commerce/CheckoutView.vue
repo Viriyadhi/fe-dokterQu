@@ -172,7 +172,7 @@ export default {
     this.cartData = JSON.parse(localStorage.getItem("selected"));
     await this.getDefaultAddress();
     await this.postApotek();
-    await this.generateToken();
+    await this.setCheckout();
     await this.getAddresses();
   },
 
@@ -253,12 +253,12 @@ export default {
       EventBus.$emit("stopLoading");
     },
 
-    async generateToken() {
+    async setCheckout() {
       try {
         EventBus.$emit("startLoading");
 
         const res = await axios.post(
-          `${this.$api}/shop/get-midtrans-snap-token`,
+          `${this.$api}/shop/checkout/product`,
           this.tokenData
         );
         this.token = res.data.data.url;
@@ -304,7 +304,7 @@ export default {
       this.userAddress = address;
       this.tokenData.address_id = address.id;
       this.postApotek();
-      this.generateToken();
+      this.setCheckout();
       this.dialog = false;
     },
 

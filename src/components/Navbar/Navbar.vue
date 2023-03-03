@@ -23,13 +23,13 @@
             <a class="mx-8">Beranda</a>
           </router-link>
           <router-link :to="{ name: 'JanjiTemu' }">
-            <a class="mx-8">Janji Temu</a>
+            <a class="mx-8">Konsultasi Offline</a>
           </router-link>
           <router-link :to="{ path: '/commerce/shop/products' }">
             <a class="mx-8">Beli Obat</a>
           </router-link>
           <router-link :to="{ path: '/chat-dokter' }">
-            <a class="mx-8">Chat Dokter</a>
+            <a class="mx-8">Konsultasi Online</a>
           </router-link>
 
           <v-menu
@@ -69,13 +69,13 @@
           </router-link>
           <div class="text-center mx-8">
             <v-btn
-              :to="{ name: 'Register' }"
+              :to="{ path: 'register-popup' }"
               rounded
               color="success"
               class="button-register"
               dark
             >
-              <router-link :to="{ name: 'Register' }">
+              <router-link :to="{ path: 'register-popup' }">
                 <a class="register-text">REGISTER</a>
               </router-link>
             </v-btn>

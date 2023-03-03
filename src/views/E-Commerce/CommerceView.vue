@@ -29,7 +29,7 @@
             :loading="loading"
             class="mx-auto my-12 pt-2 px-5 rounded-lg"
             max-width="240"
-            max-height="550"
+            max-height="600"
           >
             <router-link :to="{ path: `/commerce${item.links['self']}` }">
               <v-img
@@ -53,8 +53,8 @@
               </v-card-text>
             </router-link>
 
-            <!-- <v-card-actions
-              class="align-center justify-center"
+            <div
+              class="align-center justify-center pb-4"
               v-if="item.user.inCart === 0"
             >
               <v-btn
@@ -67,16 +67,17 @@
               >
                 Tambah
               </v-btn>
-            </v-card-actions>
+            </div>
 
             <ECommerceButtonCount
+              class="mt-6 pb-4"
               v-if="item.user.inCart !== 0"
               :count="item.user.inCart"
               :increment-url="item.links.cart.add_cart"
               :decrement-url="item.links.cart.remove_cart"
               @getCount="(value) => setTotalItem(value, item.id)"
             >
-            </ECommerceButtonCount> -->
+            </ECommerceButtonCount>
           </v-card>
         </v-col>
       </v-row>
@@ -196,17 +197,9 @@ export default {
   font-size: 1.06rem !important;
 }
 
-.title-product {
+.container-text {
   height: 4.5rem !important;
 }
-
-/* .container-text {
-  height: 4.5rem !important;
-} */
-
-/* .container-text {
-  height: 4.5rem !important;
-} */
 
 .button-group {
   display: flex;

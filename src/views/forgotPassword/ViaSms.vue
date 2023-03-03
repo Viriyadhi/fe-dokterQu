@@ -1,5 +1,7 @@
 <template>
-  <div class="d-flex elevation-2 rounded-lg flex-column container absolute-center">
+  <div
+    class="d-flex elevation-2 rounded-lg flex-column container absolute-center custom-position"
+  >
     <h2 class="title-reg">Masukkan No.Hp anda</h2>
     <v-text-field
       color="secondary"
@@ -14,10 +16,7 @@
     </v-text-field>
 
     <div class="container-btn d-flex align-center mt-8 justify-end">
-      <v-btn
-        class="reg-btn rounded-lg px-16"
-        @click="login()"
-      >
+      <v-btn class="reg-btn rounded-lg px-16" @click="login()">
         Selanjutnya
       </v-btn>
     </div>
@@ -82,14 +81,29 @@ export default {
 </script>
 
 <style scoped>
+@media (min-width: 0px) {
+  .custom-position {
+    margin-top: -80px;
+  }
+}
+@media (min-width: 600px) {
+  .custom-position {
+    margin-top: -50px;
+  }
+}
+@media (min-width: 1200px) {
+  .custom-position {
+    margin-top: 0px;
+  }
+}
 .absolute-center {
-  top: 50% !important;
+  /* top: 50% !important; */
   transform: translate(0, 0) !important;
 }
 .container-btn {
   width: 100%;
 }
-.container{
+.container {
   background-color: white;
   width: 85%;
   padding: 5%;
@@ -129,12 +143,12 @@ export default {
 }
 
 .reg-btn {
-      height: auto !important;
-      padding: 15px !important;
-      width: 100% !important;
-      background-color: #284860 !important;
-      color: white !important;
-      border-radius: 10px !important;
+  height: auto !important;
+  padding: 15px !important;
+  width: 100% !important;
+  background-color: #284860 !important;
+  color: white !important;
+  border-radius: 10px !important;
 }
 .login-link {
   text-decoration: underline;

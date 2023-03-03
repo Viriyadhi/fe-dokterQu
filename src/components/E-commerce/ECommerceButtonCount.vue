@@ -39,7 +39,6 @@
 <script>
 import axios from "axios";
 import { EventBus } from "../../../event-bus.js";
-
 export default {
   name: "ECommerceButtonCount",
   props: {
@@ -96,7 +95,6 @@ export default {
         : (this.counter = 1);
       this.$emit("getCount", this.counter);
     },
-
     async deleteItem() {
       try {
         EventBus.$emit("startLoading");
@@ -130,7 +128,6 @@ export default {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.54);
 }
-
 button:focus,
 input:focus {
   outline: 0;

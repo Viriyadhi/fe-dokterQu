@@ -212,27 +212,6 @@
           </v-card>
           <v-card
             max-width="255"
-            max-height="400"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
-
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
-
-            <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-          <v-card
-            max-width="255"
             max-height="350"
             class="custom-card-konsultasi rounded-lg"
           >

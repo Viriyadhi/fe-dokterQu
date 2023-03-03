@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import HomeView from "@/views/home/HomeView.vue";
 import LoginView from "@/views/Login.vue";
 import RegisterView from "@/views/Register.vue";
+import RegisterDetailView from "@/views/RegisterDetail.vue";
 import ViaEmail from "@/views/forgotPassword/ViaEmail.vue";
 import ViaSms from "@/views/forgotPassword/ViaSms.vue";
 import ForgotPasswordView from "@/views/forgotPassword/ForgotPassword.vue";
@@ -36,7 +37,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/register-login/registerpopup",
+    path: "/register-popup",
     name: "RegisterPopup",
     component: RegisterPopup,
   },
@@ -56,10 +57,16 @@ const routes = [
         component: LoginView,
       },
       {
-        path: "/register-login/register",
+        path: "/register-login/register-:user",
         name: "Register",
         component: RegisterView,
       },
+      {
+        path: "/register-login/register/detail-:user",
+        name: "RegisterDetail",
+        component: RegisterDetailView,
+      },
+
       {
         path: "/register-login/create-password",
         name: "CreatePassword",

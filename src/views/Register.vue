@@ -8,7 +8,7 @@
             <p v-if="data.label !== 'Role'">{{ data.label }}</p>
             <v-text-field
               v-if="data.name === 'name' || data.name === 'phone'"
-              :prepend-inner-icon="data.prependInnerIcon"
+              :prepend-inner-icon="data.prepend_inner_icon"
               :rules="[(v) => !!v || `${data.label} Harus diisi`]"
               :required="data.required"
               v-model="models[data.name]"
@@ -21,7 +21,7 @@
 
             <v-text-field
               v-if="data.name === 'email'"
-              :prepend-inner-icon="data.prependInnerIcon"
+              :prepend-inner-icon="data.prepend_inner_icon"
               :rules="[
                 (v) => !!v || 'E-mail is required',
                 (v) => /.+@.+/.test(v) || 'E-mail must be valid',
@@ -69,7 +69,7 @@
             <v-file-input
               v-if="data.name === 'photo'"
               :required="data.required"
-              v-model="models[data.name]"
+              @change="inputPhoto"
               color="284860"
               clearable
               single-line
@@ -124,9 +124,22 @@
         </div>
       </v-form>
 
-      <v-btn block class="text-capitalize login-btn" @click="register"
+      <v-btn
+        v-if="routeParams == 'customer'"
+        block
+        class="text-capitalize login-btn"
+        @click="register"
         >Daftar</v-btn
       >
+
+      <v-btn
+        v-if="routeParams == 'doctor' || routeParams == 'apotek'"
+        block
+        class="text-capitalize login-btn"
+        @click="register"
+        >Selanjutnya</v-btn
+      >
+
       <div class="d-flex flex-row sudah-akun mt-1">
         <p class="ma-0">Sudah punya akun?</p>
         <router-link :to="{ name: 'Login' }" class="login-link">
@@ -152,12 +165,15 @@ export default {
     models: {},
     provinceData: [],
     cityData: [],
+    routeParams: null,
   }),
 
   async mounted() {
+    var route = this.$route.params.user;
+    this.routeParams = route;
+    console.log(route);
     await this.getFormData();
     await this.getProvince();
-    await this.getCity();
   },
 
   watch: {
@@ -185,36 +201,90 @@ export default {
   },
 
   methods: {
+    inputPhoto(file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.models["photo"] = reader.result;
+        this.models["base64_filename"] = file.name;
+      };
+    },
+
     async register() {
       if (this.$refs.form.validate()) {
         EventBus.$emit("startLoading");
-        try {
-          const obj = this.models;
-          obj["role"] = "3";
-          let data = new FormData();
-          for (const key in obj) {
-            if (key == "photo") {
-              data.append("photo", obj["photo"]);
-            } else {
-              data.append(`${key}`, obj[key]);
+        var route = this.routeParams;
+        console.log(route);
+        switch (route) {
+          case "doctor":
+            try {
+              const obj = this.models;
+              obj["role"] = "1";
+              localStorage.setItem("registerData", JSON.stringify(obj));
+              this.$router.push({ name: "RegisterDetail" });
+            } catch (err) {
+              var error1 = err;
+              if (err.response.data.errors) {
+                error1 = err.response.data.errors;
+                for (const key in error1) {
+                  console.log(`${error1[key]}`);
+                  EventBus.$emit("showSnackbar", error1[key], "red");
+                }
+                console.log(error1);
+              }
             }
-          }
-          console.log(data);
-          const regUser = await axios.post(`${this.$api}/auth/register`, data);
+            break;
+          case "apotek":
+            try {
+              const obj = this.models;
+              obj["role"] = "2";
+              localStorage.setItem("registerData", JSON.stringify(obj));
+              this.$router.push({ name: "RegisterDetail" });
+            } catch (err) {
+              var error2 = err;
+              if (err.response.data.errors) {
+                error2 = err.response.data.errors;
+                for (const key in error2) {
+                  console.log(`${error2[key]}`);
+                  EventBus.$emit("showSnackbar", error2[key], "red");
+                }
+                console.log(error2);
+              }
+            }
+            break;
+          case "customer":
+            try {
+              const obj = this.models;
+              obj["role"] = "3";
+              let data = new FormData();
+              for (const key in obj) {
+                if (key == "photo") {
+                  data.append("photo", obj["photo"]);
+                } else {
+                  data.append(`${key}`, obj[key]);
+                }
+              }
+              console.log(data);
+              const regUser = await axios.post(
+                `${this.$api}/auth/register`,
+                data
+              );
 
-          if (regUser.status === 201) {
-            this.$router.push("/register-login/login");
-          }
-        } catch (err) {
-          var error = err;
-          if (err.response.data.errors) {
-            error = err.response.data.errors;
-            for (const key in error) {
-              console.log(`${error[key]}`);
-              EventBus.$emit("showSnackbar", error[key], "red");
+              if (regUser.status === 201) {
+                this.$router.push("/register-login/login");
+              }
+            } catch (err) {
+              var error = err;
+              if (err.response.data.errors) {
+                error = err.response.data.errors;
+                for (const key in error) {
+                  console.log(`${error[key]}`);
+                  EventBus.$emit("showSnackbar", error[key], "red");
+                }
+                console.log(error);
+              }
             }
-            console.log(error);
-          }
+            break;
         }
         EventBus.$emit("stopLoading");
       }
