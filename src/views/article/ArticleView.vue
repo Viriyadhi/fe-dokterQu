@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container>
+    <v-container class="container-detail">
       <ArticleComponent />
       <div class="big-line"></div>
       <h2 class="mt-6 mb-12 font-weight-black">Artikel Terbaru</h2>
@@ -9,7 +9,10 @@
         <v-row>
           <v-col
             cols="12"
-            md="3"
+            lg="3"
+            md="4"
+            sm="6"
+            xs="12"
             v-for="(articleData, i) in articleList"
             :key="i"
           >
@@ -105,6 +108,10 @@ export default {
 </script>
 
 <style>
+.container-detail {
+  max-width: 80%;
+}
+
 .custom-article-container {
   width: 55% !important;
 }

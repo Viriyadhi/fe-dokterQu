@@ -1,165 +1,163 @@
 <template>
   <v-app>
-    <v-container>
-      <section class="my-8 d-flex flex-row align-center">
-        <v-btn icon color="black" class="mr-8">
-          <router-link :to="{ name: 'ArticleView' }">
-            <v-icon>mdi-arrow-left</v-icon>
-          </router-link>
-        </v-btn>
-        <v-text-field
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          outlined
-          hide-details
-        ></v-text-field>
-      </section>
+    <section class="my-8 d-flex flex-row align-center">
+      <v-btn icon color="black" class="mr-8">
+        <router-link :to="{ name: 'ArticleView' }">
+          <v-icon>mdi-arrow-left</v-icon>
+        </router-link>
+      </v-btn>
+      <v-text-field
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        outlined
+        hide-details
+      ></v-text-field>
+    </section>
 
-      <div v-if="!routeHasSlug">
-        <div class="big-line"></div>
-        <h2 class="mt-6 mb-12 font-weight-black">Artikel Terpopuler</h2>
+    <div v-if="!routeHasSlug">
+      <div class="big-line"></div>
+      <h2 class="mt-6 mb-12 font-weight-black">Artikel Terpopuler</h2>
 
-        <section class="main">
-          <v-row>
-            <v-col cols="12" md="7">
-              <div v-for="(hero, i) in articleHero" :key="i">
-                <router-link :to="{ path: `${hero.links['self']}` }">
-                  <v-card class="elevation-0">
-                    <v-img
-                      height="565"
-                      class="rounded-lg"
-                      :src="hero.thumbnail"
-                    ></v-img>
-                    <v-card-text class="px-0 py-0 pt-4">
-                      <v-chip color="secondary" class="rounded-lg">
-                        {{ hero.category }}
-                      </v-chip>
-                    </v-card-text>
-                    <v-card-text class="py-3 px-0">
-                      {{ hero.created_at }}
-                    </v-card-text>
-                    <v-card-title
-                      class="pt-0 px-0 article-title-big font-weight-bold text-h3"
-                    >
-                      {{ hero.title }}
-                    </v-card-title>
-                    <v-card-text class="px-0 text-h6">
-                      {{ hero.desc }}
-                    </v-card-text>
-                  </v-card>
-                </router-link>
-              </div>
-            </v-col>
-            <v-col cols="12" md="5">
-              <div
-                class="d-flex flex-column"
-                v-for="(top, i) in articleTop"
-                :key="i"
-              >
-                <router-link :to="{ path: `${top.links['self']}` }">
-                  <v-card
-                    class="elevation-0 card-container border-bottom"
-                    :class="i == 0 ? 'pt-0 pb-8' : 'py-8'"
-                  >
-                    <div class="d-flex flex-row">
-                      <v-img
-                        height="250"
-                        width="20"
-                        class="rounded-lg"
-                        :src="top.thumbnail"
-                      ></v-img>
-
-                      <div class="d-flex flex-column custom-article-container">
-                        <v-card-text class="pt-0 pb-0 px-6">
-                          <v-chip color="secondary" class="rounded-lg">
-                            {{ top.category }}
-                          </v-chip>
-                        </v-card-text>
-                        <v-card-text class="py-3">
-                          {{ top.created_at }}
-                        </v-card-text>
-                        <v-card-title
-                          class="pt-0 article-title-big font-weight-bold"
-                        >
-                          {{ top.title }}
-                        </v-card-title>
-                      </div>
-                    </div>
-                  </v-card>
-                </router-link>
-                <div :class="i == 2 ? 'd-none' : 'small-line'"></div>
-              </div>
-            </v-col>
-          </v-row>
-        </section>
-      </div>
-
-      <div v-if="routeHasSlug">
-        <section class="main">
-          <v-row>
-            <v-col cols="12" md="7">
-              <div v-for="(detailArt, i) in detailArticle" :key="i">
+      <section class="main">
+        <v-row>
+          <v-col cols="12" md="12" lg="7" xl="7">
+            <div v-for="(hero, i) in articleHero" :key="i">
+              <router-link :to="{ path: `${hero.links['self']}` }">
                 <v-card class="elevation-0">
-                  <v-card-title
-                    v-html="detailArt.title"
-                    class="text-h4 font-weight-bold"
-                  ></v-card-title>
-
-                  <div class="d-flex flex-row">
+                  <v-img
+                    height="565"
+                    class="rounded-lg"
+                    :src="hero.thumbnail"
+                  ></v-img>
+                  <v-card-text class="px-0 py-0 pt-4">
                     <v-chip color="secondary" class="rounded-lg">
-                      {{ detailArt.created_at }}
+                      {{ hero.category }}
                     </v-chip>
-                  </div>
-
-                  <v-img class="rounded-lg" :src="detailArt.thumbnail"></v-img>
-                  <v-card-text
-                    v-html="detailArt.body"
-                    class="text-h6 font-weight-regular black--text detail-text"
-                  ></v-card-text>
+                  </v-card-text>
+                  <v-card-text class="py-3 px-0">
+                    {{ hero.created_at }}
+                  </v-card-text>
+                  <v-card-title
+                    class="pt-0 px-0 article-title-big font-weight-bold text-h3"
+                  >
+                    {{ hero.title }}
+                  </v-card-title>
+                  <v-card-text class="px-0 text-h6">
+                    {{ hero.desc }}
+                  </v-card-text>
                 </v-card>
-              </div>
-            </v-col>
-            <v-col cols="12" md="5">
-              <div
-                class="d-flex flex-column"
-                v-for="(top, i) in articleTop"
-                :key="i"
-              >
-                <h3
-                  class="font-weight-medium text-h5"
-                  :class="i == 0 ? 'pt-16 mt-10 pb-4 ' : 'd-none'"
+              </router-link>
+            </div>
+          </v-col>
+          <v-col cols="12" md="12" lg="5" xl="5">
+            <div
+              class="d-flex flex-column"
+              v-for="(top, i) in articleTop"
+              :key="i"
+            >
+              <router-link :to="{ path: `${top.links['self']}` }">
+                <v-card
+                  class="elevation-0 card-container border-bottom"
+                  :class="i == 0 ? 'pt-0 pb-8' : 'py-8'"
                 >
-                  Artikel Terkait
-                </h3>
-                <v-card class="elevation-0 py-4">
-                  <router-link :to="{ path: `${top.links['self']}` }">
-                    <div class="d-flex flex-row">
-                      <v-img
-                        height="160"
-                        class="rounded-lg image-art"
-                        :src="top.thumbnail"
-                      ></v-img>
+                  <div class="d-flex flex-row">
+                    <v-img
+                      height="160"
+                      class="rounded-lg image-art"
+                      :src="top.thumbnail"
+                    ></v-img>
 
-                      <div class="custom-article-container">
-                        <v-card-text class="py-3">
-                          {{ top.created_at }}
-                        </v-card-text>
-                        <v-card-title
-                          class="pt-0 article-title-big font-weight-bold"
-                        >
-                          {{ top.title }}
-                        </v-card-title>
-                      </div>
+                    <div class="d-flex flex-column custom-article-container">
+                      <v-card-text class="pt-0 pb-0 px-6">
+                        <v-chip color="secondary" class="rounded-lg">
+                          {{ top.category }}
+                        </v-chip>
+                      </v-card-text>
+                      <v-card-text class="py-3">
+                        {{ top.created_at }}
+                      </v-card-text>
+                      <v-card-title
+                        class="pt-0 article-title-big font-weight-bold"
+                      >
+                        {{ top.title }}
+                      </v-card-title>
                     </div>
-                  </router-link>
+                  </div>
                 </v-card>
-              </div>
-            </v-col>
-          </v-row>
-        </section>
-      </div>
-    </v-container>
+              </router-link>
+              <div :class="i == 2 ? 'd-none' : 'small-line'"></div>
+            </div>
+          </v-col>
+        </v-row>
+      </section>
+    </div>
+
+    <div v-if="routeHasSlug">
+      <section class="main">
+        <v-row>
+          <v-col cols="12" md="12" lg="7" xl="7">
+            <div v-for="(detailArt, i) in detailArticle" :key="i">
+              <v-card class="elevation-0">
+                <v-card-title
+                  v-html="detailArt.title"
+                  class="text-h4 font-weight-bold ps-0"
+                ></v-card-title>
+
+                <div class="d-flex flex-row">
+                  <v-chip color="secondary" class="rounded-lg mb-3">
+                    {{ detailArt.created_at }}
+                  </v-chip>
+                </div>
+
+                <v-img class="rounded-lg" :src="detailArt.thumbnail"></v-img>
+                <v-card-text
+                  v-html="detailArt.body"
+                  class="font-weight-regular black--text detail-text"
+                ></v-card-text>
+              </v-card>
+            </div>
+          </v-col>
+          <v-col cols="12" md="12" lg="5" xl="5">
+            <div
+              class="d-flex flex-column container-terkait"
+              v-for="(top, i) in articleTop"
+              :key="i"
+            >
+              <h3
+                class="font-weight-medium text-h5"
+                :class="i == 0 ? 'pt-16 mt-10 pb-4 mt-sm-0 pt-md-12' : 'd-none'"
+              >
+                Artikel Terkait
+              </h3>
+
+              <v-card class="elevation-0 py-4">
+                <router-link :to="{ path: `${top.links['self']}` }">
+                  <div class="d-flex flex-row">
+                    <v-img
+                      height="160"
+                      class="rounded-lg image-art"
+                      :src="top.thumbnail"
+                    ></v-img>
+
+                    <div class="custom-article-container">
+                      <v-card-text class="py-3">
+                        {{ top.created_at }}
+                      </v-card-text>
+                      <v-card-title
+                        class="pt-0 article-title-big font-weight-bold"
+                      >
+                        {{ top.title }}
+                      </v-card-title>
+                    </div>
+                  </div>
+                </router-link>
+              </v-card>
+            </div>
+          </v-col>
+        </v-row>
+      </section>
+    </div>
   </v-app>
 </template>
 
@@ -270,10 +268,6 @@ export default {
 </script>
 
 <style>
-.image-art {
-  flex: 0 200px !important;
-}
-
 .custom-article-container {
   width: 95% !important;
 }
@@ -307,5 +301,15 @@ export default {
 
 .detail-text {
   line-height: 2.25rem;
+  font-size: 1.3rem;
+}
+</style>
+
+<style>
+.image-art {
+  flex: 0 225px !important;
+}
+
+@media only screen and (max-width: 1263px) {
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-container>
+    <v-container class="container-detail-article">
       <ArticleComponent />
-      <div class="ml-9 mt-7 container-comment">
-        <div class="row">
+      <div class="mt-7 container-comment">
+        <div class="row mt-md-8">
           <div class="lines mx-2">
             <v-icon color="green darken-1">mdi-color-helper</v-icon>
           </div>
@@ -54,13 +54,9 @@
                 <div class="text-subtitle1 comment-content">
                   {{ comment.body }}
                 </div>
-                <div
-                  class="d-flex flex-row justify-space-between status-comment my-1"
-                >
-                  <div class="text-caption">{{ comment.created_at }}</div>
-                  <div class="text-caption">
-                    {{ comment.child_comment_count }} Suka
-                  </div>
+                <div class="d-flex flex-row status-comment my-1">
+                  <div class="mr-8">{{ comment.created_at }}</div>
+                  <div class="">{{ comment.child_comment_count }} Suka</div>
                   <!-- <div class="text-caption">Balas</div>
                   <div class="text-caption">Laporkan</div> -->
                 </div>
@@ -165,7 +161,7 @@ export default {
 
 <style>
 .container-comment {
-  max-width: 50%;
+  max-width: 55%;
 }
 .btn {
   margin-top: -5px;
@@ -186,5 +182,15 @@ export default {
 }
 .comment {
   max-height: 400px;
+}
+
+.container-detail-article {
+  /* max-width: 80%; */
+}
+
+@media only screen and (max-width: 1263px) {
+  .container-comment {
+    max-width: 100%;
+  }
 }
 </style>
