@@ -37,30 +37,27 @@
       <!-- <OvalTop /> -->
     </div>
 
-    <div class="d-flex flex-row container-three">
-      <div class="d-flex flex-column">
-        <h4 class="three-title font-weight-bold text-h4 mb-2">Mudah</h4>
-        <p class="three-desc">Hanya dengan beberapa klik</p>
-      </div>
-
-      <v-divider vertical></v-divider>
-
-      <div class="d-flex flex-column">
-        <h4 class="three-title font-weight-bold text-h4 mb-2">Efisien</h4>
-        <p class="three-desc">aplikasi yang terpercaya</p>
-      </div>
-
-      <v-divider vertical></v-divider>
-
-      <div class="d-flex flex-column">
-        <h4 class="three-title font-weight-bold text-h4 mb-2">Terpercaya</h4>
-        <p class="three-desc">Semua dokter kami pastikan ber-sertifikat</p>
-      </div>
-    </div>
+    <v-row class="justify-space-arround px-10 mt-5">
+      <v-col
+        cols="12" sm="6"
+        md="4"
+        class="d-flex flex-row justify-start"
+        v-for="item in keunggulan_arr"
+        :key="item"
+      >
+        <v-divider vertical></v-divider>
+        <div class="d-flex flex-column justify-center pl-3">
+          <h4 class="three-title font-weight-bold text-h4 mb-2">
+            {{ item?.title }}
+          </h4>
+          <p class="three-desc">{{ item?.description }}</p>
+        </div>
+      </v-col>
+    </v-row>
 
     <section class="tiga-keunggulan">
       <div class="d-flex flex-column">
-        <div class="container-keunggulan">
+        <v-row class="container-keunggulan">
           <div class="d-flex flex-row">
             <v-img
               src="@/assets/Landing Page/Keunggulan/ios-medkit-outline.svg"
@@ -101,7 +98,7 @@
               <h5 class="keunggulan-apa">Doctors</h5>
             </div>
           </div>
-        </div>
+        </v-row>
         <div class="d-flex flex-row container-desc-keunggulan">
           <p class="keunggulan-desc text-center">
             Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.
@@ -147,6 +144,8 @@
 
         <div class="ml-16 container-card1 flex-grow-1">
           <v-card
+            v-for="item in dummy_arr"
+            :key="item"
             max-width="255"
             max-height="350"
             class="custom-card-konsultasi rounded-lg"
@@ -168,6 +167,27 @@
             </v-card-actions>
           </v-card>
 
+          <!-- <v-card
+            max-width="255"
+            max-height="350"
+            class="custom-card-konsultasi rounded-lg"
+          >
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              height="170"
+            ></v-img>
+
+            <v-card-subtitle class="black--text pa-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+              pretium fermentum felis id condimentum.
+            </v-card-subtitle>
+
+            <v-card-actions class="d-flex justify-end mt-1">
+              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
+                SEE DETAILS
+              </v-btn>
+            </v-card-actions>
+          </v-card>
           <v-card
             max-width="255"
             max-height="350"
@@ -209,28 +229,7 @@
                 SEE DETAILS
               </v-btn>
             </v-card-actions>
-          </v-card>
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
-
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
-
-            <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
-            </v-card-actions>
-          </v-card>
+          </v-card> -->
         </div>
       </div>
     </section>
@@ -365,6 +364,21 @@ export default {
     categoryArticle: [],
     ArticleByCategory: [],
     articleLink: [],
+    dummy_arr: [1, 2, 3, 4],
+    keunggulan_arr: [
+      {
+        title: "Mudah",
+        description: "Hanya dengan beberapa klik",
+      },
+      {
+        title: "Efisien",
+        description: "Aplikasi yang terpercaya",
+      },
+      {
+        title: "Terpercaya",
+        description: "Semua dokter kami pastikan ber-sertifikat",
+      },
+    ],
   }),
 
   created() {
