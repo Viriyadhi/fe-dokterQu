@@ -638,17 +638,14 @@ export default {
   border-radius: 1.5rem 0;
   font-weight: 600;
   font-size: 0.9rem;
+  border-radius: 8px 0 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
 }
 
 .custom-card-konsultasi {
   padding: 0 !important;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
-}
-
-.button-layanan {
-  border-radius: 8px 0 !important;
-  font-weight: 600 !important;
-  font-size: 0.9rem !important;
 }
 </style>
 

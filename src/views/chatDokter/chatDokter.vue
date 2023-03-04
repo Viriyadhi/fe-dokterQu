@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <section class="checks">
-      <v-card class="mx-auto mt-16 janji-card white--text px-16 py-6" max-width="828">
+      <v-card
+        class="mx-auto mt-16 janji-card white--text px-16 py-6"
+        max-width="828"
+      >
         <div class="d-flex flex-row">
           <div class="d-flex flex-column">
             <h4 class="text-h4 janji-headline mb-4">DokterQ Checks!</h4>

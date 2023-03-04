@@ -143,13 +143,20 @@ const routes = [
         name: "ChatDokterDetail",
         component: ChatDokterDetail,
       },
+    ],
+  },
+
+  {
+    path: "/janji-temu",
+    component: DefaultView,
+    children: [
       {
-        path: "/janji-temu",
+        path: "/janji-temu/list",
         name: "JanjiTemu",
         component: JanjiTemu,
       },
       {
-        path: "/janji-temu-detail",
+        path: "/janji-temu/detail/user/:doctor/:slug",
         name: "JanjiTemuDetail",
         component: JanjiTemuDetail,
       },
