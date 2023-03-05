@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <v-container fluid class="px-16 py-10">
-      <v-row>
-        <v-col cols="3">
+      <v-row class="main-row">
+        <v-col cols="3" class="left-col">
           <div class="wrapper-left">
             <v-img
               src="@/assets/ECommerce/product-img.png"
@@ -46,11 +46,22 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="5">
+        <v-col cols="5" class="middle-col">
           <div class="wrapper-middle">
+            <v-img
+              src="@/assets/ECommerce/product-img.png"
+              max-height="200"
+              contain
+              class="middle-image-product"
+            ></v-img>
+
             <p class="product-name">
               {{ detailData.name }}
             </p>
+            <div class="product-cathegory">
+              <p class="cath-title">Kategori</p>
+              <p class="cath-name">{{ detailData.category }}</p>
+            </div>
             <p class="product-price">{{ detailData.price }}</p>
             <div class="product-warning">
               <v-img
@@ -131,7 +142,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="4" class="right-col">
           <div class="wrapper-right">
             <p class="consultation-title">Konsultasi Dokter</p>
             <v-card class="elevation-2 rounded-lg pa-4 consult-card">
@@ -296,6 +307,37 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width:700px) {
+  .main-row {
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .left-col {
+    display: none;
+  }
+
+  .middle-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .right-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width:700px) {
+  .middle-image-product {
+    display: none;
+  }
+
+  .product-cathegory {
+    display: none;
+  }
+}
+
 .right-wraps {
   height: 40px;
   display: flex;
@@ -335,13 +377,13 @@ input:focus {
   margin-bottom: 2rem;
 }
 
-.wrapper-left .product-cathegory .cath-title {
+.cath-title {
   font-size: 1.2rem;
   margin-bottom: 0;
   margin-top: 1rem;
 }
 
-.wrapper-left .product-cathegory .cath-name {
+.cath-name {
   /* font-size: 1.5rem; */
   color: #4caf50;
 }

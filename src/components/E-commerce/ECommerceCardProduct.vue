@@ -1,7 +1,7 @@
 <template>
   <v-card class="d-md-flex" elevation="0">
     <v-img max-height="175" max-width="160" :src="imageSrc"> </v-img>
-    <div class="px-md-4 py-md-3">
+    <div class="px-md-4 py-md-3 card-text">
       <h4 class="font-weight-medium title-card">
         {{ title }}
       </h4>
@@ -38,6 +38,13 @@ export default {
 </script>
 
 <style scoped>
+
+@media (max-width: 990px) {
+  .card-text {
+    padding: 0!important;
+  }
+}
+
 .title-card {
   width: 28.5rem !important;
 }

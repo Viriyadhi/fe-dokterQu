@@ -19,7 +19,7 @@
         </div>
       </v-col>
       <v-col cols="12" sm="7" md="5" class="pa-0 ">
-        <v-row no-gutters justify="start">
+        <v-row no-gutters justify="start" class="footer-item">
           <v-col 
             v-for="(item, i) in content"
             :key="i"
@@ -30,14 +30,14 @@
             xl="4"
           >
             <h2 class="footer-title">{{ item.title }}</h2>
-            <p class="mt-2">{{ item.text1 }}</p>
+            <p class="mt-3">{{ item.text1 }}</p>
             <p>{{ item.text2 }}</p>
             <p>{{ item.text3 }}</p>
             <p>{{ item.text4 }}</p>
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="12" md="2" class="pa-0 ">
+      <v-col cols="12" md="5" class="pa-0 ">
         <div class="d-flex flex-column">
           <div class="d-flex flex-row align-center container-logo">
             <v-avatar v-for="(icon, i) in logo" :key="i" size="37">
@@ -187,6 +187,12 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 600px) {
+  .footer-item {
+    flex-direction: column!important;
+  }
+}
+
 .btn-kesehatan {
   background-color: transparent !important;
   color: black !important;
