@@ -1,24 +1,92 @@
 <template>
   <div>
+    <v-navigation-drawer
+      absolute
+      v-model="drawer"
+      right
+      temporary
+      class="d-flex flex-column"
+    >
+      <v-list>
+        <v-list-item class="py-0 d-flex justify-end">
+          <v-btn icon flat width="30" height="30" @click="drawer = false">
+            <v-icon> mdi-close </v-icon>
+          </v-btn>
+        </v-list-item>
+        <v-list-item
+          class="py-0 d-flex justify-center mt-10 custom-drawer-item"
+          @click="$router.push({ name: 'Default' }),health_tab_is_active = false"
+        >
+          Beranda
+        </v-list-item>
+        <v-list-item
+          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+          @click="$router.push({ name: 'JanjiTemu' }),health_tab_is_active = false"
+        >
+          Konsultasi Offline
+        </v-list-item>
+        <v-list-item
+          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+          @click="$router.push('/commerce/shop/products'),health_tab_is_active = false"
+        >
+          Beli Obat
+        </v-list-item>
+        <v-list-item
+          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+          @click="$router.push('/chat-dokter'),health_tab_is_active = false"
+        >
+          Konsultasi Online
+        </v-list-item>
+        <v-list-item
+          class="py-0 d-flex justify-center mt-5 align-center custom-drawer-item relative"
+          @click="health_tab_is_active = !health_tab_is_active"
+          style="gap: 8px"
+        >
+          Kesehatan
+          <v-icon
+            >{{ health_tab_is_active ? "mdi-chevron-up" : "mdi-chevron-down" }}
+          </v-icon>
+        </v-list-item>
+        <div v-if="health_tab_is_active">
+          <v-list-item
+            class="py-0 d-flex justify-center custom-drawer-item"
+            v-for="item in items"
+            :key="item"
+            @click="
+              $router.push(`/detail/${item.name}`),
+                (health_tab_is_active = false)
+            "
+          >
+            {{ item.title }}
+          </v-list-item>
+        </div>
+      </v-list>
+    </v-navigation-drawer>
     <v-card>
       <v-app-bar
         :style="this.appbarStyle"
         fixed
-        class="px-16 navbar pt-3"
+        class="px-sm-16 navbar pt-3"
         elevation="0"
         v-scroll="onScrollContent"
       >
-        <v-img
-          src="@/assets/WebLogo.svg"
-          max-width="61.63"
-          max-height="56.47"
-          class=""
+        <div class="d-flex">
+          <v-img
+            src="@/assets/WebLogo.svg"
+            max-width="61.63"
+            max-height="56.47"
+            class=""
+          >
+          </v-img>
+          <router-link :to="{ name: 'Default' }">
+            <h1 class="mx-8 title-web">DokterQ</h1>
+          </router-link>
+        </div>
+
+        <div
+          class="d-flex align-center justify-space-between"
+          v-if="isXSmallScreenSize"
         >
-        </v-img>
-        <router-link :to="{ name: 'Default' }">
-          <h1 class="mx-8 title-web">DokterQ</h1>
-        </router-link>
-        <div class="d-flex align-center justify-space-between">
           <router-link :to="{ name: 'Default' }">
             <a class="mx-8">Beranda</a>
           </router-link>
@@ -61,7 +129,7 @@
         </div>
 
         <div
-          v-if="!localStorage"
+          v-if="!localStorage && isXSmallScreenSize"
           class="d-flex align-center justify-end flex-grow-1"
         >
           <router-link :to="{ name: 'Login' }">
@@ -83,7 +151,7 @@
         </div>
 
         <div
-          v-if="localStorage"
+          v-if="localStorage && isXSmallScreenSize"
           class="d-flex align-center justify-end flex-grow-1"
         >
           <div class="text-center">
@@ -137,8 +205,18 @@
           </div>
         </div>
 
-        <v-divider vertical></v-divider>
-        <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
+        <div class="d-flex" v-if="isXSmallScreenSize">
+          <v-divider vertical></v-divider>
+          <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
+        </div>
+
+        <v-spacer v-if="!isXSmallScreenSize"></v-spacer>
+        <v-app-bar-nav-icon
+          v-if="!isXSmallScreenSize"
+          class="text-black"
+          @click="drawer = !drawer"
+        >
+        </v-app-bar-nav-icon>
         <!-- <p @click="logOut()">Logout</p> -->
       </v-app-bar>
       <v-main class="pa-0 mt-16">
@@ -174,8 +252,14 @@ export default {
     closeOnClick: false,
     localStorage: "",
     dialog: false,
+    drawer: false,
+    health_tab_is_active: false,
   }),
-
+  computed: {
+    isXSmallScreenSize() {
+      return this.$vuetify?.breakpoint?.mdAndUp;
+    },
+  },
   created() {
     this.getLocalStorage();
   },
@@ -214,6 +298,13 @@ export default {
 </script>
 
 <style>
+.custom-drawer-item {
+  font-size: 16px;
+  font-weight: 600;
+}
+.custom-drawer-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 html {
   overflow: scroll;
   overflow-x: hidden;
