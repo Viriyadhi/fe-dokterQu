@@ -77,7 +77,7 @@
               </p>
             </div>
 
-            <div class="buttons-wrap">
+            <div class="buttons-wrap d-flex justify-space-between">
               <div class="left-wrap">
                 <v-btn
                   block
@@ -93,7 +93,7 @@
                   >Beli Sekarang</v-btn
                 >
               </div>
-              <div class="ms-8">
+              <div class="d-flex align-center">
                 <button
                   class="btn btn--minus"
                   @click="decrementCounter"
@@ -307,7 +307,17 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width:700px) {
+@media (max-width: 450px) {
+  .buttons-wrap {
+    flex-direction: column;
+  }
+
+  .left-wrap {
+    width: 100%!important;
+  }
+}
+
+@media (max-width:800px) {
   .main-row {
     justify-content: center;
     gap: 32px;
@@ -326,15 +336,24 @@ export default {
     flex: 0 0 100%;
     max-width: 100%;
   }
+
+  .left-wrap {
+    flex: 1;
+  }
+
 }
 
-@media (min-width:700px) {
+@media (min-width:800px) {
   .middle-image-product {
     display: none;
   }
 
   .product-cathegory {
     display: none;
+  }
+
+  .buttons-wrap {
+    justify-content: flex-start!important;
   }
 }
 
@@ -425,7 +444,7 @@ input:focus {
 
 .wrapper-middle .buttons-wrap {
   display: flex;
-  gap: 10px;
+  gap: 32px;
   align-items: center;
   margin-top: 1rem;
 }
