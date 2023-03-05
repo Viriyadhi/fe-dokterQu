@@ -1,229 +1,232 @@
 <template>
-  <div>
-    <v-navigation-drawer
-      absolute
-      v-model="drawer"
-      right
-      temporary
-      class="d-flex flex-column"
+  
+  <v-card class="mx-auto overflow-hidden">
+    <v-app-bar
+      :style="this.appbarStyle"
+      fixed
+      class="px-sm-16 navbar pt-3"
+      elevation="0"
+      v-scroll="onScrollContent"
     >
-      <v-list>
-        <v-list-item class="py-0 d-flex justify-end">
-          <v-btn icon flat width="30" height="30" @click="drawer = false">
-            <v-icon> mdi-close </v-icon>
-          </v-btn>
-        </v-list-item>
-        <v-list-item
-          class="py-0 d-flex justify-center mt-10 custom-drawer-item"
-          @click="$router.push({ name: 'Default' }),health_tab_is_active = false"
+      <div class="d-flex">
+        <v-img
+          src="@/assets/WebLogo.svg"
+          max-width="61.63"
+          max-height="56.47"
+          class=""
         >
-          Beranda
-        </v-list-item>
-        <v-list-item
-          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
-          @click="$router.push({ name: 'JanjiTemu' }),health_tab_is_active = false"
-        >
-          Konsultasi Offline
-        </v-list-item>
-        <v-list-item
-          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
-          @click="$router.push('/commerce/shop/products'),health_tab_is_active = false"
-        >
-          Beli Obat
-        </v-list-item>
-        <v-list-item
-          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
-          @click="$router.push('/chat-dokter'),health_tab_is_active = false"
-        >
-          Konsultasi Online
-        </v-list-item>
-        <v-list-item
-          class="py-0 d-flex justify-center mt-5 align-center custom-drawer-item relative"
-          @click="health_tab_is_active = !health_tab_is_active"
-          style="gap: 8px"
-        >
-          Kesehatan
-          <v-icon
-            >{{ health_tab_is_active ? "mdi-chevron-up" : "mdi-chevron-down" }}
-          </v-icon>
-        </v-list-item>
-        <div v-if="health_tab_is_active">
-          <v-list-item
-            class="py-0 d-flex justify-center custom-drawer-item"
-            v-for="item in items"
-            :key="item"
-            @click="
-              $router.push(`/detail/${item.name}`),
-                (health_tab_is_active = false)
-            "
-          >
-            {{ item.title }}
-          </v-list-item>
-        </div>
-      </v-list>
-    </v-navigation-drawer>
-    <v-card>
-      <v-app-bar
-        :style="this.appbarStyle"
-        fixed
-        class="px-sm-16 navbar pt-3"
-        elevation="0"
-        v-scroll="onScrollContent"
+        </v-img>
+        <router-link :to="{ name: 'Default' }">
+          <h1 class="mx-8 title-web">DokterQ</h1>
+        </router-link>
+      </div>
+
+      <div
+        class="d-flex align-center justify-space-between"
+        v-if="isXSmallScreenSize"
       >
-        <div class="d-flex">
-          <v-img
-            src="@/assets/WebLogo.svg"
-            max-width="61.63"
-            max-height="56.47"
-            class=""
-          >
-          </v-img>
-          <router-link :to="{ name: 'Default' }">
-            <h1 class="mx-8 title-web">DokterQ</h1>
-          </router-link>
-        </div>
+        <router-link :to="{ name: 'Default' }">
+          <a class="mx-8">Beranda</a>
+        </router-link>
+        <router-link :to="{ name: 'JanjiTemu' }">
+          <a class="mx-8">Konsultasi Offline</a>
+        </router-link>
+        <router-link :to="{ path: '/commerce/shop/products' }">
+          <a class="mx-8">Beli Obat</a>
+        </router-link>
+        <router-link :to="{ path: '/chat-dokter' }">
+          <a class="mx-8">Konsultasi Online</a>
+        </router-link>
 
-        <div
-          class="d-flex align-center justify-space-between"
-          v-if="isXSmallScreenSize"
+        <v-menu
+          open-on-hover
+          bottom
+          :offset-y="offset"
+          :close-on-click="closeOnClick"
         >
-          <router-link :to="{ name: 'Default' }">
-            <a class="mx-8">Beranda</a>
-          </router-link>
-          <router-link :to="{ name: 'JanjiTemu' }">
-            <a class="mx-8">Konsultasi Offline</a>
-          </router-link>
-          <router-link :to="{ path: '/commerce/shop/products' }">
-            <a class="mx-8">Beli Obat</a>
-          </router-link>
-          <router-link :to="{ path: '/chat-dokter' }">
-            <a class="mx-8">Konsultasi Online</a>
-          </router-link>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              class="ml-8 mr-16 btn-kesehatan text-capitalize"
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              Kesehatan
+              <v-icon>mdi-menu-down</v-icon>
+            </v-btn>
+          </template>
 
-          <v-menu
-            open-on-hover
-            bottom
-            :offset-y="offset"
-            :close-on-click="closeOnClick"
+          <v-list>
+            <v-list-item v-for="(item, index) in items" :key="index">
+              <router-link :to="{ path: `/detail/${item.name}` }">
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </router-link>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+
+      <div
+        v-if="!localStorage && isXSmallScreenSize"
+        class="d-flex align-center justify-end flex-grow-1"
+      >
+        <router-link :to="{ name: 'Login' }">
+          <a class="login-text mr-8">LOGIN</a>
+        </router-link>
+        <div class="text-center mx-8">
+          <v-btn
+            :to="{ path: 'register-popup' }"
+            rounded
+            color="success"
+            class="button-register"
+            dark
           >
+            <router-link :to="{ path: 'register-popup' }">
+              <a class="register-text">REGISTER</a>
+            </router-link>
+          </v-btn>
+        </div>
+      </div>
+
+      <div
+        v-if="localStorage && isXSmallScreenSize"
+        class="d-flex align-center justify-end flex-grow-1"
+      >
+        <div class="text-center">
+          <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                class="ml-8 mr-16 btn-kesehatan text-capitalize"
-                dark
+              <v-chip
                 v-bind="attrs"
                 v-on="on"
+                outlined
+                color="black"
+                class="mr-8"
               >
-                Kesehatan
-                <v-icon>mdi-menu-down</v-icon>
-              </v-btn>
+                <v-avatar>
+                  <v-img :src="localStorage.data.photo"></v-img>
+                </v-avatar>
+                <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
+              </v-chip>
             </template>
 
-            <v-list>
-              <v-list-item v-for="(item, index) in items" :key="index">
-                <router-link :to="{ path: `/detail/${item.name}` }">
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </router-link>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </div>
+            <v-card>
+              <v-card-title class="text-h5 grey lighten-2">
+                Privacy Policy
+              </v-card-title>
 
-        <div
-          v-if="!localStorage && isXSmallScreenSize"
-          class="d-flex align-center justify-end flex-grow-1"
+              <v-card-text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </v-card-text>
+
+              <v-divider></v-divider>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+
+                <v-btn color="primary" @click="dialog = false" text>
+                  Gajadi
+                </v-btn>
+
+                <v-btn color="primary" text @click="logout()"> I accept </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </div>
+      </div>
+
+      <div class="d-flex" v-if="isXSmallScreenSize">
+        <v-divider vertical></v-divider>
+        <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
+      </div>
+
+      <v-spacer v-if="!isXSmallScreenSize"></v-spacer>
+      <v-app-bar-nav-icon
+        v-if="!isXSmallScreenSize"
+        class="text-black"
+        @click="drawer = !drawer"
+      >
+      </v-app-bar-nav-icon>
+      <!-- <p @click="logOut()">Logout</p> -->
+    </v-app-bar>
+    <v-main class="pa-0 mt-16">
+      <router-view />
+    </v-main>
+    <v-navigation-drawer
+    v-if="!isXSmallScreenSize"
+    absolute
+    v-model="drawer"
+    right
+    temporary
+    class="d-flex flex-column"
+  >
+    <v-list nav>
+      <v-list-item class="py-0 d-flex justify-end">
+        <v-btn icon flat width="30" height="30" @click="drawer = false">
+          <v-icon> mdi-close </v-icon>
+        </v-btn>
+      </v-list-item>
+      <v-list-item
+        class="py-0 d-flex justify-center mt-10 custom-drawer-item"
+        @click="
+          $router.push({ name: 'Default' }), (health_tab_is_active = false)
+        "
+      >
+        Beranda
+      </v-list-item>
+      <v-list-item
+        class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+        @click="
+          $router.push({ name: 'JanjiTemu' }), (health_tab_is_active = false)
+        "
+      >
+        Konsultasi Offline
+      </v-list-item>
+      <v-list-item
+        class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+        @click="
+          $router.push('/commerce/shop/products'),
+            (health_tab_is_active = false)
+        "
+      >
+        Beli Obat
+      </v-list-item>
+      <v-list-item
+        class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+        @click="$router.push('/chat-dokter'), (health_tab_is_active = false)"
+      >
+        Konsultasi Online
+      </v-list-item>
+      <v-list-item
+        class="py-0 d-flex justify-center mt-5 align-center custom-drawer-item relative"
+        @click="health_tab_is_active = !health_tab_is_active"
+        style="gap: 8px"
+      >
+        Kesehatan
+        <v-icon
+          >{{ health_tab_is_active ? "mdi-chevron-up" : "mdi-chevron-down" }}
+        </v-icon>
+      </v-list-item>
+      <div v-if="health_tab_is_active">
+        <v-list-item
+          class="py-0 d-flex justify-center custom-drawer-item"
+          v-for="item in items"
+          :key="item"
+          @click="
+            $router.push(`/detail/${item.name}`), (health_tab_is_active = false)
+          "
         >
-          <router-link :to="{ name: 'Login' }">
-            <a class="login-text mr-8">LOGIN</a>
-          </router-link>
-          <div class="text-center mx-8">
-            <v-btn
-              :to="{ path: 'register-popup' }"
-              rounded
-              color="success"
-              class="button-register"
-              dark
-            >
-              <router-link :to="{ path: 'register-popup' }">
-                <a class="register-text">REGISTER</a>
-              </router-link>
-            </v-btn>
-          </div>
-        </div>
-
-        <div
-          v-if="localStorage && isXSmallScreenSize"
-          class="d-flex align-center justify-end flex-grow-1"
-        >
-          <div class="text-center">
-            <v-dialog v-model="dialog" width="500">
-              <template v-slot:activator="{ on, attrs }">
-                <v-chip
-                  v-bind="attrs"
-                  v-on="on"
-                  outlined
-                  color="black"
-                  class="mr-8"
-                >
-                  <v-avatar>
-                    <v-img :src="localStorage.data.photo"></v-img>
-                  </v-avatar>
-                  <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
-                </v-chip>
-              </template>
-
-              <v-card>
-                <v-card-title class="text-h5 grey lighten-2">
-                  Privacy Policy
-                </v-card-title>
-
-                <v-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </v-card-text>
-
-                <v-divider></v-divider>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-
-                  <v-btn color="primary" @click="dialog = false" text>
-                    Gajadi
-                  </v-btn>
-
-                  <v-btn color="primary" text @click="logout()">
-                    I accept
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-          </div>
-        </div>
-
-        <div class="d-flex" v-if="isXSmallScreenSize">
-          <v-divider vertical></v-divider>
-          <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
-        </div>
-
-        <v-spacer v-if="!isXSmallScreenSize"></v-spacer>
-        <v-app-bar-nav-icon
-          v-if="!isXSmallScreenSize"
-          class="text-black"
-          @click="drawer = !drawer"
-        >
-        </v-app-bar-nav-icon>
-        <!-- <p @click="logOut()">Logout</p> -->
-      </v-app-bar>
-      <v-main class="pa-0 mt-16">
-        <router-view />
-      </v-main>
-    </v-card>
-  </div>
+          {{ item.title }}
+        </v-list-item>
+      </div>
+    </v-list>
+  </v-navigation-drawer>
+  </v-card>
 </template>
 <script>
 import axios from "axios";
