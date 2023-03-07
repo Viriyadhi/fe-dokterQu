@@ -9,14 +9,15 @@
         ></v-progress-linear>
       </template>
 
-      <v-img
-        height="645"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-        class="align-end"
-      >
-        <v-card-title class="white--text ma-8 font-weight-bold text-h5">
-          Dr. Mariana Carlos, MARS</v-card-title
-        >
+      <v-img contain height="645" :src="dataCard.photo" class="align-end">
+        <div class="d-flex justify-space-between">
+          <v-card-title class="black--text ma-8 font-weight-bold text-h5">
+            {{ dataCard.name }}
+          </v-card-title>
+          <v-card-title class="black--text ma-8 font-weight-bold text-h5">
+            {{ dataCard.is_online ? "Online" : "Offline" }}
+          </v-card-title>
+        </div>
       </v-img>
 
       <div class="card-container pa-16">
@@ -26,15 +27,13 @@
         <div class="d-flex flex-row justify-space-around align-center">
           <v-card class="mb-8 rounded-lg" max-width="800" height="133">
             <div class="container-content">
-              <v-img
-                src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
-                max-height="79"
-                max-width="79"
-                class="icon-logo ma-6"
-              >
+              <v-img max-height="79" max-width="79" class="icon-logo ma-6">
+                <v-icon class="d-flex align-center justify-center text-h2 mt-2"
+                  >mdi-currency-usd</v-icon
+                >
               </v-img>
               <div class="d-flex flex-column">
-                <h4 class="test-card-title">Kemampuan Pendengaran</h4>
+                <h4 class="test-card-title">{{ dataCard.price_homecare }}</h4>
                 <p class="test-card-desc">
                   lorem, vel fermentum augue porta id. Aliquam lobortis magna
                   nequeil
@@ -44,14 +43,51 @@
           </v-card>
           <v-card class="mb-8 rounded-lg" max-width="800" height="133">
             <div class="container-content">
-              <v-img
-                src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
-                max-height="79"
-                max-width="79"
-                class="icon-logo ma-6"
-              ></v-img>
+              <v-img max-height="79" max-width="79" class="icon-logo ma-6">
+                <v-icon class="d-flex align-center justify-center text-h2 mt-2"
+                  >mdi-star</v-icon
+                >
+              </v-img>
               <div class="d-flex flex-column">
-                <h4 class="test-card-title">Kemampuan Pendengaran</h4>
+                <h4 class="test-card-title">{{ dataCard.type }}</h4>
+
+                <p class="test-card-desc">
+                  lorem, vel fermentum augue porta id. Aliquam lobortis magna
+                  nequeil
+                </p>
+              </div>
+            </div>
+          </v-card>
+        </div>
+        <div class="d-flex flex-row justify-space-around align-center">
+          <v-card class="mb-8 rounded-lg" max-width="800" height="133">
+            <div class="container-content">
+              <v-img max-height="79" max-width="79" class="icon-logo ma-6">
+                <v-icon class="d-flex align-center justify-center text-h2 mt-2"
+                  >mdi-briefcase</v-icon
+                >
+              </v-img>
+              <div class="d-flex flex-column">
+                <h4 class="test-card-title">
+                  {{ dataCard.pengalaman }} Pengalaman
+                </h4>
+                <p class="test-card-desc">
+                  lorem, vel fermentum augue porta id. Aliquam lobortis magna
+                  nequeil
+                </p>
+              </div>
+            </div>
+          </v-card>
+          <v-card class="mb-8 rounded-lg" max-width="800" height="133">
+            <div class="container-content">
+              <v-img max-height="79" max-width="79" class="icon-logo ma-6">
+                <v-icon class="d-flex align-center justify-center text-h2 mt-2"
+                  >mdi-book-open-blank-variant</v-icon
+                >
+              </v-img>
+              <div class="d-flex flex-column">
+                <h4 class="test-card-title">{{ dataCard.alumnus }}</h4>
+
                 <p class="test-card-desc">
                   lorem, vel fermentum augue porta id. Aliquam lobortis magna
                   nequeil
@@ -61,7 +97,7 @@
           </v-card>
         </div>
 
-        <v-card-title class="text-h4 font-weight-medium"
+        <!-- <v-card-title class="text-h4 font-weight-medium"
           >Keterangan</v-card-title
         >
         <v-card-text class="custom-text black--text px-8">
@@ -77,9 +113,9 @@
           meliputi penatalaksanaan berbagai jenis penyakit dan kelainan rongga
           mulut yang memerlukan pendekatan secara bedah sehingga menuntut
           penguasaan ilmu kedokteran secara holistik dan terintegrasi.
-        </v-card-text>
+        </v-card-text> -->
 
-        <v-card-title class="text-h4 font-weight-medium"
+        <!-- <v-card-title class="text-h4 font-weight-medium"
           >Jadwal Praktik</v-card-title
         >
 
@@ -87,9 +123,9 @@
           Anda bisa lihat daftar lengkapnya pada tabel yang ada di bawah. anda
           bisa langsung klik pada daftar isi untuk menuju jadwal dokter
           spesialis yang anda inginkan.
-        </v-card-text>
+        </v-card-text> -->
 
-        <v-card-title class="text-h6 font-weight-medium"
+        <v-card-title class="text-h4 font-weight-medium"
           >Pilih tanggal dan waktu kunjungan
         </v-card-title>
         <v-card-text class="container-jadwal-praktik px-8">
@@ -116,13 +152,12 @@
           </div>
           <div class="row px-10 my-7">
             <div
-            v-for="n in 3" :key="n"
-              class="d-flex flex-row align-center card-sendiri rounded-lg px-3 mx-3" 
+              v-for="n in 3"
+              :key="n"
+              class="d-flex flex-row align-center card-sendiri rounded-lg px-3 mx-3"
             >
-            <v-icon color="black">mdi-check-bold</v-icon>
-            <div class="mx-auto">
-                13.30
-            </div>
+              <v-icon color="black">mdi-check-bold</v-icon>
+              <div class="mx-auto">13.30</div>
             </div>
           </div>
         </div>
@@ -297,6 +332,8 @@
 
 <script>
 import DialogSuccess from "@/components/Dialog/dialogSuccess.vue";
+import axios from "axios";
+import { EventBus } from "../../../../event-bus";
 export default {
   components: {
     DialogSuccess,
@@ -307,6 +344,7 @@ export default {
     dialog: false,
     dialogSuccess: false,
     toggleHours: false,
+    dataCard: [],
     jadwalHari: [
       {
         hari: "Senin",
@@ -329,7 +367,6 @@ export default {
         tanggal: "12/12/2021",
       },
     ],
-
 
     jadwalJam: [
       {
@@ -365,6 +402,9 @@ export default {
       opacity: "0.9 !important",
     },
   }),
+  mounted() {
+    this.getDetailDokter();
+  },
 
   methods: {
     reserve() {
@@ -382,6 +422,24 @@ export default {
     jadwalPraktik(p) {
       console.log(p.path[0].style);
       this.toggleHours = true;
+    },
+
+    async getDetailDokter() {
+      try {
+        var route = this.$route.params;
+        const res = await axios.get(`${this.$api}/user/doctor/${route.slug}`);
+        const data = res.data.data;
+        this.dataCard = data;
+        console.log(this.dataCard);
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
     },
   },
 };

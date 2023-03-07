@@ -51,9 +51,7 @@
             v-for="(data, i) in dataCard"
             :key="i"
           >
-            <router-link
-              :to="{ path: `/janji-temu/detail${data.links['self']}` }"
-            >
+            <router-link :to="{ path: `/janji-temu/detail/${data.slug}` }">
               <v-card
                 max-width="380"
                 max-height="890"
@@ -101,7 +99,7 @@
                 <v-card-actions class="d-flex justify-end mt-1 pb-0">
                   <router-link
                     class="white--text"
-                    :to="{ path: `/janji-temu/detail${data.links['self']}` }"
+                    :to="{ path: `/janji-temu/detail/detail/${data.slug}` }"
                   >
                     <v-btn color="primary" class="pa-5 button-janji">
                       Buat Janji
