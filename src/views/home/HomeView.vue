@@ -315,7 +315,7 @@
           <router-link :to="{ path: `${articleData.links['self']}` }">
             <div class="">
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                :src="articleData.thumbnail"
                 height="200px"
                 class="article-img rounded-t-lg"
               ></v-img>
@@ -324,13 +324,17 @@
             <!-- <v-card-title> Top western road trips </v-card-title> -->
 
             <v-card-text class="px-5 py-0 pt-4">
-              <v-chip color="secondary" class="rounded-lg"> mata </v-chip>
+              <v-chip color="secondary" class="rounded-lg">
+                {{ articleData.category }}
+              </v-chip>
             </v-card-text>
 
-            <v-card-subtitle class="card-desc2"> 2023-02-16 </v-card-subtitle>
+            <v-card-subtitle class="card-desc2"
+              >{{ articleData.created_at }}
+            </v-card-subtitle>
 
             <v-card-text class="font-weight-bold pb-0 px-5">
-              Mengenal Kondisi Flat Foot, Berbahaya atau Tidak?
+              {{ articleData.title }}
             </v-card-text>
 
             <v-card-text class="pt-0 px-5">

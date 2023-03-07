@@ -161,6 +161,7 @@ export default {
     userAddresses: [],
     detailApotek: [],
     cartData: [],
+
     dialog: false,
     token: null,
     tokenData: {

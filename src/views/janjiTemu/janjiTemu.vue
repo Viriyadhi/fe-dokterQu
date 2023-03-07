@@ -3,35 +3,45 @@
     <v-container>
       <section class="my-8">
         <v-text-field
+          v-model="searchQuery"
           append-icon="mdi-magnify"
           label="Cari Nama Rumah Sakit, Klinik, Laboratorium"
           single-line
           outlined
           hide-details
+          @input="getListDokter"
         ></v-text-field>
       </section>
 
       <div class="button-group mt-2 mx-auto">
         <v-btn
-          v-for="(tipe, i) in tipeIndraBtn"
-          :key="i"
-          outlined
-          rounded
+          v-for="tipe in categoryDokter"
+          :key="tipe.id"
+          :id="tipe.id"
+          :class="tipe.clicked ? 'active' : ''"
           class="button-group-child"
           width="207px"
           height="37"
+          @click="
+            tipe.clicked
+              ? (selectedTypeDoctor = null)
+              : (selectedTypeDoctor = tipe.slug);
+            toggleActive(tipe);
+            getListDokter();
+          "
+          outlined
+          rounded
         >
-          {{ tipe.indra }}
+          {{ tipe.name }}
         </v-btn>
       </div>
 
       <section>
         <div class="d-flex flex-row justify-space-between align-center">
           <h2 class="janji-header-title my-8 mb-4">Pilih Dokter</h2>
-          <a class="janji-header-link"> Lihat semua</a>
         </div>
 
-        <v-row>
+        <v-row v-scroll="detectBottomPage">
           <v-col
             cols="12"
             lg="3"
@@ -107,52 +117,84 @@
 
 <script>
 import axios from "axios";
+// import _ from "lodash";
 import { EventBus } from "../../../event-bus.js";
 
 export default {
   name: "janjiTemu",
   data: () => ({
-    tipeIndraBtn: [
-      {
-        indra: "Telinga",
-      },
-      {
-        indra: "Mata",
-      },
-      {
-        indra: "Kulit",
-      },
-      {
-        indra: "Lidah",
-      },
-      {
-        indra: "Hidung",
-      },
-    ],
-
+    categoryDokter: [],
+    selectedPage: null,
+    queryPage: null,
+    searchQuery: null,
     dataCard: [],
+    clicked: false,
+    selectedTypeDoctor: null,
   }),
 
   created() {
-    //
+    this.$watch(
+      async () => {
+        this.$route;
+        return {};
+      },
+      async () => {
+        this.categoryDokter = [];
+        this.dataCard = [];
+        this.clicked = false;
+        this.selectedPage = null;
+      }
+    );
   },
 
   mounted() {
+    this.getDokterCategory();
     this.getListDokter();
   },
 
   computed: {
-    //
+    filteredItems() {
+      return this.dataCard.filter((item) => {
+        return item.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+      });
+    },
   },
 
   methods: {
-    async getListDokter() {
+    detectBottomPage() {
+      if (
+        window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+        this.selectedPage !== null
+      ) {
+        console.log("halo");
+        this.selectedTypeDoctor = "nextPage";
+        this.getListDokter();
+        console.log(this.search);
+      }
+      console.log(
+        window.innerHeight + window.scrollY >= document.body.offsetHeight
+      );
+    },
+
+    // detectBottomPageQuery() {
+    //   if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    //   }window.innerHeight + window.scrollY >= document.body.offsetHeight
+    // },
+    toggleActive(tipe) {
+      this.categoryDokter.forEach((item) => {
+        if (item.id !== tipe.id) {
+          item.clicked = false;
+        }
+      });
+      tipe.clicked = !tipe.clicked;
+    },
+
+    async getDokterCategory() {
       try {
-        EventBus.$emit("startLoading");
-        const response = await axios.get(`${this.$api}/user/doctors`);
-        const data = response.data.data.doctors;
-        this.dataCard = data;
-        console.log(data);
+        const res = await axios.get(`${this.$api}/user/doctor/doctor-type`);
+        this.categoryDokter = res.data.data.map((tipe) => {
+          return { ...tipe, clicked: false };
+        });
       } catch (err) {
         var error = err;
         if (err.response.data.message) {
@@ -161,9 +203,113 @@ export default {
           EventBus.$emit("showSnackbar", error, "red");
         }
       }
-      EventBus.$emit("stopLoading");
     },
+
+    async getListDokter() {
+      try {
+        let url = `${this.$api}/user/doctors?page=1`;
+        console.log(
+          "halo: ",
+          this.selectedTypeDoctor,
+          this.searchQuery,
+          this.selectedPage
+        );
+
+        if (this.searchQuery) {
+          console.log("searcg");
+          url += `&search=${this.searchQuery}`;
+        }
+        if (this.selectedTypeDoctor) {
+          console.log("typelign");
+          url += `&type=${this.selectedTypeDoctor}`;
+        }
+        if (this.selectedTypeDoctor === "nextPage") {
+          console.log("nextPage");
+          url = this.selectedPage;
+        }
+        //  else if (this.searchQuery && this.selectedTypeDoctor) {
+        //   console.log("search dan typling");
+        //   url += `?search=${this.searchQuery}&type=${this.selectedTypeDoctor}`;
+        // }
+
+        const response = await axios.get(url);
+
+        this.dataCard =
+          this.selectedTypeDoctor === "nextPage"
+            ? [...this.dataCard, ...response.data.data.doctors]
+            : response.data.data.doctors;
+        this.selectedPage = response.data.data.next_page;
+
+        console.log("selectedPage", this.selectedPage);
+      } catch (err) {
+        console.log(err);
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit(
+            "showSnackbar",
+            `Tidak ada dokter dengan nama ${this.searchQuery}`,
+            "red"
+          );
+        }
+      }
+    },
+
+    // search: _.debounce(async function () {
+    //   const page = this.queryPage;
+    //   let query = this.searchQuery;
+    //   this.selectedPage = null;
+    //   window.addEventListener("scroll", this.detectBottomPageQuery);
+
+    //   try {
+    //     if (!page && query) {
+    //       const response = await axios.get(
+    //         `${this.$api}/user/doctors?search=${query}`
+    //       );
+    //       const data = response.data.data.doctors;
+    //       const link = response.data.data.next_page;
+    //       this.dataCard = data;
+    //       this.queryPage = link;
+    //       console.log(`Search 1 jalan, and searching for ${query}`);
+
+    //       if (!link) {
+    //         window.removeEventListener("scroll", this.detectBottomPageQuery);
+    //       }
+    //     }
+    //     if (page && query) {
+    //       const response = await axios.get(`${page}`);
+    //       const data = response.data.data.doctors;
+    //       const link = response.data.data.next_page;
+    //       this.dataCard = this.dataCard.concat(data);
+    //       this.queryPage = link;
+    //       console.log(
+    //         `Search 2 jalan, and searching for ${query} di page ${page}`
+    //       );
+    //       if (!link) {
+    //         window.removeEventListener("scroll", this.detectBottomPageQuery);
+    //       }
+    //     }
+
+    //     if (!query) {
+    //       this.getListDokter();
+    //       return;
+    //     }
+    //   } catch (err) {
+    //     var error = err;
+    //     if (err.response.data.message) {
+    //       error = err.response.data.message;
+    //       console.log(error);
+    //       EventBus.$emit(
+    //         "showSnackbar",
+    //         `Tidak ada dokter dengan nama ${query}`,
+    //         "red"
+    //       );
+    //     }
+    //   }
+    // }, 250),
   },
+  watch: {},
 };
 </script>
 
@@ -216,5 +362,10 @@ export default {
 
 .container-text-short {
   height: 1.5rem !important;
+}
+
+.active {
+  background: #4caf50 !important;
+  color: white !important;
 }
 </style>
