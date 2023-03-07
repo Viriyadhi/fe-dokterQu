@@ -156,14 +156,14 @@ const routes = [
         component: JanjiTemu,
       },
       {
-        path: "/janji-temu/detail/user/:doctor/:slug",
-        name: "JanjiTemuDetail",
-        component: JanjiTemuDetail,
-      },
-      {
-        path: "/detail-dokter",
+        path: "/janji-temu/detail/:slug",
         name: "DetailDokter",
         component: DetailDokter,
+      },
+      {
+        path: "janji-temu/detail-dokter/:slug",
+        name: "JanjiTemuDetail",
+        component: JanjiTemuDetail,
       },
       // {
       //   path: "/janji-temu/:dokter",
