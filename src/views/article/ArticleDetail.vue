@@ -43,7 +43,7 @@
                 </v-avatar>
               </div>
               <div class="col-11 pl-7">
-                <div class="text-body1 title-comment black--text">
+                <div class="title-comment">
                   {{ comment.user.name }}
                 </div>
                 <div class="text-subtitle1 comment-content">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="d-flex flex-row status-comment my-1 black--text">
                   <div class="mr-8">{{ comment.created_at }}</div>
-                  <div class="mr-8">{{ comment.child_comment_count }} Suka</div>
+                  <!-- <div class="mr-8">{{ comment }} Suka</div> -->
                   <div class="mr-8 reply" @click="showReplyField(comment)">
                     Balas
                   </div>
@@ -59,8 +59,8 @@
                     v-if="comment.links.child_comment"
                     class="reply"
                     @click="
-                      getComment(comment);
                       showChildComment(comment);
+                      getComment(comment);
                     "
                   >
                     Lihat Balasan ({{ comment.child_comment_count }})
@@ -88,7 +88,11 @@
                 </div>
 
                 <div class="mt-4" v-if="hasChild && comment.clickedChild">
-                  <v-card v-for="(child, i) in commentChild" :key="i">
+                  <v-card
+                    flat
+                    v-for="(child, i) in commentChild['comments']"
+                    :key="i"
+                  >
                     <v-row>
                       <v-col lg="1">
                         <v-avatar>
@@ -108,25 +112,17 @@
                           <div class="mr-8">
                             {{ child.child_comment_count }} Suka
                           </div>
-                          <!-- <div
-                            class="mr-8 reply"
-                            @click="showReplyField(comment)"
-                          >
-                            Balas {{ i }}
-                          </div> -->
-                          <!-- <div
-                            class="reply"
-                            @click="
-                              getComment(comment);
-                              showChildComment(comment);
-                            "
-                          >
-                            Lihat Balasan
-                          </div> -->
                         </div>
                       </v-col>
                     </v-row>
                   </v-card>
+                  <!-- <div
+                    v-if="hasMoreLink"
+                    @click="loadMoreComment(commentChild)"
+                    class="reply mt-4"
+                  >
+                    Muat Lebih
+                  </div> -->
                 </div>
               </div>
             </v-row>
@@ -159,6 +155,8 @@ export default {
     isReplying: false,
     replyLink: null,
     hasChild: false,
+    hasMoreLink: "",
+    parentChild: "",
   }),
 
   created() {
@@ -181,29 +179,32 @@ export default {
   methods: {
     async getComment(dataComment) {
       try {
-        console.log("get comment jalan");
+        // console.log("get comment jalan");
+
         if (!dataComment) {
-          console.log("ini url: ", this.urlComment);
           const comment = await axios.get(`${this.$api}${this.urlComment}`);
           this.commentData = comment.data.data.comments.map((tipe) => {
             return { ...tipe, clicked: false, clickedChild: false };
           });
           const data = comment.data.data.comments;
-
           const commentLength = data;
           const length = commentLength.length;
           this.lengthComment = length;
         }
 
-        if (dataComment.links.child_comment) {
+        if (dataComment.links.child_comment && dataComment.clickedChild) {
+          console.log("ini data comment: ", dataComment);
           this.hasChild = true;
           const childLink = dataComment.links.child_comment;
-          console.log("ini data comment: ", dataComment);
           const ChildComment = await axios.get(`${this.$api}${childLink}`);
-          console.log("ini child comment: ", ChildComment.data.data.comments);
-          this.commentChild = ChildComment.data.data.comments;
+          const comment = ChildComment.data.data;
+          this.commentChild = comment;
 
-          // const getChildComment;
+          if (comment.next_page) {
+            const link = comment.next_page;
+            this.hasMoreLink = link;
+            console.log("ini link: ", this.hasMoreLink);
+          }
         }
       } catch (err) {
         var error = err;
@@ -215,6 +216,11 @@ export default {
       }
     },
 
+    // async loadMoreComment() {
+    //   try {
+    //   } catch (error) {}
+    // },
+
     async replyComment() {
       try {
         console.log("reply comment jalan");
@@ -222,8 +228,6 @@ export default {
           body: this.bodyReply,
         });
         if (reply.data.status == true) {
-          // console.log("ini child link: ", reply.data.data);
-          // console.log("ini child link: ", childLink);
           this.bodyReply = null;
           await this.getComment();
         }
@@ -282,8 +286,6 @@ export default {
     },
 
     showChildComment(data) {
-      console.log("ini data: ", data);
-      console.log("show child comment jalan");
       this.commentData.forEach((item) => {
         if (item.id !== data.id) {
           item.clickedChild = false;
@@ -300,7 +302,6 @@ export default {
     setUrlComment(value) {
       this.urlComment = value.comment;
       this.getComment();
-      console.log("ini url: ", this.urlComment);
     },
   },
 };

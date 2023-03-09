@@ -212,7 +212,6 @@ export default {
         const res = await axios.get(`${this.$api}/article/post/${route.slug}`);
         const data = res.data.data;
         this.detailArticle.push(data);
-        console.log(data.links);
         this.$emit("get-links", data.links);
       } catch (err) {
         var error = err;
