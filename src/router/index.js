@@ -23,7 +23,9 @@ import ProductDetailView from "@/views/E-Commerce/ProductDetailView.vue";
 import CartView from "@/views/E-Commerce/CartView.vue";
 import CheckoutView from "@/views/E-Commerce/CheckoutView.vue";
 import RoomChat from "@/views/chatDokter/RoomChat.vue";
-
+import TotalPasien from "@/components/Dashboard/TotalPasien";
+import TotalPasienChart from "@/components/Dashboard/TotalPasienChart";
+import TodaysVisitors from "@/components/Dashboard/TodaysVisitors";
 import DefaultView from "@/layouts/Default.vue";
 import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
 import ForgotPasswordLayout from "@/layouts/RegisterLogin/ForgotPassword.vue";
@@ -172,7 +174,21 @@ const routes = [
       // },
     ],
   },
-
+  {
+    path: "/TotalPasien",
+    name: "TotalPasien",
+    component: TotalPasien,
+  },
+  {
+    path: "/TotalPasienChart",
+    name: "TotalPasienChart",
+    component: TotalPasienChart,
+  },
+  {
+    path: "/TodaysVisitors",
+    name: "TodaysVisitors",
+    component: TodaysVisitors,
+  },
   {
     path: "/commerce",
     component: CommerceLayout,
