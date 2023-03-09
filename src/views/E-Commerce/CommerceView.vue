@@ -1,35 +1,32 @@
 <template>
-  <v-app class="pa-10 mx-16">
-    <section class="button-group">
-      <div class="button-group mt-8">
+  <v-app class="pa-sm-10 px-sm-16">
+    <section>
+      <div class="button-group mt-8 custom-scroll px-4 px-sm-0">
         <v-btn
           v-for="(item, i) in buttonGroup"
           :key="i"
           outlined
           rounded
-          class="button-group-child"
-          width="147px"
-          height="47"
+          class="button-group-child custom-top-button"
         >
           {{ item.title }}
         </v-btn>
       </div>
     </section>
 
-    <section class="product-view">
+    <section class="product-view px-5 px-sm-3 mt-5 mt-sm-8 mt-sm-1">
       <v-row>
         <v-col
           v-for="(item, i) in items"
           :key="i"
           cols="12"
-          lg="2"
-          class="px-2 py-0 mx-0"
+          sm="6"
+          md="3"
+          class="pa-0 px-2 mx-0"
         >
           <v-card
             :loading="loading"
-            class="mx-auto my-12 pt-2 px-5 rounded-lg"
-            max-width="240"
-            max-height="600"
+            class="mx-auto my-5 mb-sm-8 pa-2 px-lg-5 rounded-lg"
           >
             <router-link :to="{ path: `/commerce${item.links['self']}` }">
               <v-img
@@ -53,8 +50,8 @@
               </v-card-text>
             </router-link>
 
-            <div
-              class="align-center justify-center pb-4"
+            <!-- <v-card-actions
+              class="align-center justify-center"
               v-if="item.user.inCart === 0"
             >
               <v-btn
@@ -67,17 +64,16 @@
               >
                 Tambah
               </v-btn>
-            </div>
+            </v-card-actions>
 
             <ECommerceButtonCount
-              class="mt-6 pb-4"
               v-if="item.user.inCart !== 0"
               :count="item.user.inCart"
               :increment-url="item.links.cart.add_cart"
               :decrement-url="item.links.cart.remove_cart"
               @getCount="(value) => setTotalItem(value, item.id)"
             >
-            </ECommerceButtonCount>
+            </ECommerceButtonCount> -->
           </v-card>
         </v-col>
       </v-row>
@@ -197,15 +193,46 @@ export default {
   font-size: 1.06rem !important;
 }
 
-.container-text {
-  height: 4.5rem !important;
+.title-product {
+  min-height: 4.5rem !important;
 }
 
-.button-group {
-  display: flex;
-  flex-direction: row;
-  height: auto;
-  gap: 2rem;
+/* .container-text {
+  height: 4.5rem !important;
+} */
+
+/* .container-text {
+  height: 4.5rem !important;
+} */
+@media (min-width: 0px) {
+  .custom-top-button {
+    width: 80px;
+    height: 30px;
+  }
+  .custom-scroll {
+    overflow-x: scroll;
+  }
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    gap: 1rem;
+  }
+}
+@media (min-width: 600px) {
+  .custom-top-button {
+    width: 80px;
+    height: 30px;
+  }
+  .custom-scroll {
+    overflow-x: auto;
+  }
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    gap: 2rem;
+  }
 }
 
 .button-group-child {

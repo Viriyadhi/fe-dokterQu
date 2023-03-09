@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-card>
+    <v-card  >
       <v-app-bar
         :style="this.appbarStyle"
         fixed
-        class="px-16 navbar pt-3"
+        class="px-sm-11 navbar pt-3"
         elevation="0"
         v-scroll="onScrollContent"
       >
@@ -13,14 +13,14 @@
             <v-icon>mdi-arrow-left</v-icon>
           </router-link>
         </v-btn>
-        <h4 class="title-web">Keluar Toko</h4>
+        <h4 class="title-web" v-if="isXSmallScreenSize">Keluar Toko</h4>
 
         <v-spacer></v-spacer>
 
         <v-text-field
           class="mt-6"
           prepend-inner-icon="mdi-magnify"
-          label="Filled"
+          label="Search"
           solo
           rounded
           dense
@@ -28,7 +28,7 @@
         <v-spacer></v-spacer>
 
         <div
-          v-if="!localStorage"
+          v-if="!localStorage && isXSmallScreenSize"
           class="d-flex align-center justify-end flex-grow-1"
         >
           <router-link :to="{ name: 'Login' }">
@@ -55,28 +55,30 @@
           <div class="text-center">
             <v-dialog v-model="dialog" width="500">
               <template v-slot:activator="{ on, attrs }">
-                <router-link :to="{ name: 'CartView' }">
-                  <v-btn icon color="black" class="mr-8">
-                    <v-badge color="green" :content="cartItems">
-                      <v-icon> mdi-cart</v-icon>
-                    </v-badge>
-                  </v-btn>
-                </router-link>
+                <div class="d-flex flex-row align-center px-3" style="gap: 16px">
+                  <router-link :to="{ name: 'CartView' }">
+                    <v-btn icon color="black">
+                      <v-badge color="green" :content="cartItems">
+                        <v-icon> mdi-cart</v-icon>
+                      </v-badge>
+                    </v-btn>
+                  </router-link>
 
-                <v-chip
-                  v-bind="attrs"
-                  v-on="on"
-                  outlined
-                  color="black"
-                  class="mr-8"
-                >
-                  <v-avatar>
-                    <v-img
-                      src="https://cdn.vuetifyjs.com/images/lists/1.jpg"
-                    ></v-img>
-                  </v-avatar>
-                  <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
-                </v-chip>
+                  <v-chip
+                    v-if="isXSmallScreenSize"
+                    v-bind="attrs"
+                    v-on="on"
+                    outlined
+                    color="black"
+                  >
+                    <v-avatar>
+                      <v-img
+                        src="https://cdn.vuetifyjs.com/images/lists/1.jpg"
+                      ></v-img>
+                    </v-avatar>
+                    <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
+                  </v-chip>
+                </div>
               </template>
 
               <v-card>
@@ -112,9 +114,10 @@
             </v-dialog>
           </div>
         </div>
-
-        <v-divider vertical></v-divider>
-        <v-icon class="mx-8 mdi-config">mdi-cog</v-icon>
+        <div class="d-flex flex-row" style="gap: 12px">
+          <v-divider vertical style="height: 40px"></v-divider>
+          <v-icon class="mdi-config align-self-center">mdi-cog</v-icon>
+        </div>
       </v-app-bar>
       <v-main class="pa-0 mt-16">
         <router-view />
@@ -125,7 +128,6 @@
 <script>
 import axios from "axios";
 import { EventBus } from "../../../event-bus.js";
-
 export default {
   name: "NavBar",
   data: () => ({
@@ -152,16 +154,19 @@ export default {
   }),
   created() {
     this.getLocalStorage();
-
     EventBus.$on("updateCartCount", () => {
       this.getCartData();
     });
   },
-
+  computed: {
+    isXSmallScreenSize() {
+      return this.$vuetify?.breakpoint?.mdAndUp;
+    },
+  },
   mounted() {
+    console.log(this);
     this.getCartData();
   },
-
   methods: {
     onScrollContent(p) {
       if (p.currentTarget.scrollY > 11) {
@@ -175,11 +180,9 @@ export default {
         this.appbarStyle.boxShadow = "none !important";
       }
     },
-
     getLocalStorage() {
       this.localStorage = JSON.parse(localStorage.getItem("data"));
     },
-
     logout() {
       try {
         EventBus.$emit("startLoading");
@@ -191,7 +194,6 @@ export default {
       }
       EventBus.$emit("stopLoading");
     },
-
     async getCartData() {
       try {
         EventBus.$emit("startLoading");
@@ -217,43 +219,35 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 html {
   overflow: scroll;
   overflow-x: hidden;
 }
-
 a {
   text-decoration: none;
   color: black !important;
   font-size: 1.1rem;
   font-weight: 600;
 }
-
 .mdi-config {
   color: rgba(0, 0, 0, 54%);
 }
-
 .title-web {
   font-size: 1.25rem;
 }
-
 .button-register {
   width: 10rem !important;
 }
-
 .login-text {
   font-size: 1rem;
 }
 </style>
-
 <style scoped>
 .container-keluar {
   display: flex;
   flex-direction: row;
 }
-
 .register-text {
   font-size: 1rem;
   color: white !important;
@@ -261,7 +255,6 @@ a {
 .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: none !important;
 }
-
 .btn-kesehatan {
   background-color: transparent !important;
   color: black !important;
@@ -269,14 +262,12 @@ a {
   font-weight: 600 !important;
   box-shadow: none !important;
 }
-
 .theme--light.v-list {
   background: white !important;
   border: none !important;
   box-shadow: none !important;
   border-radius: 15px !important;
 }
-
 .v-menu__content {
   border-radius: 2rem !important;
   border: none !important;
