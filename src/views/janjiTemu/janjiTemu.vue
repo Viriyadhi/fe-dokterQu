@@ -99,7 +99,7 @@
                 <v-card-actions class="d-flex justify-end mt-1 pb-0">
                   <router-link
                     class="white--text"
-                    :to="{ path: `/janji-temu/detail/detail/${data.slug}` }"
+                    :to="{ path: `/janji-temu/detail/${data.slug}` }"
                   >
                     <v-btn color="primary" class="pa-5 button-janji">
                       Buat Janji
