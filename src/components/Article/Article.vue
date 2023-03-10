@@ -23,7 +23,11 @@
         <v-row>
           <v-col cols="12" md="12" lg="7" xl="7">
             <div v-for="(hero, i) in articleHero" :key="i">
-              <router-link :to="{ path: `${hero.links['self']}` }">
+              <router-link
+                :to="{
+                  path: `${hero.links['self']}`,
+                }"
+              >
                 <v-card class="elevation-0">
                   <v-img
                     height="565"
@@ -50,10 +54,11 @@
               </router-link>
             </div>
           </v-col>
+
           <v-col cols="12" md="12" lg="5" xl="5">
             <div
               class="d-flex flex-column"
-              v-for="(top, i) in articleTop"
+              v-for="(top, i) in articlePopular"
               :key="i"
             >
               <router-link :to="{ path: `${top.links['self']}` }">
@@ -118,10 +123,11 @@
               </v-card>
             </div>
           </v-col>
+
           <v-col cols="12" md="12" lg="5" xl="5">
             <div
               class="d-flex flex-column container-terkait"
-              v-for="(top, i) in articleTop"
+              v-for="(top, i) in articlePopular"
               :key="i"
             >
               <h3
@@ -171,7 +177,7 @@ export default {
 
   data: () => ({
     articleList: [],
-    articleTop: [],
+    articlePopular: [],
     articleHero: [],
     detailArticle: [],
     routeHasSlug: false,
@@ -187,7 +193,7 @@ export default {
       async () => {
         this.detailArticle = [];
         this.articleList = [];
-        this.articleTop = [];
+        this.articlePopular = [];
         this.articleHero = [];
         await this.getListArticlesPopular();
       }
@@ -204,9 +210,9 @@ export default {
         EventBus.$emit("startLoading");
         var route = this.$route.params;
         const res = await axios.get(`${this.$api}/article/post/${route.slug}`);
-        console.log(res);
         const data = res.data.data;
         this.detailArticle.push(data);
+        this.$emit("get-links", data.links);
       } catch (err) {
         var error = err;
         if (err.response.data.errors) {
@@ -236,7 +242,7 @@ export default {
         }
 
         for (let i = 0; i < 3; i++) {
-          this.articleTop.push(dataArticle[i]);
+          this.articlePopular.push(dataArticle[i]);
         }
 
         let i = 4;

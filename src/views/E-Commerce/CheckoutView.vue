@@ -122,7 +122,6 @@
                 <v-btn
                   color="primary"
                   class="btn-checkout mx-auto mb-5"
-                  target="_blank"
                   :href="token"
                 >
                   Pilih Pembayaran

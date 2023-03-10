@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container class="container-detail-article">
-      <ArticleComponent />
+      <ArticleComponent @get-links="setUrlComment" />
       <div class="mt-7 container-comment">
         <div class="row mt-md-8">
           <div class="lines mx-2">
@@ -15,6 +15,7 @@
             placeholder="Tulis Komentar..."
             dense
             v-model="body"
+            v-on:keyup.enter="postComment"
           >
             <v-btn
               class="btn"
@@ -28,10 +29,7 @@
             </v-btn>
           </v-text-field>
         </div>
-        <div
-          v-scroll.self="onScroll"
-          class="comment overflow-x-auto overflow-x-hidden"
-        >
+        <div class="comment overflow-x-auto overflow-x-hidden">
           <v-card
             class="my-3"
             v-for="(comment, i) in commentData"
@@ -41,24 +39,90 @@
             <v-row>
               <div class="col-1">
                 <v-avatar>
-                  <img
-                    src="https://tse4.mm.bing.net/th?id=OIP.bbRjEtula0rs46GDEb2kIQHaHa&pid=Api&P=0"
-                    alt="John"
-                  />
+                  <img :src="comment.user.photo" alt="John" />
                 </v-avatar>
               </div>
               <div class="col-11 pl-7">
-                <div class="text-body1 title-comment">
+                <div class="title-comment">
                   {{ comment.user.name }}
                 </div>
                 <div class="text-subtitle1 comment-content">
                   {{ comment.body }}
                 </div>
-                <div class="d-flex flex-row status-comment my-1">
+                <div class="d-flex flex-row status-comment my-1 black--text">
                   <div class="mr-8">{{ comment.created_at }}</div>
-                  <div class="">{{ comment.child_comment_count }} Suka</div>
-                  <!-- <div class="text-caption">Balas</div>
-                  <div class="text-caption">Laporkan</div> -->
+                  <!-- <div class="mr-8">{{ comment }} Suka</div> -->
+                  <div class="mr-8 reply" @click="showReplyField(comment)">
+                    Balas
+                  </div>
+                  <div
+                    v-if="comment.links.child_comment"
+                    class="reply"
+                    @click="
+                      showChildComment(comment);
+                      getComment(comment);
+                    "
+                  >
+                    Lihat Balasan ({{ comment.child_comment_count }})
+                  </div>
+                </div>
+                <div v-if="comment.clicked">
+                  <v-text-field
+                    outlined
+                    placeholder="Tulis Balasan..."
+                    dense
+                    v-model="bodyReply"
+                    v-on:keyup.enter="replyComment"
+                  >
+                    <v-btn
+                      class="btn"
+                      dense
+                      icon
+                      slot="append"
+                      color="black"
+                      @click="replyComment"
+                    >
+                      <v-icon>mdi-send </v-icon>
+                    </v-btn>
+                  </v-text-field>
+                </div>
+
+                <div class="mt-4" v-if="hasChild && comment.clickedChild">
+                  <v-card
+                    flat
+                    v-for="(child, i) in commentChild['comments']"
+                    :key="i"
+                  >
+                    <v-row>
+                      <v-col lg="1">
+                        <v-avatar>
+                          <img :src="child.user.photo" alt="John" />
+                        </v-avatar>
+                      </v-col>
+
+                      <v-col lg="11">
+                        <div class="text-body1 title-comment">
+                          {{ child.user.name }}
+                        </div>
+                        <div class="text-subtitle1 comment-content">
+                          {{ child.body }}
+                        </div>
+                        <div class="d-flex flex-row status-comment my-1">
+                          <div class="mr-8">{{ child.created_at }}</div>
+                          <div class="mr-8">
+                            {{ child.child_comment_count }} Suka
+                          </div>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-card>
+                  <!-- <div
+                    v-if="hasMoreLink"
+                    @click="loadMoreComment(commentChild)"
+                    class="reply mt-4"
+                  >
+                    Muat Lebih
+                  </div> -->
                 </div>
               </div>
             </v-row>
@@ -83,9 +147,16 @@ export default {
 
   data: () => ({
     commentData: [],
-    commentModel: [],
+    commentChild: [],
     lengthComment: null,
     body: "",
+    bodyReply: "",
+    urlComment: "",
+    isReplying: false,
+    replyLink: null,
+    hasChild: false,
+    hasMoreLink: "",
+    parentChild: "",
   }),
 
   created() {
@@ -97,25 +168,44 @@ export default {
       },
       async () => {
         await this.getComment();
-        this.commentModel = [];
         this.body = null;
       }
     );
-    this.getComment();
+    // this.getComment();
   },
 
   async mounted() {},
 
   methods: {
-    async getComment() {
+    async getComment(dataComment) {
       try {
-        EventBus.$emit("startLoading");
-        const comment = await axios.get(`${this.$api}/article/comment/1`);
-        console.log(comment.data.data.comments);
-        this.commentData = comment.data.data.comments;
-        const commentLength = comment.data.data.comments;
-        const length = commentLength.length;
-        this.lengthComment = length;
+        // console.log("get comment jalan");
+
+        if (!dataComment) {
+          const comment = await axios.get(`${this.$api}${this.urlComment}`);
+          this.commentData = comment.data.data.comments.map((tipe) => {
+            return { ...tipe, clicked: false, clickedChild: false };
+          });
+          const data = comment.data.data.comments;
+          const commentLength = data;
+          const length = commentLength.length;
+          this.lengthComment = length;
+        }
+
+        if (dataComment.links.child_comment && dataComment.clickedChild) {
+          console.log("ini data comment: ", dataComment);
+          this.hasChild = true;
+          const childLink = dataComment.links.child_comment;
+          const ChildComment = await axios.get(`${this.$api}${childLink}`);
+          const comment = ChildComment.data.data;
+          this.commentChild = comment;
+
+          if (comment.next_page) {
+            const link = comment.next_page;
+            this.hasMoreLink = link;
+            console.log("ini link: ", this.hasMoreLink);
+          }
+        }
       } catch (err) {
         var error = err;
         if (err.response.data.message) {
@@ -124,14 +214,38 @@ export default {
           EventBus.$emit("showSnackbar", error, "red");
         }
       }
-      EventBus.$emit("stopLoading");
+    },
+
+    // async loadMoreComment() {
+    //   try {
+    //   } catch (error) {}
+    // },
+
+    async replyComment() {
+      try {
+        console.log("reply comment jalan");
+        const reply = await axios.post(`${this.$api}${this.replyLink}`, {
+          body: this.bodyReply,
+        });
+        if (reply.data.status == true) {
+          this.bodyReply = null;
+          await this.getComment();
+        }
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
     },
 
     async postComment() {
       try {
-        EventBus.$emit("startLoading");
+        console.log("post comment jalan");
         const postComment = await axios.post(
-          `${this.$api}/article/comment/1/reply`,
+          `${this.$api}${this.urlComment}/reply`,
           {
             body: this.body,
           }
@@ -153,7 +267,41 @@ export default {
           EventBus.$emit("showSnackbar", "Komentar Tidak Boleh Kosong", "red");
         }
       }
-      EventBus.$emit("stopLoading");
+    },
+
+    showReplyField(data) {
+      console.log("ini data: ", data);
+      console.log("show reply field jalan");
+      this.commentData.forEach((item) => {
+        if (item.id !== data.id) {
+          item.clicked = false;
+        }
+        if (data.id == item.id) {
+          const replyComment = item.links.reply_comment;
+          this.replyLink = replyComment;
+          // console.log("ini reply: ", replyComment);
+        }
+      });
+      data.clicked = !data.clicked;
+    },
+
+    showChildComment(data) {
+      this.commentData.forEach((item) => {
+        if (item.id !== data.id) {
+          item.clickedChild = false;
+        }
+        // if (data.id == item.id) {
+        //   const childComment = item.links.child_comment;
+        //   this.replyLink = childComment;
+        //   // console.log("ini reply: ", replyComment);
+        // }
+      });
+      data.clickedChild = !data.clickedChild;
+    },
+
+    setUrlComment(value) {
+      this.urlComment = value.comment;
+      this.getComment();
     },
   },
 };
@@ -184,8 +332,8 @@ export default {
   max-height: 400px;
 }
 
-.container-detail-article {
-  /* max-width: 80%; */
+.reply {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1263px) {

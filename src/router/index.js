@@ -107,16 +107,20 @@ const routes = [
   {
     path: "/article",
     component: ArticleLayout,
+    props: true,
+
     children: [
       {
         path: "/article",
         name: "ArticleView",
         component: ArticleView,
+        props: true,
       },
       {
         path: "/article/post/:slug",
         name: "ArticleDetail",
         component: ArticleDetail,
+        props: true,
       },
     ],
   },
