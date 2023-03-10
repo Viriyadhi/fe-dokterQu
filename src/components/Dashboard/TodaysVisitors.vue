@@ -20,7 +20,7 @@
           :labels="labels"
           :value="value"
           color="blue lighten-1"
-          height="25"
+          height="80"
           line-width="1"
           padding="16"
         ></v-sparkline>
@@ -33,7 +33,7 @@
 .container {
   border-color: #4caf50;
   border-style: solid;
-
+  width: 100%;
 }
 .total {
   color: #4caf50;

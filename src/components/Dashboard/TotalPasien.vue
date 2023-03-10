@@ -1,5 +1,5 @@
 <template>
-  <div class="elevation-5 container rounded-lg">
+  <div class=" containers rounded-lg">
     <div class="text-h6">Total Pasien</div>
     <div class="datable">
       <!-- <v-data-table
@@ -67,9 +67,9 @@
   width: 100%;
   padding: 5px;
 }
-.container {
+.containers {
   padding: none;
-  width: 50%;
+  width: 100%;
 }
 </style>
 
