@@ -31,6 +31,10 @@ import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
 import ForgotPasswordLayout from "@/layouts/RegisterLogin/ForgotPassword.vue";
 import ArticleLayout from "@/layouts/Article/ArticleLayout.vue";
 import CommerceLayout from "@/layouts/CommerceLayout/CommerceLayout.vue";
+import DasboardApotik from '@/layouts/Admin/Apotik/DashboardApotik.vue';
+import DashboardApotikHome from '@/views/admin/apotik/DashboardApotikHome.vue';
+import DashboardDokter from '@/layouts/Admin/Dokter/DashboardDokter.vue';
+
 
 // import notAuth from "@/middlewares/guest.js";
 // import auth from "@/middlewares/auth.js";
@@ -220,6 +224,24 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/dashboard-admin/apotik",
+    name: "DasboardApotik",
+    component: DasboardApotik,
+    children: [
+        {
+            path: "/dashboard-admin/apotik/home",
+            name: "DasboardApotikMain",
+            component: DashboardApotikHome,
+        }
+    ]
+},
+{
+  path: "/dashboard-admin/dokter",
+  name: "DashboardDokter",
+  component: DashboardDokter,
+  children: []
+}
 ];
 
 const router = new VueRouter({
