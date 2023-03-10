@@ -26,15 +26,16 @@ import RoomChat from "@/views/chatDokter/RoomChat.vue";
 import TotalPasien from "@/components/Dashboard/TotalPasien";
 import TotalPasienChart from "@/components/Dashboard/TotalPasienChart";
 import TodaysVisitors from "@/components/Dashboard/TodaysVisitors";
+import ProfileSetting from "@/views/profileSetting/ProfileSetting.vue";
 import DefaultView from "@/layouts/Default.vue";
 import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
 import ForgotPasswordLayout from "@/layouts/RegisterLogin/ForgotPassword.vue";
 import ArticleLayout from "@/layouts/Article/ArticleLayout.vue";
 import CommerceLayout from "@/layouts/CommerceLayout/CommerceLayout.vue";
-import DasboardApotik from '@/layouts/Admin/Apotik/DashboardApotik.vue';
-import DashboardApotikHome from '@/views/admin/apotik/DashboardApotikHome.vue';
-import DashboardDokter from '@/layouts/Admin/Dokter/DashboardDokter.vue';
-
+import DasboardApotik from "@/layouts/Admin/Apotik/DashboardApotik.vue";
+import DashboardApotikHome from "@/views/admin/apotik/DashboardApotikHome.vue";
+import ProfileLayout from "@/layouts/SettingLayout/ProfileLayout.vue";
+import DashboardDokter from "@/layouts/Admin/Dokter/DashboardDokter.vue";
 
 // import notAuth from "@/middlewares/guest.js";
 // import auth from "@/middlewares/auth.js";
@@ -229,19 +230,30 @@ const routes = [
     name: "DasboardApotik",
     component: DasboardApotik,
     children: [
-        {
-            path: "/dashboard-admin/apotik/home",
-            name: "DasboardApotikMain",
-            component: DashboardApotikHome,
-        }
-    ]
-},
-{
-  path: "/dashboard-admin/dokter",
-  name: "DashboardDokter",
-  component: DashboardDokter,
-  children: []
-}
+      {
+        path: "/dashboard-admin/apotik/home",
+        name: "DasboardApotikMain",
+        component: DashboardApotikHome,
+      },
+    ],
+  },
+  {
+    path: "/dashboard-admin/dokter",
+    name: "DashboardDokter",
+    component: DashboardDokter,
+    children: [],
+  },
+  {
+    path: "/profile",
+    component: ProfileLayout,
+    children: [
+      {
+        path: "/profile/home",
+        name: "ProfileSetting",
+        component: ProfileSetting,
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({

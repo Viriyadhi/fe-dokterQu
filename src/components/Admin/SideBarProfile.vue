@@ -154,8 +154,8 @@
     </v-navigation-drawer>
   </div>
 </template>
-
-<script>
+  
+  <script>
 export default {
   data() {
     return {
@@ -194,8 +194,8 @@ export default {
   },
 };
 </script>
-
-<style>
+  
+  <style>
 .child-text {
   font-size: 15px;
   font-weight: bold;

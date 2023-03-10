@@ -77,5 +77,4 @@ export default {
   height: 100%;
   background-color: #eceff2;
 }
-
 </style>
