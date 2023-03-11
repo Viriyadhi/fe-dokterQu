@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-5 my-5">
-    <div class="container-card2 ">
+    <div class="container-card2">
       <div class="black text-h4 px-5 rounded-lg title-hospital">
         RS Edelweiss Bandung
       </div>
@@ -42,22 +42,16 @@
       </div>
       <div>
         <v-list class="col">
-          <div class="text-h6 list-facility" >
-            <v-icon class="mx-3" size="small">
-              mdi-circle
-            </v-icon>
+          <div class="text-h6 list-facility">
+            <v-icon class="mx-3" size="small"> mdi-circle </v-icon>
             Home Care
           </div>
-          <div class="text-h6 list-facility" >
-            <v-icon class="mx-3" size="small">
-              mdi-circle
-            </v-icon>
+          <div class="text-h6 list-facility">
+            <v-icon class="mx-3" size="small"> mdi-circle </v-icon>
             Area Parkir
           </div>
-          <div class="text-h6 list-facility" >
-            <v-icon class="mx-3" size="small" >
-              mdi-circle
-            </v-icon>
+          <div class="text-h6 list-facility">
+            <v-icon class="mx-3" size="small"> mdi-circle </v-icon>
             Ruang Tunggu
           </div>
           <div class="text-h6 list-facility">
@@ -72,7 +66,7 @@
     <section class="article mt-8 mx-8">
       <div class="d-flex flex-row justify-space-between align-center">
         <h2 class="article-header-title">Pilih Dokter Yang Sesuai</h2>
-        <a class="article-header-link" > Lihat semua</a>
+        <a class="article-header-link"> Lihat semua</a>
       </div>
 
       <div class="button-group mt-8 mx-auto">
@@ -90,7 +84,7 @@
       </div>
 
       <div
-      class="article-container d-flex flex-row align-center justify-space-between col-12"
+        class="article-container d-flex flex-row align-center justify-space-between col-12"
       >
         <v-card
           v-for="(cardData, index) in dataCard"
@@ -144,8 +138,6 @@
 export default {
   name: "janjiTemu",
   data: () => ({
-    
-
     dataCard: [
       {
         nama: "dr. Rizky",
@@ -242,15 +234,15 @@ export default {
   color: #6a6a6a;
   width: 80%;
 }
-.list-facility{
-  color:#6a6a6a;
+.list-facility {
+  color: #6a6a6a;
 }
 .article-header-link {
   font-size: 1rem;
   color: #03acf2 !important;
   text-decoration-line: underline;
 }
-.article{
+.article {
   margin-left: 3%;
 }
 </style>

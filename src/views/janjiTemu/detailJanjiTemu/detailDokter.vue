@@ -97,232 +97,63 @@
           </v-card>
         </div>
 
-        <!-- <v-card-title class="text-h4 font-weight-medium"
-          >Keterangan</v-card-title
-        >
-        <v-card-text class="custom-text black--text px-8">
-          Dr. Mariana Carlos, MARS adalah Dokter Gigi Spesialis Bedah Mulut;
-          ahli dalam bidang bedah mulut dan kedokteran gigi; diagnosa,
-          pencegahan dan pengobatan berbagai jenis penyakit dan kelainan di
-          rongga mulut.
-        </v-card-text>
-
-        <v-card-text class="custom-text black--text px-8">
-          Dokter Gigi Spesialis Bedah Mulut; Bedah Mulut dan Maksilofasial
-          merupakan salah satu cabang ilmu kedokteran gigi yang khas karena
-          meliputi penatalaksanaan berbagai jenis penyakit dan kelainan rongga
-          mulut yang memerlukan pendekatan secara bedah sehingga menuntut
-          penguasaan ilmu kedokteran secara holistik dan terintegrasi.
-        </v-card-text> -->
-
-        <!-- <v-card-title class="text-h4 font-weight-medium"
-          >Jadwal Praktik</v-card-title
-        >
-
-        <v-card-text class="custom-text px-8">
-          Anda bisa lihat daftar lengkapnya pada tabel yang ada di bawah. anda
-          bisa langsung klik pada daftar isi untuk menuju jadwal dokter
-          spesialis yang anda inginkan.
-        </v-card-text> -->
-
         <v-card-title class="text-h4 font-weight-medium"
           >Pilih tanggal dan waktu kunjungan
         </v-card-title>
-        <v-card-text class="container-jadwal-praktik px-8">
-          <div
-            v-for="(data, i) in jadwalHari"
-            :key="i"
-            id="box-jadwal-praktik"
-            @click="jadwalPraktik"
-            class="d-flex flex-column align-center card-sendiri rounded-lg"
+
+        <v-card-text class="container-jadwal-praktik">
+          <v-card
+            v-for="(operationalTime, index) in dataOperationalTimes"
+            :key="index"
+            :class="operationalTime.clicked ? 'active' : ''"
+            @click="operationalDateClicked(operationalTime)"
+            width="200"
+            flat
+            class="d-flex align-center justify-center card-sendiri"
           >
-            <p class="ma-0 font-weight-bold">{{ data.hari }}</p>
-            <p class="font-weight-bold">{{ data.tanggal }}</p>
-          </div>
+            <div class="d-flex flex-column">
+              <p class="font-weight-bold ma-0 black--text text-center">
+                {{ operationalTime.day }}
+              </p>
+              <p class="font-weight-bold ma-0 black--text">
+                {{ operationalTime.date_formated }}
+              </p>
+            </div>
+          </v-card>
         </v-card-text>
 
-        <div class="mt-7">
-          <div class="row px-8">
-            <v-avatar class="align-center" size="60">
-              <v-img src="@/assets/JanjiTemu/sun-ava.jpg" />
-            </v-avatar>
-            <v-card-title class="text-h6 font-weight-medium"
-              >Siang
-            </v-card-title>
-          </div>
-          <div class="row px-10 my-7">
-            <div
-              v-for="n in 3"
-              :key="n"
+        <div
+          v-for="(operationalTime, indexOperational) in dataOperationalTimes"
+          :key="indexOperational"
+        >
+          <div class="mt-7 d-flex flex-row" v-if="operationalTime.clicked">
+            <v-card
+              v-for="dataTime in operationalTime.times"
+              :key="dataTime.id"
+              @click="operationalTimeClicked(dataTime)"
               class="d-flex flex-row align-center card-sendiri rounded-lg px-3 mx-3"
+              flat
+              :class="dataTime.clickedTimes ? 'active' : ''"
+              :disabled="!dataTime.is_available"
             >
-              <v-icon color="black">mdi-check-bold</v-icon>
-              <div class="mx-auto">13.30</div>
-            </div>
+              <div class="mx-auto">{{ dataTime.time }}</div>
+            </v-card>
           </div>
         </div>
+        <!-- </div> -->
 
         <section>
           <v-card-actions>
-            <v-dialog v-model="dialog" width="920">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  rounded
-                  color="primary ma-2"
-                  dark
-                  width="256"
-                  v-bind="attrs"
-                  v-on="on"
-                  @click="setBackground()"
-                >
-                  Buat Janji Sekarang
-                </v-btn>
-              </template>
-
-              <v-card class="pa-8">
-                <div class="d-flex flex-row">
-                  <v-btn icon color="black" @click="dialog = false">
-                    <v-icon>mdi-arrow-left-circle</v-icon>
-                  </v-btn>
-                  <v-card-title class="text-h4 font-weight-bold pt-0 pb-4">
-                    Ringkasan Pembelian
-                  </v-card-title>
-                </div>
-                <div class="d-flex justify-center align-center">
-                  <v-card class="mb-8 rounded-lg" width="800" height="133">
-                    <div class="container-content">
-                      <v-img
-                        src="@/assets/ForgotPw/ic_twotone-mark-email-unread.svg"
-                        max-height="79"
-                        max-width="79"
-                        class="icon-logo ma-6"
-                      ></v-img>
-                      <div class="d-flex flex-column">
-                        <h4 class="test-card-title">Kemampuan Pendengaran</h4>
-                        <p class="test-card-desc">
-                          lorem, vel fermentum augue porta id. Aliquam lobortis
-                          magna nequeil
-                        </p>
-                      </div>
-                    </div>
-                  </v-card>
-                </div>
-
-                <v-card-text class="text-h4 black--text font-weight-bold"
-                  >Janji Temu</v-card-text
-                >
-                <div class="d-flex justify-center align-center mb-2">
-                  <div class="line"></div>
-                </div>
-                <v-row class="pa-0 ma-0 mx-12 font-weight-black">
-                  <v-col cols="4" class="text-left pl-0"> Jenis </v-col>
-                  <v-col cols="4" class="text-center"> Jam</v-col>
-                  <v-col cols="4" class="text-right pr-0"> Tanggal/Waktu</v-col>
-                </v-row>
-
-                <v-row
-                  v-for="(data, i) in jadwal"
-                  :key="i"
-                  class="ma-0 pa-0 mx-12"
-                >
-                  <v-col
-                    cols="4"
-                    class="black--text text-left pl-0 pb-0 font-weight-bold"
-                  >
-                    {{ data.jenis }}
-                  </v-col>
-                  <v-col
-                    cols="4"
-                    class="black--text text-center pb-0 font-weight-bold"
-                    >{{ data.jam }}</v-col
-                  >
-                  <v-col
-                    cols="4"
-                    class="black--text text-right pr-0 pb-0 font-weight-bold"
-                  >
-                    {{ data.tanggal }}
-                  </v-col>
-                </v-row>
-
-                <v-card-text class="text-h4 black--text mt-10 font-weight-bold"
-                  >Pembayaran</v-card-text
-                >
-                <div class="d-flex justify-center align-center mb-2">
-                  <div class="line"></div>
-                </div>
-                <div
-                  class="ma-0 pa-0 d-flex flex-row justify-space-between mx-12"
-                >
-                  <p class="black--text pt-2">Biaya Konsultasi</p>
-                  <p class="black--text pt-2">Rp 150.000</p>
-                </div>
-                <div
-                  class="ma-0 pa-0 d-flex flex-row justify-space-between mx-12"
-                >
-                  <p class="black--text">Biaya Konsultasi</p>
-                  <p class="black--text">Rp 150.000</p>
-                </div>
-                <div
-                  class="ma-0 pa-0 d-flex flex-row justify-space-between mx-12"
-                >
-                  <p class="black--text">Biaya Konsultasi</p>
-                  <p class="black--text">Rp 150.000</p>
-                </div>
-                <div class="d-flex justify-center align-center">
-                  <div class="line"></div>
-                </div>
-                <div
-                  class="ma-0 pa-0 d-flex flex-row justify-space-between mx-14"
-                >
-                  <p class="black--text font-weight-black py-2 mb-0">
-                    Total Harga
-                  </p>
-                  <p
-                    class="black--text font-weight-black py-2 mb-0 secondary--text"
-                  >
-                    Rp 150.000
-                  </p>
-                </div>
-                <div class="d-flex justify-center align-center">
-                  <div class="line"></div>
-                </div>
-
-                <v-card-text class="text-h4 black--text mt-8 font-weight-bold"
-                  >Kode Voucher</v-card-text
-                >
-
-                <div class="d-flex flex-row mx-12">
-                  <v-text-field
-                    label="Kode Voucher"
-                    placeholder="Placeholder"
-                    solo
-                  ></v-text-field>
-                  <v-btn rounded outlined color="primary" class="mt-2 ml-8"
-                    >Masukkan</v-btn
-                  >
-                </div>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-dialog max-width="260">
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                        color="primary "
-                        dark
-                        v-bind="attrs"
-                        v-on="on"
-                        rounded
-                        width="256"
-                        @click="onClickSuccess"
-                      >
-                        Buat Janji Temu
-                      </v-btn>
-                    </template>
-                    <DialogSuccess ref="successDialog" />
-                  </v-dialog>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+            <v-btn
+              rounded
+              color="primary"
+              class="ma-2 active"
+              width="256"
+              :disabled="!selectedTime"
+              @click="buatJanji"
+            >
+              Buat Janji Sekarang
+            </v-btn>
           </v-card-actions>
         </section>
       </div>
@@ -331,60 +162,26 @@
 </template>
 
 <script>
-import DialogSuccess from "@/components/Dialog/dialogSuccess.vue";
+// import DialogSuccess from "@/components/Dialog/dialogSuccess.vue";
 import axios from "axios";
 import { EventBus } from "../../../../event-bus";
+import moment from "moment";
+
 export default {
   components: {
-    DialogSuccess,
+    //   DialogSuccess,
   },
   data: () => ({
     loading: false,
     selection: 1,
-    dialog: false,
     dialogSuccess: false,
     toggleHours: false,
+    operationalLink: "",
     dataCard: [],
-    jadwalHari: [
-      {
-        hari: "Senin",
-        tanggal: "12/12/2021",
-      },
-      {
-        hari: "Senin",
-        tanggal: "12/12/2021",
-      },
-      {
-        hari: "Senin",
-        tanggal: "12/12/2021",
-      },
-      {
-        hari: "Senin",
-        tanggal: "12/12/2021",
-      },
-      {
-        hari: "Senin",
-        tanggal: "12/12/2021",
-      },
-    ],
-
-    jadwalJam: [
-      {
-        jam: "5:30PM",
-      },
-      {
-        jam: "5:30PM",
-      },
-      {
-        jam: "5:30PM",
-      },
-      {
-        jam: "5:30PM",
-      },
-      {
-        jam: "5:30PM",
-      },
-    ],
+    dataOperationalTimes: [],
+    coba: false,
+    selectedTime: null,
+    selectedDate: null,
     jadwal: [
       {
         jenis: "Kemampuan Pendengaran",
@@ -397,39 +194,26 @@ export default {
         tanggal: "12/12/2021",
       },
     ],
+
     dialogStyle: {
       backgroundColor: "rgba(0, 0, 0, 1) !important",
       opacity: "0.9 !important",
     },
   }),
-  mounted() {
-    this.getDetailDokter();
+  async mounted() {
+    await this.getDetailDokter();
+    await this.getOperationalHour();
   },
 
   methods: {
-    reserve() {
-      this.loading = true;
-      setTimeout(() => (this.loading = false), 2000);
-    },
-
-    setBackground() {
-      this.dialog = true;
-      console.log(this.dialog);
-    },
-    onClickSuccess() {
-      this.$refs.successDialog.successDialog = true;
-    },
-    jadwalPraktik(p) {
-      console.log(p.path[0].style);
-      this.toggleHours = true;
-    },
-
     async getDetailDokter() {
       try {
+        EventBus.$emit("startLoading");
         var route = this.$route.params;
         const res = await axios.get(`${this.$api}/user/doctor/${route.slug}`);
         const data = res.data.data;
         this.dataCard = data;
+        this.operationalLink = data.links.operational_times;
         console.log(this.dataCard);
       } catch (err) {
         var error = err;
@@ -440,6 +224,89 @@ export default {
         }
       }
       EventBus.$emit("stopLoading");
+    },
+
+    async getOperationalHour() {
+      try {
+        EventBus.$emit("startLoading");
+        const res = await axios.get(`${this.$api}${this.operationalLink}`);
+        const data = res.data.data;
+        data.forEach((element) => {
+          const day = element.date;
+          moment.locale("id");
+          this.dataOperationalTimes.push({
+            ...element,
+            date_formated: moment(day).format("DD, MMMM YYYY"),
+            clicked: false,
+          });
+        });
+        this.dataOperationalTimes.forEach((item) => {
+          item.times.forEach((time) => {
+            time.clickedTimes = false;
+          });
+        });
+        console.log("ini operational time: ", this.dataOperationalTimes);
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+    operationalDateClicked(operationalTime) {
+      this.dataOperationalTimes.forEach((item) => {
+        if (item.day_number !== operationalTime.day_number) {
+          item.clicked = false;
+          this.toggleHours = false;
+          this.isSelected = false;
+        }
+      });
+      operationalTime.clicked = !operationalTime.clicked;
+      this.toggleHours = !this.toggleHours;
+
+      this.selectedTime = null;
+      if (this.selectedDate) {
+        this.selectedDate =
+          this.selectedDate.day_number == operationalTime.day_number
+            ? null
+            : operationalTime.date;
+      } else {
+        this.selectedDate = operationalTime.date;
+      }
+      console.log(this.selectedDate);
+      console.log(this.selectedTime);
+    },
+    operationalTimeClicked(time) {
+      this.dataOperationalTimes.forEach((item) => {
+        item.times.forEach((dataTime) => {
+          if (dataTime.id !== time.id) {
+            dataTime.clickedTimes = false;
+            this.isSelected = true;
+          }
+        });
+      });
+      time.clickedTimes = !time.clickedTimes;
+
+      if (this.selectedTime) {
+        this.selectedTime = this.selectedTime.id == time.id ? null : time;
+      } else {
+        this.selectedTime = time;
+      }
+    },
+    buatJanji() {
+      localStorage.setItem(
+        "homecare",
+        JSON.stringify({
+          date: this.selectedDate,
+          time_id: this.selectedTime.id,
+          time: this.selectedTime.time,
+          ...this.dataCard,
+        })
+      );
+      this.$router.push({ name: "JanjiTemuCheckout" });
     },
   },
 };
@@ -503,18 +370,22 @@ export default {
 }
 
 .card-sendiri:hover {
-  background: rgba(3, 172, 242, 0.1);
+  background: rgba(3, 172, 242, 0.7);
+}
+
+.active {
+  background: rgba(3, 172, 242, 0.7) !important;
 }
 </style>
 
 <style>
-.v-overlay--active {
-  opacity: 0.9 !important;
-  background-color: rgba(0, 0, 0, 1) !important;
-}
+/* .v-overlay--active {
+    opacity: 0.9 !important;
+    background-color: rgba(0, 0, 0, 1) !important;
+  }
 
-.v-overlay--active:has(.dialog-img) {
-  opacity: 0.9 !important;
-  background-color: rgba(0, 0, 0, 1) !important;
-}
+  .v-overlay--active:has(.dialog-img) {
+    opacity: 0.9 !important;
+    background-color: rgba(0, 0, 0, 1) !important;
+  } */
 </style>

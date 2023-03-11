@@ -23,6 +23,7 @@ import ProductDetailView from "@/views/E-Commerce/ProductDetailView.vue";
 import CartView from "@/views/E-Commerce/CartView.vue";
 import CheckoutView from "@/views/E-Commerce/CheckoutView.vue";
 import RoomChat from "@/views/chatDokter/RoomChat.vue";
+import JanjiTemuCheckout from "@/views/janjiTemu/detailJanjiTemu/JanjiTemuCheckout.vue";
 import TotalPasien from "@/components/Dashboard/TotalPasien";
 import TotalPasienChart from "@/components/Dashboard/TotalPasienChart";
 import TodaysVisitors from "@/components/Dashboard/TodaysVisitors";
@@ -31,10 +32,9 @@ import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
 import ForgotPasswordLayout from "@/layouts/RegisterLogin/ForgotPassword.vue";
 import ArticleLayout from "@/layouts/Article/ArticleLayout.vue";
 import CommerceLayout from "@/layouts/CommerceLayout/CommerceLayout.vue";
-import DasboardApotik from '@/layouts/Admin/Apotik/DashboardApotik.vue';
-import DashboardApotikHome from '@/views/admin/apotik/DashboardApotikHome.vue';
-import DashboardDokter from '@/layouts/Admin/Dokter/DashboardDokter.vue';
-
+import DasboardApotik from "@/layouts/Admin/Apotik/DashboardApotik.vue";
+import DashboardApotikHome from "@/views/admin/apotik/DashboardApotikHome.vue";
+import DashboardDokter from "@/layouts/Admin/Dokter/DashboardDokter.vue";
 
 // import notAuth from "@/middlewares/guest.js";
 // import auth from "@/middlewares/auth.js";
@@ -175,11 +175,12 @@ const routes = [
         name: "JanjiTemuDetail",
         component: JanjiTemuDetail,
       },
-      // {
-      //   path: "/janji-temu/:dokter",
-      //   name: "JanjiTemuDetail",
-      //   component: DetailJanji,
-      // },
+      {
+        path: "/janji-temu/checkout",
+        name: "JanjiTemuCheckout",
+        component: JanjiTemuCheckout,
+        props: true,
+      },
     ],
   },
   {
@@ -229,19 +230,19 @@ const routes = [
     name: "DasboardApotik",
     component: DasboardApotik,
     children: [
-        {
-            path: "/dashboard-admin/apotik/home",
-            name: "DasboardApotikMain",
-            component: DashboardApotikHome,
-        }
-    ]
-},
-{
-  path: "/dashboard-admin/dokter",
-  name: "DashboardDokter",
-  component: DashboardDokter,
-  children: []
-}
+      {
+        path: "/dashboard-admin/apotik/home",
+        name: "DasboardApotikMain",
+        component: DashboardApotikHome,
+      },
+    ],
+  },
+  {
+    path: "/dashboard-admin/dokter",
+    name: "DashboardDokter",
+    component: DashboardDokter,
+    children: [],
+  },
 ];
 
 const router = new VueRouter({
