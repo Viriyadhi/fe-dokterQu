@@ -1,5 +1,5 @@
 <template>
-  <div class=" containers rounded-lg">
+  <div class="containers rounded-lg">
     <div class="text-h6">Total Pasien</div>
     <div class="datable">
       <!-- <v-data-table
@@ -53,7 +53,7 @@
               <td>{{ item.tanggal }}</td>
               <td>{{ item.jumlah }}</td>
               <td>
-                <div style="color:green">•{{ item.status }}</div>
+                <div style="color: green">•{{ item.status }}</div>
               </td>
             </tr>
           </tbody>
@@ -62,16 +62,6 @@
     </div>
   </div>
 </template>
-<style>
-.datable {
-  width: 100%;
-  padding: 5px;
-}
-.containers {
-  padding: none;
-  width: 100%;
-}
-</style>
 
 <script>
 export default {
@@ -143,3 +133,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.datable {
+  width: 100%;
+  padding: 5px;
+}
+.containers {
+  padding: none;
+  width: 100%;
+}
+</style>

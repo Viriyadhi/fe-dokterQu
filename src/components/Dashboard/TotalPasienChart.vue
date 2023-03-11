@@ -1,7 +1,7 @@
 <template>
   <div class="container1 elevation-2 rounded-lg">
     <div class="row">
-      <div class="col-5 ">
+      <div class="col-5">
         <div class="ml-2">Total Pasien</div>
         <div class="total my-3 ml-2">7.506</div>
         <div class="row">
@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .container1 {
   border-color: #4caf50;
   border-style: solid;
@@ -44,7 +44,7 @@
   background-color: #4caf50;
 }
 .percentage-txt {
-  color: #F52525;
+  color: #f52525;
 }
 </style>
 

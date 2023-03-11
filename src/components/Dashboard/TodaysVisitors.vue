@@ -1,7 +1,7 @@
 <template>
   <div class="container elevation-2 rounded-lg">
     <div class="row">
-      <div class="col-5 ">
+      <div class="col-5">
         <div>Today's Visitors</div>
         <div class="total my-3">58</div>
         <div class="row">
@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .container {
   border-color: #4caf50;
   border-style: solid;
@@ -44,7 +44,7 @@
   background-color: #4caf50;
 }
 .text-precentage {
-  color: #6BEBA4;
+  color: #6beba4;
 }
 </style>
 
@@ -55,4 +55,3 @@ export default {
   }),
 };
 </script>
-
