@@ -37,7 +37,7 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="12" md="5" class="pa-0 ">
+      <v-col cols="12" md="2" class="pa-0 ">
         <div class="d-flex flex-column">
           <div class="d-flex flex-row align-center container-logo">
             <v-avatar v-for="(icon, i) in logo" :key="i" size="37">
