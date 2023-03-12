@@ -256,22 +256,22 @@ const routes = [
     children: [
       {
         path: "/profile/home",
-        name: "ProfileView",
+        name: "ProfileHome",
         component: ProfileView,
       },
       {
         path: "/profile/profil",
-        name: "ProfileView",
+        name: "ProfileProfil",
         component: ProfilView,
       },
       {
         path: "/profile/alamat",
-        name: "ProfileView",
+        name: "ProfileAlamat",
         component: AlamatView,
       },
       {
         path: "/profile/riwayat",
-        name: "ProfileView",
+        name: "ProfileRiwayat",
         component: RiwayatView,
       },
     ],
