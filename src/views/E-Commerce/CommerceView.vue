@@ -68,16 +68,6 @@
                 Tambah
               </v-btn>
             </div>
-
-            <ECommerceButtonCount
-              class="mt-6 pb-4"
-              v-if="item.user.inCart !== 0"
-              :count="item.user.inCart"
-              :increment-url="item.links.cart.add_cart"
-              :decrement-url="item.links.cart.remove_cart"
-              @getCount="(value) => setTotalItem(value, item.id)"
-            >
-            </ECommerceButtonCount>
           </v-card>
         </v-col>
       </v-row>
@@ -87,16 +77,13 @@
 
 <script>
 import axios from "axios";
-// import ECommerceButtonCount from "@/components/E-commerce/ECommerceButtonCount.vue";
 
 import { EventBus } from "../../../event-bus.js";
 
 export default {
   name: "CommerceView",
 
-  components: {
-    // ECommerceButtonCount,
-  },
+  components: {},
 
   data: () => ({
     loading: false,
@@ -144,8 +131,6 @@ export default {
           link = data[i].links.cart.add_cart;
           this.addCartLink.push(link);
         }
-        console.log(this.addCartLink);
-        console.log(dataL);
         this.items = data;
       } catch (err) {
         var error = err;
