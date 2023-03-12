@@ -57,6 +57,7 @@ export default {
 </script>
 
 <style>
+@import "~leaflet/dist/leaflet.css";
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
 body {
   background: #fffdfd !important;
