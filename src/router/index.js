@@ -24,13 +24,19 @@ import CartView from "@/views/E-Commerce/CartView.vue";
 import CheckoutView from "@/views/E-Commerce/CheckoutView.vue";
 import RoomChat from "@/views/chatDokter/RoomChat.vue";
 import JanjiTemuCheckout from "@/views/janjiTemu/detailJanjiTemu/JanjiTemuCheckout.vue";
+import ProfileView from "@/views/ProfileView/ProfileView.vue";
+import ProfilView from "@/views/ProfileView/ProfilView.vue";
+import AlamatView from "@/views/ProfileView/AlamatView.vue";
+import RiwayatView from "@/views/ProfileView/RiwayatView.vue";
 import TotalPasien from "@/components/Dashboard/TotalPasien";
 import TotalPasienChart from "@/components/Dashboard/TotalPasienChart";
 import TodaysVisitors from "@/components/Dashboard/TodaysVisitors";
+// import ProfileSideBar from "@/components/Profile/ProfileSideBar.vue";
 import DefaultView from "@/layouts/Default.vue";
 import RegisterLogin from "@/layouts/RegisterLogin/RegisterLoginLayout.vue";
 import ForgotPasswordLayout from "@/layouts/RegisterLogin/ForgotPassword.vue";
 import ArticleLayout from "@/layouts/Article/ArticleLayout.vue";
+import ProfileLayout from "@/layouts/Profile/ProfileLayout.vue";
 import CommerceLayout from "@/layouts/CommerceLayout/CommerceLayout.vue";
 import DasboardApotik from "@/layouts/Admin/Apotik/DashboardApotik.vue";
 import DashboardApotikHome from "@/views/admin/apotik/DashboardApotikHome.vue";
@@ -242,6 +248,33 @@ const routes = [
     name: "DashboardDokter",
     component: DashboardDokter,
     children: [],
+  },
+
+  {
+    path: "/profile",
+    component: ProfileLayout,
+    children: [
+      {
+        path: "/profile/home",
+        name: "ProfileView",
+        component: ProfileView,
+      },
+      {
+        path: "/profile/profil",
+        name: "ProfileView",
+        component: ProfilView,
+      },
+      {
+        path: "/profile/alamat",
+        name: "ProfileView",
+        component: AlamatView,
+      },
+      {
+        path: "/profile/riwayat",
+        name: "ProfileView",
+        component: RiwayatView,
+      },
+    ],
   },
 ];
 

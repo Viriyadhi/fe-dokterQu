@@ -45,7 +45,7 @@
             </v-list-item>
             <v-list-item>
               <v-list-item-content>
-                 <div class="child-text">• Total Pembelian</div>
+                <div class="child-text">• Total Pembelian</div>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
@@ -71,7 +71,7 @@
                 <!-- <v-icon>{{ item.icon }}</v-icon> -->
               </v-list-item-icon>
               <v-list-item-content>
-                 <div class="child-text">• Total Pendapatan</div>
+                <div class="child-text">• Total Pendapatan</div>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
@@ -196,9 +196,9 @@ export default {
 </script>
 
 <style>
-  .child-text{
-      font-size: 15px;
-      font-weight: bold;
-      color: rgb(0, 0, 0,54%)
-  }
+.child-text {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(0, 0, 0, 54%);
+}
 </style>
