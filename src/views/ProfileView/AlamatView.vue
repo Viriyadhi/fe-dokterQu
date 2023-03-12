@@ -8,7 +8,7 @@
             <v-dialog v-model="dialog" width="900" height="500">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                  @click="setDialog"
+                  @click="openDialog()"
                   color="primary"
                   v-bind="attrs"
                   v-on="on"
@@ -19,10 +19,10 @@
 
               <v-card class="form--logreg">
                 <v-card-title class="text-h5 pb-8">
-                  Tambah Alamat
+                  {{ isEditing ? "Edit Data" : "Add Data" }}
                 </v-card-title>
 
-                <v-form ref="form" @submit.prevent>
+                <v-form ref="form" @v-on:submit.prevent>
                   <div class="form--logreg__group w-100">
                     <v-row>
                       <v-col
@@ -45,7 +45,6 @@
                           :required="data.required"
                           v-model="models[data.name]"
                           color="284860"
-                          clearable
                           single-line
                           outlined
                         >
@@ -77,16 +76,33 @@
             </v-dialog>
           </div>
         </div>
-        <v-divider class="mt-4"></v-divider>
+        <v-divider class="my-4"></v-divider>
 
         <AddressCard
-          recipient="userAddress.recipient"
-          label="userAddress.label"
-          address="userAddress.address"
-          phone="userAddress.phone"
-          province="userAddress.province"
-          city="userAddress.city"
+          v-for="(Address, i) in userAddresses"
+          :key="i"
+          :recipient="Address.recipient"
+          :label="Address.label"
+          :address="Address.address"
+          :phone="Address.phone"
+          :province="Address.province"
+          :city="Address.city"
         >
+          <template v-slot:action>
+            <div class="d-flex align-center justify-end mb-2">
+              <v-btn
+                @click="openDialog(Address.id)"
+                color="primary"
+                class="mr-8"
+              >
+                <v-icon small> mdi-pencil </v-icon>
+              </v-btn>
+
+              <v-btn color="primary">
+                <v-icon small> mdi-delete </v-icon>
+              </v-btn>
+            </div>
+          </template>
         </AddressCard>
       </v-card>
     </div>
@@ -98,7 +114,8 @@ import L from "vue2-leaflet";
 import "leaflet.markercluster";
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import AddressCard from "@/components/E-commerce/Checkout/AddressCard.vue";
-
+import axios from "axios";
+import { EventBus } from "../../../event-bus.js";
 export default {
   components: {
     AddressCard,
@@ -110,14 +127,17 @@ export default {
   data: () => ({
     // etc.
     dialog: false,
+    isEditing: false,
     models: {},
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     zoom: 4,
-    center: [-2.4513996546223473, 121.02539062500001],
+    center: [null, null],
     markerLocation: null,
     popupText: "",
     popup: "",
     mapReady: false,
+    userAddresses: [],
+
     formAlamat: [
       {
         label: "Label",
@@ -144,6 +164,20 @@ export default {
         required: true,
       },
       {
+        label: "Provinsi",
+        name: "province_id",
+        type: "select",
+        required: true,
+        options: [],
+      },
+      {
+        label: "Kota",
+        name: "city_id",
+        type: "select",
+        required: true,
+        options: [],
+      },
+      {
         label: "Lattitude",
         name: "latitude",
         type: "text",
@@ -155,16 +189,14 @@ export default {
         type: "text",
         required: true,
       },
-
-      {
-        label: "Provinsi",
-        name: "province_id",
-        type: "text",
-        required: true,
-      },
     ],
   }),
+
+  created() {},
+
   mounted() {
+    this.initData();
+
     this.$L = L;
     this.$nextTick(() => {
       // Access the marker component using $refs
@@ -177,29 +209,92 @@ export default {
       }
     });
   },
+
+  computed: {},
+
   methods: {
+    clearData() {
+      this.models = {};
+      this.markerLocation = null;
+    },
+
+    async initData() {
+      this.clearData();
+
+      await this.getAddresses();
+    },
     handleMapClick(e) {
       const { lat, lng } = e.latlng;
       this.markerLocation = [lat, lng];
       this.popupText = `Lat: ${lat}, Lng: ${lng}`;
-      const popup = L.popup().setLatLng([lat, lng]).setContent(this.popupText);
-      const marker = this.$refs.marker;
-      marker.setLatLng([lat, lng]);
-      marker.bindPopup(popup);
+      if (this.isEditing) {
+        this.models.latitude = lat;
+        this.models.longitude = lng;
+      }
     },
+
     handleMarkerPopupOpen() {
       const marker = this.$refs.marker;
       const popup = marker.getPopup();
       popup.setContent(this.popupText);
     },
 
-    setDialog() {
+    async openDialog(address) {
+      this.clearData();
       this.dialog = true;
+      if (address) {
+        console.log(address);
+        this.isEditing = true;
+        const res = await axios.get(
+          `${this.$api}/user/customer/address/${address}`
+        );
+        const data = res.data.data;
+
+        this.markerLocation = [data.latitude, data.longitude];
+        this.center = [data.latitude, data.longitude];
+        this.models = data;
+      } else {
+        this.isEditing = false;
+      }
       if (this.dialog) {
         setTimeout(() => {
           this.mapReady = true;
-        }, 1000);
+        }, 800);
       }
+    },
+
+    async getAddresses() {
+      try {
+        EventBus.$emit("startLoading");
+        const res = await axios.get(`${this.$api}/user/customer/addresses`);
+        console.log(res);
+        const addresses = res.data.data;
+        this.userAddresses = addresses;
+        console.log(this.userAddresses);
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+
+    async editAlamat(address) {
+      try {
+        EventBus.$emit("startLoading");
+        console.log(address);
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
     },
   },
 };
