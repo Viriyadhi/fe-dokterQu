@@ -53,7 +53,7 @@
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12" lg="12">
-                        <div id="app" v-if="mapReady && dialog">
+                        <div class="map" v-if="mapReady && dialog">
                           <l-map
                             :zoom="zoom"
                             :center="center"
@@ -205,13 +205,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container-profile {
   width: 70%;
 }
 
-#app {
+.map {
   height: 50vh;
-  margin: 0;
 }
 </style>
