@@ -14,7 +14,7 @@
               to="/registerpopup"
               rounded
               color="success"
-              class="ml-12 pa-5 button-header-custom"
+              class="ml-5 ml-md-12 pa-5 button-header-custom"
               dark
               width="321"
             >
@@ -34,90 +34,64 @@
         >
         </v-img>
       </div>
-      <!-- <OvalTop /> -->
     </div>
 
-    <div class="d-flex flex-row container-three">
-      <div class="d-flex flex-column">
-        <h4 class="three-title font-weight-bold text-h4 mb-2">Mudah</h4>
-        <p class="three-desc">Hanya dengan beberapa klik</p>
-      </div>
-
-      <v-divider vertical></v-divider>
-
-      <div class="d-flex flex-column">
-        <h4 class="three-title font-weight-bold text-h4 mb-2">Efisien</h4>
-        <p class="three-desc">aplikasi yang terpercaya</p>
-      </div>
-
-      <v-divider vertical></v-divider>
-
-      <div class="d-flex flex-column">
-        <h4 class="three-title font-weight-bold text-h4 mb-2">Terpercaya</h4>
-        <p class="three-desc">Semua dokter kami pastikan ber-sertifikat</p>
-      </div>
-    </div>
-
-    <section class="tiga-keunggulan">
-      <div class="d-flex flex-column">
-        <div class="container-keunggulan">
-          <div class="d-flex flex-row">
-            <v-img
-              src="@/assets/Landing Page/Keunggulan/ios-medkit-outline.svg"
-              class="image-keunggulan"
-              height="84"
-              width="90"
-            >
-            </v-img>
-            <div class="d-flex flex-column align-center">
-              <h4 class="keunggulan-angka">+1200</h4>
-              <h5 class="keunggulan-apa">Doctors</h5>
-            </div>
-          </div>
-          <div class="d-flex flex-row mid-keuggulan">
-            <v-img
-              src="@/assets/Landing Page/Keunggulan/ios-medkit-outline.svg"
-              class="image-keunggulan"
-              height="84"
-              width="90"
-            >
-            </v-img>
-            <div class="d-flex flex-column align-center">
-              <h4 class="keunggulan-angka">+1200</h4>
-              <h5 class="keunggulan-apa">Doctors</h5>
-            </div>
-          </div>
-
-          <div class="d-flex flex-row">
-            <v-img
-              src="@/assets/Landing Page/Keunggulan/ios-medkit-outline.svg"
-              class="image-keunggulan"
-              height="84"
-              width="90"
-            >
-            </v-img>
-            <div class="d-flex flex-column align-center index-2">
-              <h4 class="keunggulan-angka">+1200</h4>
-              <h5 class="keunggulan-apa">Doctors</h5>
-            </div>
-          </div>
+    <v-row class="px-5 px-md-10 mt-10 mt-sm-16" style="z-index: 2">
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+        class="d-flex flex-row"
+        v-for="item in our_advantage"
+        :key="item"
+      >
+        <v-divider vertical></v-divider>
+        <div class="d-flex flex-column pl-5">
+          <h4 class="three-title font-weight-bold text-h4 mb-2">
+            {{ item?.title }}
+          </h4>
+          <p class="three-desc">{{ item?.description }}</p>
         </div>
-        <div class="d-flex flex-row container-desc-keunggulan">
-          <p class="keunggulan-desc text-center">
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.
-          </p>
-          <p class="keunggulan-desc text-center">
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.
-          </p>
-          <p class="keunggulan-desc text-center">
-            Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.
-          </p>
+      </v-col>
+    </v-row>
+
+    <v-row
+      class="px-3 px-md-15 mt-10 mt-sm-16 pt-sm-10 white"
+      style="z-index: 2"
+    >
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+        class="d-flex flex-row justify-center px-5 mt-10 mt-md-0"
+        v-for="item in our_advantage_2"
+        :key="item"
+      >
+        <div>
+          <v-row class="justify-center align-center" style="gap: 8px">
+            <div>
+              <v-img
+                src="@/assets/Landing Page/Keunggulan/ios-medkit-outline.svg"
+                height="84"
+                width="90"
+              />
+            </div>
+            <div class="d-flex flex-column align-center">
+              <h4 class="keunggulan-angka">+{{ item?.count }}</h4>
+              <h5 class="keunggulan-apa">Doctors</h5>
+            </div>
+          </v-row>
+          <v-row class="justify-center">
+            <div class="text-center mt-5 px-5" style="max-width: 75%">
+              {{ item?.description }}
+            </div>
+          </v-row>
         </div>
-      </div>
-    </section>
+      </v-col>
+    </v-row>
 
     <section class="layanan-khusus mt-16 pt-16">
-      <div class="mx-16 px-16">
+      <div class="px-8 px-sm-16 mx-md-16 px-md-16">
         <div class="title">
           <h2 class="layanan-title">Layanan Khusus</h2>
           <p class="layanan-desc">
@@ -128,158 +102,121 @@
       </div>
     </section>
 
-    <section class="layanan-khusus card">
-      <div class="d-flex flex-row">
+    <section class="mx-0">
+      <div class="custom-layanan-container">
         <div class="parent-layanan">
           <v-img
             src="@/assets/Landing Page/LayananKhusus/LayananImage.svg"
-            max-width="502"
-            max-height="425"
-            class="layanan-image"
+            class="layanan-image custom-layanan-image-size"
           >
           </v-img>
           <v-img
             src="@/assets/Landing Page/LayananKhusus/OvalLayanan.svg"
-            class="layanan-oval"
+            class="layanan-oval custom-layanan-oval-size"
           >
           </v-img>
         </div>
-
-        <div class="ml-16 container-card1 flex-grow-1">
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
+        <v-row class="mt-3 px-5">
+          <v-col 
+            cols="12"
+            sm="6"
+            md="3"
+            lg="3"
+            class="pa-5 pa-sm-3 px-lg-6"
+            v-for="(item, i) in 4"
+            :key="i"
           >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
+            <v-card
+              class="custom-card-konsultasi rounded-lg justify-space-between"
+            >
+              <div>
+                <v-img
+                  class="rounded-t-lg"
+                  src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                  height="170"
+                ></v-img>
 
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
-
-            <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
-
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
-
-            <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
-
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
-
-            <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-          <v-card
-            max-width="255"
-            max-height="350"
-            class="custom-card-konsultasi rounded-lg"
-          >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="170"
-            ></v-img>
-
-            <v-card-subtitle class="black--text pa-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              pretium fermentum felis id condimentum.
-            </v-card-subtitle>
-
-            <v-card-actions class="d-flex justify-end mt-1">
-              <v-btn color="success" class="ml-8 pa-5 button-layanan" dark>
-                SEE DETAILS
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </div>
+                <v-card-subtitle class="black--text pa-5">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Phasellus pretium fermentum felis id condimentum.
+                </v-card-subtitle>
+              </div>
+              <v-card-actions class="d-flex justify-end align-end pa-0">
+                <v-btn color="success" class="pa-5 custom-button-layanan" dark>
+                  SEE DETAILS
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
       </div>
     </section>
 
-    <section class="Appointment my-16">
-      <div class="d-flex flex-row justify-space-between">
-        <div class="Appointment-container d-flex flex-column">
-          <h2 class="Appointment-title">Janji Temu Dengan Dokter Spesialis</h2>
+    <section class="my-16">
+      <v-row class="mt-10 mt-sm-16">
+        <v-col cols="12" md="6" class="d-flex align-center">
+          <div class="px-8 px-sm-12 px-md-16 d-flex flex-column">
+            <h2 class="Appointment-title">
+              Janji Temu Dengan Dokter Spesialis
+            </h2>
 
-          <p class="Appointment-desc">
-            Hanya dengan beberapa Klik, anda bisa konsultasi dengan dokter
-            spesialis yang sudah bergabung di website kami.
-          </p>
-
-          <v-btn color="success" class="medicine-btn py-5" rounded>
-            Cari Dokter Sekarang</v-btn
-          >
-        </div>
-        <v-img
-          src="@/assets/Landing Page/Appointment/Appointment.svg"
-          max-width="746.15"
-          max-height="481.43"
-          class="Appointment-image"
-        ></v-img>
-      </div>
+            <p class="Appointment-desc">
+              Hanya dengan beberapa Klik, anda bisa konsultasi dengan dokter
+              spesialis yang sudah bergabung di website kami.
+            </p>
+            <v-row class="px-3">
+              <v-btn color="success" class="custom-medicine-btn py-5" rounded>
+                Cari Dokter Sekarang</v-btn
+              >
+            </v-row>
+          </div>
+        </v-col>
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex flex-row justify-center px-10 mt-10 mt-sm-2"
+        >
+          <div class="appointment-image-size">
+            <v-img
+              src="@/assets/Landing Page/Appointment/Appointment.svg"
+            ></v-img>
+          </div>
+        </v-col>
+      </v-row>
     </section>
 
-    <section class="medicine pt-16 ma-16 px-16">
-      <div class="d-flex flex-row justify-space-around">
-        <v-img
-          src="@/assets/Landing Page/Medicine/MedicineImage.svg"
-          class="medicine-image"
-          max-width="604"
-          max-height="459"
-        ></v-img>
-        <div class="d-flex flex-column medicine-text">
-          <h2 class="medicine-title">Cari Obat</h2>
-          <p class="medicine-desc">
-            Penuhi kebutuhan obat anda dengan mengunjungi E-commerce kami yang
-            memiliki lebih dari 100 macam obat.
-          </p>
-          <v-btn color="success" class="medicine-btn py-5" rounded>
-            Kunjungi Toko</v-btn
-          >
-        </div>
-      </div>
+    <section class="my-14">
+      <v-row class="mt-10 mt-sm-16">
+        <v-col
+          cols="12"
+          md="7"
+          class="d-flex flex-row justify-center px-10 mt-10 mt-sm-2"
+        >
+          <div class="appointment-image-size">
+            <v-img
+              src="@/assets/Landing Page/Medicine/MedicineImage.svg"
+            ></v-img>
+          </div>
+        </v-col>
+        <v-col cols="12" md="5">
+          <div class="px-8 px-sm-12 px-md-16 d-flex flex-column">
+            <h2 class="Appointment-title">Cari Obat</h2>
+
+            <p class="Appointment-desc">
+              Penuhi kebutuhan obat anda dengan mengunjungi E-commerce kami yang
+              memiliki lebih dari 100 macam obat.
+            </p>
+            <v-row class="px-3">
+              <v-btn color="success" class="custom-medicine-btn py-5" rounded>
+                Kunjungi Toko</v-btn
+              >
+            </v-row>
+          </div>
+        </v-col>
+      </v-row>
     </section>
 
-    <section class="article mt-8 mx-16">
+    <section class="article mt-8 px-3 px-sm-10 px-md-16">
       <div class="d-flex flex-row justify-space-between align-center">
         <h2 class="article-header-title">Baca Artikel Seputar Kesehatan</h2>
         <router-link :to="{ name: 'ArticleView' }" class="article-header-link">
@@ -293,8 +230,7 @@
           :key="i"
           outlined
           rounded
-          class="button-group-child"
-          width="207px"
+          class="button-group-child button-group-child-size"
           height="47"
           @click="getArticleByCategory(category.links.article)"
         >
@@ -302,49 +238,45 @@
         </v-btn>
       </div>
 
-      <div
-        class="article-container d-flex flex-row align-center justify-space-between"
-      >
-        <v-card
-          max-width="350"
-          max-height="fit-content"
-          class="article-card rounded-lg"
+      <v-row class="mt-3">
+        <v-col
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+          class="pa-5 pa-sm-3"
           v-for="(articleData, i) in articleList"
           :key="i"
         >
-          <router-link :to="{ path: `${articleData.links['self']}` }">
-            <div class="">
-              <v-img
-                :src="articleData.thumbnail"
-                height="200px"
-                class="article-img rounded-t-lg"
-              ></v-img>
-            </div>
+          <v-card max-height="fit-content" class="article-card rounded-lg">
+            <router-link :to="{ path: `${articleData.links['self']}` }">
+              <div class="">
+                <v-img
+                  src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                  height="200px"
+                  class="article-img rounded-t-lg"
+                ></v-img>
+              </div>
 
-            <!-- <v-card-title> Top western road trips </v-card-title> -->
+              <v-card-text class="px-5 py-0 pt-4">
+                <v-chip color="secondary" class="rounded-lg"> mata </v-chip>
+              </v-card-text>
 
-            <v-card-text class="px-5 py-0 pt-4">
-              <v-chip color="secondary" class="rounded-lg">
-                {{ articleData.category }}
-              </v-chip>
-            </v-card-text>
+              <v-card-subtitle class="card-desc2"> 2023-02-16 </v-card-subtitle>
 
-            <v-card-subtitle class="card-desc2"
-              >{{ articleData.created_at }}
-            </v-card-subtitle>
+              <v-card-text class="font-weight-bold pb-0 px-5">
+                Mengenal Kondisi Flat Foot, Berbahaya atau Tidak?
+              </v-card-text>
 
-            <v-card-text class="font-weight-bold pb-0 px-5">
-              {{ articleData.title }}
-            </v-card-text>
-
-            <v-card-text class="pt-0 px-5">
-              “Flat foot merupakan kondisi ketika telapak kaki lurus alias tidak
-              memiliki lengkungan. Anak dengan flat foot akan mudah lelah dan
-              tersandung saat berjalan atau berlari.”
-            </v-card-text>
-          </router-link>
-        </v-card>
-      </div>
+              <v-card-text class="pt-0 px-5">
+                “Flat foot merupakan kondisi ketika telapak kaki lurus alias
+                tidak memiliki lengkungan. Anak dengan flat foot akan mudah
+                lelah dan tersandung saat berjalan atau berlari.”
+              </v-card-text>
+            </router-link>
+          </v-card>
+        </v-col>
+      </v-row>
     </section>
     <router-view />
   </v-app>
@@ -369,6 +301,37 @@ export default {
     categoryArticle: [],
     ArticleByCategory: [],
     articleLink: [],
+    our_advantage: [
+      {
+        title: "Mudah",
+        description: "Hanya dengan beberapa klik",
+      },
+      {
+        title: "Efisien",
+        description: "Aplikasi yang terpercaya",
+      },
+      {
+        title: "Terpercaya",
+        description: "Semua dokter kami pastikan ber-sertifikat",
+      },
+    ],
+    our_advantage_2: [
+      {
+        count: "1200",
+        description:
+          "Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.",
+      },
+      {
+        count: "1200",
+        description:
+          "Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.",
+      },
+      {
+        count: "1200",
+        description:
+          "Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam.",
+      },
+    ],
   }),
 
   created() {
@@ -484,6 +447,7 @@ export default {
   height: 31rem !important;
   margin-top: -4rem;
   position: relative;
+  z-index: 1;
 }
 
 .banner {
@@ -505,19 +469,147 @@ export default {
 </style>
 
 <style>
-.container-title {
-  margin-left: 7rem;
-  margin-top: 4rem;
+@media (min-width: 0px) {
+  .custom-layanan-image-size {
+    width: 252px;
+    height: 185px;
+  }
+  .custom-layanan-oval-size {
+    width: 302px;
+    height: 400px;
+  }
+
+  .custom-layanan-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .container-title {
+    margin-left: 2rem;
+    margin-top: 3.5rem;
+  }
+  .header-desc {
+    width: 80%;
+    font-size: 1.25rem;
+    font-weight: 400 !important;
+  }
+  .header-title {
+    font-size: 3rem !important;
+    font-weight: 600;
+    width: 400px;
+  }
+  .layanan-desc {
+    font-weight: 400;
+    font-size: 1.25rem;
+    width: 80% !important;
+  }
+  .layanan-image-size {
+    width: 300px;
+    height: 250px;
+  }
+  .layanan-oval-size {
+    width: 305px;
+    height: 400px;
+  }
+  .Appointment-title {
+    font-weight: 800;
+    width: 85% !important;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  .custom-medicine-btn {
+    font-size: 1.5rem;
+    font-weight: 600 !important;
+    margin-top: 2rem;
+  }
+  .appointment-image-size {
+    width: 300px;
+  }
+  .button-group-child-size {
+    width: 180px;
+  }
+}
+
+@media (min-width: 600px) {
+  .button-group-child-size {
+    width: 200px;
+  }
+  .appointment-image-size {
+    width: 400.15px;
+  }
+  .container-title {
+    margin-left: 7rem;
+    margin-top: 4rem;
+  }
+  .header-desc {
+    width: 80%;
+    font-size: 1.25rem;
+    font-weight: 400 !important;
+  }
+  .layanan-desc {
+    font-weight: 400;
+    font-size: 1.25rem;
+    width: 50% !important;
+  }
+  .layanan-image-size {
+    width: 452px;
+    height: 385px;
+  }
+  .layanan-oval-size {
+    width: auto;
+    height: auto;
+  }
+  .Appointment-title {
+    font-weight: 800;
+    width: 75% !important;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  /* .custom-layanan-image-size {
+    width: 352px;
+    height: 285px;
+  }
+  .custom-layanan-oval-size {
+    width: 452px;
+    height: 595px;
+  } */
+}
+
+@media (min-width: 900px) {
+  .appointment-image-size {
+    width: 500.15px; 
+  }
+  .custom-layanan-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .custom-layanan-image-size {
+    width: 302px;
+    height: 235px;
+  }
+  .custom-layanan-oval-size {
+    width: 352px;
+    height: 475px;
+  }
+  .layanan-desc {
+    font-weight: 400;
+    font-size: 1.25rem;
+    width: 40% !important;
+  }
+}
+@media (min-width: 1200px) { 
+  .custom-layanan-image-size {
+    width: 352px;
+    height: 285px;
+  }
+  .custom-layanan-oval-size {
+    width: 452px;
+    height: 595px;
+  }
 }
 
 .header-title {
   font-size: 3rem !important;
   font-weight: 600;
-}
-.header-desc {
-  width: 60%;
-  font-size: 1.25rem;
-  font-weight: 400 !important;
 }
 
 .header-link {
@@ -537,6 +629,7 @@ export default {
   margin-right: 7rem;
   width: 50rem !important;
   height: 30rem !important;
+  z-index: 1;
 }
 </style>
 
@@ -612,12 +705,6 @@ export default {
   margin-bottom: 2rem;
 }
 
-.layanan-desc {
-  font-weight: 400;
-  font-size: 1.25rem;
-  width: 30% !important;
-}
-
 .layanan-image {
   position: absolute;
   z-index: 2;
@@ -637,19 +724,27 @@ export default {
   flex-direction: row;
   gap: 5rem;
 }
+.custom-button-layanan {
+  border-radius: 8px 0 !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
 .button-layanan {
   margin-right: -0.5rem;
   border-radius: 1.5rem 0;
   font-weight: 600;
   font-size: 0.9rem;
-  border-radius: 8px 0 !important;
-  font-weight: 600 !important;
-  font-size: 0.9rem !important;
 }
 
 .custom-card-konsultasi {
   padding: 0 !important;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.button-layanan {
+  border-radius: 8px 0 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
 }
 </style>
 
@@ -701,13 +796,6 @@ export default {
 </style>
 
 <style>
-.Appointment-title {
-  font-weight: 800;
-  width: 55% !important;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-}
-
 .Appointment-desc {
   font-weight: 400;
   font-size: 1.25rem;
