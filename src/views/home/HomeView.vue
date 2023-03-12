@@ -117,12 +117,13 @@
           </v-img>
         </div>
         <v-row class="mt-3 px-5">
-          <v-col
+          <v-col 
             cols="12"
             sm="6"
-            md="4"
-            class="pa-5 pa-sm-3"
-            v-for="(item, i) in 3"
+            md="3"
+            lg="3"
+            class="pa-5 pa-sm-3 px-lg-6"
+            v-for="(item, i) in 4"
             :key="i"
           >
             <v-card
@@ -175,12 +176,11 @@
           md="6"
           class="d-flex flex-row justify-center px-10 mt-10 mt-sm-2"
         >
-          <v-img
-            src="@/assets/Landing Page/Appointment/Appointment.svg"
-            max-width="746.15"
-            max-height="481.43"
-            class="appointment-image-size"
-          ></v-img>
+          <div class="appointment-image-size">
+            <v-img
+              src="@/assets/Landing Page/Appointment/Appointment.svg"
+            ></v-img>
+          </div>
         </v-col>
       </v-row>
     </section>
@@ -192,12 +192,11 @@
           md="7"
           class="d-flex flex-row justify-center px-10 mt-10 mt-sm-2"
         >
-          <v-img
-            src="@/assets/Landing Page/Medicine/MedicineImage.svg"
-            max-width="604"
-            max-height="459"
-            class="appointment-image-size"
-          ></v-img>
+          <div class="appointment-image-size">
+            <v-img
+              src="@/assets/Landing Page/Medicine/MedicineImage.svg"
+            ></v-img>
+          </div>
         </v-col>
         <v-col cols="12" md="5">
           <div class="px-8 px-sm-12 px-md-16 d-flex flex-column">
@@ -471,6 +470,15 @@ export default {
 
 <style>
 @media (min-width: 0px) {
+  .custom-layanan-image-size {
+    width: 252px;
+    height: 185px;
+  }
+  .custom-layanan-oval-size {
+    width: 302px;
+    height: 400px;
+  }
+
   .custom-layanan-container {
     display: flex;
     flex-direction: column;
@@ -514,7 +522,7 @@ export default {
     margin-top: 2rem;
   }
   .appointment-image-size {
-    width: 400px;
+    width: 300px;
   }
   .button-group-child-size {
     width: 180px;
@@ -526,7 +534,7 @@ export default {
     width: 200px;
   }
   .appointment-image-size {
-    width: 700.15px;
+    width: 400.15px;
   }
   .container-title {
     margin-left: 7rem;
@@ -556,6 +564,39 @@ export default {
     font-size: 3rem;
     margin-bottom: 2rem;
   }
+  /* .custom-layanan-image-size {
+    width: 352px;
+    height: 285px;
+  }
+  .custom-layanan-oval-size {
+    width: 452px;
+    height: 595px;
+  } */
+}
+
+@media (min-width: 900px) {
+  .appointment-image-size {
+    width: 500.15px; 
+  }
+  .custom-layanan-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .custom-layanan-image-size {
+    width: 302px;
+    height: 235px;
+  }
+  .custom-layanan-oval-size {
+    width: 352px;
+    height: 475px;
+  }
+  .layanan-desc {
+    font-weight: 400;
+    font-size: 1.25rem;
+    width: 40% !important;
+  }
+}
+@media (min-width: 1200px) { 
   .custom-layanan-image-size {
     width: 352px;
     height: 285px;
@@ -563,20 +604,6 @@ export default {
   .custom-layanan-oval-size {
     width: 452px;
     height: 595px;
-  }
-}
-
-@media (min-width: 900px) {
-  .layanan-desc {
-    font-weight: 400;
-    font-size: 1.25rem;
-    width: 40% !important;
-  }
-}
-@media (min-width: 1200px) {
-  .custom-layanan-container {
-    display: flex;
-    flex-direction: row;
   }
 }
 
