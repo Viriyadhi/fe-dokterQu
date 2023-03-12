@@ -22,20 +22,21 @@
       </div>
 
       <div
+        style="flex:auto"
         class="d-flex align-center justify-space-between"
         v-if="isXSmallScreenSize"
       >
         <router-link :to="{ name: 'Default' }">
-          <a class="mx-8">Beranda</a>
+          <a>Beranda</a>
         </router-link>
         <router-link :to="{ name: 'JanjiTemu' }">
-          <a class="mx-8">Konsultasi Offline</a>
+          <a>Konsultasi Offline</a>
         </router-link>
         <router-link :to="{ path: '/commerce/shop/products' }">
-          <a class="mx-8">Beli Obat</a>
+          <a>Beli Obat</a>
         </router-link>
         <router-link :to="{ path: '/chat-dokter' }">
-          <a class="mx-8">Konsultasi Online</a>
+          <a>Konsultasi Online</a>
         </router-link>
 
         <v-menu
@@ -46,7 +47,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-btn
-              class="ml-8 mr-16 btn-kesehatan text-capitalize"
+              class="btn-kesehatan text-capitalize"
               dark
               v-bind="attrs"
               v-on="on"
@@ -71,9 +72,9 @@
         class="d-flex align-center justify-end flex-grow-1"
       >
         <router-link :to="{ name: 'Login' }">
-          <a class="login-text mr-8">LOGIN</a>
+          <a class="login-text mr-3 mr-lg-8">LOGIN</a>
         </router-link>
-        <div class="text-center mx-8">
+        <div class="text-center mx-3 mx-lg-8">
           <v-btn
             :to="{ path: 'register-popup' }"
             rounded
@@ -313,11 +314,22 @@ html {
   overflow-x: hidden;
 }
 
+@media (min-width: 0px) {
 a {
   text-decoration: none;
   color: black !important;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 600;
+}
+}
+
+@media (max-width: 1580px) {
+a {
+  text-decoration: none;
+  color: black !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
 }
 
 .mdi-config {
@@ -349,9 +361,19 @@ a {
 .btn-kesehatan {
   background-color: transparent !important;
   color: black !important;
-  font-size: 1.1rem !important;
+  font-size: 1.3rem !important;
   font-weight: 600 !important;
   box-shadow: none !important;
+}
+
+@media (max-width:1580px) {
+  .btn-kesehatan {
+  background-color: transparent !important;
+  color: black !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
 }
 
 .theme--light.v-list {
