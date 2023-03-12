@@ -87,14 +87,8 @@
           class="d-flex align-center justify-end flex-grow-1"
         >
           <div class="text-center">
-            <router-link :to="{ path: 'profile/home' }">
-              <v-chip
-                v-bind="attrs"
-                v-on="on"
-                outlined
-                color="black"
-                class="mr-8"
-              >
+            <router-link :to="{ name: 'ProfileProfil' }">
+              <v-chip outlined color="black" class="mr-8">
                 <v-avatar>
                   <v-img :src="localStorage.data.photo"></v-img>
                 </v-avatar>
