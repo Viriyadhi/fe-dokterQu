@@ -21,24 +21,21 @@
       </div>
 
       <div
-        style="flex: auto"
+       
         class="d-flex align-center justify-space-between"
         v-if="isXSmallScreenSize"
       >
         <router-link :to="{ name: 'Default' }">
-          <a>Beranda</a>
+          <a class="mx-3 mx-lg-8">Beranda</a>
         </router-link>
         <router-link :to="{ name: 'JanjiTemu' }">
-          <a>Konsultasi Offline</a>
+          <a class="mx-3 mx-lg-8">Konsultasi Offline</a>
         </router-link>
         <router-link :to="{ path: '/commerce/shop/products' }">
-          <a>Beli Obat</a>
-        </router-link>
-        <router-link :to="{ path: '/chat-dokter' }">
-          <a>Konsultasi Online</a>
+          <a class="mx-3 mx-lg-8">Beli Obat</a>
         </router-link>
 
-        <v-menu
+        <!-- <v-menu
           open-on-hover
           bottom
           :offset-y="offset"
@@ -63,7 +60,7 @@
               </router-link>
             </v-list-item>
           </v-list>
-        </v-menu>
+        </v-menu> -->
       </div>
 
       <div
@@ -161,13 +158,13 @@
         >
           Beli Obat
         </v-list-item>
-        <v-list-item
+        <!-- <v-list-item
           class="py-0 d-flex justify-center mt-5 custom-drawer-item"
           @click="$router.push('/chat-dokter'), (health_tab_is_active = false)"
         >
           Konsultasi Online
-        </v-list-item>
-        <v-list-item
+        </v-list-item> -->
+        <!-- <v-list-item
           class="py-0 d-flex justify-center mt-5 align-center custom-drawer-item relative"
           @click="health_tab_is_active = !health_tab_is_active"
           style="gap: 8px"
@@ -176,7 +173,7 @@
           <v-icon
             >{{ health_tab_is_active ? "mdi-chevron-up" : "mdi-chevron-down" }}
           </v-icon>
-        </v-list-item>
+        </v-list-item> -->
         <div v-if="health_tab_is_active">
           <v-list-item
             class="py-0 d-flex justify-center custom-drawer-item"

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="d-flex">
+    <div class="d-flex justify-space-between">
       <div class="d-flex flex-column container-title">
         <h2 class="header-title">Seputar Kesehatan Indra</h2>
         <p class="header-desc">
@@ -117,7 +117,7 @@
           </v-img>
         </div>
         <v-row class="mt-3 px-5">
-          <v-col 
+          <v-col
             cols="12"
             sm="6"
             md="3"
@@ -576,7 +576,7 @@ export default {
 
 @media (min-width: 900px) {
   .appointment-image-size {
-    width: 500.15px; 
+    width: 500.15px;
   }
   .custom-layanan-container {
     display: flex;
@@ -596,7 +596,7 @@ export default {
     width: 40% !important;
   }
 }
-@media (min-width: 1200px) { 
+@media (min-width: 1200px) {
   .custom-layanan-image-size {
     width: 352px;
     height: 285px;
