@@ -2,7 +2,7 @@
   <div>
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>DokterQ</v-toolbar-title>
+      <v-toolbar-title>DokterQu</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app width="256">
