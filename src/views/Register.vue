@@ -171,7 +171,6 @@ export default {
   async mounted() {
     var route = this.$route.params.user;
     this.routeParams = route;
-    console.log(route);
     await this.getFormData();
     await this.getProvince();
   },
