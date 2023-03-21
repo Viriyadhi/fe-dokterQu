@@ -83,16 +83,13 @@
 
 <script>
 import axios from "axios";
-// import ECommerceButtonCount from "@/components/E-commerce/ECommerceButtonCount.vue";
 
 import { EventBus } from "../../../event-bus.js";
 
 export default {
   name: "CommerceView",
 
-  components: {
-    // ECommerceButtonCount,
-  },
+  components: {},
 
   data: () => ({
     loading: false,
@@ -140,8 +137,6 @@ export default {
           link = data[i].links.cart.add_cart;
           this.addCartLink.push(link);
         }
-        console.log(this.addCartLink);
-        console.log(dataL);
         this.items = data;
       } catch (err) {
         var error = err;

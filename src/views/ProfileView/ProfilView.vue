@@ -20,14 +20,13 @@
                     data.label !== 'Role' &&
                     data.label !== 'Provinsi' &&
                     data.label !== 'Kota' &&
-                    data.label !== 'Photo Profile'
+                    data.label !== 'Gender'
                   "
                 >
                   {{ data.label }}
                 </p>
-
                 <v-text-field
-                  v-if="data.name === 'name' || data.name === 'phone'"
+                  v-if="data.name === 'name'"
                   :prepend-inner-icon="data.prepend_inner_icon"
                   :rules="[(v) => !!v || `${data.label} Harus diisi`]"
                   :required="data.required"
@@ -91,34 +90,19 @@
                   outlined
                 ></v-text-field>
 
-                <v-select
-                  v-if="data.name === 'gender'"
-                  :required="data.required"
-                  :items="data.options"
+                <v-text-field
+                  v-if="data.name === 'phone'"
+                  :prepend-inner-icon="data.prepend_inner_icon"
                   :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+                  :required="data.required"
                   v-model="models[data.name]"
                   color="284860"
-                  item-text="label"
-                  item-value="value"
                   clearable
                   single-line
                   outlined
                 >
-                </v-select>
-              </v-col>
+                </v-text-field>
 
-              <v-col
-                cols="12"
-                sm="12"
-                md="12"
-                lg="12"
-                v-for="(data, j) in formData"
-                :key="j"
-                class="py-0"
-              >
-                <p v-if="data.label === 'Photo Profile'">
-                  {{ data.label }}
-                </p>
                 <v-file-input
                   v-if="data.name === 'photo'"
                   :required="data.required"

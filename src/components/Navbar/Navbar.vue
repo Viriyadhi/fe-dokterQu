@@ -21,7 +21,6 @@
       </div>
 
       <div
-       
         class="d-flex align-center justify-space-between"
         v-if="isXSmallScreenSize"
       >
@@ -82,6 +81,23 @@
               <a class="register-text">REGISTER</a>
             </router-link>
           </v-btn>
+          <div
+            v-if="localStorage"
+            class="d-flex align-center justify-end flex-grow-1"
+          >
+            <v-btn>
+              <div class="text-center">
+                <router-link :to="{ name: 'ProfileProfil' }">
+                  <v-chip outlined color="black" class="mr-8">
+                    <v-avatar>
+                      <v-img :src="localStorage.data.photo"></v-img>
+                    </v-avatar>
+                    <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
+                  </v-chip>
+                </router-link>
+              </div>
+            </v-btn>
+          </div>
         </div>
       </div>
 
