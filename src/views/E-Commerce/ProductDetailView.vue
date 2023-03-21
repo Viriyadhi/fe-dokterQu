@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <v-container fluid class="px-16 py-10">
-      <v-row>
-        <v-col cols="3">
+      <v-row class="main-row">
+        <v-col cols="3" class="left-col">
           <div class="wrapper-left">
             <v-img
               src="@/assets/ECommerce/product-img.png"
@@ -46,11 +46,22 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="5">
+        <v-col cols="5" class="middle-col">
           <div class="wrapper-middle">
+            <v-img
+              src="@/assets/ECommerce/product-img.png"
+              max-height="200"
+              contain
+              class="middle-image-product"
+            ></v-img>
+
             <p class="product-name">
               {{ detailData.name }}
             </p>
+            <div class="product-cathegory">
+              <p class="cath-title">Kategori</p>
+              <p class="cath-name">{{ detailData.category }}</p>
+            </div>
             <p class="product-price">{{ detailData.price }}</p>
             <div class="product-warning">
               <v-img
@@ -66,7 +77,7 @@
               </p>
             </div>
 
-            <div class="buttons-wrap">
+            <div class="buttons-wrap d-flex justify-space-between">
               <div class="left-wrap">
                 <v-btn
                   block
@@ -82,7 +93,7 @@
                   >Beli Sekarang</v-btn
                 >
               </div>
-              <div class="ms-8">
+              <div class="d-flex align-center">
                 <button
                   class="btn btn--minus"
                   @click="decrementCounter"
@@ -131,7 +142,7 @@
             </div>
           </div>
         </v-col>
-        <v-col cols="4">
+        <v-col cols="4" class="right-col">
           <div class="wrapper-right">
             <p class="consultation-title">Konsultasi Dokter</p>
             <v-card class="elevation-2 rounded-lg pa-4 consult-card">
@@ -172,16 +183,13 @@
 <script>
 import axios from "axios";
 import { EventBus } from "../../../event-bus.js";
-
 export default {
   name: "ProductDetail",
-
   data: () => ({
     counter: null,
     detailData: [],
     updateLink: null,
   }),
-
   created() {
     this.$watch(
       () => {
@@ -195,12 +203,10 @@ export default {
       }
     );
   },
-
   async mounted() {
     await this.getDetailProduct();
   },
   computed: {},
-
   methods: {
     incrementCounter: function () {
       this.counter += 1;
@@ -222,7 +228,6 @@ export default {
         axios.post(`${this.$api + this.decrementUrl}`);
       }
     },
-
     async getDetailProduct() {
       try {
         EventBus.$emit("startLoading");
@@ -244,7 +249,6 @@ export default {
       }
       EventBus.$emit("stopLoading");
     },
-
     async updateCartItem() {
       try {
         EventBus.$emit("startLoading");
@@ -272,7 +276,6 @@ export default {
       }
       EventBus.$emit("stopLoading");
     },
-
     checkoutNow() {
       const arr = [
         {
@@ -296,12 +299,50 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 450px) {
+  .buttons-wrap {
+    flex-direction: column;
+  }
+  .left-wrap {
+    width: 100%!important;
+  }
+}
+@media (max-width:800px) {
+  .main-row {
+    justify-content: center;
+    gap: 32px;
+  }
+  .left-col {
+    display: none;
+  }
+  .middle-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .right-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .left-wrap {
+    flex: 1;
+  }
+}
+@media (min-width:800px) {
+  .middle-image-product {
+    display: none;
+  }
+  .product-cathegory {
+    display: none;
+  }
+  .buttons-wrap {
+    justify-content: flex-start!important;
+  }
+}
 .right-wraps {
   height: 40px;
   display: flex;
   margin-left: 2rem;
 }
-
 .quantity {
   border: none;
   text-align: center;
@@ -310,7 +351,6 @@ export default {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.54);
 }
-
 .btn {
   border: 1px solid #4caf50;
   width: 40px;
@@ -326,32 +366,26 @@ button:focus,
 input:focus {
   outline: 0;
 }
-
 .custom-btn {
   border: 1px solid black !important;
 }
-
 .wrapper-left .product-cathegory {
   margin-bottom: 2rem;
 }
-
-.wrapper-left .product-cathegory .cath-title {
+.cath-title {
   font-size: 1.2rem;
   margin-bottom: 0;
   margin-top: 1rem;
 }
-
-.wrapper-left .product-cathegory .cath-name {
+.cath-name {
   /* font-size: 1.5rem; */
   color: #4caf50;
 }
-
 .wrapper-left .product-info {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-
 .wrapper-left .product-info .wrap {
   display: flex;
   gap: 10px;
@@ -360,17 +394,14 @@ input:focus {
 .wrapper-left .product-info p {
   margin: 0;
 }
-
 .wrapper-middle .product-name {
   font-size: 1.4rem;
   font-weight: 600;
 }
-
 .wrapper-middle .product-price {
   font-size: 1.1rem;
   font-weight: 900;
 }
-
 .wrapper-middle .product-warning {
   width: fit-content;
   border-radius: 10px;
@@ -380,21 +411,18 @@ input:focus {
   align-items: center;
   gap: 10px;
 }
-
 .wrapper-middle .buttons-wrap {
   display: flex;
-  gap: 10px;
+  gap: 32px;
   align-items: center;
   margin-top: 1rem;
 }
-
 .wrapper-middle .buttons-wrap .left-wrap {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 55%;
 }
-
 .wrapper-middle .buttons-wrap .left-wrap .add-to-cart {
   background-color: #4caf50;
   color: white;
@@ -402,7 +430,6 @@ input:focus {
   border-radius: 10px;
   letter-spacing: 0.2px;
 }
-
 .wrapper-middle .buttons-wrap .left-wrap .buy-product {
   background: #ffffff;
   border: 2px solid #4caf50;
@@ -411,30 +438,25 @@ input:focus {
   color: #4caf50;
   letter-spacing: 0.2px;
 }
-
 .wrapper-middle .details-product {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 2rem;
 }
-
 .wrapper-middle .details-product .detail-title {
   margin-bottom: 5px;
   font-size: 18px;
   font-weight: 700;
 }
-
 .right-wraps {
   display: flex;
   margin-left: 2rem;
 }
-
 .quantity {
   width: 40px;
   color: rgba(0, 0, 0, 0.54);
 }
-
 .btn {
   border: 1px solid #4caf50;
   width: 40px;
@@ -445,12 +467,10 @@ input:focus {
   font-weight: 800;
   cursor: pointer;
 }
-
 button:focus,
 input:focus {
   outline: 0;
 }
-
 .wrapper-right .consultation-title {
   font-weight: 800;
   font-size: 1.3rem;
@@ -490,7 +510,6 @@ input:focus {
 .wrapper-right .consult-card .doctor-info .doctor-photo {
   border-radius: 100px;
 }
-
 .wrapper-right .consult-card .doctor-info .doctor-name {
   margin-bottom: 0;
 }

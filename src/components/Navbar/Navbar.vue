@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <v-card>
-      <v-app-bar
-        :style="this.appbarStyle"
-        fixed
-        class="px-16 navbar pt-3"
-        flat
-        v-scroll="onScrollContent"
-      >
+  <v-card class="mx-auto overflow-hidden">
+    <v-app-bar
+      :style="this.appbarStyle"
+      fixed
+      class="px-sm-16 navbar pt-3"
+      elevation="0"
+      v-scroll="onScrollContent"
+    >
+      <div class="d-flex">
         <v-img
           src="@/assets/WebLogo.svg"
           max-width="61.63"
@@ -18,95 +18,194 @@
         <router-link :to="{ name: 'Default' }">
           <h1 class="mx-8 title-web">DokterQ</h1>
         </router-link>
-        <div class="d-flex align-center justify-space-between">
-          <router-link :to="{ name: 'Default' }">
-            <a class="mx-8">Beranda</a>
-          </router-link>
-          <router-link :to="{ name: 'JanjiTemu' }">
-            <a class="mx-8">Konsultasi Offline</a>
-          </router-link>
-          <router-link :to="{ path: '/commerce/shop/products' }">
-            <a class="mx-8">Beli Obat</a>
-          </router-link>
-          <router-link :to="{ path: '/chat-dokter' }">
-            <a class="mx-8">Konsultasi Online</a>
-          </router-link>
+      </div>
 
-          <v-menu
-            open-on-hover
-            bottom
-            :offset-y="offset"
-            :close-on-click="closeOnClick"
-          >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                class="ml-8 mr-16 btn-kesehatan text-capitalize"
-                dark
-                v-bind="attrs"
-                v-on="on"
-              >
-                Kesehatan
-                <v-icon>mdi-menu-down</v-icon>
-              </v-btn>
-            </template>
+      <div
+        class="d-flex align-center justify-space-between"
+        v-if="isXSmallScreenSize"
+      >
+        <router-link :to="{ name: 'Default' }">
+          <a class="mx-3 mx-lg-8">Beranda</a>
+        </router-link>
+        <router-link :to="{ name: 'JanjiTemu' }">
+          <a class="mx-3 mx-lg-8">Konsultasi Offline</a>
+        </router-link>
+        <router-link :to="{ path: '/commerce/shop/products' }">
+          <a class="mx-3 mx-lg-8">Beli Obat</a>
+        </router-link>
 
-            <v-list>
-              <v-list-item v-for="(item, index) in items" :key="index">
-                <router-link :to="{ path: `/detail/${item.name}` }">
-                  <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </router-link>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </div>
-
-        <div
-          v-if="!localStorage"
-          class="d-flex align-center justify-end flex-grow-1"
+        <!-- <v-menu
+          open-on-hover
+          bottom
+          :offset-y="offset"
+          :close-on-click="closeOnClick"
         >
-          <router-link :to="{ name: 'Login' }">
-            <a class="login-text mr-8">LOGIN</a>
-          </router-link>
-          <div class="text-center mx-8">
+          <template v-slot:activator="{ on, attrs }">
             <v-btn
-              :to="{ path: 'register-popup' }"
-              rounded
-              color="success"
-              class="button-register"
+              class="btn-kesehatan text-capitalize"
               dark
+              v-bind="attrs"
+              v-on="on"
             >
-              <router-link :to="{ path: 'register-popup' }">
-                <a class="register-text">REGISTER</a>
+              Kesehatan
+              <v-icon>mdi-menu-down</v-icon>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item v-for="(item, index) in items" :key="index">
+              <router-link :to="{ path: `/detail/${item.name}` }">
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
               </router-link>
+            </v-list-item>
+          </v-list>
+        </v-menu> -->
+      </div>
+
+      <div
+        v-if="!localStorage && isXSmallScreenSize"
+        class="d-flex align-center justify-end flex-grow-1"
+      >
+        <router-link :to="{ name: 'Login' }">
+          <a class="login-text mr-3 mr-lg-8">LOGIN</a>
+        </router-link>
+        <div class="text-center mx-3 mx-lg-8">
+          <v-btn
+            :to="{ path: 'register-popup' }"
+            rounded
+            color="success"
+            class="button-register"
+            dark
+          >
+            <router-link :to="{ path: 'register-popup' }">
+              <a class="register-text">REGISTER</a>
+            </router-link>
+          </v-btn>
+          <div
+            v-if="localStorage"
+            class="d-flex align-center justify-end flex-grow-1"
+          >
+            <v-btn>
+              <div class="text-center">
+                <router-link :to="{ name: 'ProfileProfil' }">
+                  <v-chip outlined color="black" class="mr-8">
+                    <v-avatar>
+                      <v-img :src="localStorage.data.photo"></v-img>
+                    </v-avatar>
+                    <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
+                  </v-chip>
+                </router-link>
+              </div>
             </v-btn>
           </div>
         </div>
+      </div>
 
-        <div
-          v-if="localStorage"
-          class="d-flex align-center justify-end flex-grow-1"
-        >
-          <div class="text-center">
-            <router-link :to="{ name: 'ProfileProfil' }">
-              <v-chip outlined color="black" class="mr-8">
-                <v-avatar>
-                  <v-img :src="localStorage.data.photo"></v-img>
-                </v-avatar>
-                <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
-              </v-chip>
-            </router-link>
-          </div>
+      <div
+        v-if="localStorage && isXSmallScreenSize"
+        class="d-flex align-center justify-end flex-grow-1"
+      >
+        <div class="text-center">
+          <router-link :to="{ path: 'profile/home' }">
+            <v-chip
+              v-bind="attrs"
+              v-on="on"
+              outlined
+              color="black"
+              class="mr-8"
+            >
+              <v-avatar>
+                <v-img :src="localStorage.data.photo"></v-img>
+              </v-avatar>
+              <span class="ml-2">Hi, {{ localStorage.data.name }}</span>
+            </v-chip>
+          </router-link>
         </div>
+      </div>
 
-        <!-- <v-divider vertical></v-divider>
-        <v-icon class="mx-8 mdi-config">mdi-cog</v-icon> -->
-        <!-- <p @click="logOut()">Logout</p> -->
-      </v-app-bar>
-      <v-main class="pa-0 mt-16">
-        <router-view />
-      </v-main>
-    </v-card>
-  </div>
+      <v-spacer v-if="!isXSmallScreenSize"></v-spacer>
+      <v-app-bar-nav-icon
+        v-if="!isXSmallScreenSize"
+        class="text-black"
+        @click="drawer = !drawer"
+      >
+      </v-app-bar-nav-icon>
+      <!-- <p @click="logOut()">Logout</p> -->
+    </v-app-bar>
+    <v-main class="pa-0 mt-16">
+      <router-view />
+    </v-main>
+    <v-navigation-drawer
+      v-if="!isXSmallScreenSize"
+      absolute
+      v-model="drawer"
+      right
+      temporary
+      class="d-flex flex-column"
+    >
+      <v-list nav>
+        <v-list-item class="py-0 d-flex justify-end">
+          <v-btn icon flat width="30" height="30" @click="drawer = false">
+            <v-icon> mdi-close </v-icon>
+          </v-btn>
+        </v-list-item>
+        <v-list-item
+          class="py-0 d-flex justify-center mt-10 custom-drawer-item"
+          @click="
+            $router.push({ name: 'Default' }), (health_tab_is_active = false)
+          "
+        >
+          Beranda
+        </v-list-item>
+        <v-list-item
+          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+          @click="
+            $router.push({ name: 'JanjiTemu' }), (health_tab_is_active = false)
+          "
+        >
+          Konsultasi Offline
+        </v-list-item>
+        <v-list-item
+          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+          @click="
+            $router.push('/commerce/shop/products'),
+              (health_tab_is_active = false)
+          "
+        >
+          Beli Obat
+        </v-list-item>
+        <!-- <v-list-item
+          class="py-0 d-flex justify-center mt-5 custom-drawer-item"
+          @click="$router.push('/chat-dokter'), (health_tab_is_active = false)"
+        >
+          Konsultasi Online
+        </v-list-item> -->
+        <!-- <v-list-item
+          class="py-0 d-flex justify-center mt-5 align-center custom-drawer-item relative"
+          @click="health_tab_is_active = !health_tab_is_active"
+          style="gap: 8px"
+        >
+          Kesehatan
+          <v-icon
+            >{{ health_tab_is_active ? "mdi-chevron-up" : "mdi-chevron-down" }}
+          </v-icon>
+        </v-list-item> -->
+        <div v-if="health_tab_is_active">
+          <v-list-item
+            class="py-0 d-flex justify-center custom-drawer-item"
+            v-for="item in items"
+            :key="item"
+            @click="
+              $router.push(`/detail/${item.name}`),
+                (health_tab_is_active = false)
+            "
+          >
+            {{ item.title }}
+          </v-list-item>
+        </div>
+      </v-list>
+    </v-navigation-drawer>
+  </v-card>
 </template>
 <script>
 import axios from "axios";
@@ -135,8 +234,14 @@ export default {
     closeOnClick: false,
     localStorage: "",
     dialog: false,
+    drawer: false,
+    health_tab_is_active: false,
   }),
-
+  computed: {
+    isXSmallScreenSize() {
+      return this.$vuetify?.breakpoint?.mdAndUp;
+    },
+  },
   created() {
     this.getLocalStorage();
   },
@@ -175,16 +280,34 @@ export default {
 </script>
 
 <style>
+.custom-drawer-item {
+  font-size: 16px;
+  font-weight: 600;
+}
+.custom-drawer-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 html {
   overflow: scroll;
   overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: black !important;
-  font-size: 1.1rem;
-  font-weight: 600;
+@media (min-width: 0px) {
+  a {
+    text-decoration: none;
+    color: black !important;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 1580px) {
+  a {
+    text-decoration: none;
+    color: black !important;
+    font-size: 1rem;
+    font-weight: 600;
+  }
 }
 
 .mdi-config {
@@ -216,9 +339,19 @@ a {
 .btn-kesehatan {
   background-color: transparent !important;
   color: black !important;
-  font-size: 1.1rem !important;
+  font-size: 1.3rem !important;
   font-weight: 600 !important;
   box-shadow: none !important;
+}
+
+@media (max-width: 1580px) {
+  .btn-kesehatan {
+    background-color: transparent !important;
+    color: black !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+  }
 }
 
 .theme--light.v-list {
