@@ -8,9 +8,6 @@
             <v-row>
               <v-col
                 cols="12"
-                sm="12"
-                md="6"
-                lg="6"
                 v-for="(data, i) in formData"
                 :key="i"
                 class="py-0"

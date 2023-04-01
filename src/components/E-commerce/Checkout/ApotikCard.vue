@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mb-4" max-width="800" outlined>
+    <v-card class="mb-4" outlined>
       <v-list-item three-line>
         <v-list-item-content>
           <div class="mb-4">

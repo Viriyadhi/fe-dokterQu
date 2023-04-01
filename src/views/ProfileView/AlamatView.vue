@@ -28,8 +28,6 @@
                       <v-col
                         cols="12"
                         sm="12"
-                        md="6"
-                        lg="6"
                         v-for="(data, i) in formAlamat"
                         :key="i"
                         class="py-0"
@@ -90,6 +88,7 @@
                           item-value="value"
                           single-line
                           outlined
+                          @input="(cityId) => changeScopeMap(cityId)"
                         >
                         </v-select>
                       </v-col>
@@ -100,6 +99,7 @@
                             :zoom="zoom"
                             :center="center"
                             @click="handleMapClick"
+                            ref="map"
                           >
                             <l-tile-layer :url="url"></l-tile-layer>
                             <l-marker
@@ -133,8 +133,9 @@
           </div>
         </div>
         <v-divider class="my-4"></v-divider>
-        <div class="d-flex flex-column justify-center align-center">
+        <div class="d-flex flex-column justify-center align-start">
           <AddressCard
+            width="100rem"
             v-for="(Address, i) in userAddresses"
             :key="i"
             :recipient="Address.recipient"
@@ -461,6 +462,22 @@ export default {
       //   }
       // }
       // EventBus.$emit("stopLoading");
+    },
+    async changeScopeMap(cityId) {
+      try {
+        let citySelected = this.cityData
+          .filter((city) => city.city_id === cityId)
+          .map((city) => city.city_name)
+          .find((citySelected) => citySelected);
+        const response = await axios.get(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${citySelected}`
+        );
+        if (response.data.length > 0) {
+          this.$refs.map.mapObject.setView([response.data[0].lat, response.data[0].lon], 10);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
