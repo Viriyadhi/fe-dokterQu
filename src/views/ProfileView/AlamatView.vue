@@ -88,6 +88,7 @@
                           item-value="value"
                           single-line
                           outlined
+                          @input="(cityId) => changeScopeMap(cityId)"
                         >
                         </v-select>
                       </v-col>
@@ -98,6 +99,7 @@
                             :zoom="zoom"
                             :center="center"
                             @click="handleMapClick"
+                            ref="map"
                           >
                             <l-tile-layer :url="url"></l-tile-layer>
                             <l-marker
@@ -460,6 +462,22 @@ export default {
       //   }
       // }
       // EventBus.$emit("stopLoading");
+    },
+    async changeScopeMap(cityId) {
+      try {
+        let citySelected = this.cityData
+          .filter((city) => city.city_id === cityId)
+          .map((city) => city.city_name)
+          .find((citySelected) => citySelected);
+        const response = await axios.get(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${citySelected}`
+        );
+        if (response.data.length > 0) {
+          this.$refs.map.mapObject.setView([response.data[0].lat, response.data[0].lon], 10);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
