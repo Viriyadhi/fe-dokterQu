@@ -28,8 +28,6 @@
                       <v-col
                         cols="12"
                         sm="12"
-                        md="6"
-                        lg="6"
                         v-for="(data, i) in formAlamat"
                         :key="i"
                         class="py-0"
@@ -133,8 +131,9 @@
           </div>
         </div>
         <v-divider class="my-4"></v-divider>
-        <div class="d-flex flex-column justify-center align-center">
+        <div class="d-flex flex-column justify-center align-start">
           <AddressCard
+            width="100rem"
             v-for="(Address, i) in userAddresses"
             :key="i"
             :recipient="Address.recipient"
