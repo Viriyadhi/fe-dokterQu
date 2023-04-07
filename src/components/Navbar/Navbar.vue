@@ -33,6 +33,9 @@
         <router-link :to="{ path: '/commerce/shop/products' }">
           <a class="mx-3 mx-lg-8">Beli Obat</a>
         </router-link>
+        <router-link :to="{ name: 'ArticleView' }">
+          <a class="mx-3 mx-lg-8">Artikel</a>
+        </router-link>
 
         <!-- <v-menu
           open-on-hover

@@ -118,7 +118,7 @@
                 <v-img class="rounded-lg" :src="detailArt.thumbnail"></v-img>
                 <v-card-text
                   v-html="detailArt.body"
-                  class="font-weight-regular black--text detail-text"
+                  class="font-weight-regular black--text detail-text text-justify"
                 ></v-card-text>
               </v-card>
             </div>

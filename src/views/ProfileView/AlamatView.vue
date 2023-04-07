@@ -473,7 +473,10 @@ export default {
           `https://nominatim.openstreetmap.org/search?format=json&q=${citySelected}`
         );
         if (response.data.length > 0) {
-          this.$refs.map.mapObject.setView([response.data[0].lat, response.data[0].lon], 10);
+          this.$refs.map.mapObject.setView(
+            [response.data[0].lat, response.data[0].lon],
+            10
+          );
         }
       } catch (error) {
         console.log(error);
