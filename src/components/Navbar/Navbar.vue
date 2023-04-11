@@ -27,9 +27,6 @@
         <router-link :to="{ name: 'Default' }">
           <a class="mx-3 mx-lg-8">Beranda</a>
         </router-link>
-        <!-- <router-link :to="{ name: 'JanjiTemu' }">
-          <a class="mx-3 mx-lg-8">Konsultasi Offline</a>
-        </router-link> -->
 
         <v-menu
           open-on-hover
@@ -51,7 +48,7 @@
 
           <v-list>
             <v-list-item v-for="(item, index) in items" :key="index">
-              <router-link :to="{ path: `/detail/${item.name}` }">
+              <router-link :to="{ path: `${item.name}` }">
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </router-link>
             </v-list-item>
@@ -85,7 +82,7 @@
               <a class="register-text">REGISTER</a>
             </router-link>
           </v-btn>
-          <div
+          <!-- <div
             v-if="localStorage"
             class="d-flex align-center justify-end flex-grow-1"
           >
@@ -101,7 +98,7 @@
                 </router-link>
               </div>
             </v-btn>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -134,12 +131,11 @@
         @click="drawer = !drawer"
       >
       </v-app-bar-nav-icon>
-      <!-- <p @click="logOut()">Logout</p> -->
     </v-app-bar>
     <v-main class="pa-0 mt-16">
       <router-view />
     </v-main>
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       v-if="!isXSmallScreenSize"
       absolute
       v-model="drawer"
@@ -178,13 +174,13 @@
         >
           Beli Obat
         </v-list-item>
-        <!-- <v-list-item
+        <v-list-item
           class="py-0 d-flex justify-center mt-5 custom-drawer-item"
           @click="$router.push('/chat-dokter'), (health_tab_is_active = false)"
         >
           Konsultasi Online
-        </v-list-item> -->
-        <!-- <v-list-item
+        </v-list-item>
+        <v-list-item
           class="py-0 d-flex justify-center mt-5 align-center custom-drawer-item relative"
           @click="health_tab_is_active = !health_tab_is_active"
           style="gap: 8px"
@@ -193,7 +189,7 @@
           <v-icon
             >{{ health_tab_is_active ? "mdi-chevron-up" : "mdi-chevron-down" }}
           </v-icon>
-        </v-list-item> -->
+        </v-list-item>
         <div v-if="health_tab_is_active">
           <v-list-item
             class="py-0 d-flex justify-center custom-drawer-item"
@@ -208,7 +204,7 @@
           </v-list-item>
         </div>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
   </v-card>
 </template>
 <script>
@@ -228,11 +224,8 @@ export default {
     },
 
     items: [
-      { title: "Mata", name: "Mata" },
-      { title: "Telinga", name: "Telinga" },
-      { title: "Mulut", name: "Mulut" },
-      { title: "Kulit", name: "Kulit" },
-      { title: "Hidung", name: "Hidung" },
+      { title: "Konsultasi Online", name: "/chat-dokter" },
+      { title: "Konsultasi Offline", name: "janji-temu/list" },
     ],
     offset: true,
     closeOnClick: false,
