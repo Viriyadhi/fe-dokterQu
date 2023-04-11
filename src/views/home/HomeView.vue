@@ -1,41 +1,38 @@
 <template>
   <v-app>
-    <div class="d-flex justify-space-between">
-      <div class="d-flex flex-column container-title">
-        <h2 class="header-title">Seputar Kesehatan Indra</h2>
-        <p class="header-desc">
-          Chat dokter, kunjungi rumah sakit, beli obat, cek lab, dan update
-          informasi seputar kesehatan,.
-        </p>
-        <div class="d-flex flex-row align-center">
-          <a class="header-link">MORE INFO</a>
-          <div class="text-center">
-            <v-btn
-              to="/registerpopup"
-              rounded
-              color="success"
-              class="ml-5 ml-md-12 pa-5 button-header-custom"
-              dark
-              width="321"
-            >
-              Daftar Sekarang
-            </v-btn>
+    <v-container>
+      <div class="d-flex justify-space-between container-title">
+        <div class="d-flex flex-column">
+          <h2 class="header-title mt-6">Seputar Kesehatan Indra</h2>
+          <p class="header-desc">
+            Chat dokter, kunjungi rumah sakit, beli obat, cek lab, dan update
+            informasi seputar kesehatan
+          </p>
+          <div class="d-flex flex-row align-center">
+            <a class="header-link">MORE INFO</a>
+            <div class="text-center">
+              <v-btn
+                to="/registerpopup"
+                rounded
+                color="success"
+                class="ml-5 ml-md-12 pa-5 button-header-custom"
+                dark
+                width="321"
+              >
+                Daftar Sekarang
+              </v-btn>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="d-flex parent">
-        <v-img src="@/assets/Landing Page/Header/Oval.svg" class="oval-top">
-        </v-img>
-        <v-img src="@/assets/Landing Page/Header/Banner1.svg" class="banner">
-        </v-img>
-        <v-img
-          src="@/assets/Landing Page/Header/OvalTransparent.svg"
-          class="oval-transparent"
-        >
-        </v-img>
-      </div>
-    </div>
 
+        <div>
+          <v-img src="@/assets/Landing Page/Header/Banner1.svg" class="banner">
+          </v-img>
+        </div>
+      </div>
+    </v-container>
+
+    <!-- 
     <v-row class="px-5 px-md-10 mt-10 mt-sm-16" style="z-index: 2">
       <v-col
         cols="12"
@@ -53,8 +50,8 @@
           <p class="three-desc">{{ item?.description }}</p>
         </div>
       </v-col>
-    </v-row>
-
+    </v-row> -->
+    <!-- 
     <v-row
       class="px-3 px-md-15 mt-10 mt-sm-16 pt-sm-10 white"
       style="z-index: 2"
@@ -88,10 +85,9 @@
           </v-row>
         </div>
       </v-col>
-    </v-row>
-
-    <section class="layanan-khusus mt-16 pt-16">
-      <div class="px-8 px-sm-16 mx-md-16 px-md-16">
+    </v-row> -->
+    <v-container>
+      <section class="layanan-khusus mt-16 pt-16">
         <div class="title">
           <h2 class="layanan-title">Layanan Khusus</h2>
           <p class="layanan-desc">
@@ -99,8 +95,8 @@
             kesehatan indra seperti mata, telinga, mulut, kulit, hidung.
           </p>
         </div>
-      </div>
-    </section>
+      </section>
+    </v-container>
 
     <section class="mx-0">
       <div class="custom-layanan-container">
@@ -116,46 +112,52 @@
           >
           </v-img>
         </div>
-        <v-row class="mt-3 px-5">
-          <v-col
-            cols="12"
-            sm="6"
-            md="3"
-            lg="3"
-            class="pa-5 pa-sm-3 px-lg-6"
-            v-for="(item, i) in 4"
-            :key="i"
-          >
-            <v-card
-              class="custom-card-konsultasi rounded-lg justify-space-between"
+        <v-container>
+          <v-row class="mt-3 px-5">
+            <v-col
+              cols="12"
+              sm="6"
+              md="3"
+              lg="3"
+              class="pa-5 pa-sm-3 px-lg-6"
+              v-for="(item, i) in 4"
+              :key="i"
             >
-              <div>
-                <v-img
-                  class="rounded-t-lg"
-                  src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                  height="170"
-                ></v-img>
+              <v-card
+                class="custom-card-konsultasi rounded-lg justify-space-between"
+              >
+                <div>
+                  <v-img
+                    class="rounded-t-lg"
+                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                    height="170"
+                  ></v-img>
 
-                <v-card-subtitle class="black--text pa-5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus pretium fermentum felis id condimentum.
-                </v-card-subtitle>
-              </div>
-              <v-card-actions class="d-flex justify-end align-end pa-0">
-                <v-btn color="success" class="pa-5 custom-button-layanan" dark>
-                  SEE DETAILS
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
+                  <v-card-subtitle class="black--text pa-5">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus pretium fermentum felis id condimentum.
+                  </v-card-subtitle>
+                </div>
+                <v-card-actions class="d-flex justify-end align-end pa-0">
+                  <v-btn
+                    color="success"
+                    class="pa-5 custom-button-layanan"
+                    dark
+                  >
+                    SEE DETAILS
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
       </div>
     </section>
 
-    <section class="my-16">
-      <v-row class="mt-10 mt-sm-16">
-        <v-col cols="12" md="6" class="d-flex align-center">
-          <div class="px-8 px-sm-12 px-md-16 d-flex flex-column">
+    <v-container>
+      <section class="my-16">
+        <div class="d-flex flex-row justify-space-between align-center">
+          <div class="d-flex flex-column">
             <h2 class="Appointment-title">
               Janji Temu Dengan Dokter Spesialis
             </h2>
@@ -164,120 +166,118 @@
               Hanya dengan beberapa Klik, anda bisa konsultasi dengan dokter
               spesialis yang sudah bergabung di website kami.
             </p>
-            <v-row class="px-3">
+            <div class="container-btn-dokter">
               <v-btn color="success" class="custom-medicine-btn py-5" rounded>
                 Cari Dokter Sekarang</v-btn
               >
-            </v-row>
+            </div>
           </div>
-        </v-col>
-        <v-col
-          cols="12"
-          md="6"
-          class="d-flex flex-row justify-center px-10 mt-10 mt-sm-2"
-        >
           <div class="appointment-image-size">
             <v-img
               src="@/assets/Landing Page/Appointment/Appointment.svg"
             ></v-img>
           </div>
-        </v-col>
-      </v-row>
-    </section>
+        </div>
+      </section>
+    </v-container>
 
-    <section class="my-14">
-      <v-row class="mt-10 mt-sm-16">
-        <v-col
-          cols="12"
-          md="7"
-          class="d-flex flex-row justify-center px-10 mt-10 mt-sm-2"
-        >
+    <v-container>
+      <section class="my-16">
+        <div class="d-flex flex-row-reverse justify-space-between align-center">
+          <div class="d-flex flex-column align-end">
+            <h2 class="Appointment-title-2">Cari Obat</h2>
+
+            <p class="Appointment-desc text-justify">
+              Penuhi kebutuhan obat anda dengan mengunjungi E-commerce kami yang
+              memiliki lebih dari 100 macam obat.
+            </p>
+            <div class="container-btn-dokter">
+              <v-btn color="success" class="custom-medicine-btn-2 py-5" rounded>
+                Kunjungi Toko</v-btn
+              >
+            </div>
+          </div>
           <div class="appointment-image-size">
             <v-img
               src="@/assets/Landing Page/Medicine/MedicineImage.svg"
             ></v-img>
           </div>
-        </v-col>
-        <v-col cols="12" md="5">
-          <div class="px-8 px-sm-12 px-md-16 d-flex flex-column">
-            <h2 class="Appointment-title">Cari Obat</h2>
+        </div>
+      </section>
+    </v-container>
 
-            <p class="Appointment-desc">
-              Penuhi kebutuhan obat anda dengan mengunjungi E-commerce kami yang
-              memiliki lebih dari 100 macam obat.
-            </p>
-            <v-row class="px-3">
-              <v-btn color="success" class="custom-medicine-btn py-5" rounded>
-                Kunjungi Toko</v-btn
-              >
-            </v-row>
-          </div>
-        </v-col>
-      </v-row>
-    </section>
+    <v-container>
+      <section class="article mt-8">
+        <div class="d-flex flex-row justify-space-between align-center">
+          <h2 class="article-header-title">Baca Artikel Seputar Kesehatan</h2>
+          <router-link
+            :to="{ name: 'ArticleView' }"
+            class="article-header-link"
+          >
+            Lihat semua</router-link
+          >
+        </div>
 
-    <section class="article mt-8 px-3 px-sm-10 px-md-16">
-      <div class="d-flex flex-row justify-space-between align-center">
-        <h2 class="article-header-title">Baca Artikel Seputar Kesehatan</h2>
-        <router-link :to="{ name: 'ArticleView' }" class="article-header-link">
-          Lihat semua</router-link
-        >
-      </div>
+        <div class="button-group mt-8">
+          <v-btn
+            v-for="(category, i) in categoryArticle"
+            :key="i"
+            outlined
+            rounded
+            class="button-group-child button-group-child-size"
+            height="47"
+            @click="getArticleByCategory(category.links.article)"
+          >
+            {{ category.name }}
+          </v-btn>
+        </div>
 
-      <div class="button-group mt-8">
-        <v-btn
-          v-for="(category, i) in categoryArticle"
-          :key="i"
-          outlined
-          rounded
-          class="button-group-child button-group-child-size"
-          height="47"
-          @click="getArticleByCategory(category.links.article)"
-        >
-          {{ category.name }}
-        </v-btn>
-      </div>
+        <v-row class="mt-3">
+          <v-col
+            cols="12"
+            sm="6"
+            md="3"
+            lg="3"
+            class="pa-5 pa-sm-3"
+            v-for="(articleData, i) in articleList"
+            :key="i"
+          >
+            <v-card
+              height="480"
+              max-height="fit-content"
+              class="article-card rounded-lg"
+            >
+              <router-link :to="{ path: `${articleData.links['self']}` }">
+                <div class="">
+                  <v-img
+                    src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                    height="240px"
+                    class="article-img rounded-t-lg"
+                  ></v-img>
+                </div>
 
-      <v-row class="mt-3">
-        <v-col
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-          class="pa-5 pa-sm-3"
-          v-for="(articleData, i) in articleList"
-          :key="i"
-        >
-          <v-card max-height="fit-content" class="article-card rounded-lg">
-            <router-link :to="{ path: `${articleData.links['self']}` }">
-              <div class="">
-                <v-img
-                  src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                  height="200px"
-                  class="article-img rounded-t-lg"
-                ></v-img>
-              </div>
+                <v-card-text class="py-0 pt-4">
+                  <v-chip color="secondary" class="rounded-lg"> mata </v-chip>
+                </v-card-text>
 
-              <v-card-text class="px-5 py-0 pt-4">
-                <v-chip color="secondary" class="rounded-lg"> mata </v-chip>
-              </v-card-text>
+                <v-card-subtitle> 2023-02-16 </v-card-subtitle>
 
-              <v-card-subtitle class="card-desc2"> 2023-02-16 </v-card-subtitle>
+                <v-card-text class="font-weight-bold pb-0">
+                  Mengenal Kondisi Flat Foot, Berbahaya atau Tidak?
+                </v-card-text>
 
-              <v-card-text class="font-weight-bold pb-0 px-5">
-                Mengenal Kondisi Flat Foot, Berbahaya atau Tidak?
-              </v-card-text>
+                <v-card-text class="pt-0">
+                  “Flat foot merupakan kondisi ketika telapak kaki lurus alias
+                  tidak memiliki lengkungan. Anak dengan flat foot akan mudah
+                  lelah dan tersandung saat berjalan atau berlari.”
+                </v-card-text>
+              </router-link>
+            </v-card>
+          </v-col>
+        </v-row>
+      </section>
+    </v-container>
 
-              <v-card-text class="pt-0 px-5">
-                “Flat foot merupakan kondisi ketika telapak kaki lurus alias
-                tidak memiliki lengkungan. Anak dengan flat foot akan mudah
-                lelah dan tersandung saat berjalan atau berlari.”
-              </v-card-text>
-            </router-link>
-          </v-card>
-        </v-col>
-      </v-row>
-    </section>
     <router-view />
   </v-app>
 </template>
@@ -436,35 +436,30 @@ export default {
 </script>
 
 <style scoped>
-.parent {
-  position: relative;
-  top: 0;
-  right: 0;
+.custom-medicine-btn {
+  border-radius: 0.5rem !important;
+  border: 1px solid #000 !important;
+  padding: 1.25rem 1rem !important;
+  margin: 0.5rem 0 !important;
+  width: 60%;
 }
 
-.oval-top {
-  width: 62rem !important;
-  height: 31rem !important;
-  margin-top: -4rem;
-  position: relative;
-  z-index: 1;
+.container-btn-dokter {
+  width: 55% !important;
+}
+.custom-medicine-btn-2 {
+  border-radius: 0.5rem !important;
+  border: 1px solid #000 !important;
+  padding: 1.25rem 1rem !important;
+  margin: 0.5rem 0 !important;
+  width: 60%;
 }
 
-.banner {
-  position: absolute;
-  top: 2rem;
-  right: 0;
-}
-
-.oval-transparent {
-  position: absolute;
-  top: -4rem;
-  right: 0;
-  z-index: 1 !important;
-}
-
-.index-2 {
-  z-index: 2 !important;
+.Appointment-title-2 {
+  font-weight: 800;
+  width: 55% !important;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
 }
 </style>
 
@@ -484,19 +479,9 @@ export default {
     flex-direction: column;
   }
   .container-title {
-    margin-left: 2rem;
     margin-top: 3.5rem;
   }
-  .header-desc {
-    width: 80%;
-    font-size: 1.25rem;
-    font-weight: 400 !important;
-  }
-  .header-title {
-    font-size: 3rem !important;
-    font-weight: 600;
-    width: 400px;
-  }
+
   .layanan-desc {
     font-weight: 400;
     font-size: 1.25rem;
@@ -537,8 +522,7 @@ export default {
     width: 400.15px;
   }
   .container-title {
-    margin-left: 7rem;
-    margin-top: 4rem;
+    margin-top: 3rem !important;
   }
   .header-desc {
     width: 80%;
@@ -847,50 +831,6 @@ export default {
 .button-group-child:hover {
   background: #4caf50 !important;
   color: white !important;
-}
-
-.article-container {
-  margin: 2rem 0;
-}
-
-/* .article-img {
-  border-radius: 1rem 1rem 0 0 !important;
-} */
-
-.card-desc {
-  color: black !important;
-  font-size: 15px;
-  max-width: fit-content;
-  font-weight: lighter;
-  padding-left: 20px;
-  padding-right: 25px;
-  padding-bottom: 20px;
-}
-
-.card-desc1 {
-  max-width: fit-content;
-  padding-left: 20px;
-  padding-bottom: 5px;
-  color: black !important;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.card-desc2 {
-  color: black !important;
-  font-weight: lighter;
-  padding-left: 20px;
-}
-
-.card-desc3 {
-  color: white !important;
-  border-radius: 5px;
-  font-size: 15px;
-  max-width: fit-content;
-  font-weight: lighter;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 5px;
 }
 
 .article-card {

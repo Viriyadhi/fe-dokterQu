@@ -27,17 +27,11 @@
         <router-link :to="{ name: 'Default' }">
           <a class="mx-3 mx-lg-8">Beranda</a>
         </router-link>
-        <router-link :to="{ name: 'JanjiTemu' }">
+        <!-- <router-link :to="{ name: 'JanjiTemu' }">
           <a class="mx-3 mx-lg-8">Konsultasi Offline</a>
-        </router-link>
-        <router-link :to="{ path: '/commerce/shop/products' }">
-          <a class="mx-3 mx-lg-8">Beli Obat</a>
-        </router-link>
-        <router-link :to="{ name: 'ArticleView' }">
-          <a class="mx-3 mx-lg-8">Artikel</a>
-        </router-link>
+        </router-link> -->
 
-        <!-- <v-menu
+        <v-menu
           open-on-hover
           bottom
           :offset-y="offset"
@@ -50,7 +44,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              Kesehatan
+              Konsultasi
               <v-icon>mdi-menu-down</v-icon>
             </v-btn>
           </template>
@@ -62,7 +56,14 @@
               </router-link>
             </v-list-item>
           </v-list>
-        </v-menu> -->
+        </v-menu>
+
+        <router-link :to="{ path: '/commerce/shop/products' }">
+          <a class="mx-3 mx-lg-8">Toko Obat</a>
+        </router-link>
+        <router-link :to="{ name: 'ArticleView' }">
+          <a class="mx-3 mx-lg-8">Artikel</a>
+        </router-link>
       </div>
 
       <div

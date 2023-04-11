@@ -2,7 +2,7 @@
   <v-container>
     <div class="container-profile mx-auto">
       <v-card class="form--logreg">
-        <div class="d-flex felx-row justify-space-between">
+        <div class="d-flex flex-row justify-space-between">
           <h2>Alamat Saya</h2>
           <div class="text-center">
             <v-dialog v-model="dialog" width="900" height="500">
