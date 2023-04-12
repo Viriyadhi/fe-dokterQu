@@ -1,83 +1,62 @@
 <template>
-  <v-app class="pa-sm-10 px-sm-16">
-    <section>
-      <div class="button-group mt-8 custom-scroll px-4 px-sm-0">
-        <v-btn
-          v-for="(item, i) in buttonGroup"
-          :key="i"
-          outlined
-          rounded
-          class="button-group-child custom-top-button"
-        >
-          {{ item.title }}
-        </v-btn>
-      </div>
-    </section>
-
-    <section class="product-view px-5 px-sm-3 mt-5 mt-sm-8 mt-sm-1">
-      <v-row>
-        <v-col
-          v-for="(item, i) in items"
-          :key="i"
-          cols="12"
-          sm="6"
-          md="3"
-          class="pa-0 px-2 mx-0"
-        >
-          <v-card
-            :loading="loading"
-            class="mx-auto my-5 mb-sm-8 pa-2 px-lg-5 rounded-lg"
+  <v-app class="">
+    <v-container>
+      <section>
+        <div class="button-group mt-8 custom-scroll">
+          <v-btn
+            v-for="(item, i) in buttonGroup"
+            :key="i"
+            outlined
+            rounded
+            class="button-group-child custom-top-button"
+            width="120"
           >
-            <router-link :to="{ path: `/commerce${item.links['self']}` }">
-              <v-img
-                class="mx-auto rounded-lg mt-2"
-                max-height="160"
-                max-width="160"
-                :src="item.image"
-              ></v-img>
+            {{ item.title }}
+          </v-btn>
+        </div>
+      </section>
 
-              <v-chip class="mt-2 rounded-lg" color="secondary">
-                {{ item.category }}
-              </v-chip>
-              <div class="container-text">
-                <v-card-text class="py-2 px-0 black--text title-product">
-                  {{ item.name }}
+      <section class="product-view mt-5 mt-sm-8 mt-sm-1">
+        <v-row>
+          <v-col
+            v-for="(item, i) in items"
+            :key="i"
+            cols="12"
+            sm="6"
+            md="3"
+            lg="2"
+          >
+            <v-card
+              :loading="loading"
+              class="mb-sm-8 pa-2 px-lg-5 rounded-lg"
+              height="360"
+            >
+              <router-link :to="{ path: `/commerce${item.links['self']}` }">
+                <v-img
+                  class="mx-auto rounded-lg mt-2"
+                  max-height="180"
+                  max-width="180"
+                  :src="item.image"
+                ></v-img>
+
+                <v-chip class="mt-2 rounded-lg" color="secondary">
+                  {{ item.category }}
+                </v-chip>
+                <div class="container-text">
+                  <v-card-text class="py-2 px-0 black--text title-product">
+                    {{ item.name }}
+                  </v-card-text>
+                </div>
+                <v-card-text
+                  class="pt-0 px-0 font-weight-bold black--text container-price-card custom-card-text"
+                  >{{ item.price }}
                 </v-card-text>
-              </div>
-              <v-card-text
-                class="pt-0 px-0 font-weight-bold black--text container-price-card custom-card-text"
-                >{{ item.price }}
-              </v-card-text>
-            </router-link>
-
-            <!-- <v-card-actions
-              class="align-center justify-center"
-              v-if="item.user.inCart === 0"
-            >
-              <v-btn
-                width="200"
-                rounded
-                color="primary"
-                class="rounded-lg"
-                outlined
-                @click="addToCart(item.links.cart.add_cart)"
-              >
-                Tambah
-              </v-btn>
-            </v-card-actions>
-
-            <ECommerceButtonCount
-              v-if="item.user.inCart !== 0"
-              :count="item.user.inCart"
-              :increment-url="item.links.cart.add_cart"
-              :decrement-url="item.links.cart.remove_cart"
-              @getCount="(value) => setTotalItem(value, item.id)"
-            >
-            </ECommerceButtonCount> -->
-          </v-card>
-        </v-col>
-      </v-row>
-    </section>
+              </router-link>
+            </v-card>
+          </v-col>
+        </v-row>
+      </section>
+    </v-container>
   </v-app>
 </template>
 
@@ -192,18 +171,7 @@ export default {
   min-height: 4.5rem !important;
 }
 
-/* .container-text {
-  height: 4.5rem !important;
-} */
-
-/* .container-text {
-  height: 4.5rem !important;
-} */
 @media (min-width: 0px) {
-  .custom-top-button {
-    width: 80px;
-    height: 30px;
-  }
   .custom-scroll {
     overflow-x: scroll;
   }
@@ -215,10 +183,6 @@ export default {
   }
 }
 @media (min-width: 600px) {
-  .custom-top-button {
-    width: 80px;
-    height: 30px;
-  }
   .custom-scroll {
     overflow-x: auto;
   }

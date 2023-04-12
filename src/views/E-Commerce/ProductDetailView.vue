@@ -127,7 +127,6 @@
                 </p>
               </div>
               <div class="wrap">
-                quantity
                 <p class="detail-title">Indikasi umum</p>
                 <p class="detail-content mb-0">
                   {{ detailData.desc }}
@@ -304,10 +303,10 @@ export default {
     flex-direction: column;
   }
   .left-wrap {
-    width: 100%!important;
+    width: 100% !important;
   }
 }
-@media (max-width:800px) {
+@media (max-width: 800px) {
   .main-row {
     justify-content: center;
     gap: 32px;
@@ -327,7 +326,7 @@ export default {
     flex: 1;
   }
 }
-@media (min-width:800px) {
+@media (min-width: 800px) {
   .middle-image-product {
     display: none;
   }
@@ -335,7 +334,7 @@ export default {
     display: none;
   }
   .buttons-wrap {
-    justify-content: flex-start!important;
+    justify-content: flex-start !important;
   }
 }
 .right-wraps {

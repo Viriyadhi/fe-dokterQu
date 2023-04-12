@@ -464,133 +464,6 @@ export default {
 </style>
 
 <style>
-@media (min-width: 0px) {
-  .custom-layanan-image-size {
-    width: 252px;
-    height: 185px;
-  }
-  .custom-layanan-oval-size {
-    width: 302px;
-    height: 400px;
-  }
-
-  .custom-layanan-container {
-    display: flex;
-    flex-direction: column;
-  }
-  .container-title {
-    margin-top: 3.5rem;
-  }
-
-  .layanan-desc {
-    font-weight: 400;
-    font-size: 1.25rem;
-    width: 80% !important;
-  }
-  .layanan-image-size {
-    width: 300px;
-    height: 250px;
-  }
-  .layanan-oval-size {
-    width: 305px;
-    height: 400px;
-  }
-  .Appointment-title {
-    font-weight: 800;
-    width: 85% !important;
-    font-size: 3rem;
-    margin-bottom: 2rem;
-  }
-  .custom-medicine-btn {
-    font-size: 1.5rem;
-    font-weight: 600 !important;
-    margin-top: 2rem;
-  }
-  .appointment-image-size {
-    width: 300px;
-  }
-  .button-group-child-size {
-    width: 180px;
-  }
-}
-
-@media (min-width: 600px) {
-  .button-group-child-size {
-    width: 200px;
-  }
-  .appointment-image-size {
-    width: 400.15px;
-  }
-  .container-title {
-    margin-top: 3rem !important;
-  }
-  .header-desc {
-    width: 80%;
-    font-size: 1.25rem;
-    font-weight: 400 !important;
-  }
-  .layanan-desc {
-    font-weight: 400;
-    font-size: 1.25rem;
-    width: 50% !important;
-  }
-  .layanan-image-size {
-    width: 452px;
-    height: 385px;
-  }
-  .layanan-oval-size {
-    width: auto;
-    height: auto;
-  }
-  .Appointment-title {
-    font-weight: 800;
-    width: 75% !important;
-    font-size: 3rem;
-    margin-bottom: 2rem;
-  }
-  /* .custom-layanan-image-size {
-    width: 352px;
-    height: 285px;
-  }
-  .custom-layanan-oval-size {
-    width: 452px;
-    height: 595px;
-  } */
-}
-
-@media (min-width: 900px) {
-  .appointment-image-size {
-    width: 500.15px;
-  }
-  .custom-layanan-container {
-    display: flex;
-    flex-direction: row;
-  }
-  .custom-layanan-image-size {
-    width: 302px;
-    height: 235px;
-  }
-  .custom-layanan-oval-size {
-    width: 352px;
-    height: 475px;
-  }
-  .layanan-desc {
-    font-weight: 400;
-    font-size: 1.25rem;
-    width: 40% !important;
-  }
-}
-@media (min-width: 1200px) {
-  .custom-layanan-image-size {
-    width: 352px;
-    height: 285px;
-  }
-  .custom-layanan-oval-size {
-    width: 452px;
-    height: 595px;
-  }
-}
-
 .header-title {
   font-size: 3rem !important;
   font-weight: 600;
@@ -836,5 +709,126 @@ export default {
 .article-card {
   background: #ffffff !important;
   box-shadow: 0px 16px 40px rgba(154, 170, 207, 0.2) !important;
+}
+</style>
+
+<style scoped>
+@media (min-width: 0px) {
+  .custom-layanan-image-size {
+    width: 252px;
+    height: 185px;
+  }
+  .custom-layanan-oval-size {
+    width: 302px;
+    height: 400px;
+  }
+
+  .custom-layanan-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .container-title {
+    margin-top: 3.5rem;
+  }
+
+  .layanan-desc {
+    font-weight: 400;
+    font-size: 1.25rem;
+    width: 80% !important;
+  }
+  .layanan-image-size {
+    width: 300px;
+    height: 250px;
+  }
+  .layanan-oval-size {
+    width: 305px;
+    height: 400px;
+  }
+  .Appointment-title {
+    font-weight: 800;
+    width: 85% !important;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  .custom-medicine-btn {
+    font-size: 1.5rem;
+    font-weight: 600 !important;
+    margin-top: 2rem;
+  }
+  .appointment-image-size {
+    width: 300px;
+  }
+  .button-group-child-size {
+    width: 180px;
+  }
+}
+
+@media (min-width: 600px) {
+  .button-group-child-size {
+    width: 200px;
+  }
+  .appointment-image-size {
+    width: 400.15px;
+  }
+  .container-title {
+    margin-top: 3rem !important;
+  }
+  .header-desc {
+    width: 80%;
+    font-size: 1.25rem;
+    font-weight: 400 !important;
+  }
+  .layanan-desc {
+    font-weight: 400;
+    font-size: 1.25rem;
+    width: 50% !important;
+  }
+  .layanan-image-size {
+    width: 452px;
+    height: 385px;
+  }
+  .layanan-oval-size {
+    width: auto;
+    height: auto;
+  }
+  .Appointment-title {
+    font-weight: 800;
+    width: 75% !important;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .appointment-image-size {
+    width: 500.15px;
+  }
+  .custom-layanan-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .custom-layanan-image-size {
+    width: 302px;
+    height: 235px;
+  }
+  .custom-layanan-oval-size {
+    width: 352px;
+    height: 475px;
+  }
+  .layanan-desc {
+    font-weight: 400;
+    font-size: 1.25rem;
+    width: 40% !important;
+  }
+}
+@media (min-width: 1200px) {
+  .custom-layanan-image-size {
+    width: 352px;
+    height: 285px;
+  }
+  .custom-layanan-oval-size {
+    width: 452px;
+    height: 595px;
+  }
 }
 </style>
