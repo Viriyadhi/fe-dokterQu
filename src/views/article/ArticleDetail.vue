@@ -211,7 +211,7 @@ export default {
         if (err.response.data.message) {
           error = err.response.data.message;
           console.log(error);
-          EventBus.$emit("showSnackbar", error, "red");
+          // EventBus.$emit("showSnackbar", error, "red");
         }
       }
     },

@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <v-container class="container-detail">
+    <v-container>
       <ArticleComponent />
       <div class="big-line"></div>
       <h2 class="mt-6 mb-12 font-weight-black">Artikel Terbaru</h2>
 
-      <section class="main-2">
+      <section>
         <v-row>
           <v-col
             cols="12"
@@ -18,14 +18,6 @@
           >
             <router-link :to="{ path: `${articleData.links['self']}` }">
               <v-card class="my-8 mx-auto py-0" max-width="324">
-                <template slot="progress">
-                  <v-progress-linear
-                    color="deep-purple"
-                    height="10"
-                    indeterminate
-                  ></v-progress-linear>
-                </template>
-
                 <v-img height="250" :src="articleData.thumbnail"></v-img>
                 <v-card-text class="pb-0 px-6">
                   <v-chip color="secondary" class="rounded-lg">
@@ -108,10 +100,6 @@ export default {
 </script>
 
 <style>
-.container-detail {
-  max-width: 80%;
-}
-
 .custom-article-container {
   width: 55% !important;
 }
