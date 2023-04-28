@@ -168,9 +168,11 @@
               spesialis yang sudah bergabung di website kami.
             </p>
             <div class="container-btn-dokter">
-              <v-btn color="success" class="custom-medicine-btn py-5" rounded>
-                Cari Dokter Sekarang</v-btn
-              >
+              <router-link :to="{ path: 'janji-temu/list' }">
+                <v-btn color="success" class="custom-medicine-btn py-5" rounded>
+                  Cari Dokter Sekarang</v-btn
+                >
+              </router-link>
             </div>
           </div>
           <div class="appointment-image-size">
@@ -193,8 +195,14 @@
               memiliki lebih dari 100 macam obat.
             </p>
             <div class="container-btn-dokter">
-              <v-btn color="success" class="custom-medicine-btn-2 py-5" rounded>
-                Kunjungi Toko</v-btn
+              <router-link :to="{ path: '/commerce/shop/products' }">
+                <v-btn
+                  color="success"
+                  class="custom-medicine-btn-2 py-5"
+                  rounded
+                >
+                  Kunjungi Toko</v-btn
+                ></router-link
               >
             </div>
           </div>
