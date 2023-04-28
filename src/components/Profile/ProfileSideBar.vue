@@ -17,7 +17,7 @@
       <v-divider></v-divider>
       <v-list class="list-item-gp mt-0" app nav dense>
         <v-expansion-panels flat class="pb-0">
-          <v-expansion-panel>
+          <v-expansion-panel expansion-panel>
             <div class="d-flex flex-row align-center">
               <v-icon class="ml-2">mdi-account-circle</v-icon>
               <v-expansion-panel-header class="ml-2 pb-3">

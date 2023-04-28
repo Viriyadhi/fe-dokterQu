@@ -2,7 +2,12 @@
   <v-container>
     <div class="d-flex flex-column container-profile mx-auto">
       <v-card class="form--logreg">
-        <h2 class="mb-4">Profile Saya</h2>
+        <div class="d-flex flex-row justify-space-between">
+          <h2 class="mb-4">Profile Saya</h2>
+          <v-btn v-if="!isEditing" color="primary" @click="isEditingForm()">
+            Edit Profile
+          </v-btn>
+        </div>
         <v-form ref="form" @submit.prevent>
           <div class="form--logreg__group w-100">
             <v-row>
@@ -29,7 +34,8 @@
                   :required="data.required"
                   v-model="models[data.name]"
                   color="284860"
-                  clearable
+                  :clearable="isEditing"
+                  :readonly="!isEditing"
                   single-line
                   outlined
                 >
@@ -49,7 +55,8 @@
                   :required="data.required"
                   v-model="models[data.name]"
                   color="284860"
-                  clearable
+                  :readonly="!isEditing"
+                  :clearable="isEditing"
                   single-line
                   outlined
                 >
@@ -65,8 +72,9 @@
                   prepend-inner-icon="mdi-lock"
                   :required="data.required"
                   v-model="models[data.name]"
+                  :readonly="!isEditing"
                   color="284860"
-                  clearable
+                  :clearable="isEditing"
                   single-line
                   outlined
                 ></v-text-field>
@@ -81,8 +89,9 @@
                   prepend-inner-icon="mdi-lock"
                   :required="data.required"
                   v-model="models[data.name]"
+                  :readonly="!isEditing"
                   color="284860"
-                  clearable
+                  :clearable="isEditing"
                   single-line
                   outlined
                 ></v-text-field>
@@ -93,8 +102,9 @@
                   :rules="[(v) => !!v || `${data.label} Harus diisi`]"
                   :required="data.required"
                   v-model="models[data.name]"
+                  :readonly="!isEditing"
+                  :clearable="isEditing"
                   color="284860"
-                  clearable
                   single-line
                   outlined
                 >
@@ -105,7 +115,8 @@
                   :required="data.required"
                   @change="inputPhoto"
                   color="284860"
-                  clearable
+                  :clearable="isEditing"
+                  :readonly="!isEditing"
                   single-line
                   outlined
                 >
@@ -114,6 +125,14 @@
             </v-row>
           </div>
         </v-form>
+        <div class="d-flex justify-end bottom-button">
+          <v-btn v-if="isEditing" color="error" @click="isEditingForm()">
+            Batal
+          </v-btn>
+          <v-btn v-if="isEditing" color="success" @click="postData()">
+            Simpan Data
+          </v-btn>
+        </div>
       </v-card>
     </div>
   </v-container>
@@ -121,9 +140,11 @@
 
 <script>
 import axios from "axios";
+import { EventBus } from "../../../event-bus.js";
 
 export default {
   data: () => ({
+    isEditing: false,
     show1: false,
     show2: false,
     formData: [],
@@ -150,14 +171,18 @@ export default {
     },
     async getFormData() {
       try {
+        EventBus.$emit("startLoading");
         const res = await axios.get(`${this.$api}/form/register`);
         const dataForm = res.data;
         this.formData = dataForm;
       } catch (error) {
         console.log(error);
       }
+      EventBus.$emit("stopLoading");
     },
     getDataLocalStorage() {
+      EventBus.$emit("startLoading");
+
       var profile = JSON.parse(localStorage.getItem("data"));
       // console.log(data.data["name"]);
       const data = profile.data;
@@ -166,12 +191,31 @@ export default {
       this.models.phone = data.phone;
       this.models.gender = data.gender;
       this.models.email = data.email;
+      EventBus.$emit("stopLoading");
+    },
+
+    isEditingForm() {
+      this.isEditing = !this.isEditing;
+      console.log(this.isEditing);
+      if (this.isEditing) {
+        EventBus.$emit("showSnackbar", "Editing data", "green");
+      }
+    },
+
+    async postData() {
+      EventBus.$emit("startLoading");
+      console.log("posting data");
+      EventBus.$emit("showSnackbar", "Menyimpan data", "green");
+      EventBus.$emit("stopLoading");
     },
   },
 };
 </script>
 
 <style scoped>
+.bottom-button {
+  gap: 2rem;
+}
 .sudah-akun {
   font-size: 1rem;
   gap: 0.5rem;
