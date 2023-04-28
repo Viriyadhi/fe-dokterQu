@@ -55,7 +55,7 @@
               <v-card
                 max-width="380"
                 max-height="890"
-                class="mx-auto custom-card-janji rounded-lg mb-6"
+                class="custom-card-janji rounded-lg"
               >
                 <v-img :src="data.photo" height="310"></v-img>
 
@@ -82,11 +82,6 @@
                     {{ data.tempat_praktik }}
                   </v-card-subtitle>
                 </div>
-
-                <!-- <v-card-subtitle class="black--text py-0">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus pretium fermentum felis id condimentum.
-                </v-card-subtitle> -->
 
                 <v-card-title class="text-h6 pt-1 pb-4">
                   {{ data.price_homecare }}

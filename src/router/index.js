@@ -98,6 +98,33 @@ const routes = [
   },
 
   {
+    path: "/home",
+    component: DefaultView,
+    children: [
+      {
+        path: "/home",
+        name: "Default",
+        component: HomeView,
+      },
+      {
+        path: "/detail/:data",
+        name: "Detail",
+        component: DetailPage,
+      },
+      {
+        path: "/chat-dokter",
+        name: "ChatDokter",
+        component: ChatDokter,
+      },
+      {
+        path: "/chat-detail/:detail",
+        name: "ChatDokterDetail",
+        component: ChatDokterDetail,
+      },
+    ],
+  },
+
+  {
     path: "/forgot-password",
     component: ForgotPasswordLayout,
     children: [
@@ -131,33 +158,6 @@ const routes = [
         name: "ArticleDetail",
         component: ArticleDetail,
         props: true,
-      },
-    ],
-  },
-
-  {
-    path: "/home",
-    component: DefaultView,
-    children: [
-      {
-        path: "/home",
-        name: "Default",
-        component: HomeView,
-      },
-      {
-        path: "/detail/:data",
-        name: "Detail",
-        component: DetailPage,
-      },
-      {
-        path: "/chat-dokter",
-        name: "ChatDokter",
-        component: ChatDokter,
-      },
-      {
-        path: "/chat-detail/:detail",
-        name: "ChatDokterDetail",
-        component: ChatDokterDetail,
       },
     ],
   },

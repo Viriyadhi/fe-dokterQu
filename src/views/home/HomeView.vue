@@ -10,7 +10,7 @@
           </p>
           <div class="d-flex flex-row align-center">
             <a class="header-link">MORE INFO</a>
-            <div class="text-center">
+            <div class="text-center" v-if="!localStorage">
               <v-btn
                 to="/registerpopup"
                 rounded
@@ -26,14 +26,12 @@
         </div>
 
         <div>
-          <v-img src="@/assets/Landing Page/Header/Banner1.svg" class="banner">
-          </v-img>
+          <v-img src="@/assets/Landing Page/Header/Banner1.svg"> </v-img>
         </div>
       </div>
     </v-container>
 
-    <!-- 
-    <v-row class="px-5 px-md-10 mt-10 mt-sm-16" style="z-index: 2">
+    <!-- <v-row class="px-5 px-md-10 mt-10 mt-sm-16" style="z-index: 2">
       <v-col
         cols="12"
         sm="6"
@@ -50,8 +48,8 @@
           <p class="three-desc">{{ item?.description }}</p>
         </div>
       </v-col>
-    </v-row> -->
-    <!-- 
+    </v-row>
+
     <v-row
       class="px-3 px-md-15 mt-10 mt-sm-16 pt-sm-10 white"
       style="z-index: 2"
@@ -86,6 +84,7 @@
         </div>
       </v-col>
     </v-row> -->
+
     <v-container>
       <section class="layanan-khusus mt-16 pt-16">
         <div class="title">
@@ -98,7 +97,7 @@
       </section>
     </v-container>
 
-    <section class="mx-0">
+    <section>
       <div class="custom-layanan-container">
         <div class="parent-layanan">
           <v-img
@@ -112,8 +111,9 @@
           >
           </v-img>
         </div>
+
         <v-container>
-          <v-row class="mt-3 px-5">
+          <v-row class="mt-3">
             <v-col
               cols="12"
               sm="6"
@@ -125,12 +125,13 @@
             >
               <v-card
                 class="custom-card-konsultasi rounded-lg justify-space-between"
+                width="280"
               >
                 <div>
                   <v-img
                     class="rounded-t-lg"
                     src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-                    height="170"
+                    height="190"
                   ></v-img>
 
                   <v-card-subtitle class="black--text pa-5">
@@ -207,7 +208,7 @@
     </v-container>
 
     <v-container>
-      <section class="article mt-8">
+      <section class="article-container mt-8">
         <div class="d-flex flex-row justify-space-between align-center">
           <h2 class="article-header-title">Baca Artikel Seputar Kesehatan</h2>
           <router-link
@@ -301,6 +302,7 @@ export default {
     categoryArticle: [],
     ArticleByCategory: [],
     articleLink: [],
+    localStorage: [],
     our_advantage: [
       {
         title: "Mudah",
@@ -345,6 +347,7 @@ export default {
         this.articleList = [];
       }
     );
+    this.localStorage = JSON.parse(localStorage.getItem("data"));
   },
 
   async mounted() {
@@ -438,9 +441,9 @@ export default {
 <style scoped>
 .custom-medicine-btn {
   border-radius: 0.5rem !important;
-  border: 1px solid #000 !important;
   padding: 1.25rem 1rem !important;
   margin: 0.5rem 0 !important;
+  font-size: 1rem !important;
   width: 60%;
 }
 
@@ -449,9 +452,9 @@ export default {
 }
 .custom-medicine-btn-2 {
   border-radius: 0.5rem !important;
-  border: 1px solid #000 !important;
   padding: 1.25rem 1rem !important;
   margin: 0.5rem 0 !important;
+  font-size: 1rem !important;
   width: 60%;
 }
 
@@ -466,7 +469,7 @@ export default {
 <style>
 .header-title {
   font-size: 3rem !important;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .header-link {
@@ -558,7 +561,7 @@ export default {
 }
 .layanan-title {
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
 }
 
@@ -672,12 +675,12 @@ export default {
 </style>
 
 <style scoped>
-.article {
+.article-container {
   margin-top: 8rem !important;
 }
 
 .article-header-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
 }
 
@@ -750,11 +753,7 @@ export default {
     font-size: 3rem;
     margin-bottom: 2rem;
   }
-  .custom-medicine-btn {
-    font-size: 1.5rem;
-    font-weight: 600 !important;
-    margin-top: 2rem;
-  }
+
   .appointment-image-size {
     width: 300px;
   }
@@ -774,7 +773,7 @@ export default {
     margin-top: 3rem !important;
   }
   .header-desc {
-    width: 80%;
+    width: 60%;
     font-size: 1.25rem;
     font-weight: 400 !important;
   }
@@ -792,10 +791,7 @@ export default {
     height: auto;
   }
   .Appointment-title {
-    font-weight: 800;
     width: 75% !important;
-    font-size: 3rem;
-    margin-bottom: 2rem;
   }
 }
 

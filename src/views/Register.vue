@@ -74,8 +74,8 @@
               clearable
               single-line
               outlined
-            >
-            </v-file-input>
+            ></v-file-input>
+
             <v-select
               v-if="data.name === 'gender'"
               :required="data.required"
@@ -88,8 +88,7 @@
               clearable
               single-line
               outlined
-            >
-            </v-select>
+            ></v-select>
 
             <v-select
               v-if="data.name === 'province_id'"
@@ -103,8 +102,7 @@
               clearable
               single-line
               outlined
-            >
-            </v-select>
+            ></v-select>
 
             <v-select
               v-if="data.name === 'city_id'"
@@ -118,8 +116,7 @@
               clearable
               single-line
               outlined
-            >
-            </v-select>
+            ></v-select>
           </div>
         </div>
       </v-form>
