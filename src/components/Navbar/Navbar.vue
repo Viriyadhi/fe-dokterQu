@@ -107,7 +107,7 @@
         class="d-flex align-center justify-end flex-grow-1"
       >
         <div class="text-center">
-          <router-link :to="{ path: 'profile/home' }">
+          <router-link :to="{ name: 'ProfileHome' }">
             <v-chip
               v-bind="attrs"
               v-on="on"
