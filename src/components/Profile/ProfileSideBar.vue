@@ -10,6 +10,50 @@
         <v-avatar size="128">
           <v-img :src="localStorage.data.photo"></v-img>
         </v-avatar>
+
+        <v-hover v-slot="{ hover }">
+          <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
+            <v-img :src="item.img" height="225px">
+              <v-card-title class="text-h6 white--text">
+                <v-row class="fill-height flex-column" justify="space-between">
+                  <p class="mt-4 subheading text-left">
+                    {{ item.title }}
+                  </p>
+
+                  <div>
+                    <p
+                      class="ma-0 text-body-1 font-weight-bold font-italic text-left"
+                    >
+                      {{ item.text }}
+                    </p>
+                    <p
+                      class="text-caption font-weight-medium font-italic text-left"
+                    >
+                      {{ item.subtext }}
+                    </p>
+                  </div>
+
+                  <div class="align-self-center">
+                    <v-btn
+                      v-for="(icon, index) in icons"
+                      :key="index"
+                      :class="{ 'show-btns': hover }"
+                      :color="transparent"
+                      icon
+                    >
+                      <v-icon
+                        :class="{ 'show-btns': hover }"
+                        :color="transparent"
+                      >
+                        {{ icon }}
+                      </v-icon>
+                    </v-btn>
+                  </div>
+                </v-row>
+              </v-card-title>
+            </v-img>
+          </v-card>
+        </v-hover>
         <p class="mt-4 mb-2">{{ localStorage.data.name }}</p>
         <p>{{ localStorage.data.email }}</p>
       </div>
@@ -136,13 +180,16 @@ export default {
       items: [
         {
           icon: "mdi-account-circle",
-          title: "Dashboard",
           text: "Profil",
           href: "/profile/profil",
         },
         {
+          icon: "mdi-lock",
+          text: "Keamanan",
+          href: "/profile/security",
+        },
+        {
           icon: "mdi-map-marker",
-          title: "Pesanan",
           text: "Alamat",
           href: "/profile/alamat",
         },

@@ -25,6 +25,7 @@ import CheckoutView from "@/views/E-Commerce/CheckoutView.vue";
 import RoomChat from "@/views/chatDokter/RoomChat.vue";
 import JanjiTemuCheckout from "@/views/janjiTemu/detailJanjiTemu/JanjiTemuCheckout.vue";
 import ProfileView from "@/views/ProfileView/ProfileView.vue";
+import SecurityView from "@/views/ProfileView/SecurityView.vue";
 import ProfilView from "@/views/ProfileView/ProfilDataView.vue";
 import AlamatView from "@/views/ProfileView/AlamatView.vue";
 import RiwayatView from "@/views/ProfileView/RiwayatView.vue";
@@ -263,6 +264,11 @@ const routes = [
         path: "/profile/profil",
         name: "ProfileProfil",
         component: ProfilView,
+      },
+      {
+        path: "/profile/security",
+        name: "ProfileSecurity",
+        component: SecurityView,
       },
       {
         path: "/profile/alamat",
