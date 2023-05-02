@@ -116,18 +116,12 @@ export default {
             this.$router.push({ name: "Default" });
           }
         } catch (err) {
-          var error = err;
-          if (err.response.data.errors) {
-            error = err.response.data.errors;
-            for (const key in error) {
-              console.log(`${error[key]}`);
-              EventBus.$emit("showSnackbar", error[key], "red");
-            }
-            console.log(error);
-          }
+          console.log(err.response.data.message);
+          const error = err.response.data.message;
+          EventBus.$emit("showSnackbar", error, "red");
         }
-        EventBus.$emit("stopLoading");
       }
+      EventBus.$emit("stopLoading");
     },
 
     async getFormData() {
