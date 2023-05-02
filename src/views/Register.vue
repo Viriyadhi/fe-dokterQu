@@ -198,12 +198,16 @@ export default {
 
   methods: {
     inputPhoto(file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.models["photo"] = reader.result;
-        this.models["base64_filename"] = file.name;
-      };
+      if (this.routeParams == "customer") {
+        this.models["photo"] = file;
+      } else {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.models["photo"] = reader.result;
+          this.models["base64_filename"] = file.name;
+        };
+      }
     },
 
     async register() {
