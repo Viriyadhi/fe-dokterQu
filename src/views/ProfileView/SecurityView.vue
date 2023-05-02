@@ -3,10 +3,7 @@
     <div class="d-flex flex-column container-profile mx-auto">
       <v-card class="form--logreg">
         <div class="d-flex flex-row justify-space-between">
-          <h2 class="mb-4">Profile Saya</h2>
-          <v-btn v-if="!isEditing" color="primary" @click="isEditingForm()">
-            Edit Profile
-          </v-btn>
+          <h2 class="mb-4">Keamanan</h2>
         </div>
         <v-form ref="form" @submit.prevent>
           <div class="form--logreg__group w-100">
@@ -17,89 +14,51 @@
                 :key="i"
                 class="py-0"
               >
-                <p
-                  v-if="
-                    data.label !== 'Role' &&
-                    data.label !== 'Provinsi' &&
-                    data.label !== 'Kota' &&
-                    data.label !== 'Gender' &&
-                    data.label !== 'Password' &&
-                    data.label !== 'Confirmation Password'
-                  "
-                >
-                  {{ data.label }}
-                </p>
-                <v-text-field
-                  v-if="data.name === 'name'"
-                  :prepend-inner-icon="data.prepend_inner_icon"
-                  :rules="[(v) => !!v || `${data.label} Harus diisi`]"
-                  :required="data.required"
-                  v-model="models[data.name]"
-                  color="284860"
-                  :clearable="isEditing"
-                  :readonly="!isEditing"
-                  single-line
-                  outlined
-                >
-                </v-text-field>
+                <div>
+                  <p v-if="data.name === 'password'">Password baru</p>
 
-                <v-text-field
-                  v-if="
-                    data.name === 'email' &&
-                    data.name !== 'name' &&
-                    data.name !== 'phone'
-                  "
-                  :prepend-inner-icon="data.prepend_inner_icon"
-                  :rules="[
-                    (v) => !!v || 'E-mail is required',
-                    (v) => /.+@.+/.test(v) || 'E-mail must be valid',
-                  ]"
-                  :required="data.required"
-                  v-model="models[data.name]"
-                  color="284860"
-                  :readonly="!isEditing"
-                  :clearable="isEditing"
-                  single-line
-                  outlined
-                >
-                </v-text-field>
+                  <v-text-field
+                    v-if="data.name === 'password'"
+                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show1 ? 'text' : 'password'"
+                    :rules="[(v) => !!v || `${data.label} Harus diisi`]"
+                    hint="At least 8 characters"
+                    @click:append="show1 = !show1"
+                    prepend-inner-icon="mdi-lock"
+                    :required="data.required"
+                    v-model="models[data.name]"
+                    color="284860"
+                    single-line
+                    outlined
+                  ></v-text-field>
+                </div>
 
-                <v-text-field
-                  v-if="data.name === 'phone'"
-                  :prepend-inner-icon="data.prepend_inner_icon"
-                  :rules="[(v) => !!v || `${data.label} Harus diisi`]"
-                  :required="data.required"
-                  v-model="models[data.name]"
-                  :readonly="!isEditing"
-                  :clearable="isEditing"
-                  color="284860"
-                  single-line
-                  outlined
-                >
-                </v-text-field>
-
-                <v-file-input
-                  v-if="data.name === 'photo'"
-                  :required="data.required"
-                  @change="inputPhoto"
-                  color="284860"
-                  v-model="models[data.name]"
-                  :clearable="isEditing"
-                  :readonly="!isEditing"
-                  single-line
-                  outlined
-                >
-                </v-file-input
-              ></v-col>
+                <div>
+                  <p v-if="data.name === 'password_confirmation'">
+                    Konfirmasi Password Baru
+                  </p>
+                  <v-text-field
+                    v-if="data.name === 'password_confirmation'"
+                    :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="show2 ? 'text' : 'password'"
+                    hint="At least 8 characters"
+                    :rules="[(v) => !!v || `Password tidak sama`]"
+                    @click:append="show2 = !show2"
+                    prepend-inner-icon="mdi-lock"
+                    :required="data.required"
+                    v-model="models[data.name]"
+                    color="284860"
+                    single-line
+                    outlined
+                  ></v-text-field>
+                </div>
+              </v-col>
             </v-row>
           </div>
         </v-form>
         <div class="d-flex justify-end bottom-button">
-          <v-btn v-if="isEditing" color="error" @click="isEditingForm()">
-            Batal
-          </v-btn>
-          <v-btn v-if="isEditing" color="success" @click="postData()">
-            Simpan Data
+          <v-btn v-if="!isEditing" color="primary" @click="isEditingForm()">
+            Update
           </v-btn>
         </div>
       </v-card>
@@ -113,7 +72,6 @@ import { EventBus } from "../../../event-bus.js";
 
 export default {
   data: () => ({
-    isEditing: false,
     show1: false,
     show2: false,
     formData: [],
