@@ -465,17 +465,28 @@ export default {
     },
     async changeScopeMap(cityId) {
       try {
+        // let provinceSelected = this.provinceData
+        //   .filter((province) => province.prov_id === this.models.province_id)
+        //   .map((province) => province.label)
+        //   .find((provinceSelected) => provinceSelected);
         let citySelected = this.cityData
           .filter((city) => city.city_id === cityId)
           .map((city) => city.city_name)
           .find((citySelected) => citySelected);
+        console.log(cityId);
+        console.log(this.cityData);
+        console.log(
+          // provinceSelected,
+          this.models.province_id,
+          this.provinceData
+        );
         const response = await axios.get(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${citySelected}`
+          `https://nominatim.openstreetmap.org/search?format=json&q=${citySelected},Indonesia}`
         );
         if (response.data.length > 0) {
           this.$refs.map.mapObject.setView(
             [response.data[0].lat, response.data[0].lon],
-            10
+            11
           );
         }
       } catch (error) {
