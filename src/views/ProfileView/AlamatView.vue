@@ -155,38 +155,46 @@
                   <v-icon small> mdi-pencil </v-icon>
                 </v-btn>
 
-                <!-- <v-btn
+                <v-btn
                   color="primary"
                   class="mr-2"
                   @click.stop="
                     deletesDialogs = true;
-                    deleteId = Address.id;
-                    deleteData(deleteId);
+                    setDeleteId(Address.id);
                   "
                 >
                   <v-icon small> mdi-delete </v-icon>
-                </v-btn> -->
+                </v-btn>
               </div>
             </template>
           </AddressCard>
         </div>
       </v-card>
-      <!-- <v-dialog v-model="deletesDialogs" max-width="290">
+      <v-dialog v-model="deletesDialogs" max-width="390">
         <v-card>
           <v-card-title class="text-h5">
-            Use Google's location service?
+            Konfirmasi menghapus alamat
           </v-card-title>
 
-          <v-card-text>
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-          </v-card-text>
+          <v-card-text> Apakah anda yakin untuk menghapus alamat? </v-card-text>
 
-          <v-card-actions>
-            <v-btn color="primary" @click="closeDialog"> Close </v-btn>
-          </v-card-actions>
+          <div class="d-flex flex-row justify-end align-center">
+            <v-card-actions>
+              <v-btn
+                color="red"
+                class="delete-button"
+                @click.stop="deleteData(deleteId)"
+              >
+                Delete
+              </v-btn>
+            </v-card-actions>
+
+            <v-card-actions>
+              <v-btn color="primary" @click="closeDialog"> Close </v-btn>
+            </v-card-actions>
+          </div>
         </v-card>
-      </v-dialog> -->
+      </v-dialog>
     </div>
   </v-container>
 </template>
@@ -350,7 +358,6 @@ export default {
           `${this.$api}/user/customer/address/${address}`
         );
         const data = res.data.data;
-        console.log(data);
         this.markerLocation = [data.latitude, data.longitude];
         this.center = [data.latitude, data.longitude];
         this.models = data;
@@ -369,16 +376,19 @@ export default {
       try {
         EventBus.$emit("startLoading");
         const res = await axios.get(`${this.$api}/user/customer/addresses`);
-        console.log(res);
         const addresses = res.data.data;
         this.userAddresses = addresses;
         console.log(this.userAddresses);
       } catch (err) {
         var error = err;
-        if (err.response.data.message) {
-          error = err.response.data.message;
-          console.log(error);
-          EventBus.$emit("showSnackbar", error, "red");
+        console.log(error.response.data.message);
+        const noData = error.response.data.message;
+        if (noData) {
+          EventBus.$emit(
+            "showSnackbar",
+            "Anda belum menambahkan alamat",
+            "primary"
+          );
         }
       }
       EventBus.$emit("stopLoading");
@@ -444,24 +454,36 @@ export default {
       }
     },
 
-    async deleteData(addressId) {
-      console.log(addressId);
+    setDeleteId(id) {
+      this.deleteId = id;
+    },
 
-      // try {
-      //   EventBus.$emit("startLoading");
-      //   const res = await axios.delete(
-      //     `${this.$api}/user/customer/address/${addresId}/delete`
-      //   );
-      //   console.log(res);
-      // } catch (err) {
-      //   var error = err;
-      //   if (err.response.data.message) {
-      //     error = err.response.data.message;
-      //     console.log(error);
-      //     EventBus.$emit("showSnackbar", error, "red");
-      //   }
-      // }
-      // EventBus.$emit("stopLoading");
+    async deleteData(addressId) {
+      // console.log(addressId);
+
+      try {
+        EventBus.$emit("startLoading");
+        const res = await axios.delete(
+          `${this.$api}/user/customer/address/${addressId}/delete`
+        );
+        console.log(res);
+        if (res.status == 200) {
+          await this.getAddresses();
+          this.closeDialog();
+        }
+      } catch (err) {
+        var error = err;
+        if (err.response.data.message) {
+          error = err.response.data.message;
+          console.log(error);
+          EventBus.$emit("showSnackbar", error, "red");
+        }
+      }
+      EventBus.$emit("stopLoading");
+    },
+
+    closeDialog() {
+      this.deletesDialogs = false;
     },
     async changeScopeMap(cityId) {
       try {
@@ -473,13 +495,6 @@ export default {
           .filter((city) => city.city_id === cityId)
           .map((city) => city.city_name)
           .find((citySelected) => citySelected);
-        console.log(cityId);
-        console.log(this.cityData);
-        console.log(
-          // provinceSelected,
-          this.models.province_id,
-          this.provinceData
-        );
         const response = await axios.get(
           `https://nominatim.openstreetmap.org/search?format=json&q=${citySelected},Indonesia}`
         );
@@ -504,5 +519,9 @@ export default {
 
 .map {
   height: 50vh;
+}
+
+.delete-button {
+  color: white !important;
 }
 </style>
