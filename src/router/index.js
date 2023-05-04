@@ -99,11 +99,11 @@ const routes = [
   },
 
   {
-    path: "/home",
+    path: "/",
     component: DefaultView,
     children: [
       {
-        path: "/home",
+        path: "/",
         name: "Default",
         component: HomeView,
       },
